@@ -5,7 +5,8 @@ const app=express();
 
 
 
-
+//for using static files
+app.use(express.static('public'));
 
 
 
