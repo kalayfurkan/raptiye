@@ -4,6 +4,9 @@ const app=express();
 
 
 
+//for setting view engine as ejs
+app.use('view engine','ejs');
+
 
 //for using static files
 app.use(express.static('public'));
