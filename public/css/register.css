@@ -1,19 +1,14 @@
-/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
-    /* Changed to a light, neutral background */
     color: #343a40;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
-/* Form Container */
 form {
+    margin: auto;
     background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
@@ -22,22 +17,22 @@ form {
     max-width: 400px;
 }
 
-/* Header */
+h1,
 h2 {
-    color: #343a40;
+    margin-top: 20px;
     text-align: center;
-    font-size: 24px;
+    color: #333;
     margin-bottom: 20px;
 }
 
-/* Form Group */
+
 .form-group {
     margin-bottom: 20px;
 }
 
 .form-group label {
-    font-weight: 500;
-    color: #495057;
+    font-weight: 600;
+    color: #555;
 }
 
 .form-control {
@@ -52,24 +47,26 @@ h2 {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
-/* Small Text */
+
 .form-text {
     font-size: 14px;
     color: #6c757d;
 }
 
-/* Checkbox */
 .form-check-input {
-    margin-top: 0.3rem;
+    margin-top: 1px;
 }
 
 .form-check-label {
     margin-left: 5px;
-    font-size: 14px;
-    color: #495057;
+    color: #555;
 }
 
-/* Button */
+#exampleCheck1 {
+    width: 20px;
+    height: 20px;
+}
+
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
@@ -78,8 +75,8 @@ h2 {
     font-weight: 500;
     border-radius: 5px;
     color: #fff;
-    transition: background-color 0.3s ease;
     width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -87,20 +84,18 @@ h2 {
     border-color: #004085;
 }
 
-/* Link to Login */
-h4 {
+.w-100 {
     text-align: center;
-    font-size: 16px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
-h4 a {
+.w-100 a {
     color: #007bff;
     text-decoration: none;
-    font-weight: 500;
+    font-size: 14px;
 }
 
-h4 a:hover {
+.w-100 a:hover {
     text-decoration: underline;
 }
 

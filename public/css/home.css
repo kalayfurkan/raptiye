@@ -1,18 +1,26 @@
 body {
+    font-family: 'Roboto', sans-serif;
     height: 100vh;
     background-color: #f8f9fa;
 }
 
-h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #333;
+.jumbotron {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-h3,
-h4,
-h5 {
-    text-align: center;
+h1 {
+    font-size: 3rem;
+    color: 10 10 10;
+}
+
+.lead {
+    font-size: 1.25rem;
+    color: #555;
+}
+
+p {
     margin-top: 20px;
 }
 

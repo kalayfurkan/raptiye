@@ -1,31 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
-	<a class="navbar-brand" href="#">Navbar</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	  <span class="navbar-toggler-icon"></span>
+	<a class="navbar-brand" href="#" style="margin: 10px 30px;">İTÜ Raptiye</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-	  <ul class="navbar-nav">
-		<li class="nav-item active">
-		  <a class="nav-link" href="/">Home</a>
-		</li>
-		<li class="nav-item active">
-			<a class="nav-link" href="/addpost">Add Post</a>
-		  </li>
-		<li class="nav-item">
-		  <a class="nav-link" href="/register">Register</a>
-		</li>
-		<li class="nav-item">
-		  <a class="nav-link" href="/login">Login</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="/list">List</a>
-		  </li>
-		<li class="nav-item" style="padding-left: 1400px;">
-			<a class="nav-link" href="/profile">Profile</a>
-		</li> 
-		<li class="nav-item">
-			<a class="nav-link" href="/logout">Log out</a>
-		</li> 
-	  </ul>
+	<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item mx-2">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item mx-2">
+				<a class="nav-link" href="/addpost">Add Post</a>
+			</li>
+			<li class="nav-item mx-2">
+				<a class="nav-link" href="/list">List</a>
+			</li>
+			<li class="nav-item mx-2">
+				<a class="nav-link" href="/register">Register</a>
+			</li>
+			<li class="nav-item mx-2">
+				<a class="nav-link" href="/login">Login</a>
+			</li>
+			<li class="nav-item mx-2">
+				<a class="nav-link" href="/profile">Profile</a>
+			</li>
+			<li class="nav-item mx-2">
+				<a class="nav-link btn btn-danger bold" href="/logout"><strong> Log out</strong></a>
+			</li>
+		</ul>
 	</div>
-  </nav>
+</nav>
+
+<style>
+	.navbar {
+		background-color: #343a40;
+		font-size: large;
+	}
+
+	.navbar-brand {
+		font-size: x-large;
+	}
+
+	.navbar-brand,
+	.navbar-nav .nav-link {
+		color: 10 10 10;
+	}
+
+	.navbar-brand:hover,
+	.navbar-nav .nav-link:hover {
+		color: #cccccc;
+	}
+</style>
