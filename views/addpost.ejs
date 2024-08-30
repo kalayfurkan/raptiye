@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Formu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/addpost.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position: absolute;margin-bottom: 850px;width:100%;">
+        <%- include('partials/navbar') %>
+    </div>
+
+    <div class="form-container">
+        <% if (sessionFlash) { %>
+            <div class="alert alert-<%= sessionFlash.type %>">
+                <%= sessionFlash.message %>
+            </div>
+            <% } %>
+                <h2 class="text-center mb-4">İlan Ver</h2>
+                <form method="post" action="/addpost" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="ilanBasligi">İlan Başlığı</label>
+                        <input name="title" type="text" class="form-control" id="ilanBasligi"
+                            placeholder="İlan başlığını giriniz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sonTarih">Şu tarhie kadar ilanda kalacak</label>
+                        <input name="date" type="date" class="form-control" id="sonTarih" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="aciklama">Açıklama</label>
+                        <textarea name="description" class="form-control" id="aciklama" rows="3"
+                            placeholder="İlan açıklamasını giriniz" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="fiyat">Fiyat (₺)</label>
+                        <input name="price" type="number" class="form-control" id="fiyat" placeholder="Fiyatı giriniz"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dosya">Dosya Yükle</label>
+                        <input name="images" type="file" class="form-control-file" id="dosya" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">İlanı Ver</button>
+                </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

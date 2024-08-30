@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kullanıcı Profili</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+  <%- include('partials/navbar') %>
+    <div class="container mt-5">
+      <h1 class="mb-4">Kullanıcı Profili</h1>
+      <h2 class="mb-4">İlanlarınız</h2>
+      <% if (sessionFlash) { %>
+        <div class="alert alert-<%= sessionFlash.type %>">
+          <%= sessionFlash.message %>
+        </div>
+        <% } %>
+          <div class="row">
+            <% posts.forEach(post=> { %>
+              <div class="col-md-4 mb-4">
+                <div class="card">
+                  <% if (post.images.length> 0) { %>
+                    <img src="<%= post.images[0] %>" class="card-img-top" alt="<%= post.title %>">
+                    <% } %>
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <%= post.title %>
+                        </h5>
+                        <p class="card-text">
+                          <%= post.description %>
+                        </p>
+                        <p class="card-text"><strong>Fiyat:</strong>
+                          <%= post.price %>
+                        </p>
+                        <p class="card-text"><small class="text-muted">Tarih: <%= new
+                              Date(post.date).toLocaleDateString() %></small></p>
+                        <a href="/list/<%= post._id %>" class="btn btn-primary">Detaylar</a>
+                        <!-- Silme Butonu -->
+                        <form action="/profile/delete/<%= post._id %>" method="POST" class="mt-2">
+                          <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                      </div>
+                </div>
+              </div>
+              <% }); %>
+          </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
