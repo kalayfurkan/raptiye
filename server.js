@@ -19,6 +19,9 @@ app.use(express.static('public'));
 //to get req.body 
 app.use(express.json());
 
+// URL-encoded for html inputs
+app.use(express.urlencoded({ extended: true }));
+
 //for routing
 const mainRouter=require('./routing/mainRouter');
 app.use('/',mainRouter);
