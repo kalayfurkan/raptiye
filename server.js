@@ -16,33 +16,9 @@ app.set('view engine', 'ejs');
 //for using static files
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.render('home');
-})
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-app.get('/addpost', (req, res) => {
-  res.render('addpost');
-});
-app.get('/errorpage', (req, res) => {
-  res.render('errorpage');
-});
-app.get('/list', (req, res) => {
-  res.render('list');
-});
-app.get('/list-ilanlar', (req, res) => {
-  res.render('list-ilanlar');
-});
-app.get('/listsearchresult', (req, res) => {
-  res.render('listsearchresult');
-});
-app.get('/profile', (req, res) => {
-  res.render('profile');
-});
-app.get('/register', (req, res) => {
-  res.render('register');
-});
+//for routing
+const getRequest=require('./routing/getRequest');
+app.use('/',getRequest);
 
 
 const port = 3000;
