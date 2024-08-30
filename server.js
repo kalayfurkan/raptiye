@@ -10,15 +10,18 @@ dotenv.config();
 connectToDB();
 
 
-//for setting view engine as ejs
+//to set view engine as ejs
 app.set('view engine', 'ejs');
 
-//for using static files
+//to use static files
 app.use(express.static('public'));
 
+//to get req.body 
+app.use(express.json());
+
 //for routing
-const getRequest=require('./routing/getRequest');
-app.use('/',getRequest);
+const mainRouter=require('./routing/mainRouter');
+app.use('/',mainRouter);
 
 
 const port = 3000;

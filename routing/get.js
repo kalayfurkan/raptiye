@@ -2,31 +2,31 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('home');
+	res.render('home');
 })
 router.get('/login', (req, res) => {
-  res.render('login');
+	res.render('login');
 });
 router.get('/addpost', (req, res) => {
-  res.render('addpost');
+	res.render('addpost');
 });
 router.get('/errorpage', (req, res) => {
-  res.render('errorpage');
+	res.render('errorpage');
 });
 router.get('/list', (req, res) => {
-  res.render('list');
+	res.render('list');
 });
 router.get('/list-ilanlar', (req, res) => {
-  res.render('list-ilanlar');
+	res.render('list-ilanlar');
 });
 router.get('/listsearchresult', (req, res) => {
-  res.render('listsearchresult');
+	res.render('listsearchresult');
 });
 router.get('/profile', (req, res) => {
-  res.render('profile');
+	res.render('profile');
 });
 router.get('/register', (req, res) => {
-  res.render('register');
+	res.render('register');
 });
 
 module.exports = router;
