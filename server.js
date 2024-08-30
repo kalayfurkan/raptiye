@@ -19,7 +19,7 @@ app.use(express.static('public'));
 //to get req.body 
 app.use(express.json());
 
-// URL-encoded for html inputs
+// URL-encoded for html forms
 app.use(express.urlencoded({ extended: true }));
 
 //for routing
