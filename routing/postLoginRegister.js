@@ -35,13 +35,9 @@ router.post('/login',async (req,res) => {
 		else{
 			return res.status(401).render('errorpage',{message:"Sistemde kayıtlı mail adresi bulunamamıştır"});
 		}
-
-		
 	} catch (error) {
 		res.status(500).send(error);
 	}
-	
-	
 })
 
 

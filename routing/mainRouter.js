@@ -6,8 +6,8 @@ const router = express.Router();
 
 const getRequest=require('./get');
 router.use('/',getRequest);
-const postRequest=require('./postLoginRegister');
-router.use('/',postRequest);
+const postLoginRegister=require('./postLoginRegister');
+router.use('/',postLoginRegister);
 
 
 module.exports = router;
