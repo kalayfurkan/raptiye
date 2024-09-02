@@ -4,7 +4,6 @@ const Auth=require('../middlewares.js');
 
 router.get('/', (req, res) => {
 	console.log(req.session);
-	
 	res.render('home');
 })
 router.get('/login', (req, res) => {
