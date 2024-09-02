@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const connectToDB = require('./db');
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo');
 
 //to use dotenv
 dotenv.config();
@@ -9,6 +11,19 @@ dotenv.config();
 //connection for db
 connectToDB();
 
+//session
+app.use(expressSession({
+  secret:process.env.session_secret,
+  resave:false,
+  saveUninitialized:true,
+  store: MongoStore.create({
+    mongoUrl: process.env.DB_URI,
+    dbName: 'ituraptiye',
+    collectionName: 'sessions',
+    ttl: 14 * 24 * 60 * 60,
+    autoRemove: 'native'
+  })
+}))
 
 //to set view engine as ejs
 app.set('view engine', 'ejs');

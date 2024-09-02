@@ -27,7 +27,8 @@ router.post('/login',async (req,res) => {
 		if(user){
 			const same=await bcrypt.compare(password,user.password);
 			if(same){
-				res.status(200).send("You are logged in");
+				req.session.userdId=user._id;
+				res.redirect('/');
 			}else{
 				res.status(401).render('errorpage',{message:"Şifrenizi yanlış girdiniz"});
 			}
