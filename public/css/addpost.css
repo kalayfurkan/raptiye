@@ -1,47 +1,44 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f7f6;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-container {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    margin: 100px auto;
     width: 100%;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    font-size: 24px;
     color: #333;
-    font-weight: 500;
-    margin-bottom: 20px;
-    text-align: center;
+    font-weight: bold;
 }
 
 .form-group label {
-    font-weight: 500;
+    font-weight: 600;
     color: #555;
 }
 
-.form-control,
-.form-control-file {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 10px;
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px;
     font-size: 16px;
-    color: #555;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 15px;
+    color: #495057;
 }
 
-.form-control:focus,
-.form-control-file:focus {
+.form-control:focus {
     border-color: #007bff;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
     outline: none;
@@ -52,26 +49,18 @@ textarea.form-control {
 }
 
 .btn {
-    background-color: #007bff;
-    border-color: #007bff;
+    padding: 12px;
     font-size: 16px;
     font-weight: 500;
-    padding: 10px;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
     background-color: #0056b3;
-    border-color: #004085;
-}
-
-.alert {
-    font-size: 16px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    transform: scale(1.05);
 }
 
 @media (max-width: 576px) {
@@ -80,15 +69,11 @@ textarea.form-control {
     }
 
     h2 {
-        font-size: 20px;
-    }
-
-    .btn {
-        font-size: 14px;
+        font-size: 24px;
     }
 
     .form-control,
-    .form-control-file {
+    .btn {
         font-size: 14px;
     }
 }
