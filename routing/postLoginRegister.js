@@ -27,7 +27,7 @@ router.post('/login',async (req,res) => {
 		if(user){
 			const same=await bcrypt.compare(password,user.password);
 			if(same){
-				req.session.userdId=user._id;
+				req.session.userId=user._id;
 				res.redirect('/');
 			}else{
 				res.status(401).render('errorpage',{message:"Şifrenizi yanlış girdiniz"});
@@ -39,6 +39,15 @@ router.post('/login',async (req,res) => {
 	} catch (error) {
 		res.status(500).send(error);
 	}
+})
+
+router.get('/logout',(req,res) => {
+	req.session.destroy((error) => {
+	  if(error){
+		return res.status(500).render('errorpage', { message: "Oturum kapatılamadı, lütfen tekrar deneyin." });
+	  }
+	  res.redirect('/');
+	})
 })
 
 
