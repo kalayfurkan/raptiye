@@ -15,7 +15,13 @@ connectToDB();
 app.use(expressSession({
   secret:process.env.session_secret,
   resave:false,
-  saveUninitialized:true,
+  saveUninitialized:false,
+   cookie: {
+    maxAge: 14 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax'
+  },
   store: MongoStore.create({
     mongoUrl: process.env.DB_URI,
     dbName: 'ituraptiye',

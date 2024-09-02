@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Auth=require('../middlewares.js');
 
 router.get('/', (req, res) => {
 	console.log(req.session);
@@ -9,7 +10,7 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
 	res.render('login');
 });
-router.get('/addpost', (req, res) => {
+router.get('/addpost',Auth, (req, res) => {
 	res.render('addpost');
 });
 router.get('/errorpage', (req, res) => {
