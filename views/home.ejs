@@ -13,19 +13,65 @@
 
 <body>
 	<%- include('partials/navbar') %>
-		<div class="container text-center mt-5">
+		<div class="container mt-8">
+			<h1>İTÜ Öğrencileri İçin Al, Sat, Kirala, İlan Ver</h1>
+			<h1>Hepsi Tek Yerde</h1>
+			<section id="pano">
+				<!-- İçi script ile dolduruluyor renkler hue değişkeni ile ayarlanıyor-->
+				<!-- <div class="postit">
+					<span class="postit-top"></span>
+					<h2>İkinci El Sahibinden Al</h2>
+					<p>İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla.</p>
+				</div> -->
+			</section>
 			<div class="jumbotron bg-light p-5 rounded">
-				<h1 class="display-4">Hello there, General Kenobi.</h1>
-				<p class="lead">Welcome to our site. Whether you're new or returning, we've got something for everyone.
-				</p>
-				<hr class="my-4">
-				<p>If you're new, feel free to <a href="/register" class="btn btn-primary">Register</a> or <a
-						href="/login" class="btn btn-secondary">Login</a>.</p>
-				<p>If you're already signed in, <a href="/list" class="btn btn-info">check your list</a> or visit <a
-						href="/profile" class="btn btn-warning">your profile</a>.</p>
+				<p>If you're new, feel free to <a href="/register" class="btn btn-primary">Register</a> or <a href="/login" class="btn btn-secondary">Login</a></p>
+				<p>If you're already signed in, <a href="/list" class="btn btn-info">check your list</a> or visit <a href="/profile" class="btn btn-warning">your profile</a></p>
 			</div>
 		</div>
-
+		<script>// Pano içindeki postitler için yazıldı ayrı bir dosyaya taşınacak
+			const postits = [
+				{
+					hue:107,
+					title: "İkinci El Sahibinden Al",
+					content: "İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla."
+				},
+				{
+					hue:190,
+					title: "Kiradan Eşya Al",
+					content: "Günlük lazım olan krampon, sözlük vs. aradığın ihtiyaçlarını kiradan al."
+				},
+				{
+					hue:65,
+					title: "Harf Notu Hesapla",
+					content: "Matematik, Fizik, Kimya notunu herkesten önce öğren."
+				},
+				{
+					hue:270,
+					title: "İlan Ver",
+					content: "Dilediğin her şeyi kolayca satışa çıkar, kirala ve alıcısıyla buluştur."
+				},
+				{
+					hue:0,
+					title: "İş Bul",
+					content: "Günübirlik veya uzun vadeli sana uygun ne varsa başvurabilirsin."
+				}
+			];
+	
+			const pano = document.getElementById('pano');
+	
+			postits.forEach(postit => {
+				const postitDiv = document.createElement('div');
+				postitDiv.className = 'postit';
+				postitDiv.style.backgroundColor = `hsl(${postit.hue}, 100%, 86%)`;
+				postitDiv.innerHTML = `
+					<span class="postit-top" style="background-color: hsl(${postit.hue}, 79%, 91%);"></span>
+					<h2>${postit.title}</h2>
+					<p>${postit.content}</p>
+				`;
+				pano.appendChild(postitDiv);
+			});
+		</script>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

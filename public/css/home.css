@@ -4,6 +4,27 @@ body {
     background-color: #f8f9fa;
 }
 
+#pano{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.postit{
+    padding: 10px;
+    margin: 10px;
+    border:2px solid grey;
+    width: 274px;
+    height: 274px;
+}
+.postit-top{
+    border-bottom: 1px solid grey;
+    margin: -10px -10px 5px -10px ;
+    display:block;
+    height:50px;
+}
+
+
 .jumbotron {
     background-color: #ffffff;
     border-radius: 0.5rem;
@@ -35,4 +56,5 @@ a:hover {
 
 .container {
     padding: 20px;
+    max-width: 90%;
 }
