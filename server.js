@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectToDB = require('./db');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo');
+const fileUpload=require('express-fileupload');
 
 //to use dotenv
 dotenv.config();
@@ -42,6 +43,9 @@ app.use(express.json());
 
 // URL-encoded for html forms
 app.use(express.urlencoded({ extended: true }));
+
+//file upload
+app.use(fileUpload());
 
 //for routing
 const mainRouter=require('./routing/mainRouter');
