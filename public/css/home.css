@@ -1,12 +1,15 @@
 body {
     /* height: 100vh; */
 }
-html, body {
+
+html,
+body {
     font-family: 'Roboto', sans-serif;
     height: 100%;
     margin: 0;
     background-color: #f8f9fa;
 }
+
 #wrapper {
     display: flex;
     flex-direction: column;
@@ -14,37 +17,50 @@ html, body {
 }
 
 .container {
-    flex: 1; /* This makes the content area expand to fill the available space */
+    flex: 1;
+    /* This makes the content area expand to fill the available space */
 }
-#pano{
+
+#pano {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
 }
-.postit{
+
+.postit {
     position: relative;
     padding: 10px;
     margin: 10px;
-    border:2px solid grey;
+    border: 2px solid grey;
     width: 274px;
     height: 274px;
 }
- .postit > svg:first-child { /*tüm postitlerin ilk svg çocuğunu alır yatayda ortalar*/
-    position:absolute;
+
+.postit>svg:first-child {
+    /*tüm postitlerin ilk svg çocuğunu alır yatayda ortalar*/
+    position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.postit-top{
+
+.postit-top {
     border-bottom: 1px solid grey;
-    margin: -10px -10px 5px -10px ;
-    display:block;
-    height:50px;
+    margin: -10px -10px 5px -10px;
+    display: block;
+    height: 50px;
 }
 
 h1 {
     font-size: 3rem;
     color: 10 10 10;
+    margin-top: 30px;
+}
+
+h2 {
+    color: 10 10 10;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 .lead {
