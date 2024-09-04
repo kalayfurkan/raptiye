@@ -1,9 +1,21 @@
 body {
+    /* height: 100vh; */
+}
+html, body {
     font-family: 'Roboto', sans-serif;
-    height: 100vh;
+    height: 100%;
+    margin: 0;
     background-color: #f8f9fa;
 }
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
+.container {
+    flex: 1; /* This makes the content area expand to fill the available space */
+}
 #pano{
     display: flex;
     flex-wrap: wrap;
@@ -11,24 +23,23 @@ body {
 
 }
 .postit{
+    position: relative;
     padding: 10px;
     margin: 10px;
     border:2px solid grey;
     width: 274px;
     height: 274px;
 }
+ .postit > svg:first-child { /*tüm postitlerin ilk svg çocuğunu alır yatayda ortalar*/
+    position:absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .postit-top{
     border-bottom: 1px solid grey;
     margin: -10px -10px 5px -10px ;
     display:block;
     height:50px;
-}
-
-
-.jumbotron {
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 h1 {
