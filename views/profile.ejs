@@ -12,40 +12,43 @@
 </head>
 
 <body>
-  <%- include('partials/navbar') %>
-    <div class="container">
-      <header class="başlik">
-        <h1>Profilim</h1>
-      </header>
+  <div id="wrapper">
+    <%- include('partials/navbar') %>
 
-      <div class="profile-container">
-        <div class="profile-sidebar">
-          <img src="profile-pic.jpg" alt="Profil Fotoğrafı">
-          <h2>Ahmet Yılmaz</h2>
-          <p>Üyelik Tarihi: Ocak 2021</p>
-          <a href="#" class="edit-profile-btn">Profili Düzenle</a>
-        </div>
+      <div class="container">
+        <header class="başlik">
+          <h1>Profilim</h1>
+        </header>
 
-        <div class="profile-details">
-          <h2>İlanlarım</h2>
-          <ul class="ads-list">
-            <li><a href="#">İlan 1 - ₺15,000</a></li>
-            <li><a href="#">İlan 2 - ₺8,000</a></li>
-            <li><a href="#">İlan 3 - ₺12,000</a></li>
-          </ul>
+        <div class="profile-container">
+          <div class="profile-sidebar">
+            <img src="profile-pic.jpg" alt="Profil Fotoğrafı">
+            <h2>Ahmet Yılmaz</h2>
+            <p>Üyelik Tarihi: Ocak 2021</p>
+            <a href="#" class="edit-profile-btn">Profili Düzenle</a>
+          </div>
 
-          <h2>İletişim Bilgileri</h2>
-          <p>Email: ahmet.yilmaz@example.com</p>
-          <p>Telefon: +90 532 000 00 00</p>
+          <div class="profile-details">
+            <h2>İlanlarım</h2>
+            <ul class="ads-list">
+              <li><a href="#">İlan 1 - ₺15,000</a></li>
+              <li><a href="#">İlan 2 - ₺8,000</a></li>
+              <li><a href="#">İlan 3 - ₺12,000</a></li>
+            </ul>
+
+            <h2>İletişim Bilgileri</h2>
+            <p>Email: ahmet.yilmaz@example.com</p>
+            <p>Telefon: +90 532 000 00 00</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <%- include('partials/footer') %>
+  </div>
 
-    <%- include('partials/footer') %>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

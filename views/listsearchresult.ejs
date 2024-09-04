@@ -12,52 +12,56 @@
 </head>
 
 <body>
-    <%- include('partials/navbar') %>
-        <h1>Arama Sonuçları</h1>
-        <div class="container mt-5">
+    <div id="wrapper">
+        <%- include('partials/navbar') %>
+            <h1>Arama Sonuçları</h1>
             <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <form class="d-flex" action="/list/search" method="post">
-                            <input name="search" class="form-control me-2" type="text" placeholder="Ara"
-                                aria-label="Search" required>
-                            <button class="btn btn-outline-success" type="submit">Arama yap</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <h1 class="mb-4">İlanlar</h1>
-            <div class="row">
-                <% posts.forEach(post=> { %>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <% if (post.images.length> 0) { %>
-                                <img src="<%= post.images[0] %>" class="card-img-top" alt="<%= post.title %>">
-                                <% } %>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <%= post.title %>
-                                        </h5>
-                                        <p class="card-text">
-                                            <%= post.description %>
-                                        </p>
-                                        <p class="card-text"><strong>Fiyat:</strong>
-                                            <%= post.price %>
-                                        </p>
-                                        <p class="card-text"><small class="text-muted">Tarih: <%= new
-                                                    Date(post.date).toLocaleDateString() %></small></p>
-                                        <a href="/list/<%= post._id %>" class="btn btn-primary">Detaylar</a>
-                                    </div>
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <form class="d-flex" action="/list/search" method="post">
+                                <input name="search" class="form-control me-2" type="text" placeholder="Ara"
+                                    aria-label="Search" required>
+                                <button class="btn btn-outline-success" type="submit">Arama yap</button>
+                            </form>
                         </div>
                     </div>
-                    <% }); %>
+                </div>
+                <h1 class="mb-4">İlanlar</h1>
+                <div class="row">
+                    <% posts.forEach(post=> { %>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <% if (post.images.length> 0) { %>
+                                    <img src="<%= post.images[0] %>" class="card-img-top" alt="<%= post.title %>">
+                                    <% } %>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%= post.title %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= post.description %>
+                                            </p>
+                                            <p class="card-text"><strong>Fiyat:</strong>
+                                                <%= post.price %>
+                                            </p>
+                                            <p class="card-text"><small class="text-muted">Tarih: <%= new
+                                                        Date(post.date).toLocaleDateString() %></small></p>
+                                            <a href="/list/<%= post._id %>" class="btn btn-primary">Detaylar</a>
+                                        </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
             </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <%- include('partials/footer') %>
+            <%- include('partials/footer') %>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

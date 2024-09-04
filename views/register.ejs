@@ -11,46 +11,52 @@
 	<link rel="stylesheet" href="/css/register.css">
 </head>
 
-<body style="background-color: rgb(215, 116, 116);">
-	<%- include('partials/navbar') %>
-		<h1> Siteye hoş geldiniz.</h1>
-		<h2> Üye olmak için lütfen formu doldurun.</h2>
-		<br><br><br>
-		<form action="/register" method="post">
-			<div class="form-group">
-				<label for="exampleInputEmail1">E-posta</label>
-				<input name="email" type="email" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp" placeholder="E-postanızı giriniz">
-				<small id="emailHelp" class="form-text text-muted">Sadece @itu.edu.tr uzantılı mail adresinizle kayıt
-					olabilirsiniz.</small>
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Kullanıcı adı</label>
-				<input name="username" type="text" class="form-control" placeholder="Kullanıcı adı">
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Parola</label>
-				<input name="password" type="password" class="form-control" id="exampleInputPassword1"
-					placeholder="Parola">
-				<small id="passwordHelp" class="form-text text-muted">Bu şifre İTÜ hesabınızdan bağımsızdır.</small>
-			</div>
-			<div class="form-group form-check">
-				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">Beni hatırla</label>
-			</div>
-			<button type="submit" class="btn btn-primary">Üye ol</button>
-		</form>
+<body>
+	<div id="wrapper">
+		<%- include('partials/navbar') %>
+			<div class="container">
+				<h1> Siteye hoş geldiniz.</h1>
+				<h2> Üye olmak için lütfen formu doldurun.</h2>
+				<br><br><br>
+				<form action="/register" method="post">
+					<div class="form-group">
+						<label for="exampleInputEmail1">E-posta</label>
+						<input name="email" type="email" class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp" placeholder="E-postanızı giriniz">
+						<small id="emailHelp" class="form-text text-muted">Sadece @itu.edu.tr uzantılı mail adresinizle
+							kayıt
+							olabilirsiniz.</small>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Kullanıcı adı</label>
+						<input name="username" type="text" class="form-control" placeholder="Kullanıcı adı">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Parola</label>
+						<input name="password" type="password" class="form-control" id="exampleInputPassword1"
+							placeholder="Parola">
+						<small id="passwordHelp" class="form-text text-muted">Bu şifre İTÜ hesabınızdan
+							bağımsızdır.</small>
+					</div>
+					<div class="form-group form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Beni hatırla</label>
+					</div>
+					<button type="submit" class="btn btn-primary">Üye ol</button>
+				</form>
 
-		<div class="w-100 p-3">
-			<a href="/login">Hesabınız var mı? Giriş yapın</a><br><br>
-			<a href="/">Ana sayfa</a>
-		</div>
+				<div class="w-100 p-3">
+					<a href="/login">Hesabınız var mı? Giriş yapın</a><br><br>
+					<a href="/">Ana sayfa</a>
+				</div>
+			</div>
 
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+			<%- include('partials/footer') %>
+	</div>
 
-		<%- include('partials/footer') %>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

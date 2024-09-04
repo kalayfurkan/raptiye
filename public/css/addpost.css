@@ -10,6 +10,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-grow: 1;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .form-container {
@@ -46,6 +54,16 @@ h2 {
 
 textarea.form-control {
     resize: vertical;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    margin-top: auto;
 }
 
 .btn {

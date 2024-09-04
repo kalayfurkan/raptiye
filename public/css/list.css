@@ -8,6 +8,14 @@ body {
 .container {
     width: 80%;
     margin: 0 auto;
+    flex-grow: 1;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .başlik {

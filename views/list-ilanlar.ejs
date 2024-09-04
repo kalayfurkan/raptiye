@@ -29,30 +29,33 @@
 </head>
 
 <body>
-  <%- include('partials/navbar') %>
-    <div class="container">
-      <header class="başlik">
-        <h1>İlanlar</h1>
-      </header>
+  <div id="wrapper">
+    <%- include('partials/navbar') %>
+      <div class="container">
+        <header class="başlik">
+          <h1>İlanlar</h1>
+        </header>
 
-      <div class="listings-container">
-        <!-- İlan Başlangıcı -->
-        <div class="listing-item">
-          <img src="ilan1.jpg" alt="İlan Görseli">
-          <div class="listing-details">
-            <h2>İlan Başlığı</h2>
-            <p class="price">₺15,000</p>
-            <a href="#" class="view-details-btn">Detayları Görüntüle</a>
+        <div class="listings-container">
+          <!-- İlan Başlangıcı -->
+          <div class="listing-item">
+            <img src="ilan1.jpg" alt="İlan Görseli">
+            <div class="listing-details">
+              <h2>İlan Başlığı</h2>
+              <p class="price">₺15,000</p>
+              <a href="#" class="view-details-btn">Detayları Görüntüle</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <%- include('partials/footer') %>
+  </div>
 
-    <%- include('partials/footer') %>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

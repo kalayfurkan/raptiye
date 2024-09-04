@@ -17,6 +17,19 @@ form {
     max-width: 400px;
 }
 
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+.container {
+    width: 80%;
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
 h1,
 h2 {
     margin-top: 20px;

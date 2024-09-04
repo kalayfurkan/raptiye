@@ -5,8 +5,16 @@ body {
     background-color: #f4f4f4;
 }
 
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
 .container {
     width: 80%;
+    flex-grow: 1;
     margin: 0 auto;
 }
 
@@ -76,13 +84,4 @@ body {
 
 .view-details-btn:hover {
     background-color: #e6b800;
-}
-
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 8px 8px 0 0;
 }
