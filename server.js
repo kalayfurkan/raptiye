@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const connectToDB = require('./db');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo');
+const fileUpload=require('express-fileupload');
 
 //to use dotenv
 dotenv.config();
@@ -15,7 +16,13 @@ connectToDB();
 app.use(expressSession({
   secret:process.env.session_secret,
   resave:false,
-  saveUninitialized:true,
+  saveUninitialized:false,
+   cookie: {
+    maxAge: 14 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax'
+  },
   store: MongoStore.create({
     mongoUrl: process.env.DB_URI,
     dbName: 'ituraptiye',
@@ -36,6 +43,9 @@ app.use(express.json());
 
 // URL-encoded for html forms
 app.use(express.urlencoded({ extended: true }));
+
+//file upload
+app.use(fileUpload());
 
 //for routing
 const mainRouter=require('./routing/mainRouter');
