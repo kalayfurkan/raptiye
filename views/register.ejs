@@ -13,37 +13,37 @@
 
 <body style="background-color: rgb(215, 116, 116);">
 	<%- include('partials/navbar') %>
-		<h1> Welcome to the website.</h1>
-		<h2> Please fill in the form to register.</h2>
+		<h1> Siteye hoş geldiniz.</h1>
+		<h2> Üye olmak için lütfen formu doldurun.</h2>
 		<br><br><br>
 		<form action="/register" method="post">
 			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
+				<label for="exampleInputEmail1">E-posta</label>
 				<input name="email" type="email" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp" placeholder="Enter email">
+					aria-describedby="emailHelp" placeholder="E-postanızı giriniz">
 				<small id="emailHelp" class="form-text text-muted">Sadece @itu.edu.tr uzantılı mail adresinizle kayıt
 					olabilirsiniz.</small>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Username</label>
-				<input name="username" type="text" class="form-control" placeholder="Username">
+				<label for="exampleInputPassword1">Kullanıcı adı</label>
+				<input name="username" type="text" class="form-control" placeholder="Kullanıcı adı">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
+				<label for="exampleInputPassword1">Parola</label>
 				<input name="password" type="password" class="form-control" id="exampleInputPassword1"
-					placeholder="Password">
+					placeholder="Parola">
 				<small id="passwordHelp" class="form-text text-muted">Bu şifre İTÜ hesabınızdan bağımsızdır.</small>
 			</div>
 			<div class="form-group form-check">
 				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">Check me out</label>
+				<label class="form-check-label" for="exampleCheck1">Beni hatırla</label>
 			</div>
-			<button type="submit" class="btn btn-primary">Register</button>
+			<button type="submit" class="btn btn-primary">Üye ol</button>
 		</form>
 
 		<div class="w-100 p-3">
-			<a href="/login">Have an account? Login</a><br><br>
-			<a href="/">Maybe just go to home page</a>
+			<a href="/login">Hesabınız var mı? Giriş yapın</a><br><br>
+			<a href="/">Ana sayfa</a>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

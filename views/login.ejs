@@ -13,32 +13,31 @@
 
 <body>
 	<%- include('partials/navbar') %>
-		<h1> Welcome to the website.</h1>
-		<h2> Please login.</h2>
+		<h1> Siteye hoş geldiniz.</h1>
+		<h2> Lütfen giriş yapın.</h2>
 		<br><br><br><br><br>
 		<form method="post" action="/login">
 			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
+				<label for="exampleInputEmail1">E-posta</label>
 				<input name="email" type="email" class="form-control" id="exampleInputEmail1"
-					aria-describedby="emailHelp" placeholder="Enter email">
-				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-					else.</small>
+					aria-describedby="emailHelp" placeholder="E-postanızı giriniz">
+				<small id="emailHelp" class="form-text text-muted"> E-posta adresinizi kimseyle paylaşmayacağız.</small>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
+				<label for="exampleInputPassword1">Parola</label>
 				<input name="password" type="password" class="form-control" id="exampleInputPassword1"
-					placeholder="Password">
+					placeholder="Parola">
 			</div>
 			<div class="form-group form-check">
 				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">Check me out</label>
+				<label class="form-check-label" for="exampleCheck1">Beni hatırla</label>
 			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
+			<button type="submit" class="btn btn-primary">Oturum aç</button>
 		</form>
 		<br>
 		<div class="w-100 p-3">
-			<a href="/register">Or create an account</a><br><br>
-			<a href="/">Maybe just go to home page</a>
+			<a href="/register">Hesabınız yok mu? Üye olun.</a><br><br>
+			<a href="/">Ana sayfa</a>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
