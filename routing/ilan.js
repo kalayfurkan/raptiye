@@ -56,7 +56,7 @@ router.get('/ilan/:ilanid',allMiddlewares.requireAuth,async (req, res) => {
 	try {
 		const ilanId = req.params.ilanid;
     	const ilan = await Ilan.findById(ilanId);
-
+		
 		res.render('ilandetay',{ilan});
 
 	} catch (error) {

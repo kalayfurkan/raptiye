@@ -6,8 +6,10 @@ const Ilan = require('../models/ilanSchema.js');
 
 
 router.get('/profile',allMiddlewares.requireAuth,async (req, res) => {
-	const myAllPosts=await Ilan.find({owner:req.session.UserId});
-	res.render('profile');
+	const myAllPosts=await Ilan.find({owner:req.session.userId});
+	
+	
+	res.render('profile',{ilanlar:myAllPosts});
 });
 
 
