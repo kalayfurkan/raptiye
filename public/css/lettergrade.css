@@ -45,6 +45,8 @@ button {
 }
 
 #result {
+    width: 500px;
+    margin: auto;
     background-color: #e9ecef;
     padding: 20px;
     border-radius: 10px;
@@ -52,6 +54,7 @@ button {
 }
 
 #result p {
+    margin: auto;
     font-size: 24px;
     font-weight: bold;
     color: #27ae60;

@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="standardDeviation" class="form-label">Standart Sapma</label>
-                        <input type="number" class="form-control" id="standardDeviation"
+                        <input type="number" class="form-control" id="standardDeviation" value="23"
                             placeholder="Standart sapmayı girin" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Hesapla</button>
@@ -41,6 +41,10 @@
 
                 <div id="result" class="mt-5 text-center">
                     <!-- Sonuç buraya -->
+                </div>
+
+                <div id="info" class="mt-5 text-center">
+                    <p>(Havuz dersleri için standart sapma yaklaşık 23 olmaktadır.)</p>
                 </div>
             </div>
             <%- include('partials/footer') %>
