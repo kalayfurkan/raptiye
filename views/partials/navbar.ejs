@@ -18,24 +18,29 @@
 			<div class="dropdown-menu">
 				<a href="/addpost">İlan ver</a>
 				<a href="/ilanlar">Tüm İlanlar</a>
-				<a href="/ilandetay">Örnek ilan</a>
 			</div>
 		</li>
 		<li class="navbar-item">
 			<a href="/lettergrade" class="navbar-link">Harf Notu Hesapla</a>
 		</li>
+
+		<% if (!user) { %>
 		<li class="navbar-item">
 			<a href="/register" class="navbar-link">Üye ol</a>
 		</li>
 		<li class="navbar-item">
 			<a href="/login" class="navbar-link">Giriş yap</a>
 		</li>
+		<% } %>
+
+		<% if (user) { %>
 		<li class="navbar-item">
 			<a href="/profile" class="navbar-link">Profil</a>
 		</li>
 		<li class="navbar-item">
 			<a href="/logout" class="navbar-link logout-btn"><img src="img/log-out.svg" alt="log out"></a>
 		</li>
+		<% } %>
 	</ul>
 </nav>
 
