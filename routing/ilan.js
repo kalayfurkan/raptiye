@@ -4,6 +4,7 @@ const Ilan = require('../models/ilanSchema.js');
 const fs = require('fs').promises;
 const sharp = require('sharp');
 const path = require('path');
+const allMiddlewares=require('../middlewares.js');
 
 router.post('/addpost', async (req, res) => {
 	try {
@@ -39,6 +40,17 @@ router.post('/addpost', async (req, res) => {
 		res.render('errorpage',{message:"Bir hata oluştu"+error});
 	}
 
+});
+
+
+router.get('/ilanlar',allMiddlewares.requireAuth,async (req, res) => {
+	try {
+		const allPosts=await Ilan.find({});
+		res.render('ilanlar',{ilanlar:allPosts});
+		
+	} catch (error) {
+		
+	}
 });
 
 
