@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const connectToDB = require('./db');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo');
-const fileUpload=require('express-fileupload');
+const fileUpload = require('express-fileupload');
 
 //to use dotenv
 dotenv.config();
@@ -14,10 +14,10 @@ connectToDB();
 
 //session
 app.use(expressSession({
-  secret:process.env.session_secret,
-  resave:false,
-  saveUninitialized:false,
-   cookie: {
+  secret: process.env.session_secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
     maxAge: 14 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     secure: false,
@@ -38,6 +38,11 @@ app.set('view engine', 'ejs');
 //to use static files
 app.use(express.static('public'));
 
+//Ömer done that
+app.get('/lettergrade', (req, res) => {
+  res.render('lettergrade');
+});
+
 //to get req.body 
 app.use(express.json());
 
@@ -48,8 +53,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 //for routing
-const mainRouter=require('./routing/mainRouter');
-app.use('/',mainRouter);
+const mainRouter = require('./routing/mainRouter');
+app.use('/', mainRouter);
 
 
 const port = 3000;
