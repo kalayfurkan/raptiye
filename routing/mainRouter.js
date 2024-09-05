@@ -10,5 +10,7 @@ const loginRegister=require('./LoginRegister.js');
 router.use('/',loginRegister);
 const ilan=require('./ilan.js');
 router.use('/',ilan);
+const profile=require('./profile');
+router.use(profile);
 
 module.exports = router;
