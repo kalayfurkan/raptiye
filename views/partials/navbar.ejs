@@ -17,8 +17,8 @@
 			<!-- Dropdown menu for "İlanlar" -->
 			<div class="dropdown-menu">
 				<a href="/addpost">İlan ver</a>
-				<a href="/list-ilanlar">Tüm İlanlar</a>
-				<a href="/list">Örnek ilan</a>
+				<a href="/ilanlar">Tüm İlanlar</a>
+				<a href="/ilandetay">Örnek ilan</a>
 			</div>
 		</li>
 		<li class="navbar-item">
@@ -202,16 +202,18 @@
 		.navbar-item {
 			padding: 10px;
 		}
+
 		/* sıkışınca yazıyı gizler */
-		.navbar-brand span{
-			display:none;
+		.navbar-brand span {
+			display: none;
 		}
 	}
 
 	@media screen and (max-width: 768px) {
-		.navbar-brand span{
-			display:inline;
+		.navbar-brand span {
+			display: inline;
 		}
+
 		.navbar-menu {
 			display: block;
 			flex-direction: column;
