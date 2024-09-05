@@ -1,47 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-	<a class="navbar-brand" href="#" style="margin: 5px 10px 5px 10px;">
-		<img style="margin: 5px 10px 10px 10px" src="/img/logo.svg">İTÜRaptiye
-	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item mx-2">
-				<a class="nav-link" href="/"><i class="fas fa-home"></i> Anasayfa</a>
+<!-- Main navigation bar -->
+<nav class="navbar">
+	<div class="navbar-container">
+		<!-- Logo and brand name -->
+		<a href="#" class="navbar-brand">
+			<img src="/img/logo.svg" alt="Logo"> İTÜ Raptiye
+		</a>
+		<!-- Mobile menu toggle button -->
+		<button class="navbar-toggle" id="navbar-toggle">☰</button>
+		<!-- Main menu items -->
+		<ul class="navbar-menu" id="navbar-menu">
+			<li class="navbar-item">
+				<a href="/" class="navbar-link">Anasayfa</a>
 			</li>
-			<li class="nav-item mx-2 dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="ilanlarDropdown" role="button" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-list"></i> İlanlar
-				</a>
-				<div class="dropdown-menu" aria-labelledby="ilanlarDropdown">
-					<a class="dropdown-item" href="/addpost">İlan ver</a>
-					<a class="dropdown-item" href="/ilanlar">Tüm İlanlar</a>
-					<a class="dropdown-item" href="/list">Örnek ilan</a>
+			<li class="navbar-item">
+				<a href="#" class="navbar-link">İlanlar</a>
+				<!-- Dropdown menu for "İlanlar" -->
+				<div class="dropdown-menu">
+					<a href="/addpost">İlan ver</a>
+					<a href="/list-ilanlar">Tüm İlanlar</a>
+					<a href="/list">Örnek ilan</a>
 				</div>
 			</li>
-			<li class="nav-item mx-2">
-				<a class="nav-link" href="/lettergrade"><i class="fas fa-user-plus"></i> Harf Notu Hesapla</a>
+			<li class="navbar-item">
+				<a href="/lettergrade" class="navbar-link">Harf Notu Hesapla</a>
 			</li>
-			
-			<% if (!user) { %>
-			<li class="nav-item mx-2">
-				<a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Üye ol</a>
+			<li class="navbar-item">
+				<a href="/register" class="navbar-link">Üye ol</a>
 			</li>
-			<li class="nav-item mx-2">
-				<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Giriş yap</a>
+			<li class="navbar-item">
+				<a href="/login" class="navbar-link">Giriş yap</a>
 			</li>
-			<% } %>
-
-			<% if (user) { %>
-			<li class="nav-item mx-2">
-				<a class="nav-link" href="/profile"><i class="fas fa-user"></i> Profil</a>
+			<li class="navbar-item">
+				<a href="/profile" class="navbar-link">Profil</a>
 			</li>
-			
-			<li class="nav-item mx-2">
-				<a class="nav-link btn btn-danger text-white" href="/logout"><strong> Çıkış yap</strong></a>
+			<li class="navbar-item">
+				<a href="/logout" class="navbar-link logout-btn"><strong>Çıkış yap</strong></a>
 			</li>
 			<% } %>
 
@@ -49,46 +42,161 @@
 	</div>
 </nav>
 
+<script>
+	// JavaScript to toggle mobile menu
+	document.getElementById('navbar-toggle').addEventListener('click', function () {
+		document.getElementById('navbar-menu').classList.toggle('active');
+	});
+</script>
+
 <style>
+
+	/* Main navbar styles */
 	.navbar {
-		background-color: #157bae;
-		font-size: 16px;
-		padding: 5px;
+		background-color: hsl(176, 95%, 63%);
+		/* Turquoise color */
+		padding: 10px 20px;
 	}
 
+	/* Container for navbar content */
+	.navbar-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	/* Logo and brand name styles */
 	.navbar-brand {
+		display: flex;
+		align-items: center;
 		font-size: 1.5rem;
-		color: black !important;
+		color: black;
+		text-decoration: none;
 	}
 
-	.navbar-nav .nav-link {
-		color: black !important;
+	.navbar-brand img {
+		margin-right: 10px;
 	}
 
-	.navbar-nav .nav-link:hover {
-		color: #ffcc00 !important;
+	/* Main menu list styles */
+	.navbar-menu {
+		display: flex;
+		list-style-type: none;
 	}
 
+	/* Individual menu item styles */
+	.navbar-item {
+		position: relative;
+		margin-left: 20px;
+	}
+
+	/* Menu link styles */
+	.navbar-link {
+		color: black;
+		text-decoration: none;
+		font-size: 1.2em;
+		transition: color 0.3s ease;
+	}
+
+	.navbar-link:hover {
+		color: hsl(356deg, 95%, 63%);
+		/* Red color on hover */
+	}
+
+	/* Dropdown menu styles */
 	.dropdown-menu {
+		display: none;
+		position: absolute;
 		background-color: #006699;
+		min-width: 150px;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		z-index: 1;
 	}
 
-	.dropdown-item {
-		color: white !important;
+	.dropdown-menu a {
+		color: white;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
 	}
 
-	.dropdown-item:hover {
+	.dropdown-menu a:hover {
 		background-color: #ffcc00;
-		color: #006699 !important;
+		color: #006699;
 	}
 
-	.btn-danger {
-		background-color: #ff3300 !important;
-		border-color: #ff3300 !important;
+	/* Show dropdown menu on hover */
+	.navbar-item:hover .dropdown-menu {
+		display: block;
 	}
 
-	.btn-danger:hover {
-		background-color: #cc2900 !important;
-		border-color: #cc2900 !important;
+	/* Logout button styles */
+	.logout-btn {
+		background-color: #ff3300;
+		color: white;
+		padding: 8px 16px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	.logout-btn:hover {
+		background-color: #cc2900;
+	}
+
+	/* Mobile menu toggle button styles */
+	.navbar-toggle {
+		display: none;
+		background: none;
+		border: none;
+		font-size: 1.5rem;
+		cursor: pointer;
+	}
+
+	/* Responsive styles for mobile devices */
+	@media screen and (max-width: 768px) {
+		.navbar-menu {
+			display: none;
+			flex-direction: column;
+			width: 100%;
+			position: absolute;
+			top: 60px;
+			left: 0;
+			background-color: hsl(176, 95%, 63%);
+			padding: 20px;
+		}
+
+		/* Show menu when active class is added */
+		.navbar-menu.active {
+			display: flex;
+		}
+
+		.navbar-item {
+			margin: 10px 0;
+		}
+
+		/* Show toggle button on mobile */
+		.navbar-toggle {
+			display: block;
+		}
+
+		/* Adjust dropdown for mobile view */
+		.dropdown-menu {
+			position: static;
+			background-color: transparent;
+			box-shadow: none;
+			display: none;
+		}
+
+		.dropdown-menu a {
+			color: black;
+		}
+
+		.navbar-item:hover .dropdown-menu {
+			display: block;
+		}
 	}
 </style>

@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     /* height: 100vh; */
 }
@@ -75,10 +81,6 @@ p {
 a {
     color: #007bff;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 .container {
