@@ -2,7 +2,8 @@
 <nav class="navbar">
 	<!-- Logo and brand name -->
 	<a href="#" class="navbar-brand">
-		<img src="/img/logo.svg" alt="Logo"> İTÜ Raptiye
+		<img src="/img/logo.svg" alt="Logo">
+		<span> İTÜ Raptiye</span>
 	</a>
 	<!-- Mobile menu toggle button -->
 	<button class="navbar-toggle" id="navbar-toggle">☰</button>
@@ -56,22 +57,27 @@
 	}
 
 	@keyframes wiggle {
+
 		0%,
 		100% {
 			transform: rotate(0deg);
 		}
+
 		25% {
 			transform: rotate(5deg);
 		}
+
 		50% {
 			transform: rotate(-5deg);
 		}
+
 		75% {
 			transform: rotate(5deg);
 		}
 	}
 
 	.navbar {
+		height: 5em;
 		z-index: 1;
 		background-color: var(--secondary-color);
 		display: flex;
@@ -121,7 +127,7 @@
 	.navbar-item {
 		transition: background-color 0.2s;
 		position: relative;
-		padding: 10px;
+		padding: 20px;
 	}
 
 	.navbar-item:hover {
@@ -172,17 +178,18 @@
 		transition: background-color 0.3s;
 	}
 
-	.logout-btn img{
+	.logout-btn img {
 		transition: transform 0.3s ease;
 	}
 
-	.logout-btn:hover img{
+	.logout-btn:hover img {
 		transform: translateX(3px);
-		transition: transform 0.3s ease;	
+		transition: transform 0.3s ease;
 	}
 
 	/* Mobile menu toggle button styles */
 	.navbar-toggle {
+		width: 4em;
 		display: none;
 		background: none;
 		border: none;
@@ -191,7 +198,20 @@
 	}
 
 	/* Responsive styles for mobile devices */
+	@media screen and (max-width: 1050px) {
+		.navbar-item {
+			padding: 10px;
+		}
+		/* sıkışınca yazıyı gizler */
+		.navbar-brand span{
+			display:none;
+		}
+	}
+
 	@media screen and (max-width: 768px) {
+		.navbar-brand span{
+			display:inline;
+		}
 		.navbar-menu {
 			display: block;
 			flex-direction: column;
@@ -222,8 +242,10 @@
 
 		/* Adjust dropdown for mobile view */
 		.dropdown-menu {
+			top: 1em;
+			left: 50%;
+			transform: translateX(-50%);
 			position: static;
-			background-color: transparent;
 			box-shadow: none;
 			display: none;
 		}
