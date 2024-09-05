@@ -18,25 +18,33 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="ilanlarDropdown">
 					<a class="dropdown-item" href="/addpost">İlan ver</a>
-					<a class="dropdown-item" href="/list-ilanlar">Tüm İlanlar</a>
+					<a class="dropdown-item" href="/ilanlar">Tüm İlanlar</a>
 					<a class="dropdown-item" href="/list">Örnek ilan</a>
 				</div>
 			</li>
 			<li class="nav-item mx-2">
 				<a class="nav-link" href="/lettergrade"><i class="fas fa-user-plus"></i> Harf Notu Hesapla</a>
 			</li>
+			
+			<% if (!user) { %>
 			<li class="nav-item mx-2">
 				<a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Üye ol</a>
 			</li>
 			<li class="nav-item mx-2">
 				<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Giriş yap</a>
 			</li>
+			<% } %>
+
+			<% if (user) { %>
 			<li class="nav-item mx-2">
 				<a class="nav-link" href="/profile"><i class="fas fa-user"></i> Profil</a>
 			</li>
+			
 			<li class="nav-item mx-2">
 				<a class="nav-link btn btn-danger text-white" href="/logout"><strong> Çıkış yap</strong></a>
 			</li>
+			<% } %>
+
 		</ul>
 	</div>
 </nav>

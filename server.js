@@ -5,6 +5,7 @@ const connectToDB = require('./db');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo');
 const fileUpload = require('express-fileupload');
+const allMiddlewares=require('./middlewares.js');
 
 //to use dotenv
 dotenv.config();
@@ -32,16 +33,16 @@ app.use(expressSession({
   })
 }))
 
+//check login
+app.use(allMiddlewares.checkSession);
+
 //to set view engine as ejs
 app.set('view engine', 'ejs');
 
 //to use static files
 app.use(express.static('public'));
 
-//Ömer done that
-app.get('/lettergrade', (req, res) => {
-  res.render('lettergrade');
-});
+
 
 //to get req.body 
 app.use(express.json());

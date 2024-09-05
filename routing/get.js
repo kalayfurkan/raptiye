@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Auth=require('../middlewares.js');
+const allMiddlewares=require('../middlewares.js');
 
 router.get('/', (req, res) => {
 	console.log(req.session);
@@ -9,26 +9,28 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
 	res.render('login');
 });
-router.get('/addpost',Auth, (req, res) => {
+router.get('/addpost',allMiddlewares.requireAuth, (req, res) => {
 	res.render('addpost');
 });
 router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
 });
-router.get('/list', (req, res) => {
+router.get('/list',allMiddlewares.requireAuth, (req, res) => {
 	res.render('list');
 });
-router.get('/list-ilanlar', (req, res) => {
-	res.render('list-ilanlar');
-});
-router.get('/listsearchresult', (req, res) => {
+router.get('/listsearchresult',allMiddlewares.requireAuth, (req, res) => {
 	res.render('listsearchresult');
 });
-router.get('/profile', (req, res) => {
+router.get('/profile',allMiddlewares.requireAuth, (req, res) => {
 	res.render('profile');
 });
 router.get('/register', (req, res) => {
 	res.render('register');
 });
+
+//Ömer done that
+router.get('/lettergrade', (req, res) => {
+	res.render('lettergrade');
+  });
 
 module.exports = router;
