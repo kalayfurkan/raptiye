@@ -1,74 +1,89 @@
 <!-- Main navigation bar -->
 <nav class="navbar">
-	<div class="navbar-container">
-		<!-- Logo and brand name -->
-		<a href="#" class="navbar-brand">
-			<img src="/img/logo.svg" alt="Logo"> İTÜ Raptiye
-		</a>
-		<!-- Mobile menu toggle button -->
-		<button class="navbar-toggle" id="navbar-toggle">☰</button>
-		<!-- Main menu items -->
-		<ul class="navbar-menu" id="navbar-menu">
-			<li class="navbar-item">
-				<a href="/" class="navbar-link">Anasayfa</a>
-			</li>
-			<li class="navbar-item">
-				<a href="#" class="navbar-link">İlanlar</a>
-				<!-- Dropdown menu for "İlanlar" -->
-				<div class="dropdown-menu">
-					<a href="/addpost">İlan ver</a>
-					<a href="/list-ilanlar">Tüm İlanlar</a>
-					<a href="/list">Örnek ilan</a>
-				</div>
-			</li>
-			<li class="navbar-item">
-				<a href="/lettergrade" class="navbar-link">Harf Notu Hesapla</a>
-			</li>
-			<li class="navbar-item">
-				<a href="/register" class="navbar-link">Üye ol</a>
-			</li>
-			<li class="navbar-item">
-				<a href="/login" class="navbar-link">Giriş yap</a>
-			</li>
-			<li class="navbar-item">
-				<a href="/profile" class="navbar-link">Profil</a>
-			</li>
-			<li class="navbar-item">
-				<a href="/logout" class="navbar-link logout-btn"><strong>Çıkış yap</strong></a>
-			</li>
-			<% } %>
-
-		</ul>
-	</div>
+	<!-- Logo and brand name -->
+	<a href="#" class="navbar-brand">
+		<img src="/img/logo.svg" alt="Logo"> İTÜ Raptiye
+	</a>
+	<!-- Mobile menu toggle button -->
+	<button class="navbar-toggle" id="navbar-toggle">☰</button>
+	<!-- Main menu items -->
+	<ul class="navbar-menu" id="navbar-menu">
+		<li class="navbar-item">
+			<a href="/" class="navbar-link">Anasayfa</a>
+		</li>
+		<li class="navbar-item">
+			<a href="#" class="navbar-link">İlanlar</a>
+			<!-- Dropdown menu for "İlanlar" -->
+			<div class="dropdown-menu">
+				<a href="/addpost">İlan ver</a>
+				<a href="/list-ilanlar">Tüm İlanlar</a>
+				<a href="/list">Örnek ilan</a>
+			</div>
+		</li>
+		<li class="navbar-item">
+			<a href="/lettergrade" class="navbar-link">Harf Notu Hesapla</a>
+		</li>
+		<li class="navbar-item">
+			<a href="/register" class="navbar-link">Üye ol</a>
+		</li>
+		<li class="navbar-item">
+			<a href="/login" class="navbar-link">Giriş yap</a>
+		</li>
+		<li class="navbar-item">
+			<a href="/profile" class="navbar-link">Profil</a>
+		</li>
+		<li class="navbar-item">
+			<a href="/logout" class="navbar-link logout-btn"><img src="img/log-out.svg" alt="log out"></a>
+		</li>
+	</ul>
 </nav>
 
 <script>
-	// JavaScript to toggle mobile menu
+	// JavaScript to toggle mobile menu with sliding effect
 	document.getElementById('navbar-toggle').addEventListener('click', function () {
-		document.getElementById('navbar-menu').classList.toggle('active');
+		const menu = document.getElementById('navbar-menu');
+		menu.classList.toggle('active');
+		menu.style.maxHeight = menu.classList.contains('active') ? menu.scrollHeight + "px" : "0";
 	});
 </script>
 
 <style>
-
-	/* Main navbar styles */
-	.navbar {
-		background-color: hsl(176, 95%, 63%);
-		/* Turquoise color */
-		padding: 10px 20px;
+	/* red hsl(356deg, 95%, 63%)    */
+	/* Turquoise hsl(176, 95%, 63%) */
+	:root {
+		--primary-color: hsl(356deg, 95%, 63%);
+		--secondary-color: hsl(176, 95%, 63%);
 	}
 
-	/* Container for navbar content */
-	.navbar-container {
+	@keyframes wiggle {
+		0%,
+		100% {
+			transform: rotate(0deg);
+		}
+		25% {
+			transform: rotate(5deg);
+		}
+		50% {
+			transform: rotate(-5deg);
+		}
+		75% {
+			transform: rotate(5deg);
+		}
+	}
+
+	.navbar {
+		z-index: 1;
+		background-color: var(--secondary-color);
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		max-width: 1200px;
-		margin: 0 auto;
+		align-items: stretch;
+		margin: 0;
+		padding: 0;
 	}
 
 	/* Logo and brand name styles */
 	.navbar-brand {
+		padding: 10px 10px;
 		display: flex;
 		align-items: center;
 		font-size: 1.5rem;
@@ -77,7 +92,23 @@
 	}
 
 	.navbar-brand img {
-		margin-right: 10px;
+		height: 30px;
+		width: auto;
+		margin: 0 10px;
+		transition: transform 0.5s;
+	}
+
+	.navbar-brand:hover img {
+		animation: wiggle 0.5s ease 2;
+	}
+
+	.navbar ul {
+		margin: 0;
+	}
+
+	.navbar li {
+		display: flex;
+		align-items: center;
 	}
 
 	/* Main menu list styles */
@@ -88,8 +119,13 @@
 
 	/* Individual menu item styles */
 	.navbar-item {
+		transition: background-color 0.2s;
 		position: relative;
-		margin-left: 20px;
+		padding: 10px;
+	}
+
+	.navbar-item:hover {
+		background-color: var(--primary-color);
 	}
 
 	/* Menu link styles */
@@ -97,34 +133,18 @@
 		color: black;
 		text-decoration: none;
 		font-size: 1.2em;
-		transition: color 0.3s ease;
-	}
-
-	.navbar-link:hover {
-		color: hsl(356deg, 95%, 63%);
-		/* Red color on hover */
+		transition: color 0.3s;
 	}
 
 	/* Dropdown menu styles */
 	.dropdown-menu {
 		display: none;
 		position: absolute;
-		background-color: #006699;
+		top: 3em;
+		background-color: var(--secondary-color);
 		min-width: 150px;
 		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-		z-index: 1;
-	}
-
-	.dropdown-menu a {
-		color: white;
-		padding: 12px 16px;
-		text-decoration: none;
-		display: block;
-	}
-
-	.dropdown-menu a:hover {
-		background-color: #ffcc00;
-		color: #006699;
+		z-index: 2;
 	}
 
 	/* Show dropdown menu on hover */
@@ -132,19 +152,33 @@
 		display: block;
 	}
 
-	/* Logout button styles */
-	.logout-btn {
-		background-color: #ff3300;
-		color: white;
-		padding: 8px 16px;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-		transition: background-color 0.3s ease;
+	.dropdown-menu a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		transition: background-color 0.2s;
 	}
 
-	.logout-btn:hover {
-		background-color: #cc2900;
+	.dropdown-menu a:hover {
+		background-color: var(--primary-color);
+		color: black;
+	}
+
+	/* Logout button styles */
+	.logout-btn {
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	.logout-btn img{
+		transition: transform 0.3s ease;
+	}
+
+	.logout-btn:hover img{
+		transform: translateX(3px);
+		transition: transform 0.3s ease;	
 	}
 
 	/* Mobile menu toggle button styles */
@@ -159,19 +193,22 @@
 	/* Responsive styles for mobile devices */
 	@media screen and (max-width: 768px) {
 		.navbar-menu {
-			display: none;
+			display: block;
 			flex-direction: column;
 			width: 100%;
 			position: absolute;
 			top: 60px;
 			left: 0;
 			background-color: hsl(176, 95%, 63%);
-			padding: 20px;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease-out;
 		}
 
 		/* Show menu when active class is added */
 		.navbar-menu.active {
-			display: flex;
+			max-height: 500px;
+			/* Adjust this value based on your menu's height */
 		}
 
 		.navbar-item {
@@ -197,6 +234,7 @@
 
 		.navbar-item:hover .dropdown-menu {
 			display: block;
+			position: absolute;
 		}
 	}
 </style>
