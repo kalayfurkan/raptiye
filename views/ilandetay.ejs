@@ -20,19 +20,17 @@
         </header>
 
         <div class="content">
+          
           <div class="image-gallery">
-            <img src="ilan1.jpg" alt="İlan Görseli 1" class="active">
-            <img src="ilan2.jpg" alt="İlan Görseli 2">
-            <img src="ilan3.jpg" alt="İlan Görseli 3">
+            <% ilan.images.forEach(image => { %>
+              <img src="<%= image %>" alt="İlan Görseli">
+            <% }) %>
           </div>
 
           <div class="details">
-            <h2 class="ilanbasligi">Temiz PS4</h2>
-            <p class="price">₺15,000</p>
-            <p class="description">Bu ilan, çok iyi durumda bir ürün için verilmiştir. Tüm özellikler ve detaylar burada
-              belirtilecektir. İlan detayları, ürünün durumuna, kullanım süresine ve diğer önemli bilgilere göre
-              değişiklik
-              gösterebilir.</p>
+            <h2 class="ilanbasligi"><%= ilan.title %></h2>
+            <p class="price"><%= ilan.price %></p>
+            <p class="description"><%= ilan.description %></p>
             <div class="seller-info">
               <h3>Satıcı Bilgileri</h3>
               <p>Ad: Ahmet Yılmaz</p>

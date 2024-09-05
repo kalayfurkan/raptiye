@@ -47,11 +47,21 @@ router.get('/ilanlar',allMiddlewares.requireAuth,async (req, res) => {
 	try {
 		const allPosts=await Ilan.find({});
 		res.render('ilanlar',{ilanlar:allPosts});
-		
 	} catch (error) {
-		
+		res.send(error);
 	}
 });
 
+router.get('/ilan/:ilanid',allMiddlewares.requireAuth,async (req, res) => {
+	try {
+		const ilanId = req.params.ilanid;
+    	const ilan = await Ilan.findById(ilanId);
+
+		res.render('ilandetay',{ilan});
+
+	} catch (error) {
+		res.status(500).send('Bir hata oluştu.');
+	}
+})
 
 module.exports = router;
