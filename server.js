@@ -43,7 +43,6 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 
-
 //to get req.body 
 app.use(express.json());
 

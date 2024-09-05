@@ -15,14 +15,9 @@ router.get('/addpost',allMiddlewares.requireAuth, (req, res) => {
 router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
 });
-router.get('/list',allMiddlewares.requireAuth, (req, res) => {
-	res.render('list');
-});
+
 router.get('/listsearchresult',allMiddlewares.requireAuth, (req, res) => {
 	res.render('listsearchresult');
-});
-router.get('/profile',allMiddlewares.requireAuth, (req, res) => {
-	res.render('profile');
 });
 router.get('/register', (req, res) => {
 	res.render('register');
