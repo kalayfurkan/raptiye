@@ -4,7 +4,7 @@ const Ilan = require('../models/ilanSchema.js');
 const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
-const allMiddlewares=require('../middlewares.js');
+const allMiddlewares = require('../middlewares.js');
 
 router.post('/addpost', async (req, res) => {
 	try {
@@ -37,27 +37,27 @@ router.post('/addpost', async (req, res) => {
 
 		res.redirect('/');
 	} catch (error) {
-		res.render('errorpage',{message:"Bir hata oluştu"+error});
+		res.render('errorpage', { message: "Bir hata oluştu" + error });
 	}
 
 });
 
 
-router.get('/ilanlar',allMiddlewares.requireAuth,async (req, res) => {
+router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
 	try {
-		const allPosts=await Ilan.find({});
-		res.render('ilanlar',{ilanlar:allPosts});
+		const allPosts = await Ilan.find({});
+		res.render('ilanlar', { ilanlar: allPosts });
 	} catch (error) {
 		res.send(error);
 	}
 });
 
-router.get('/ilan/:ilanid',allMiddlewares.requireAuth,async (req, res) => {
+router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const ilanId = req.params.ilanid;
-    	const ilan = await Ilan.findById(ilanId);
-		
-		res.render('ilandetay',{ilan});
+		const ilan = await Ilan.findById(ilanId);
+
+		res.render('ilandetay', { ilan });
 
 	} catch (error) {
 		res.status(500).send('Bir hata oluştu.');
@@ -65,24 +65,24 @@ router.get('/ilan/:ilanid',allMiddlewares.requireAuth,async (req, res) => {
 })
 
 
-router.get('/ilan/edit/:ilanid',allMiddlewares.requireAuth,async (req, res) => {
-	try{
+router.get('/ilan/edit/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
+	try {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
-		
-		res.render('editpost',{ilan,ilanId:ilanId});
+
+		res.render('editpost', { ilan, ilanId: ilanId });
 	}
-	catch(error){
+	catch (error) {
 		res.status(500).send('Bir hata oluştu.');
 	}
 })
 
-router.post('/delete-image/:ilanid/:index',allMiddlewares.requireAuth,async (req, res) => {
+router.post('/delete-image/:ilanid/:index', allMiddlewares.requireAuth, async (req, res) => {
 	const ilanId = req.params.ilanid;
 	const ilan = await Ilan.findById(ilanId);
-	
-	const index=req.params.index;
-	const imageToDelete=path.join(__dirname,'../public',ilan.images[index]);
+
+	const index = req.params.index;
+	const imageToDelete = path.join(__dirname, '../public', ilan.images[index]);
 
 	fs.unlinkSync(imageToDelete);
 	await Ilan.updateOne(
@@ -94,52 +94,61 @@ router.post('/delete-image/:ilanid/:index',allMiddlewares.requireAuth,async (req
 
 })
 
-router.post('/editpost/:ilanId',allMiddlewares.requireAuth,async(req, res) => {
-	const ilanId=req.params.ilanId;
-	const ilan= await Ilan.findById(ilanId);
+router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) => {
+	const ilanId = req.params.ilanId;
+	const ilan = await Ilan.findById(ilanId);
 
 
-		let images = req.files.images;
+	let images = req.files?.images;
 
+	if(images){
 		if (!Array.isArray(images)) {
 			images = [images];
 		}
-
+	
 		const maxWidth = 600;
 		const quality = 50;
-
+	
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
 			const imagePath = path.resolve(__dirname, '../public/img/postimages', date + element.name);
 			ilan.images.push(`/img/postimages/${date + element.name}`);
-
-			await sharp(element.data)
-				.resize(maxWidth)
-				.jpeg({ quality: quality })
-				.toFile(imagePath);
+	
+			try {
+				await sharp(element.data)
+					.resize(maxWidth)
+					.jpeg({ quality: quality })
+					.toFile(imagePath);
+			} catch (error) {
+				return res.status(500).send('Resim işlenirken hata oluştu.');
+			}
 		}
-
+	
+	}
+	
 
 	const updatedData = {
 		title: req.body.title,
 		description: req.body.description,
 		price: req.body.price,
+		reachYou: req.body.reachYou,
 		images: ilan.images,
-	  };
+	};
+
 	try {
 		await Ilan.updateOne(
-			{ _id: ilanId }, 
-			{ $set: updatedData } 
-		  );
-		  res.redirect('/profile'); 
+			{ _id: ilanId },
+			{ $set: updatedData }
+		);
+		res.redirect('/profile');
 	} catch (error) {
 		res.status(500).send('Bir hata oluştu.');
 	}
 })
 
-router.post('/ilan/delete/:ilanId',allMiddlewares.requireAuth,async (req, res) => {
-	const ilanId=req.params.ilanId;
-	const ilan= await Ilan.findById(ilanId);
+router.post('/ilan/delete/:ilanId', allMiddlewares.requireAuth, async (req, res) => {
+	const ilanId = req.params.ilanId;
+	const ilan = await Ilan.findById(ilanId);
 
 	if (!ilan) {
 		return res.status(404).send('İlan bulunamadı.');
@@ -147,7 +156,7 @@ router.post('/ilan/delete/:ilanId',allMiddlewares.requireAuth,async (req, res) =
 
 	if (ilan.images.length > 0) {
 		for (const address of ilan.images) {
-			const fullImagePath = path.join(__dirname,'../public',address);
+			const fullImagePath = path.join(__dirname, '../public', address);
 			try {
 				fs.unlinkSync(fullImagePath);
 				console.log(`Image deleted: ${fullImagePath}`);
@@ -156,14 +165,14 @@ router.post('/ilan/delete/:ilanId',allMiddlewares.requireAuth,async (req, res) =
 			}
 		}
 	}
-	
-	 try {
-        await Ilan.deleteOne({ _id: ilanId });
-        res.redirect('/profile');
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Bir hata oluştu.');
-    }
+
+	try {
+		await Ilan.deleteOne({ _id: ilanId });
+		res.redirect('/profile');
+	} catch (error) {
+		console.error(error);
+		res.status(500).send('Bir hata oluştu.');
+	}
 })
 
 
