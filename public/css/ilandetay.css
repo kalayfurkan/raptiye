@@ -18,12 +18,12 @@ body {
     justify-content: space-between;
 }
 
-.başlik {
+header {
     padding: 10px 0;
     border-bottom: 2px solid #e0e0e0;
 }
 
-.başlik h1 {
+header h1 {
     margin: 10px 10px -10px 2px;
     color: #333;
 }
