@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -29,6 +30,7 @@ header h1 {
 }
 
 .content {
+    min-height: 400px;
     display: flex;
     margin-top: 20px;
     background-color: #fff;
@@ -41,9 +43,10 @@ header h1 {
     flex: 1;
 }
 
-.image-gallery img {
+.carousel-item img {
     max-width: 100%;
     max-height: 300px;
+    object-fit: cover;
 }
 
 .details {
@@ -52,6 +55,7 @@ header h1 {
 }
 
 .details h2 {
+    font-size: 1.8em;
     color: #333;
     margin-top: 0;
 }
@@ -61,14 +65,15 @@ header h1 {
     font-size: 24px;
     margin: 10px 0;
 }
+
 .description::first-letter {
     text-transform: uppercase;
-  }
+}
 
 .description {
     margin: 10px 0 20px;
     line-height: 1.6;
-    color: #555;
+    color: #8a8a8a;
 }
 
 .seller-info {
@@ -78,12 +83,12 @@ header h1 {
 }
 
 .seller-info h3 {
+    font-size: 1.5em;
     margin-top: 0;
     color: #333;
 }
 
 .description::first-letter,
-.description::first-letter,
-.ilanbasligi::first-letter{
+.ilanbasligi::first-letter {
     text-transform: uppercase;
 }
