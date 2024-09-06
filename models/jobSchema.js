@@ -15,10 +15,6 @@ const jobSchema = new mongoose.Schema({
 	  required: true,
 	  trim: true,
 	},
-	price: {
-	  type: Number,
-	  required: true,
-	},
 	images: {
 	  type: [String],
 	},

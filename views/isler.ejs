@@ -41,9 +41,8 @@
               <!-- Job Details -->
               <div class="card-body">
                 <h5 class="card-title"><%= job.jobTitle %></h5>
-                <p class="card-text"><strong>Date:</strong> <%= job.removalDate.toDateString() %></p>
+                <p class="card-text"><strong>Şu tarihe kadar:</strong> <%= job.removalDate.toDateString() %></p>
                 <p class="card-text"><%= job.description %></p>
-                <p class="card-text"><strong>Price:</strong> $<%= job.price %></p>
                 <button><a href="/isler/<%= job._id %>">Detaylar</a></button>
               </div>
             </div>
