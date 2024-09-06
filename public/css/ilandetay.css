@@ -28,7 +28,6 @@ body {
     color: #333;
 }
 
-
 .content {
     display: flex;
     margin-top: 20px;
@@ -40,19 +39,11 @@ body {
 
 .image-gallery {
     flex: 1;
-    text-align: center;
 }
 
 .image-gallery img {
     max-width: 100%;
     max-height: 300px;
-    display: none;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-.image-gallery img.active {
-    display: block;
 }
 
 .details {
@@ -70,6 +61,9 @@ body {
     font-size: 24px;
     margin: 10px 0;
 }
+.description::first-letter {
+    text-transform: uppercase;
+  }
 
 .description {
     margin: 10px 0 20px;
@@ -86,4 +80,10 @@ body {
 .seller-info h3 {
     margin-top: 0;
     color: #333;
+}
+
+.description::first-letter,
+.description::first-letter,
+.ilanbasligi::first-letter{
+    text-transform: uppercase;
 }
