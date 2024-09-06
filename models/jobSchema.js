@@ -6,7 +6,7 @@ const jobSchema = new mongoose.Schema({
 	  required: true,
 	  trim: true,
 	},
-	date: {
+	removalDate: {
 	  type: Date,
 	  required: true,
 	},
