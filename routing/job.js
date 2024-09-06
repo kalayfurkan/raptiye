@@ -51,6 +51,7 @@ router.get('/isler', allMiddlewares.requireAuth, async(req, res) => {
 	const jobs=await Job.find({});
 	res.render('isler',{jobs});
 })
+
 router.get('/isler/:jobid', allMiddlewares.requireAuth, async(req, res) => {
 	const jobid = req.params.jobid;
     const job = await Job.findById(jobid);
@@ -58,6 +59,9 @@ router.get('/isler/:jobid', allMiddlewares.requireAuth, async(req, res) => {
 	res.render('jobDetails',{job,owner});
 })
 
+router.get('/job/edit/:jobid',allMiddlewares.requireAuth,(req, res) => {
+	
+})
 
 
 

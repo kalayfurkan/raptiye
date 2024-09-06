@@ -20,8 +20,8 @@
                     <form method="post" action="/editpost/<%=ilanId%>" enctype="multipart/form-data">
                         <div class="form-group mb-3">
                             <label for="ilanBasligi" class="form-label">İlan Başlığı</label>
-                            <input name="title" type="text" value="<%=ilan.title %>" class="form-control"
-                                id="ilanBasligi" placeholder="İlan başlığını giriniz" required>
+                            <input name="title" type="text" value="<%=ilan.title %>" class="form-control" id="ilanBasligi"
+                                placeholder="İlan başlığını giriniz" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="aciklama" class="form-label">Açıklama</label>
@@ -29,10 +29,9 @@
                                 placeholder="İlan açıklamasını giriniz" required> <%=ilan.description %> </textarea>
                         </div>
                         <div class="form-group mb-3">
-                            <!-- burası düzenlenecek -->
-                            <label for="" class="form-label">İletişim Bilgileri</label>
-                            <textarea name="" class="form-control" id="" rows="3"
-                                placeholder="İlan bilgilerini giriniz" required> <%=ilan.description %> </textarea>
+                            <label for="aciklama" class="form-label">Açıklama</label>
+                            <textarea name="reachYou" class="form-control" id="aciklama" rows="3"
+                                placeholder="İlan açıklamasını giriniz" required> <%=ilan.reachYou %> </textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="fiyat" class="form-label">Fiyat (₺)</label>
@@ -43,31 +42,30 @@
                             <label for="dosya" class="form-label">Daha Fazla Fotoğraf Yükle</label>
                             <input name="images" type="file" class="form-control" id="dosya" multiple>
                         </div>
-
-                        <h3 class="img-header">Mevcut Görselleri Düzenle</h3>
-                        <div class="image-gallery">
-                            <% ilan.images.forEach((image,index)=> { %>
-                                <div class="image-item edit-img-item">
-                                    <img src="<%= image %>" alt="Görsel" width="200">
-                                    <form action="/delete-image/<%=ilan._id %>/<%=index%>" method="POST"
-                                        style="display:inline;">
-                                        <input type="hidden" name="imagePath" value="<%= image %>">
-                                        <button class="sil-btn" type="submit">Görseli Kaldır</button>
-                                    </form>
-                                </div>
-                            <% }); %>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">İlanı Düzenle</button>
+						<button type="submit" class="btn btn-primary w-100">İlanı Düzenle</button>
                     </form>
-                    
-                </div>
+					<h3>Mevcut Görselleri Düzenle</h3>
+						<div class="image-gallery">
+							<% ilan.images.forEach((image,index)=> { %>
+								<div class="image-item">
+									<img src="<%= image %>" alt="Görsel" width="200">
+									<form action="/delete-image/<%=ilan._id %>/<%=index%>" method="POST" style="display:inline;">
+										<input type="hidden" name="imagePath" value="<%= image %>">
+										<button type="submit">Sil</button>
+									</form>
+								</div>
+							<% }); %>
 
-                <%- include('partials/footer') %>
+                        
+                </div>
             </div>
 
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+    </div>
+    <%- include('partials/footer') %>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
