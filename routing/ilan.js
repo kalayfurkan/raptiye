@@ -122,7 +122,6 @@ router.post('/editpost/:ilanId',allMiddlewares.requireAuth,async(req, res) => {
 
 	const updatedData = {
 		title: req.body.title,
-		date:req.body.date,
 		description: req.body.description,
 		price: req.body.price,
 		images: ilan.images,

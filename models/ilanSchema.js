@@ -6,10 +6,6 @@ const ilanSchema = new mongoose.Schema({
 	  required: true,
 	  trim: true,
 	},
-	date: {
-	  type: Date,
-	  required: true,
-	},
 	description: {
 	  type: String,
 	  required: true,
