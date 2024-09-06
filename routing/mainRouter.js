@@ -12,5 +12,8 @@ const ilan=require('./ilan.js');
 router.use('/',ilan);
 const profile=require('./profile');
 router.use(profile);
+const job=require('./job');
+router.use('/',job);
+
 
 module.exports = router;
