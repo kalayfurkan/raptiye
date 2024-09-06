@@ -55,6 +55,18 @@ h2 {
 textarea.form-control {
     resize: vertical;
 }
+.img-header{
+    margin: 0.6em;
+}
+.edit-img-item{
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.edit-img-item img{
+    border-radius: 5px;
+}
 
 footer {
     text-align: center;
@@ -75,7 +87,9 @@ footer {
     color: #ffffff;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
+.sil-btn{
+    margin: auto;
+}
 .btn:hover {
     background-color: #0056b3;
     transform: scale(1.05);
