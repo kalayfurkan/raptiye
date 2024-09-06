@@ -11,6 +11,10 @@ const ilanSchema = new mongoose.Schema({
 	  required: true,
 	  trim: true,
 	},
+	reachYou:{
+		type: String,
+		required:true,
+	},
 	price: {
 	  type: Number,
 	  required: true,
