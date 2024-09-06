@@ -138,4 +138,34 @@ router.post('/editpost/:ilanId',allMiddlewares.requireAuth,async(req, res) => {
 	}
 })
 
+router.post('/ilan/delete/:ilanId',allMiddlewares.requireAuth,async (req, res) => {
+	const ilanId=req.params.ilanId;
+	const ilan= await Ilan.findById(ilanId);
+
+	if (!ilan) {
+		return res.status(404).send('İlan bulunamadı.');
+	}
+
+	if (ilan.images.length > 0) {
+		for (const address of ilan.images) {
+			const fullImagePath = path.join(__dirname,'../public',address);
+			try {
+				fs.unlinkSync(fullImagePath);
+				console.log(`Image deleted: ${fullImagePath}`);
+			} catch (error) {
+				console.error(`Failed to delete image: ${fullImagePath}`, error);
+			}
+		}
+	}
+	
+	 try {
+        await Ilan.deleteOne({ _id: ilanId });
+        res.redirect('/profile');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Bir hata oluştu.');
+    }
+})
+
+
 module.exports = router;
