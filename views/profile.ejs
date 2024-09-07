@@ -73,6 +73,28 @@
                                 <% }) %>
                             </ul>
                         </ul>
+                        <h2>Kira İlanlarım</h2>
+                        <ul class="ads-list">
+                            <ul class="list-group">
+                                <% kiralar.forEach(function(kira) { %>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <!-- İlan Başlığı ve Fiyatı -->
+                                        <a href="/kiraoda/<%= kira._id %>" class="text-dark fw-bold"
+                                            style="font-size: 18px; text-decoration: none;">
+                                            <%= kira.title %>
+                                        </a>
+
+                                        <!-- Düzenle ve Sil Butonları -->
+                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                            <a href="/kiraoda/edit/<%= kira._id %>" class="btn btn-primary btn-md">Düzenle</a>
+                                            <form action="/kiraoda/delete/<%= kira._id %>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-danger btn-md">Sil</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </ul>
                         <h2>İletişim Bilgileri</h2>
                         <p>Email: ahmet.yilmaz@example.com</p>
                         <p>Telefon: +90 532 000 00 00</p>

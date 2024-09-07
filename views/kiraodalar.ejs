@@ -21,7 +21,9 @@
               <h5 class="card-title"><%= ilan.title %></h5>
               <p class="card-text"><%= ilan.description %></p>
               <p><strong>İlan Türü:</strong> <%= ilan.searchingFor %></p>
-              <p><strong>İletişim:</strong> <%= ilan.reachYou %></p>
+              <a href="/kiraoda/<%=ilan._id  %>" class="btn btn-outline-primary btn-lg px-4 py-2 rounded-pill">
+                Detaylar
+              </a>
             </div>
           </div>
         </div>
