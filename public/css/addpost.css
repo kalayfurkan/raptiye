@@ -68,6 +68,11 @@ textarea.form-control {
     border-radius: 5px;
 }
 
+.delete-btn-form{
+    display: inline;
+    margin: auto;
+}
+
 footer {
     text-align: center;
     margin-top: 40px;
@@ -87,9 +92,7 @@ footer {
     color: #ffffff;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.sil-btn{
-    margin: auto;
-}
+
 .btn:hover {
     background-color: #0056b3;
     transform: scale(1.05);
