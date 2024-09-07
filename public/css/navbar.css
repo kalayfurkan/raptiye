@@ -91,6 +91,10 @@
 		font-size: 1.2em;
 		transition: color 0.3s;
 	}
+	.navbar-link img{
+		max-height: 30px;
+		width: auto;
+	}
 
 	/* Dropdown menu styles */
 	.dropdown-menu {
@@ -132,7 +136,7 @@
 		transition: transform 0.3s ease;
 	}
 
-	.logout-btn:hover img {
+	#logout-btn:hover img {
 		transform: translateX(3px);
 		transition: transform 0.3s ease;
 	}
