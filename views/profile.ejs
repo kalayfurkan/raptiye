@@ -41,8 +41,7 @@
                                         <!-- Düzenle ve Sil Butonları -->
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
                                             <!-- Düzenle Butonu -->
-                                            <a href="/ilan/edit/<%= ilan._id %>" class="btn btn-primary btn-md"
-                                                style="color: white;">Düzenle</a>
+                                            <a href="/ilan/edit/<%= ilan._id %>" class="btn btn-primary btn-md">Düzenle</a>
                                             <!-- Sil Butonu -->
                                             <form action="/ilan/delete/<%= ilan._id %>" method="POST" class="d-inline">
                                                 <button type="submit" class="btn btn-danger btn-md">Sil</button>
@@ -65,16 +64,13 @@
 
                                         <!-- Düzenle ve Sil Butonları -->
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <!-- Düzenle Butonu -->
-                                            <a href="/job/edit/<%= job._id %>" class="btn btn-primary btn-md"
-                                                style="color: white;">Düzenle</a>
-                                            <!-- Sil Butonu -->
+                                            <a href="/job/edit/<%= job._id %>" class="btn btn-primary btn-md">Düzenle</a>
                                             <form action="/job/delete/<%= job._id %>" method="POST" class="d-inline">
                                                 <button type="submit" class="btn btn-danger btn-md">Sil</button>
                                             </form>
                                         </div>
                                     </li>
-                                    <% }) %>
+                                <% }) %>
                             </ul>
                         </ul>
                         <h2>İletişim Bilgileri</h2>
@@ -93,3 +89,6 @@
 </body>
 
 </html>
+<!-- 
+ilk harfler büyük olsun 
+-->

@@ -1,3 +1,12 @@
+:root {
+    --primary-color: hsl(356, 95%, 63%);
+    --primary-color-dark: hsl(356, 69%, 55%);
+    --primary-color-dark2: hsl(356, 57%, 45%);
+    --secondary-color: hsl(176, 95%, 63%);
+    --secondary-color-dark: hsl(176, 73%, 56%);
+    --secondary-color-dark2: hsl(176, 57%, 45%);
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -67,7 +76,7 @@ body {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #ffcc00;
+    background-color: var(--secondary-color-dark);
     color: #333;
     text-decoration: none;
     border-radius: 5px;
@@ -75,7 +84,7 @@ body {
 }
 
 .edit-profile-btn:hover {
-    background-color: #e6b800;
+    background-color: var(--secondary-color-dark2);
 }
 
 .profile-details {
@@ -105,12 +114,27 @@ body {
 
 .ads-list li a {
     text-decoration: none;
-    color: #0073e6;
-    transition: color 0.3s;
+    color: white;
+    transition: all 0.2s;
+}
+.profile-sidebar h2,
+.ads-list li a::first-letter {
+    text-transform: capitalize;
 }
 
-.ads-list li a:hover {
-    color: #005bb5;
+.btn{
+    color: white;
+    border-radius: 5px !important; /* important used out of neccessaty (couldn't overwrite bootstrap) */
+    margin: 3px;
+}
+.btn-danger{
+    background-color: var(--primary-color-dark);
+}
+.btn-danger:hover{
+    background-color: var(--primary-color-dark2);
+}
+.btn-primary{
+    /* background-color: var(--secondary-color-dark); */
 }
 
 footer {
