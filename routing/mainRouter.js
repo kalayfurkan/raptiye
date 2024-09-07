@@ -14,6 +14,8 @@ const profile=require('./profile');
 router.use(profile);
 const job=require('./job');
 router.use('/',job);
+const kiraoda=require('./kiraoda');
+router.use('/',kiraoda);
 
 
 module.exports = router;
