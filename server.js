@@ -5,7 +5,7 @@ const connectToDB = require('./db');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo');
 const fileUpload = require('express-fileupload');
-const allMiddlewares=require('./middlewares.js');
+const allMiddlewares = require('./middlewares.js');
 
 //to use dotenv
 dotenv.config();
@@ -19,7 +19,7 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 14 * 24 * 60 * 60 * 1000,
+    maxAge: 24 * 60 * 60 * 1000, //default 1 gün
     httpOnly: true,
     secure: false,
     sameSite: 'lax'
@@ -28,7 +28,7 @@ app.use(expressSession({
     mongoUrl: process.env.DB_URI,
     dbName: 'ituraptiye',
     collectionName: 'sessions',
-    ttl: 14 * 24 * 60 * 60,
+    ttl: 24 * 60 * 60, //default 1 gün 
     autoRemove: 'native'
   })
 }))

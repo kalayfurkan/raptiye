@@ -15,8 +15,8 @@ router.post('/register', async (req, res) => {
 			return res.status(400).render('errorpage', { message: `You must use ${allowedMail} mail type` });
 		}
 
-		await User.create({username,password,email,verificationToken});
-		
+		await User.create({ username, password, email, verificationToken });
+
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {
@@ -24,14 +24,14 @@ router.post('/register', async (req, res) => {
 				pass: process.env.EMAIL_PASSWORD
 			}
 		});
-		
+
 		const mailOptions = {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye mail doğrulama',
 			html: `<a href="http://localhost:3000/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>`
 		};
-		
+
 		const info = await transporter.sendMail(mailOptions);
 
 		console.log('Email sent: ' + info.response);
@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
 		res.send('Başarıyla kayıt oldunuz <a href="https://webmail.itu.edu.tr/login.php">linke</a> tıklayarak mailinize gidip hesabınızı doğrulayın.');
 
 	} catch (error) {
-		res.status(400).render('errorpage', { message:"@itu.edu.tr uzantılı bir mail ile kaydolmadınız ya da kullanıcı adınız başka bir kullanıcı tarafından alınmış." });
+		res.status(400).render('errorpage', { message: "@itu.edu.tr uzantılı bir mail ile kaydolmadınız ya da kullanıcı adınız başka bir kullanıcı tarafından alınmış." });
 	}
 })
 
@@ -63,18 +63,19 @@ router.get('/verify-email', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		const { email, password } = req.body;
+		const { email, password, rememberMe } = req.body;
 
 		const user = await User.findOne({ email });
-		
+
 		if (user) {
-			if(user.isVerified==false){
-				return res.status(400).render('errorpage',{message:"Lütfen mailinizi doğrulayın."})
+			if (user.isVerified == false) {
+				return res.status(400).render('errorpage', { message: "Lütfen mailinizi doğrulayın." })
 			}
 
 			const same = await bcrypt.compare(password, user.password);
 			if (same) {
 				req.session.userId = user._id;
+				req.session.cookie.maxAge = rememberMe ? 14 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;  // 14 gün ya da 1 gün
 				res.redirect('/');
 			} else {
 				res.status(401).render('errorpage', { message: "Şifrenizi yanlış girdiniz" });

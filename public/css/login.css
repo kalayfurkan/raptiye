@@ -57,6 +57,7 @@ form {
 
 .form-check-input {
     margin-top: 0px;
+
 }
 
 .form-check-label {
@@ -64,7 +65,7 @@ form {
     color: #555;
 }
 
-#exampleCheck1 {
+#rememberMe {
     width: 10px;
 }
 
