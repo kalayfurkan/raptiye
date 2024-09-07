@@ -49,4 +49,18 @@ router.get('/kiraoda',allMiddlewares.requireAuth,async(req,res) => {
 	const kiraodalar=await Kiraoda.find({});
 	res.render('kiraodalar',{ilanlar:kiraodalar})
 })
+
+router.get('/kiraoda/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
+	const kiraid=req.params.kiraodaid;
+	const kira=await Kiraoda.findById(kiraid);
+
+	res.render('kiraodadetay',{ilan:kira});
+})
+
+router.get('/kiraoda/edit/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
+	const kiraid=req.params.kiraodaid;
+	const kira=await Kiraoda.findById(kiraid);
+
+	res.render('kiraodaedit',{kira,kiraid});
+})
 module.exports = router;
