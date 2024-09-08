@@ -1,219 +1,221 @@
+/* red hsl(356deg, 95%, 63%)    */
+/* Turquoise hsl(176, 95%, 63%) */
+:root {
+	--primary-color: hsl(356deg, 95%, 63%);
+	--secondary-color: hsl(176, 95%, 63%);
+}
 
-	/* red hsl(356deg, 95%, 63%)    */
-	/* Turquoise hsl(176, 95%, 63%) */
-	:root {
-		--primary-color: hsl(356deg, 95%, 63%);
-		--secondary-color: hsl(176, 95%, 63%);
+@keyframes wiggle {
+
+	0%,
+	100% {
+		transform: rotate(0deg);
 	}
 
-	@keyframes wiggle {
-
-		0%,
-		100% {
-			transform: rotate(0deg);
-		}
-
-		25% {
-			transform: rotate(5deg);
-		}
-
-		50% {
-			transform: rotate(-5deg);
-		}
-
-		75% {
-			transform: rotate(5deg);
-		}
+	25% {
+		transform: rotate(5deg);
 	}
 
-	.navbar {
-		position: sticky;
-		top: 0;
-		height: 5em;
-		z-index: 1;
-		background-color: var(--secondary-color);
-		display: flex;
-		justify-content: space-between;
-		align-items: stretch;
-		margin: 0;
-		padding: 0;
+	50% {
+		transform: rotate(-5deg);
 	}
 
-	/* Logo and brand name styles */
-	.navbar-brand {
-		padding: 10px 10px;
-		display: flex;
-		align-items: center;
-		font-size: 1.5rem;
-		color: black;
-		text-decoration: none;
+	75% {
+		transform: rotate(5deg);
 	}
+}
 
-	.navbar-brand img {
-		height: 30px;
-		width: auto;
-		margin: 0 10px;
-		transition: transform 0.5s;
-	}
+.navbar {
+	/* position: sticky;
+	top: 0; */
+	height: 5em;
+	width: 98.9vw;
+	z-index: 1;
+	background-color: var(--secondary-color);
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	margin: 0;
+	padding: 0;
+	overflow: visible;
+}
 
-	.navbar-brand:hover img {
-		animation: wiggle 0.5s ease 2;
-	}
+/* Logo and brand name styles */
+.navbar-brand {
+	padding: 10px 10px;
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+	color: black;
+	text-decoration: none;
+}
 
-	.navbar ul {
-		margin: 0;
-	}
+.navbar-brand img {
+	height: 30px;
+	width: auto;
+	margin: 0 10px;
+	transition: transform 0.5s;
+}
 
-	.navbar li {
-		display: flex;
-		align-items: center;
-	}
+.navbar-brand:hover img {
+	animation: wiggle 0.5s ease 2;
+}
 
-	/* Main menu list styles */
-	.navbar-menu {
-		display: flex;
-		list-style-type: none;
-	}
+.navbar ul {
+	margin: 0;
+}
 
-	/* Individual menu item styles */
+.navbar li {
+	display: flex;
+	align-items: center;
+}
+
+/* Main menu list styles */
+.navbar-menu {
+	display: flex;
+	list-style-type: none;
+}
+
+/* Individual menu item styles */
+.navbar-item {
+	transition: background-color 0.2s;
+	position: relative;
+	padding: 20px;
+}
+
+.navbar-item:hover {
+	background-color: var(--primary-color);
+}
+
+/* Menu link styles */
+.navbar-link {
+	color: black;
+	text-decoration: none;
+	font-size: 1.2em;
+	transition: color 0.3s;
+}
+
+.navbar-link img {
+	max-height: 30px;
+	width: auto;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 90%;
+	background-color: var(--secondary-color);
+	min-width: 150px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	z-index: 2;
+}
+
+/* Show dropdown menu on hover */
+.navbar-item:hover .dropdown-menu {
+	display: block;
+}
+
+.dropdown-menu a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+	background-color: var(--primary-color);
+	color: black;
+}
+
+/* Logout button styles */
+.logout-btn {
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.logout-btn img {
+	transition: transform 0.3s ease;
+}
+
+#logout-btn:hover img {
+	transform: translateX(3px);
+	transition: transform 0.3s ease;
+}
+
+/* Mobile menu toggle button styles */
+.navbar-toggle {
+	width: 4em;
+	display: none;
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+/* Responsive styles for mobile devices */
+@media screen and (max-width: 1075px) {
 	.navbar-item {
-		transition: background-color 0.2s;
-		position: relative;
-		padding: 20px;
+		padding: 10px;
 	}
 
-	.navbar-item:hover {
-		background-color: var(--primary-color);
-	}
-
-	/* Menu link styles */
-	.navbar-link {
-		color: black;
-		text-decoration: none;
-		font-size: 1.2em;
-		transition: color 0.3s;
-	}
-	.navbar-link img{
-		max-height: 30px;
-		width: auto;
-	}
-
-	/* Dropdown menu styles */
-	.dropdown-menu {
+	/* sıkışınca yazıyı gizler */
+	.navbar-brand span {
 		display: none;
-		position: absolute;
-		top: 90%;
-		background-color: var(--secondary-color);
-		min-width: 150px;
-		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-		z-index: 2;
+	}
+}
+
+@media screen and (max-width: 830px) {
+	.navbar-brand span {
+		display: inline;
 	}
 
-	/* Show dropdown menu on hover */
-	.navbar-item:hover .dropdown-menu {
+	.navbar-menu {
 		display: block;
+		flex-direction: column;
+		width: 100%;
+		position: absolute;
+		top: 60px;
+		left: 0;
+		background-color: hsl(176, 95%, 63%);
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.3s ease-out;
+	}
+
+	/* Show menu when active class is added */
+	.navbar-menu.active {
+		max-height: 500px;
+		/* Adjust this value based on your menu's height */
+	}
+
+	.navbar-item {
+		margin: 10px 0;
+	}
+
+	/* Show toggle button on mobile */
+	.navbar-toggle {
+		display: block;
+	}
+
+	/* Adjust dropdown for mobile view */
+	.dropdown-menu {
+		top: 1em;
+		left: 50%;
+		transform: translateX(-50%);
+		position: static;
+		box-shadow: none;
+		display: none;
 	}
 
 	.dropdown-menu a {
 		color: black;
-		padding: 12px 16px;
-		text-decoration: none;
+	}
+
+	.navbar-item:hover .dropdown-menu {
 		display: block;
-		transition: background-color 0.2s;
+		position: absolute;
 	}
-
-	.dropdown-menu a:hover {
-		background-color: var(--primary-color);
-		color: black;
-	}
-
-	/* Logout button styles */
-	.logout-btn {
-		border: none;
-		cursor: pointer;
-		transition: background-color 0.3s;
-	}
-
-	.logout-btn img {
-		transition: transform 0.3s ease;
-	}
-
-	#logout-btn:hover img {
-		transform: translateX(3px);
-		transition: transform 0.3s ease;
-	}
-
-	/* Mobile menu toggle button styles */
-	.navbar-toggle {
-		width: 4em;
-		display: none;
-		background: none;
-		border: none;
-		font-size: 1.5rem;
-		cursor: pointer;
-	}
-
-	/* Responsive styles for mobile devices */
-	@media screen and (max-width: 1050px) {
-		.navbar-item {
-			padding: 10px;
-		}
-
-		/* sıkışınca yazıyı gizler */
-		.navbar-brand span {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		.navbar-brand span {
-			display: inline;
-		}
-
-		.navbar-menu {
-			display: block;
-			flex-direction: column;
-			width: 100%;
-			position: absolute;
-			top: 60px;
-			left: 0;
-			background-color: hsl(176, 95%, 63%);
-			max-height: 0;
-			overflow: hidden;
-			transition: max-height 0.3s ease-out;
-		}
-
-		/* Show menu when active class is added */
-		.navbar-menu.active {
-			max-height: 500px;
-			/* Adjust this value based on your menu's height */
-		}
-
-		.navbar-item {
-			margin: 10px 0;
-		}
-
-		/* Show toggle button on mobile */
-		.navbar-toggle {
-			display: block;
-		}
-
-		/* Adjust dropdown for mobile view */
-		.dropdown-menu {
-			top: 1em;
-			left: 50%;
-			transform: translateX(-50%);
-			position: static;
-			box-shadow: none;
-			display: none;
-		}
-
-		.dropdown-menu a {
-			color: black;
-		}
-
-		.navbar-item:hover .dropdown-menu {
-			display: block;
-			position: absolute;
-		}
-	}
+}

@@ -1,27 +1,5 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    color: #343a40;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
-
-form {
-    margin: auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-#wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
+:root {
+    --max-form-width: 400px;
 }
 
 .container {
@@ -30,14 +8,30 @@ form {
     margin: 0 auto;
 }
 
+.container header{
+    margin-left: calc(50% - calc(var(--max-form-width) / 2)) ;
+}
+
 h1,
 h2 {
     margin-top: 20px;
-    text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
+h2{
+    margin-bottom: 100px;
+}
+
+form {
+    width: 100%;
+    max-width: var(--max-form-width);
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
 
 .form-group {
     margin-bottom: 20px;
@@ -98,18 +92,18 @@ h2 {
     transform: scale(1.05);
 }
 
-.w-100 {
+.register-div {
     text-align: center;
     margin-top: 30px;
 }
 
-.w-100 a {
+.register-div a {
     color: #007bff;
     text-decoration: none;
     font-size: 14px;
 }
 
-.w-100 a:hover {
+.register-div a:hover {
     text-decoration: underline;
 }
 
