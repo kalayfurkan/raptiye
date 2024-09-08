@@ -14,7 +14,17 @@ const kampusemesajSchema = new mongoose.Schema({
 		type: String,
 	},
 	upvotes: { type: Number, default: 0 },
-    downvotes: { type: Number, default: 0 }
+    downvotes: { type: Number, default: 0 },
+	upVoters:{
+		type: [String],
+		default: []
+
+	},
+	downVoters:{
+		type: [String],
+		default: []
+
+	}
   });
   
   const Kampusemesaj = mongoose.model('kampusemesaj', kampusemesajSchema);

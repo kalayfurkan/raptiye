@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kampüste Bırakılan Mesajlar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/default.css">
 </head>
 
@@ -14,7 +16,7 @@
     <%- include('partials/navbar') %>
         <div id="wrapper">
             <div class="container mt-5">
-                <h1>Kampüste Bırakılan Mesajlar</h1>
+                <h1>Kampüse Bırakılan Mesajlar</h1>
                 
                 <% if (messages.length> 0) { %>
                     <ul class="list-group">
@@ -26,6 +28,40 @@
                                 <p>
                                     <%= message.mesaj %>
                                 </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <% if (message.upVoters.includes(userId)) { %>
+                                            <form action="/undo-upvote/<%= message._id %>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-success btn-sm d-flex align-items-center">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                    <span><%= message.upvotes %></span>
+                                                </button>
+                                            </form>
+                                        <% } else { %>
+                                            <form action="/upvote/<%= message._id %>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-light border rounded-pill d-flex align-items-center">
+                                                    <i class="bi bi-hand-thumbs-up text-success fs-4 me-2"></i>
+                                                    <span class="fs-6"><%= message.upvotes %></span>
+                                                </button>
+                                            </form>
+                                        <% } %>
+                                        <% if (message.downVoters.includes(userId)) { %>
+                                            <form action="/undo-downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
+                                                <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
+                                                    <i class="bi bi-hand-thumbs-down"></i>
+                                                    <span><%= message.downvotes %></span>
+                                                </button>
+                                            </form>
+                                        <% } else { %>
+                                            <form action="/downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
+                                                <button type="submit" class="btn btn-light border rounded-pill d-flex align-items-center">
+                                                    <i class="bi bi-hand-thumbs-down text-danger fs-4 me-2"></i>
+                                                    <span class="fs-6"><%= message.downvotes %></span>
+                                                </button>
+                                            </form>
+                                        <% } %>
+                                    </div>
+                                </div>
                             </li>
                             <% }); %>
                     </ul>
@@ -35,7 +71,7 @@
             </div>
             <%- include('partials/footer') %>
         </div>
-
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
