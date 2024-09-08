@@ -16,6 +16,7 @@ const job=require('./job');
 router.use('/',job);
 const kiraoda=require('./kiraoda');
 router.use('/',kiraoda);
-
+const kampuseBirMesaj=require('./kampusebirmesaj.js');
+router.use('/',kampuseBirMesaj);
 
 module.exports = router;
