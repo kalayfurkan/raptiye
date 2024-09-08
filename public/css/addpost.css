@@ -1,29 +1,8 @@
-:root {
-    --primary-color: hsl(356, 95%, 63%);
-    --primary-color-dark: hsl(356, 69%, 55%);
-    --secondary-color: hsl(176, 95%, 63%);
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-}
-
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-}
-
-#wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
 }
 
 .form-container {
@@ -77,16 +56,6 @@ textarea.form-control {
 .delete-btn-form{
     display: inline;
     margin: auto;
-}
-
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 8px 8px 0 0;
-    margin-top: auto;
 }
 
 .btn {

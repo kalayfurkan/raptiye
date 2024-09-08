@@ -1,3 +1,5 @@
+/* navbar ve footer style buraya eklenecek */
+
 :root {
     --primary-color: hsl(356, 95%, 63%);
     --primary-color-dark: hsl(356, 69%, 55%);
@@ -16,6 +18,7 @@
 html,
 body {
     font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
     height: 100%;
     margin: 0;
     background-color: #f4f4f4;
