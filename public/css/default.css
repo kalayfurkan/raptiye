@@ -1,0 +1,35 @@
+:root {
+    --primary-color: hsl(356, 95%, 63%);
+    --primary-color-dark: hsl(356, 69%, 55%);
+    --primary-color-dark2: hsl(356, 57%, 45%);
+    --secondary-color: hsl(176, 95%, 63%);
+    --secondary-color-dark: hsl(176, 73%, 56%);
+    --secondary-color-dark2: hsl(176, 57%, 45%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    /* This makes the content area expand to fill the available space */
+    padding: 20px;
+    max-width: 90%;
+}

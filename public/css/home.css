@@ -1,34 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    /* height: 100vh; */
-}
-
-html,
-body {
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-    margin: 0;
-    background-color: #f4f4f4;
-}
-
-#wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 header{
     padding-left: 10px;
-}
-
-.container {
-    flex: 1;
-    /* This makes the content area expand to fill the available space */
 }
 
 #pano {
@@ -39,7 +10,7 @@ header{
 }
 
 .postit {
-    border-radius: 10px;
+    /* border-radius: 10px; */
     position: relative;
     padding: 10px;
     margin: 10px;
@@ -50,7 +21,7 @@ header{
 }
 
 .postit:hover{
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
 }
 
 .postit>svg:first-child {
@@ -61,7 +32,7 @@ header{
 }
 
 .postit-top {
-    border-radius: 10px 10px 0px 0px;
+    /* border-radius: 10px 10px 0px 0px; */
     border-bottom: 1px solid grey;
     margin: -10px -10px 5px -10px;
     display: block;
@@ -75,6 +46,7 @@ h1 {
 }
 
 h2 {
+    font-size: 1.5em;
     color: 10 10 10;
     margin-top: 15px;
     margin-bottom: 30px;
@@ -92,9 +64,4 @@ p {
 a {
     color: #007bff;
     text-decoration: none;
-}
-
-.container {
-    padding: 20px;
-    max-width: 90%;
 }
