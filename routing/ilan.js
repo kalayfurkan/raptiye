@@ -8,10 +8,10 @@ const allMiddlewares = require('../middlewares.js');
 
 router.post('/addpost', async (req, res) => {
 	try {
-		let images = req.files.images;
+		let images = req.files?.images || [];
 		let imagePaths = [];
 
-		if (!Array.isArray(images)) {
+		if (!Array.isArray(images) && images) {
 			images = [images];
 		}
 
