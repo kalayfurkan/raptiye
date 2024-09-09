@@ -16,7 +16,9 @@
       <% ilanlar.forEach(function(ilan) { %>
         <div class="col-md-4 mb-4">
           <div class="card">
+          <% if(ilan.images.length>0){ %>
             <img src="<%= ilan.images %>" class="card-img-top" alt="İlan Fotoğrafı">
+          <% }%>
             <div class="card-body">
               <h5 class="card-title"><%= ilan.title %></h5>
               <p class="card-text"><%= ilan.description %></p>

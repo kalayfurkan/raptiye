@@ -18,5 +18,7 @@ const kiraoda=require('./kiraoda');
 router.use('/',kiraoda);
 const kampuseBirMesaj=require('./kampusebirmesaj.js');
 router.use('/',kampuseBirMesaj);
+const shortilan=require('./shortTermilan.js');
+router.use('/',shortilan);
 
 module.exports = router;
