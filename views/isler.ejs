@@ -44,8 +44,8 @@
                                     </div>
                                 <% } %>
                                 <!-- Job Details -->
-                                <div class="card-body">
-                                    <h5 class="card-title">
+                                <div class="card-body pt-0">
+                                    <h5 class="card-title mb-3">
                                         <%= job.jobTitle %>
                                     </h5>
                                     <p class="card-text">
@@ -54,8 +54,9 @@
                                     </p>
                                     <p class="card-text">
                                         <%= job.description %>
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint modi minima facere animi officiis nisi ullam natus reprehenderit asperiores ratione quos, inventore harum consequuntur, exercitationem adipisci laudantium, ab iure sunt?
                                     </p>
-                                    <button><a href="/isler/<%= job._id %>">Detaylar</a></button>
+                                    <button class="btn btn-primary"><a href="/isler/<%= job._id %>">Detaylar</a></button>
                                 </div>
                             </div>
                     <% }) %>
