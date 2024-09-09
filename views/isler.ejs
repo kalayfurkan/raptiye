@@ -27,7 +27,7 @@
                                         <div class="carousel-inner">
                                             <% job.images.forEach(function(image, index) { %>
                                                 <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                    <img src="<%= image %>" class="d-block w-100" alt="Job Image">
+                                                    <img src="<%= image %>" onerror="this.src='img/job-img.jpg';" class="d-block w-100" alt="Job Image">
                                                 </div>
                                             <% }) %>
                                         </div>
@@ -42,6 +42,9 @@
                                             <span class="visually-hidden">Next</span>
                                         </button>
                                     </div>
+                                <% } else { %>
+                                <!-- else -->
+                                <!-- aynısını yapıştırıp modifiye ettim amam olmadı nedense hep height 0 oluyor divlerin anlamadım -->
                                 <% } %>
                                 <!-- Job Details -->
                                 <div class="card-body pt-0">
@@ -54,7 +57,7 @@
                                     </p>
                                     <p class="card-text">
                                         <%= job.description %>
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint modi minima facere animi officiis nisi ullam natus reprehenderit asperiores ratione quos, inventore harum consequuntur, exercitationem adipisci laudantium, ab iure sunt?
+                                        <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint modi minima facere animi officiis nisi ullam natus reprehenderit asperiores ratione quos, inventore harum consequuntur, exercitationem adipisci laudantium, ab iure sunt? -->
                                     </p>
                                     <button class="btn btn-primary"><a href="/isler/<%= job._id %>">Detaylar</a></button>
                                 </div>
@@ -62,6 +65,7 @@
                     <% }) %>
                 <% } else { %>
                     <p>No job listings available.</p>
+
                 <% } %>
             </div>
         </div>

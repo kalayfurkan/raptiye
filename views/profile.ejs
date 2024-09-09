@@ -21,7 +21,7 @@
                 </header>
                 <div class="profile-container">
                     <div class="profile-sidebar">
-                        <img src="profile-pic.jpg" srcset="img/profile-circle.svg" alt="Profil Fotoğrafı">
+                        <img src="profile-pic.jpg" onerror="this.src='img/profile-circle.svg';" alt="Profil Fotoğrafı">
                         <h2>
                             <%= user.username %>
                         </h2>
