@@ -33,6 +33,8 @@ app.use(expressSession({
   })
 }))
 
+//auto delete
+require('./cleaner.js');
 //check login
 app.use(allMiddlewares.checkSession);
 
