@@ -5,6 +5,8 @@ const Shortilan = require('../models/shortTermilanSchema.js');
 const User = require('../models/userSchema');
 const path = require('path');
 const sharp = require('sharp');
+const fs = require('fs');
+
 
 router.get('/addshortilan', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addshortilan')
@@ -51,5 +53,34 @@ router.get('/kisailanlar',allMiddlewares.requireAuth,async (req,res) => {
 	const kisaIlanlar=await Shortilan.find({});
 
 	res.render('kisailanlar',{ilanlar:kisaIlanlar});
+})
+
+router.post('/shortilan/delete/:shortid',allMiddlewares.requireAuth,async(req,res) => {
+	const shortid=req.params.shortid;
+	const shortpost=await Shortilan.findById(shortid);
+
+	if (!shortpost) {
+		return res.status(404).send('İlan bulunamadı.');
+	}
+
+	if (shortpost.images.length > 0) {
+		for (const address of shortpost.images) {
+			const fullImagePath = path.join(__dirname, '../public', address);
+			try {
+				fs.unlinkSync(fullImagePath);
+				console.log(`Image deleted: ${fullImagePath}`);
+			} catch (error) {
+				console.error(`Failed to delete image: ${fullImagePath}`, error);
+			}
+		}
+	}
+
+	try {
+		await Shortilan.deleteOne({ _id: shortid });
+		res.redirect('/profile');
+	} catch (error) {
+		console.error(error);
+		res.status(500).send('Bir hata oluştu.');
+	}
 })
 module.exports = router;

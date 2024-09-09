@@ -45,7 +45,32 @@
       <div class="col-md-4">
         <div class="card">
           <% if (ilan.images.length > 0) { %>
-            <img src="<%= ilan.images[0] %>" class="card-img-top" alt="İlan Fotoğrafı">
+            <!-- Bootstrap Carousel Başlangıcı -->
+            <div id="ilanCarousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <% ilan.images.forEach((image, index) => { %>
+                  <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>" aria-current="<%= index === 0 ? 'true' : 'false' %>" aria-label="Slide <%= index + 1 %>"></button>
+                <% }) %>
+              </div>
+
+              <div class="carousel-inner">
+                <% ilan.images.forEach((image, index) => { %>
+                  <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                    <img src="<%= image %>" class="d-block w-100" alt="İlan Fotoğrafı">
+                  </div>
+                <% }) %>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <!-- Carousel Sonu -->
           <% } %>
           <div class="card-body">
             <h5 class="card-title"><%= ilan.title %></h5>
@@ -59,7 +84,9 @@
       <% }) %>
     </div>
   </div>
+  
   <%- include('partials/footer') %>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
