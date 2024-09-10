@@ -37,13 +37,13 @@
                                 </p> <!-- İlan fiyatı -->
                                 <a href="/ilan/<%= ilan._id %>" class="view-details-btn">Detayları Görüntüle</a>
                                 <!-- Detay sayfası linki -->
+
                                 <form action="/addfavoritesilan/<%=ilan._id %>" method="post">
                                     <input type="hidden" name="ilanid" value="<%= ilan._id %>">
-                                    <button type="submit" class="view-details-btn">
+                                    <button type="submit" class="view-details-btn" data-ilan-id="<%= ilan._id %>">
                                         Favorilere Ekle
                                     </button>
                                 </form>
-                                
                                 <!-- Favorilere ekle -->
                             </div>
                         </div>
@@ -54,6 +54,7 @@
             <%- include('partials/footer') %>
     </div>
 
+    <script src="/js/favorites.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
