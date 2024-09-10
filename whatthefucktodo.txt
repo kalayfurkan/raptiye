@@ -1,0 +1,10 @@
+ilanlar consistent hale getirilecek (cards.css)
+
+formlar consistent hale getirilecek (forms.css)
+
+ilan detay sayfaları consistent hale getirilecek (listings.css)
+
+ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
+alakalı fotolar eklenecek ve arka plana bir texture eklenecek
+
+renk paleti eklenecek ve renkler consistent olacak
