@@ -33,11 +33,18 @@
                                 <h2>
                                     <%= ilan.title %>
                                 </h2> <!-- İlan başlığı -->
-                                <p class="price">
-                                    ₺<%= ilan.price %>
-                                </p>
-                                <a href="/ilan/<%= ilan._id %>" class="view-details-btn">Detaylar</a>
-                                <button type="" class="view-details-btn">Favorilere ekle</button>
+                                <p class="price">₺<%= ilan.price %>
+                                </p> <!-- İlan fiyatı -->
+                                <a href="/ilan/<%= ilan._id %>" class="view-details-btn">Detayları Görüntüle</a>
+                                <!-- Detay sayfası linki -->
+                                <form action="/addfavoritesilan/<%=ilan._id %>" method="post">
+                                    <input type="hidden" name="ilanid" value="<%= ilan._id %>">
+                                    <button type="submit" class="view-details-btn">
+                                        Favorilere Ekle
+                                    </button>
+                                </form>
+                                
+                                <!-- Favorilere ekle -->
                             </div>
                         </div>
                         <% }) %>
