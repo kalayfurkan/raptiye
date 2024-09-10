@@ -22,7 +22,9 @@
                 <div class="card">
                     <% if(ilan.images.length>0){ %>
                         <img src="<%= ilan.images %>" onerror="this.src='img/room-img.jpg';" class="card-img-top" alt="İlan Fotoğrafı">
-                    <% }%>
+                    <% } else {%>
+                        <img src="/img/room-img.jpg" class="card-img-top" alt="Varsayılan İlan Fotoğrafı">
+                    <% } %>
                     <div class="card-body">
                         <h5 class="card-title">
                             <%= ilan.title %>

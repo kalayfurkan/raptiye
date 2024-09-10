@@ -2,7 +2,7 @@
 /* Turquoise hsl(176, 95%, 63%) */
 :root {
 	--primary-color: hsl(356deg, 95%, 63%);
-	--secondary-color: hsl(176, 95%, 63%);
+	--secondary-color: hsl(200, 90%, 40%);
 }
 
 @keyframes wiggle {
@@ -29,7 +29,7 @@
 	/* position: sticky;
 	top: 0; */
 	height: 5em;
-    width: 100%;
+	width: 100%;
 	z-index: 1;
 	background-color: var(--secondary-color);
 	display: flex;
