@@ -8,8 +8,8 @@
     margin: 0 auto;
 }
 
-.container header{
-    margin-left: calc(50% - calc(var(--max-form-width) / 2)) ;
+.container header {
+    margin-left: calc(50% - calc(var(--max-form-width) / 2));
 }
 
 h1,
@@ -19,7 +19,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-h2{
+h2 {
     margin-bottom: 100px;
 }
 
