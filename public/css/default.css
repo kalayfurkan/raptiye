@@ -7,9 +7,26 @@
     --secondary-color: hsl(176, 95%, 63%);
     --secondary-color-dark: hsl(176, 73%, 56%);
     --secondary-color-dark2: hsl(176, 57%, 45%);
+    --secondary-color-dark3: hsl(200, 90%, 40%);
 }
 
-input:focus-visible, button:focus-visible, a:focus-visible, select:focus-visible, textarea:focus-visible, option:focus-visible, label:focus-visible, output:focus-visible, details:focus-visible, summary:focus-visible, iframe:focus-visible, audio:focus-visible, video:focus-visible, embed:focus-visible, object:focus-visible, [contenteditable]:focus-visible, area:focus-visible{
+input:focus-visible,
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+option:focus-visible,
+label:focus-visible,
+output:focus-visible,
+details:focus-visible,
+summary:focus-visible,
+iframe:focus-visible,
+audio:focus-visible,
+video:focus-visible,
+embed:focus-visible,
+object:focus-visible,
+[contenteditable]:focus-visible,
+area:focus-visible {
     outline: 3px solid black;
 }
 
@@ -22,7 +39,7 @@ input:focus-visible, button:focus-visible, a:focus-visible, select:focus-visible
 
 html,
 body {
-    font-family:  sans-serif;
+    font-family: sans-serif;
     min-height: 100vh;
     height: 100%;
     margin: 0;
@@ -41,6 +58,7 @@ body {
     padding: 20px;
     max-width: 90%;
 }
-a{
+
+a {
     text-decoration: none;
 }
