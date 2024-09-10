@@ -17,7 +17,7 @@ router.post('/addfavoritesilan/:ilanid',allMiddlewares.requireAuth,async (req, r
             user.favorites.push(ilanid);
             await user.save();
         }
-         res.redirect('/profile')
+		res.json({ success: true, message: 'Favorilere eklendi' });
     } catch (err) {
         console.error(err);
         res.status(500).send('Sunucu hatası');
