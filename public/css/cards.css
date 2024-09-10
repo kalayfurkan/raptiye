@@ -1,0 +1,39 @@
+.card-box {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: 500px;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: none;
+    overflow: hidden;
+}
+
+.carousel {
+    margin-bottom: 1em;
+}
+
+.card-body {
+    padding-top: 0;
+    overflow-y: auto;
+    /* Allow scrolling inside the card for overflowing content */
+    flex-grow: 1;
+    /* Allow the body to grow and take available space */
+    display: flex;
+    flex-direction: column;
+}
+.card-content{
+    flex-grow: 1
+}
+
+.carousel-item {
+    max-height: 200px;
+    overflow: hidden;
+}
