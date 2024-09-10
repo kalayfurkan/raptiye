@@ -41,7 +41,7 @@
 	overflow: visible;
 }
 
-/* Logo and brand name styles */
+/* Logo and brand styles */
 .navbar-brand {
 	padding: 10px 10px;
 	display: flex;
@@ -123,7 +123,7 @@
 	background-color: var(--primary-color);
 }
 
-/* Show dropdown menu on hover */
+/* dropdown menu when hovered */
 .navbar-item:hover .dropdown-menu {
 	display: block;
 }
@@ -160,7 +160,6 @@
 	transform: scale(1.1);
 }
 
-/* Tooltip styles */
 .tooltip {
 	display: none;
 	position: absolute;
@@ -172,10 +171,11 @@
 	border-radius: 5px;
 	font-size: 0.9rem;
 	white-space: nowrap;
+	z-index: 10;
 }
 
-/* Show the tooltip when hovering over the plus-link */
-.plus-link:hover+.tooltip {
+/* tip when hovered over */
+.adjacent:hover .tooltip {
 	display: block;
 }
 
