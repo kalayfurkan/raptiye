@@ -9,7 +9,7 @@
 	<button class="navbar-toggle" id="navbar-toggle">☰</button>
 	<!-- Main menu items -->
 	<ul class="navbar-menu" id="navbar-menu">
-		
+
 		<li class="navbar-item">
 			<a href="/" class="navbar-link">Anasayfa</a>
 		</li>
@@ -17,23 +17,35 @@
 			<a href="#" class="navbar-link">İlanlar</a>
 			<!-- Dropdown menu for "İlanlar" -->
 			<div class="dropdown-menu">
-				<a href="/addpost">İlan ver</a>
-				<a href="/ilanlar">Tüm İlanlar</a>
-				<a href="/addjob">İş ilanı ver</a>
-				<a href="/isler">Tüm İşler</a>
-				<a href="/addkiraoda">Ev Arkadaşı İlanı Ver</a>
-				<a href="/kiraoda">Ev Arkadaşı İlanları</a>
-				<a href="/addshortilan">Kısa Süreli İlan Ver</a>
-				<a href="/kisailanlar">Kısa Süreli İlanlar</a>
+				<div class="adjacent">
+					<a href="/ilanlar" class="dropdown-link">Tüm İlanlar</a>
+					<a href="/addpost" class="plus-link" id="tumplus">+</a>
+					<span class="tooltip">Yeni ilan ekle</span>
+				</div>
+				<div class="adjacent">
+					<a href="/isler" class="dropdown-link">İş İlanları</a>
+					<a href="/addjob" class="plus-link" id="isplus">+</a>
+					<span class="tooltip">Yeni iş ilanı ekle</span>
+				</div>
+				<div class="adjacent">
+					<a href="/kiraoda" class="dropdown-link">Ev Arkadaşı İlanları</a>
+					<a href="/addkiraoda" class="plus-link" id="evplus">+</a>
+					<span class="tooltip">Yeni ev arkadaşı ilanı ekle</span>
+				</div>
+				<div class="adjacent">
+					<a href="/kisailanlar" class="dropdown-link">Kısa Süreli İlanlar</a>
+					<a href="/addshortilan" class="plus-link" id="kisaplus">+</a>
+					<span class="tooltip">Yeni kısa süreli ilan ekle</span>
+				</div>
 			</div>
 		</li>
-		
+
 		<li class="navbar-item">
 			<a href="#" class="navbar-link">Kampüse Bir Mesaj</a>
 			<!-- Dropdown menu -->
 			<div class="dropdown-menu">
-				<a href="/kampusebirmesajbirak">Kampüse Mesaj Bırak</a>
-				<a href="/kampusemesajlar">Bırakılan Mesajlar</a>
+				<a href="/kampusebirmesajbirak" class="dropdown-link dropdown-campus">Kampüse Mesaj Bırak</a>
+				<a href="/kampusemesajlar" class="dropdown-link dropdown-campus">Bırakılan Mesajlar</a>
 			</div>
 		</li>
 		<li class="navbar-item">
@@ -41,22 +53,22 @@
 		</li>
 
 		<% if (!user) { %>
-		<li class="navbar-item">
-			<a href="/register" class="navbar-link">Üye ol</a>
-		</li>
-		<li class="navbar-item">
-			<a href="/login" class="navbar-link">Giriş yap</a>
-		</li>
-		<% } %>
+			<li class="navbar-item">
+				<a href="/register" class="navbar-link">Üye ol</a>
+			</li>
+			<li class="navbar-item">
+				<a href="/login" class="navbar-link">Giriş yap</a>
+			</li>
+			<% } %>
 
-		<% if (user) { %>
-		<li class="navbar-item">
-			<a href="/profile" class="navbar-link"><img src="/img/profile-circle.svg" alt="profil"></a>
-		</li>
-		<li id="logout-btn" class="navbar-item">
-			<a href="/logout" class="navbar-link"><img src="/img/log-out.svg" alt="çıkış yap"></a>
-		</li>
-		<% } %>
+				<% if (user) { %>
+					<li class="navbar-item">
+						<a href="/profile" class="navbar-link"><img src="/img/profile-circle.svg" alt="profil"></a>
+					</li>
+					<li id="logout-btn" class="navbar-item">
+						<a href="/logout" class="navbar-link"><img src="/img/log-out.svg" alt="çıkış yap"></a>
+					</li>
+					<% } %>
 	</ul>
 </nav>
 
