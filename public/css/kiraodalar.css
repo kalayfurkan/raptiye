@@ -1,0 +1,58 @@
+.card-box{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 450px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* .carousel{
+    margin-bottom: 1em;
+} */
+
+.card img {
+    max-width: 350px;
+    max-height: 300px;
+    width: auto;
+    width: auto;
+
+}
+
+.card-body {
+    overflow-y: auto; /* Allow scrolling inside the card for overflowing content */
+    flex-grow: 1; /* Allow the body to grow and take available space */
+}
+
+.carousel-item{
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    border-bottom: 2px solid #007bff;
+}
+
+.duration-badge {
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

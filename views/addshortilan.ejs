@@ -1,62 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>İlan Ekle</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/default.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Ekle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/default.css">
 </head>
+
 <body>
-	<%- include('partials/navbar') %>
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">Süreli İlan Ekle</h2>
+    <div id="wrapper">
+        <%- include('partials/navbar') %>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Süreli İlan Ekle</h2>
 
-    <!-- İlan Formu Başlangıcı -->
-    <form action="/addshortilan" method="POST" enctype="multipart/form-data">
-      <!-- Başlık -->
-      <div class="mb-3">
-        <label for="title" class="form-label">Başlık</label>
-        <input type="text" class="form-control" id="title" name="title" required placeholder="İlan başlığını girin">
-      </div>
+            <!-- İlan Formu Başlangıcı -->
+            <form action="/addshortilan" method="POST" enctype="multipart/form-data">
+                <!-- Başlık -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Başlık</label>
+                    <input type="text" class="form-control" id="title" name="title" required
+                        placeholder="İlan başlığını girin">
+                </div>
 
-      <!-- Açıklama -->
-      <div class="mb-3">
-        <label for="description" class="form-label">Açıklama</label>
-        <textarea class="form-control" id="description" name="description" rows="3" required placeholder="İlan açıklamasını girin"></textarea>
-      </div>
+                <!-- Açıklama -->
+                <div class="mb-3">
+                    <label for="description" class="form-label">Açıklama</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required
+                        placeholder="İlan açıklamasını girin"></textarea>
+                </div>
 
-      <!-- İlan Resmi -->
-      <div class="mb-3">
-        <label for="image" class="form-label">İlan Resmi Yükle</label>
-        <input type="file" multiple class="form-control" id="image" name="images" accept="image/*">
-      </div>
+                <!-- İlan Resmi -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">İlan Resmi Yükle</label>
+                    <input type="file" multiple class="form-control" id="image" name="images" accept="image/*">
+                </div>
 
-      <!-- Süre Seçimi -->
-      <div class="mb-3">
-        <label for="duration" class="form-label">İlan Süresi</label>
-        <select class="form-select" id="duration" name="duration" required>
-          <option value="1">1 Saat</option>
-		  <option value="2">2 Saat</option>
-		  <option value="3">3 Saat</option>
-		  <option value="4">4 Saat</option>
-		  <option value="6">6 Saat</option>
-		  <option value="8">8 Saat</option>
-          <option value="12">12 Saat</option>
-          <option value="24">1 Gün</option>
-          <option value="48">2 Gün</option>
-          <option value="72">3 Gün</option>
-		  <option value="120">5 Gün</option>
-          <option value="168">1 Hafta</option>
-        </select>
-      </div>
+                <!-- Süre Seçimi -->
+                <div class="mb-3">
+                    <label for="duration" class="form-label">İlan Süresi</label>
+                    <select class="form-select" id="duration" name="duration" required>
+                        <option value="1">1 Saat</option>
+                        <option value="2">2 Saat</option>
+                        <option value="3">3 Saat</option>
+                        <option value="4">4 Saat</option>
+                        <option value="6">6 Saat</option>
+                        <option value="8">8 Saat</option>
+                        <option value="12">12 Saat</option>
+                        <option value="24">1 Gün</option>
+                        <option value="48">2 Gün</option>
+                        <option value="72">3 Gün</option>
+                        <option value="120">5 Gün</option>
+                        <option value="168">1 Hafta</option>
+                    </select>
+                </div>
 
-      <!-- Gönderme Butonu -->
-      <button type="submit" class="btn btn-primary w-100">İlanı Ekle</button>
-    </form>
-    <!-- İlan Formu Sonu -->
-  </div>
-  <%- include('partials/footer') %>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                <!-- Gönderme Butonu -->
+                <button type="submit" class="btn btn-primary w-100">İlanı Ekle</button>
+            </form>
+            <!-- İlan Formu Sonu -->
+        </div>
+        <%- include('partials/footer') %>
+    </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

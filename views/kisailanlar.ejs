@@ -1,92 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kısa İlanlar</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/default.css">
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-    .card {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      transform: scale(1.05);
-    }
-    .card-img-top {
-      border-bottom: 2px solid #007bff;
-    }
-    .duration-badge {
-      background-color: #007bff;
-      color: white;
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısa İlanlar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/kisailanlar.css">
 </head>
+
 <body>
-	
-	<%- include('partials/navbar') %>
-  <div class="container mt-5">
-    <h1 class="text-center mb-5">Kısa Süreli İlanlar</h1>
-    
-    <div class="row g-4">
-      <% ilanlar.forEach(function(ilan) { %>
-      <div class="col-md-4">
-        <div class="card">
-          <% if (ilan.images.length > 0) { %>
-            <!-- Bootstrap Carousel Başlangıcı -->
-            <div id="ilanCarousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <% ilan.images.forEach((image, index) => { %>
-                  <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide-to="<%= index %>" class="<%= index === 0 ? 'active' : '' %>" aria-current="<%= index === 0 ? 'true' : 'false' %>" aria-label="Slide <%= index + 1 %>"></button>
-                <% }) %>
-              </div>
+    <div id="wrapper">
+        <%- include('partials/navbar') %>
+        <div class="container mt-5">
+            <h1 class="text-center mb-5">Kısa Süreli İlanlar</h1>
+            <div class="card-box">
+                <% ilanlar.forEach(function(ilan) { %>
+                    <div class="card">
+                        <% if (ilan.images.length> 0) { %>
+                            <!-- Bootstrap Carousel Başlangıcı -->
+                            <div id="ilanCarousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <% ilan.images.forEach((image, index)=> { %>
+                                        <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                            data-bs-slide-to="<%= index %>"
+                                            class="<%= index === 0 ? 'active' : '' %>"
+                                            aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                            aria-label="Slide <%= index + 1 %>">
+                                        </button>
+                                    <% }) %>
+                                </div>
 
-              <div class="carousel-inner">
-                <% ilan.images.forEach((image, index) => { %>
-                  <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                    <img src="<%= image %>" class="d-block w-100" alt="İlan Fotoğrafı">
-                  </div>
-                <% }) %>
-              </div>
+                                <div class="carousel-inner">
+                                    <% ilan.images.forEach((image, index)=> { %>
+                                        <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                            <img src="<%= image %>" class="d-block w-100" alt="İlan Fotoğrafı">
+                                        </div>
+                                    <% }) %>
+                                </div>
 
-              <button class="carousel-control-prev" type="button" data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            <!-- Carousel Sonu -->
+                        <% } %>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= ilan.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= ilan.description %>
+                            </p>
+                        </div>
+                        <div class="card-footer text-muted text-center">
+                            Bitiş Tarihi: <%= ilan.removalDate %>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
-            <!-- Carousel Sonu -->
-          <% } %>
-          <div class="card-body">
-            <h5 class="card-title"><%= ilan.title %></h5>
-            <p class="card-text"><%= ilan.description %></p>
-          </div>
-          <div class="card-footer text-muted text-center">
-            Bitiş Tarihi: <%= ilan.removalDate %>
-          </div>
         </div>
-      </div>
-      <% }) %>
+        <%- include('partials/footer') %>
     </div>
-  </div>
-  
-  <%- include('partials/footer') %>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
