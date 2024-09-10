@@ -26,10 +26,8 @@
 
 .card img {
     max-width: 350px;
-    max-height: 300px;
+    height: 260px;
     width: auto;
-    width: auto;
-
 }
 
 .card-body {

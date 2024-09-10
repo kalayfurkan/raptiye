@@ -21,7 +21,7 @@
             <% ilanlar.forEach(function(ilan) { %>
                 <div class="card">
                     <% if(ilan.images.length>0){ %>
-                        <img src="<%= ilan.images %>" class="card-img-top" alt="İlan Fotoğrafı">
+                        <img src="<%= ilan.images %>" onerror="this.src='img/room-img.jpg';" class="card-img-top" alt="İlan Fotoğrafı">
                     <% }%>
                     <div class="card-body">
                         <h5 class="card-title">
