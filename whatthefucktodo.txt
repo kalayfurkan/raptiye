@@ -2,7 +2,9 @@ ilanlar consistent hale getirilecek (cards.css)
 
 navbarda kalan turkuazı düzeltilecek
 
-+ nın kutusu tam daire olacak, bir svg kullanılacak
+navbar ilan ekle butonu değiştirilecek (?)
+
++ nın kutusu tam daire olacak, bir svg kullanılacak (eğer daire olarak kalırsa)
 
 + ya hover yapınca altı çizilmeyecek ve tooltip görünecek
 
@@ -18,14 +20,10 @@ ilan detay sayfaları consistent hale getirilecek (listings.css)
 
 rickroll eklenecek
 
-navbar ilan ekle butonu değiştirilecek (?)
+renk paletine karar verilecek ve renkler consistent olacak
 
 ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
+
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
-
-renk paleti eklenecek ve renkler consistent olacak
-
-
-
 
 formlar consistent hale getirilecek (forms.css)(bitti)
