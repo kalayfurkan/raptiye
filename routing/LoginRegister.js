@@ -15,7 +15,13 @@ router.post('/register', async (req, res) => {
 			return res.status(400).render('errorpage', { message: `You must use ${allowedMail} mail type` });
 		}
 
-		await User.create({ username, password, email, verificationToken });
+		// Şifreyi hashleyin
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(password, salt);
+		console.log("anan");
+		console.log(hashedPassword);
+		
+		await User.create({ username, password: hashedPassword, email, verificationToken });
 
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
@@ -63,7 +69,7 @@ router.get('/verify-email', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		const { email, password, rememberMe } = req.body;
+		const { email, password } = req.body;
 
 		const user = await User.findOne({ email });
 
@@ -75,7 +81,6 @@ router.post('/login', async (req, res) => {
 			const same = await bcrypt.compare(password, user.password);
 			if (same) {
 				req.session.userId = user._id;
-				req.session.cookie.maxAge = rememberMe ? 14 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;  // 14 gün ya da 1 gün
 				res.redirect('/');
 			} else {
 				res.status(401).render('errorpage', { message: "Şifrenizi yanlış girdiniz" });
