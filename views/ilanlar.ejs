@@ -12,12 +12,12 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/list-ilanlar.css">
+    <link rel="stylesheet" href="/css/cards.css">
 </head>
 
 <body>
     <div id="wrapper">
-        <%- include('partials/navbar') %>
-
+            <%- include('partials/navbar') %>
             <div class="container">
                 <header class="başlik">
                     <h1>İlanlar</h1>
@@ -25,10 +25,9 @@
 
                 <div class="listings-container">
                     <!-- İlan Başlangıcı -->
-                    <% ilanlar.forEach(ilan=> { %> <!-- ilanlar verisini döngüye sok -->
-                        <!-- İlan Başlangıcı -->
+                    <% ilanlar.forEach(ilan=> { %>
                         <div class="listing-item">
-                            <img src="<%= ilan.images[0] %>" alt="İlan Görseli"> <!-- İlanın görsel yolu -->
+                            <img src="<%= ilan.images[0] %>" onerror="this.src='img/satilik-img.jpg';" alt="İlan Görseli">
                             <div class="listing-details">
                                 <h2>
                                     <%= ilan.title %>

@@ -10,6 +10,7 @@
     --navbar-color: hsl(200, 90%, 40%);
 }
 
+/* accessibility için */
 input:focus-visible,
 button:focus-visible,
 a:focus-visible,
@@ -29,7 +30,6 @@ object:focus-visible,
 area:focus-visible {
     outline: 3px solid black;
 }
-
 
 * {
     margin: 0;
@@ -61,4 +61,7 @@ body {
 
 a {
     text-decoration: none;
+}
+p{
+    margin: 0;
 }
