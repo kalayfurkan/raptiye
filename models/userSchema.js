@@ -7,7 +7,8 @@ const userSchema=new mongoose.Schema({
 	email:{type:String,required:true,trim:true,unique:true},
 	isVerified: { type: Boolean, default: false },
 	verificationToken: { type: String },
-	favorites:{type: [String]}
+	favorites:{type: [String]},
+	info:{type:String}
 });
 
 

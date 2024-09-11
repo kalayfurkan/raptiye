@@ -58,6 +58,17 @@ router.get('/profile',allMiddlewares.requireAuth,async (req, res) => {
 	res.render('profile',{ilanlar:myAllPosts,user,jobs,kiralar,shortilanlar,favorites});
 });
 
+router.get('/profile/:userid',allMiddlewares.requireAuth,async(req, res) => {
+	const userid=req.params.userid;
+	const user=await User.findById(userid);
+
+	const posts=await Ilan.find({owner:userid});
+	const jobs=await Job.find({owner:userid});
+	const kiralar=await Kiraoda.find({owner:userid});
+	const shortilanlar=await Shortilan.find({owner:userid});
+
+	res.render('anyprofile',{user,posts,jobs,kiralar,shortilanlar});
+})
 
 
 

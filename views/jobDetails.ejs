@@ -63,8 +63,10 @@
                             <hr>
                             <!-- Additional Info -->
                             <p>
-                                <strong>Posted by:</strong>
-                                <%= owner.username %>
+                                <strong>İlan Sahibi Profili: </strong>
+                                <a href="/profile/<%= owner._id %>">
+                                    <%= owner.username %>
+                                </a>
                             </p>
                             <p>
                                 <strong>Created At:</strong>

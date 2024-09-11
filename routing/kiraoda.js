@@ -5,6 +5,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
+const User = require('../models/userSchema');
 
 router.get('/addkiraoda',allMiddlewares.requireAuth,(req,res) => {
 	res.render('addkiraoda');
@@ -53,8 +54,8 @@ router.get('/kiraoda',allMiddlewares.requireAuth,async(req,res) => {
 router.get('/kiraoda/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
 	const kiraid=req.params.kiraodaid;
 	const kira=await Kiraoda.findById(kiraid);
-
-	res.render('kiraodadetay',{ilan:kira});
+	const owner=await User.findById(kira.owner);
+	res.render('kiraodadetay',{ilan:kira,owner});
 })
 
 router.get('/kiraoda/edit/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {

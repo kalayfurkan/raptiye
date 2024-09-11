@@ -5,6 +5,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
+const User = require('../models/userSchema');
 
 router.post('/addpost', async (req, res) => {
 	try {
@@ -56,8 +57,8 @@ router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
-
-		res.render('ilandetay', { ilan });
+		const user=await User.findById(ilan.owner);
+		res.render('ilandetay', { ilan,user });
 
 	} catch (error) {
 		res.status(500).send('Bir hata oluştu.');
@@ -167,7 +168,13 @@ router.post('/ilan/delete/:ilanId', allMiddlewares.requireAuth, async (req, res)
 	}
 
 	try {
-		await Ilan.deleteOne({ _id: ilanId });
+		await Ilan.findByIdAndDelete(ilanId);
+
+		await User.updateMany(
+            { favorites: ilanId }, // İlan favorilerde olan kullanıcıları bul
+            { $pull: { favorites: ilanId } } // Favorilerden ilanId'yi sil
+        );
+		
 		res.redirect('/profile');
 	} catch (error) {
 		console.error(error);

@@ -75,6 +75,12 @@
                                 <p class="card-text">
                                     <%= ilan.description %>
                                 </p>
+
+                                <!-- Kullanıcı profiline ulaşma burayı editleyin -->
+                                <p class="card-text">
+                                    <a href="/profile/<%= ilan.owner%>">İlan sahibinin profiline ulaş</a>
+                                </p>
+
                             </div>
                             <div class="card-footer text-muted text-center">
                                 Bitiş Tarihi: <%= ilan.removalDate %>
