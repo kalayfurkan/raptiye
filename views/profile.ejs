@@ -21,15 +21,14 @@
                 </header>
                 <div class="profile-container">
                     <div class="profile-sidebar">
-                        <img src="profile-pic.jpg" onerror="this.src='img/profile-circle.svg';" alt="Profil Fotoğrafı">
+                        <img src="<%=user.profilePic  %>" onerror="this.src='img/profile-circle.svg';" alt="Profil Fotoğrafı">
                         <h2>
                             <%= user.username %>
                         </h2>
-                        <p>Üyelik Tarihi: Ocak 2021</p>
-                        <a href="#" class="edit-profile-btn">Profili Düzenle</a>
+                        <a href="/editprofile/<%=user._id%>" class="edit-profile-btn">Profili Düzenle</a>
 
                         <!-- şurayı editlersiniz kullanıcı hakkında info -->
-                         <h6><%= user.info  %></h6>
+                        <h6><%= user.info ? user.info : "Bu kısım profilinizde gözükecek. Düzenleyip kendiniz hakkında bilgi verebilir veya da iletişim bilgileri verebilirsiniz" %></h6>
                     </div>
                     <div class="profile-details">
                         <h2>Satış İlanlarım</h2>

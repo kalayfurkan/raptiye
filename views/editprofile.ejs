@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            margin-top: 20px;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+	<%- include('partials/navbar') %>
+    <div class="container form-container">
+        <h1>Kullanıcı Bilgilerini Düzenle</h1>
+
+        <form action="/editprofile/<%= user._id %>" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Kullanıcı Adı</label>
+                <input type="text" class="form-control" id="name" name="username" value="<%= user.username %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="info">Kullanıcı Hakkında Bilgi</label>
+                <input type="text" class="form-control" id="info" name="info" value="<%= user.info %>" >
+            </div>
+
+            <div class="form-group">
+                <label for="profilePic">Profile Picture</label>
+                <input type="file" class="form-control-file" id="profilePic" name="profilePic">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+		
+		<hr>
+
+		<h2>Şifre Değiştir</h2>
+        <form action="/profile/<%= user._id %>/change-password" method="POST">
+            <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+    </div>
+	<%- include('partials/footer') %>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
