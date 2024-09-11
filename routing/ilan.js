@@ -5,6 +5,7 @@ const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
+const User = require('../models/userSchema');
 
 router.post('/addpost', async (req, res) => {
 	try {
@@ -167,7 +168,13 @@ router.post('/ilan/delete/:ilanId', allMiddlewares.requireAuth, async (req, res)
 	}
 
 	try {
-		await Ilan.deleteOne({ _id: ilanId });
+		await Ilan.findByIdAndDelete(ilanId);
+
+		await User.updateMany(
+            { favorites: ilanId }, // İlan favorilerde olan kullanıcıları bul
+            { $pull: { favorites: ilanId } } // Favorilerden ilanId'yi sil
+        );
+		
 		res.redirect('/profile');
 	} catch (error) {
 		console.error(error);
