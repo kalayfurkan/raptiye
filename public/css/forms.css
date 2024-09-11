@@ -1,0 +1,136 @@
+:root {
+    --primary-color: hsl(356, 95%, 63%);
+    --primary-color-dark: hsl(356, 69%, 55%);
+    --primary-color-dark2: hsl(356, 57%, 45%);
+    --secondary-color: hsl(176, 95%, 63%);
+    --secondary-color-dark: hsl(176, 73%, 56%);
+    --secondary-color-dark2: hsl(176, 57%, 45%);
+    --navbar-color: hsl(200, 90%, 40%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.form-container {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px;
+    font-size: 16px;
+    color: #495057;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.form-check-label {
+    margin: 3px 5px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.form-check-input {
+    width: 22px;
+    height: 22px;
+}
+
+.btn {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border-color: var(--primary-color-dark);
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn:hover {
+    color: white;
+    background-color: var(--primary-color-dark);
+    transform: scale(1.03);
+    border-color: var(--primary-color-dark);
+}
+
+.btn:active {
+    border-radius: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    /* Büyük ekranlar için */
+    .form-container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .form-control,
+    .btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Küçük ekranlı telefonlar için */
+    .form-container {
+        padding: 15px;
+        width: 95%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .form-control,
+    .btn {
+        font-size: 12px;
+    }
+}

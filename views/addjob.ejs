@@ -16,7 +16,7 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-            <div class="container my-5">
+            <div class="container">
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">İş İlanı Ver</h2>
                     <form method="post" action="/addjob" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                             <small>(Bu kısım zorunlu değildir)</small>
                             <input name="images" type="file" class="form-control" id="dosya" multiple>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">İlanı Ver</button>
+                        <button type="submit" class="btn">İlanı Ver</button>
                     </form>
                 </div>
             </div>

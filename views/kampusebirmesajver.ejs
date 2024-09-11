@@ -15,7 +15,7 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-            <div class="container mt-5 mb-5 shadow p-5 rounded bg-light">
+            <div class="container">
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">Kampüse Mesaj Bırak</h2>
                     <form action="/kampusebirmesajbirak" method="POST">
@@ -24,13 +24,14 @@
                             <textarea class="form-control" id="message" name="mesaj" rows="9"
                                 placeholder="Mesajınızı buraya yazın..." required></textarea>
                         </div>
-                        <div class="form-group form-check mb-4">
+                        <div class="form-check mb-4">
                             <input class="form-check-input" type="checkbox" id="anonim" name="anonim">
-                            <label class="form-check-label" for="anonim">Anonim kalmak istiyorum. (1 hafta içinde tüm
-                                mesajlar silinir.)</label>
+                            <label class="form-check-label" for="anonim">
+                                Anonim kalmak istiyorum. <small>(1 hafta içinde
+                                    tüm mesajlar silinir.)</small></label>
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Mesajı Gönder</button>
+                            <button type="submit" class="btn">Mesajı Gönder</button>
                         </div>
                     </form>
                 </div>

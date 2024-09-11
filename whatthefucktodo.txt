@@ -1,6 +1,6 @@
 ilanlar consistent hale getirilecek (cards.css)
 
-formlar consistent hale getirilecek (forms.css)
+formlar consistent hale getirilecek (forms.css)(bitmek üzere, marginler ayarlanacak)
 
 ilan detay sayfaları consistent hale getirilecek (listings.css)
 

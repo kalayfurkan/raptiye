@@ -15,7 +15,7 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-            <div class="container mt-5">
+            <div class="container">
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">Süreli İlan Ekle</h2>
                     <form action="/addshortilan" method="POST" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
                         <!-- İlan Resmi -->
                         <div class="form-group mb-3">
                             <label for="image" class="form-label">İlan Resmi Yükle</label>
-                            <input type="file" multiple class="form-control" id="image" name="images" accept="image/*">
+                            <input type="file" multiple class=" " id="image" name="images" accept="image/*">
                         </div>
 
                         <!-- Süre Seçimi -->
@@ -59,7 +59,7 @@
                         </div>
 
                         <!-- Gönderme Butonu -->
-                        <button type="submit" class="btn btn-primary w-100">İlanı Ekle</button>
+                        <button type="submit" class="btn">İlanı Ekle</button>
                     </form>
                 </div>
             </div>

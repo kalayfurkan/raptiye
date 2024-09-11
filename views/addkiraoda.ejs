@@ -16,7 +16,7 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-            <div class="container mt-5">
+            <div class="container">
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">Ev / Oda Arkadaşı İlanı Ver</h2>
                     <form action="/addkiraoda" method="POST" enctype="multipart/form-data">
@@ -52,7 +52,7 @@
                             <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">İlan Ver</button>
+                        <button type="submit" class="btn">İlan Ver</button>
                     </form>
                 </div>
             </div>

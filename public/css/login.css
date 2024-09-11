@@ -1,87 +1,12 @@
+/*
 :root {
     --max-form-width: 400px;
-}
-
-.container {
-    width: 80%;
-    flex-grow: 1;
-    margin: 0 auto;
 }
 
 .container header {
     margin-left: calc(50% - calc(var(--max-form-width) / 2));
 }
-
-h1,
-h2 {
-    margin-top: 20px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-bottom: 100px;
-}
-
-form {
-    width: 100%;
-    max-width: var(--max-form-width);
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: auto;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-weight: 600;
-    color: #555;
-}
-
-.form-group input {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-}
-
-.form-check-input {
-    margin-top: 0px;
-
-}
-
-.form-check-label {
-    margin-left: 10px;
-    color: #555;
-}
-
-#rememberMe {
-    width: 10px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 5px;
-    color: #fff;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-    transform: scale(1.05);
-}
-
+*/
 
 .register-div {
     text-align: center;
@@ -96,23 +21,4 @@ form {
 
 .register-div a:hover {
     text-decoration: underline;
-}
-
-
-@media (max-width: 768px) {
-    form {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
-
-    .btn-primary {
-        font-size: 14px;
-    }
 }
