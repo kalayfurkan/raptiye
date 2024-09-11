@@ -40,20 +40,23 @@ h2 {
 textarea.form-control {
     resize: vertical;
 }
-.img-header{
+
+.img-header {
     margin: 0.6em;
 }
-.edit-img-item{
+
+.edit-img-item {
     margin: 1em;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
-.edit-img-item img{
+
+.edit-img-item img {
     border-radius: 5px;
 }
 
-.delete-btn-form{
+.delete-btn-form {
     display: inline;
     margin: auto;
 }
@@ -77,7 +80,7 @@ textarea.form-control {
 
 }
 
-.btn:active{
+.btn:active {
     border-radius: 15px;
 }
 
