@@ -20,7 +20,7 @@
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">Ev / Oda Arkadaşı İlanı Ver</h2>
                     <form action="/addkiraoda" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="type" class="form-label">İlan Türü</label>
                             <select class="form-select" id="type" name="searchingFor" required>
                                 <option value="" disabled selected>Seçin</option>
@@ -29,25 +29,25 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="title" class="form-label">Başlık</label>
                             <input type="text" class="form-control" id="title" name="title"
                                 placeholder="İlan başlığınızı girin" required>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="description" class="form-label">Açıklama</label>
                             <textarea class="form-control" id="description" name="description" rows="4"
                                 placeholder="İlanınız hakkında detaylı açıklama yazın" required></textarea>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="contact" class="form-label">İletişim Bilgileri</label>
                             <input type="text" class="form-control" id="contact" name="reachYou"
                                 placeholder="Telefon veya e-posta" required>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="images" class="form-label">Fotoğraf Yükle</label>
                             <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple>
                         </div>
