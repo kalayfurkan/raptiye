@@ -1,3 +1,5 @@
+favori simgesi eklenecek
+
 ilanlar consistent hale getirilecek (cards.css)
 
 navbarda kalan turkuazı düzeltilecek

@@ -39,8 +39,7 @@
                                     <div class="carousel-inner">
                                         <% ilan.images.forEach((image, index)=> { %>
                                             <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                <!-- Kira default img eklenecek -->
-                                                <img src="<%= image %>" onerror="this.src='img/kira-img.jpg';" class="d-block w-100" alt="İlan Fotoğrafı">
+                                                <img src="<%= image %>" onerror="this.src='img/kiralik-img.jpg';" class="d-block w-100" alt="İlan Fotoğrafı">
                                             </div>
                                         <% }) %>
                                     </div>
@@ -59,6 +58,15 @@
                                     <% } %>
                                 </div>
                                 <!-- Carousel Sonu -->
+                            <% } else { %>
+                                <div class="carousel slide">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="/img/kiralik-img.jpg" class="d-block w-100"
+                                                alt="Varsayılan kiralık Fotoğrafı">
+                                        </div>
+                                    </div>
+                                </div>
                             <% } %>
                             <div class="card-body">
                                 <h5 class="card-title">
