@@ -19,34 +19,85 @@
     <div id="wrapper">
             <%- include('partials/navbar') %>
             <div class="container">
-                <header class="başlik">
-                    <h1>İlanlar</h1>
-                </header>
+                <h1 class="mb-4">Satılık Ürünler</h1>
+                <div class="card-box">
+                    <% if (ilanlar.length> 0) { %>
+                        <% ilanlar.forEach(function(ilan) { %>
+                            <div class="card">
+                                <% if (ilan.images.length> 0) { %>
+                                    <!-- Bootstrap Carousel Başlangıcı -->
+                                    <div id="ilanCarousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
+                                        <% if (ilan.images.length != 1) { %>
+                                            <div class="carousel-indicators">
+                                                <% ilan.images.forEach((image, index)=> { %>
+                                                    <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                                        data-bs-slide-to="<%= index %>"
+                                                        class="<%= index === 0 ? 'active' : '' %>"
+                                                        aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                        aria-label="Slide <%= index + 1 %>">
+                                                    </button>
+                                                <% }) %>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <div class="carousel-inner">
+                                            <% ilan.images.forEach((image, index)=> { %>
+                                                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                                    <img src="<%= image %>" onerror="this.src='img/satilik-img.jpg';" class="d-block w-100" alt="İlan Fotoğrafı">
+                                                </div>
+                                            <% }) %>
+                                        </div>
+                                        
+                                        <% if (ilan.images.length != 1) { %>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        <% } %>
+                                    </div>
+                                    <!-- Carousel Sonu -->
+                                <% } else { %>
+                                    <div class="carousel slide">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="/img/satilik-img.jpg" class="d-block w-100"
+                                                    alt="Varsayılan Satılık Fotoğrafı">
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= ilan.title %>
+                                    </h5>
+                                    <div class="card-content">
+                                        <p><%= ilan.description %></p>
+                                        <p class="price">
+                                            ₺<%= ilan.price %>
+                                        </p>
+                                    </div>
+                                    
+                                    <a href="/profile/<%= ilan.owner%>">İlan veren profili</a>
+                                    
+                                    <a href="/ilan/<%= ilan._id %>" class="btn btn-primary">Detaylar</a>
 
-                <div class="listings-container">
-                    <!-- İlan Başlangıcı -->
-                    <% ilanlar.forEach(ilan=> { %>
-                        <div class="listing-item">
-                            <img src="<%= ilan.images[0] %>" onerror="this.src='img/satilik-img.jpg';" alt="İlan Görseli">
-                            <div class="listing-details">
-                                <h2>
-                                    <%= ilan.title %>
-                                </h2> <!-- İlan başlığı -->
-                                <p class="price">₺<%= ilan.price %>
-                                </p> <!-- İlan fiyatı -->
-                                <a href="/ilan/<%= ilan._id %>" class="view-details-btn">Detayları Görüntüle</a>
-                                <!-- Detay sayfası linki -->
-
-                                <form action="/addfavoritesilan/<%=ilan._id %>" method="post">
-                                    <input type="hidden" name="ilanid" value="<%= ilan._id %>">
-                                    <button type="submit" class="view-details-btn" data-ilan-id="<%= ilan._id %>">
-                                        Favorilere Ekle
-                                    </button>
-                                </form>
-                                <!-- Favorilere ekle -->
+                                    <form action="/addfavoritesilan/<%=ilan._id %>" method="post">
+                                        <input type="hidden" name="ilanid" value="<%= ilan._id %>">
+                                        <button type="submit" class="btn btn-primary" data-ilan-id="<%= ilan._id %>">
+                                            Yıldız
+                                        </button>
+                                    </form>
+                                </div>                            
                             </div>
-                        </div>
                         <% }) %>
+                    <% } else { %> <p>Satılık İlanı yoktur</p> <% } %>
+                    </div>
                 </div>
             </div>
 

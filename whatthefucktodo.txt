@@ -1,10 +1,14 @@
 favori simgesi eklenecek
 
-ilanlar consistent hale getirilecek (cards.css)
+satış ilan kartları flexbox ile düzeltilecek
+
+satış ilanaları görsel kaydırma çalışmıyor
+
+ilanlar consistent hale getirilecek (cards.css) bitmedi
 
 navbarda kalan turkuazı düzeltilecek
 
-navbar ilan ekle butonu değiştirilecek (?)
+navbar ilan ekle butonu değiştirilecek (?)(soru işareti kalmadı bence yap birder şunu)
 
 + nın kutusu tam daire olacak, bir svg kullanılacak (eğer daire olarak kalırsa)
 

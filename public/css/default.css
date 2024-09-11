@@ -10,27 +10,6 @@
     --navbar-color: hsl(200, 90%, 40%);
 }
 
-/* accessibility için */
-input:focus-visible,
-button:focus-visible,
-a:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-option:focus-visible,
-label:focus-visible,
-output:focus-visible,
-details:focus-visible,
-summary:focus-visible,
-iframe:focus-visible,
-audio:focus-visible,
-video:focus-visible,
-embed:focus-visible,
-object:focus-visible,
-[contenteditable]:focus-visible,
-area:focus-visible {
-    outline: 3px solid black;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -64,4 +43,29 @@ a {
 }
 p{
     margin: 0;
+}
+
+
+
+
+
+/* accessibility için */
+input:focus-visible,
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+option:focus-visible,
+label:focus-visible,
+output:focus-visible,
+details:focus-visible,
+summary:focus-visible,
+iframe:focus-visible,
+audio:focus-visible,
+video:focus-visible,
+embed:focus-visible,
+object:focus-visible,
+[contenteditable]:focus-visible,
+area:focus-visible {
+    outline: 3px solid black;
 }
