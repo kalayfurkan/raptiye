@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/logo.svg">
-    <title>İlanlar Listesi</title>
+    <title>Ev İlanları</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/kiraodalar.css">
+    <link rel="stylesheet" href="/css/cards.css">
 
 </head>
 
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-            <div class="container my-5">
+            <div class="container">
                 <h1 class="text-center mb-4">Tüm İlanlar</h1>
                 <div class="card-box">
                     <% if (ilanlar.length> 0) { %>
@@ -24,7 +24,19 @@
                             <div class="card">
                                 <!-- İlan Images Carousel (if there are any images) -->
                                 <% if (ilan.images.length> 0) { %>
+                                    <!-- Bootstrap Carousel Başlangıcı -->
                                     <div id="carousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <% ilan.images.forEach((image, index)=> { %>
+                                                <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                                    data-bs-slide-to="<%= index %>"
+                                                    class="<%= index === 0 ? 'active' : '' %>"
+                                                    aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                    aria-label="Slide <%= index + 1 %>">
+                                                </button>
+                                            <% }) %>
+                                        </div>
+                                        
                                         <div class="carousel-inner">
                                             <% ilan.images.forEach(function(image, index) { %>
                                                 <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
@@ -33,55 +45,48 @@
                                                 </div>
                                                 <% }) %>
                                         </div>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carousel<%= ilan._id %>" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carousel<%= ilan._id %>" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
+                                        <% if (ilan.images.length != 1) { %>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#carousel<%= ilan._id %>" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#carousel<%= ilan._id %>" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        <% } %>
                                     </div>
-                                    <% } else { %>
-                                        <div class="carousel slide">
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                    <img src="/img/room-img.jpg" class="d-block w-100"
-                                                        alt="Varsayılan İlan Fotoğrafı">
-                                                </div>
+                                <% } else { %>
+                                    <div class="carousel slide">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="/img/room-img.jpg" class="d-block w-100"
+                                                    alt="Varsayılan İlan Fotoğrafı">
                                             </div>
                                         </div>
-                                        <% } %>
-                                            <!-- Burada kaldın bi de butonları kaldırcan
-                        <% if(ilan.images.length>0){ %>
-                            <img src="<%= ilan.images %>" onerror="this.src='img/room-img.jpg';" class="card-img-top" alt="İlan Fotoğrafı">
-                        <% } else {%>
-                            <img src="/img/room-img.jpg" class="card-img-top" alt="Varsayılan İlan Fotoğrafı">
-                        <% } %>
-                        -->
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    <%= ilan.title %>
-                                                </h5>
-                                                <p class="card-text">
-                                                    <%= ilan.description %>
-                                                </p>
-                                                <p><strong>İlan Türü:</strong>
-                                                    <%= ilan.searchingFor %>
-                                                </p>
-                                                <a href="/kiraoda/<%=ilan._id  %>"
-                                                    class="btn btn-outline-primary btn-lg px-4 py-2 rounded-pill">
-                                                    Detaylar
-                                                </a>
-                                            </div>
+                                    </div>
+                                <% } %>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= ilan.title %>
+                                    </h5>
+                                    <p class="card-content">
+                                        <%= ilan.description %>
+                                    </p>
+                                    <p><strong>İlan Türü:</strong>
+                                        <%= ilan.searchingFor %>
+                                    </p>
+                                    <a href="/kiraoda/<%=ilan._id  %>" class="btn btn-outline-primary btn-lg px-4 py-2 rounded-pill">
+                                        Detaylar
+                                    </a>
+                                </div>
                             </div>
-                            <% }) %>
-                                <% } else { %>
-                                    <p>Daha ev rkadaşı ilanı yoktur</p>
-                                    <% } %>
-
+                        <% }) %>
+                    <% } else { %>
+                        <p>Daha ev arkadaşı ilanı yoktur</p>
+                    <% } %>
                 </div>
             </div>
             <%- include('partials/footer') %>

@@ -14,10 +14,29 @@
     background-color: #fff;
     border: none;
     overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.carousel {
+.card:hover {
+    transform: scale(1.02);
+}
+
+.carousel{
     margin-bottom: 1em;
+    background-color: grey;
+}
+
+.carousel-inner{
+    background-color: transparent;
+}
+
+.card img {
+    margin: auto;
+
+    max-width: 350px;
+    max-height: 260px;
+    width: auto !important; /* bootstrapdan dolayı zorunlu */
 }
 
 .card-body {

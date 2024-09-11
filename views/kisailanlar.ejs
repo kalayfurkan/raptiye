@@ -14,9 +14,10 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-            <div class="container mt-5">
-                <h1 class="text-center mb-5">Kısa Süreli İlanlar</h1>
-                <div class="card-box">
+        <div class="container">
+            <h1 class="mb-4">Kısa Süreli İlanlar</h1>
+            <div class="card-box">
+                <% if (ilanlar.length> 0) { %>
                     <% ilanlar.forEach(function(ilan) { %>
                         <div class="card">
                             <% if (ilan.images.length> 0) { %>
@@ -30,27 +31,29 @@
                                                 aria-current="<%= index === 0 ? 'true' : 'false' %>"
                                                 aria-label="Slide <%= index + 1 %>">
                                             </button>
-                                            <% }) %>
+                                        <% }) %>
                                     </div>
 
                                     <div class="carousel-inner">
                                         <% ilan.images.forEach((image, index)=> { %>
                                             <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                <img src="<%= image %>" class="d-block w-100" alt="İlan Fotoğrafı">
+                                                <!-- Kira default img eklenecek -->
+                                                <img src="<%= image %>" onerror="this.src='img/kira-img.jpg';" class="d-block w-100" alt="İlan Fotoğrafı">
                                             </div>
-                                            <% }) %>
+                                        <% }) %>
                                     </div>
-
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
+                                    <% if (job.images.length != 1) { %>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#ilanCarousel<%= ilan._id %>" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    <% } %>
                                 </div>
                                 <!-- Carousel Sonu -->
                                 <% } %>
@@ -66,10 +69,11 @@
                                         Bitiş Tarihi: <%= ilan.removalDate %>
                                     </div>
                         </div>
-                        <% }) %>
+                    <% }) %>
+                <% } else { %> <p>Kir İlanı yoktur</p> <% } %>
                 </div>
             </div>
-            <%- include('partials/footer') %>
+        <%- include('partials/footer') %>
     </div>
 
 
