@@ -26,16 +26,18 @@
                                 <% if (ilan.images.length> 0) { %>
                                     <!-- Bootstrap Carousel Başlangıcı -->
                                     <div id="carousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-indicators">
-                                            <% ilan.images.forEach((image, index)=> { %>
-                                                <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>"
-                                                    data-bs-slide-to="<%= index %>"
-                                                    class="<%= index === 0 ? 'active' : '' %>"
-                                                    aria-current="<%= index === 0 ? 'true' : 'false' %>"
-                                                    aria-label="Slide <%= index + 1 %>">
-                                                </button>
-                                            <% }) %>
-                                        </div>
+                                        <% if (ilan.images.length != 1) { %>
+                                            <div class="carousel-indicators">
+                                                <% ilan.images.forEach((image, index)=> { %>
+                                                    <button type="button" data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                                        data-bs-slide-to="<%= index %>"
+                                                        class="<%= index === 0 ? 'active' : '' %>"
+                                                        aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                        aria-label="Slide <%= index + 1 %>">
+                                                    </button>
+                                                <% }) %>
+                                            </div>
+                                        <% } %>
                                         
                                         <div class="carousel-inner">
                                             <% ilan.images.forEach(function(image, index) { %>

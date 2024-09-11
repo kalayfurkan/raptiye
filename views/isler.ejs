@@ -23,16 +23,18 @@
                             <!-- Bootstrap Carousel Başlangıcı -->
                             <% if (job.images.length> 0) { %>
                                 <div id="carousel<%= job._id %>" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-indicators">
-                                        <% job.images.forEach((image, index)=> { %>
-                                            <button type="button" data-bs-target="#ilanCarousel<%= job._id %>"
-                                                data-bs-slide-to="<%= index %>"
-                                                class="<%= index === 0 ? 'active' : '' %>"
-                                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
-                                                aria-label="Slide <%= index + 1 %>">
-                                            </button>
-                                        <% }) %>
-                                    </div>
+                                    <% if (job.images.length != 1) { %>
+                                        <div class="carousel-indicators">
+                                            <% job.images.forEach((image, index)=> { %>
+                                                <button type="button" data-bs-target="#ilanCarousel<%= job._id %>"
+                                                    data-bs-slide-to="<%= index %>"
+                                                    class="<%= index === 0 ? 'active' : '' %>"
+                                                    aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                    aria-label="Slide <%= index + 1 %>">
+                                                </button>
+                                            <% }) %>
+                                        </div>
+                                    <% } %>
                                     
                                     <div class="carousel-inner">
                                         <% job.images.forEach(function(image, index) { %>
