@@ -1,6 +1,18 @@
 ilanlar consistent hale getirilecek (cards.css)
 
-formlar consistent hale getirilecek (forms.css)(bitmek üzere, marginler ayarlanacak)
+navbarda kalan turkuazı düzeltilecek
+
++ nın kutusu tam daire olacak, bir svg kullanılacak
+
++ ya hover yapınca altı çizilmeyecek ve tooltip görünecek
+
+butonlar styling'i default'a taşınacak ve a için styling eklenecek
+
+ilan düzenle sayfaları forms.css e linklenmemiş
+
+Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
+
+formlarda elementler arası boşluklar ayarlanacak
 
 ilan detay sayfaları consistent hale getirilecek (listings.css)
 
@@ -8,3 +20,7 @@ ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
 renk paleti eklenecek ve renkler consistent olacak
+
+
+
+formlar consistent hale getirilecek (forms.css)(bitti)
