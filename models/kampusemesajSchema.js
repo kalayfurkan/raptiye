@@ -1,5 +1,22 @@
 const mongoose=require('mongoose');
 
+const yorumSchema = new mongoose.Schema({
+	yorum: {
+	  type: String,
+	  required: true,
+	  trim: true,
+	},
+	owner: {
+	  type: mongoose.Schema.Types.ObjectId,
+	  ref: 'User',  // Yorumu yazan kişi
+	  required: true,
+	},
+	createdAt: {
+	  type: Date,
+	  default: Date.now,
+	},
+  });
+
 const kampusemesajSchema = new mongoose.Schema({
 	mesaj: {
 	  type: String,
@@ -24,8 +41,8 @@ const kampusemesajSchema = new mongoose.Schema({
 	downVoters:{
 		type: [String],
 		default: []
-
-	}
+	},
+	yorumlar: [yorumSchema]
   });
   
   const Kampusemesaj = mongoose.model('kampusemesaj', kampusemesajSchema);
