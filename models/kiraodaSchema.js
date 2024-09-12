@@ -27,7 +27,8 @@ const kiraodaSchema = new mongoose.Schema({
 	  default: Date.now,
 	},
 	owner:{
-		type: String,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
 	}
   });
   

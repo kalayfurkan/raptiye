@@ -82,8 +82,8 @@
                                             ₺<%= ilan.price %>
                                         </p>
                                     </div>
-                                    
-                                    <a href="/profile/<%= ilan.owner%>">İlan veren profili</a>
+                                    <span>İlan Sahibi:</span>
+                                    <a href="/profile/<%= ilan.owner._id.toString()%>"><%= ilan.owner.username  %></a>
                                     
                                     <a href="/ilan/<%= ilan._id %>" class="btn btn-primary">Detaylar</a>
 

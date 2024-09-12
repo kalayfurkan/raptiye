@@ -46,7 +46,9 @@ router.post('/addpost', async (req, res) => {
 
 router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
 	try {
-		const allPosts = await Ilan.find({});
+		const allPosts = await Ilan.find({})
+		.populate('owner','username')
+		.exec();
 		res.render('ilanlar', { ilanlar: allPosts });
 	} catch (error) {
 		res.send(error);
