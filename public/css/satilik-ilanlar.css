@@ -1,0 +1,67 @@
+.container {
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
+.card img {
+    width: 150px !important; /* bootstrapdan dolayı zorunlu */
+    height: auto;
+    max-height: 100%;
+    object-fit: contain; /* This ensures the image fits inside the box without cropping */
+}
+
+.card-box {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.card {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 200px;
+        background-color: #fff;
+        border: none;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-body {
+    position: relative;
+    padding-top: 0;
+    overflow-y: auto; /* Allow scrolling inside the card for overflowing content */
+    flex-grow: 1; /* Allow the body to grow and take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.star-btn{
+    right:0;
+    position: absolute;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    height: 20px;
+    width: 20px;
+}
+
+.star{
+    height: 20px;
+    width: 20px;
+}
+
+.card .price {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+

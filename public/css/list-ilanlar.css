@@ -1,9 +1,0 @@
-.container {
-    flex-grow: 1;
-    margin: 0 auto;
-}
-
-.price {
-    color: var(--primary-color);
-    font-size: 20px;
-}

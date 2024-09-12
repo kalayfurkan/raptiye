@@ -34,7 +34,6 @@
 
 .card img {
     margin: auto;
-
     max-width: 350px;
     max-height: 260px;
     width: auto !important; /* bootstrapdan dolayı zorunlu */
