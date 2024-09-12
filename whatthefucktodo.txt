@@ -33,3 +33,5 @@ ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
 formlar consistent hale getirilecek (forms.css)(bitti)
+
+public/js içindeki vote.js dosyası incelenecek şu an doğru çalışmıyor.

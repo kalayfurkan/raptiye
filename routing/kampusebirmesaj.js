@@ -39,25 +39,6 @@ router.get('/kampusemesajlar',allMiddlewares.requireAuth,async(req, res) => {
 	res.render('kampusemesajlar',{messages,userId});
 })
 
-// Upvote API
-router.post('/kampusemesaj/upvote/:id', allMiddlewares.requireAuth, async (req, res) => {
-    try {
-        await Kampusemesaj.findByIdAndUpdate(req.params.id, { $inc: { upvotes: 1 } });
-        res.status(200).send('Upvote başarıyla eklendi.');
-    } catch (error) {
-        res.status(500).send('Upvote işlemi sırasında bir hata oluştu.');
-    }
-});
-
-// Downvote API
-router.post('/kampusemesaj/downvote/:id', allMiddlewares.requireAuth, async (req, res) => {
-    try {
-        await Kampusemesaj.findByIdAndUpdate(req.params.id, { $inc: { downvotes: 1 } });
-        res.status(200).send('Downvote başarıyla eklendi.');
-    } catch (error) {
-        res.status(500).send('Downvote işlemi sırasında bir hata oluştu.');
-    }
-});
 
 router.post('/upvote/:mesajid',allMiddlewares.requireAuth,async (req, res) => {
 	try {
@@ -71,15 +52,16 @@ router.post('/upvote/:mesajid',allMiddlewares.requireAuth,async (req, res) => {
 					message.upvotes += 1;
 				}
 				await message.save();
-				res.redirect('/kampusemesajlar'); // Mesajlar sayfasına yönlendir
-			}else if(message.downVoters.includes(req.session.userId)){
+				res.json({ success: true, type: 'upvote', newUpvoteCount: message.upvotes, newDownvoteCount: message.downvotes });
+			}
+			else if(message.downVoters.includes(req.session.userId)){
 				message.upVoters.push(req.session.userId);
 				message.upvotes += 1;
 				message.downVoters.pull(req.session.userId);
 				message.downvotes-=1;
 				
 				await message.save();
-				res.redirect('/kampusemesajlar');
+				res.json({ success: true, type: 'upvote', newUpvoteCount: message.upvotes, newDownvoteCount: message.downvotes });
 			}
             
         } else {
@@ -104,7 +86,7 @@ router.post('/downvote/:mesajid',allMiddlewares.requireAuth, async (req, res) =>
 					message.downvotes += 1;
 				}
 				await message.save();
-				res.redirect('/kampusemesajlar'); // Mesajlar sayfasına yönlendir
+				res.json({ success: true, type: 'downvote', newUpvoteCount: message.upvotes, newDownvoteCount: message.downvotes });
 			}else if(message.upVoters.includes(req.session.userId)){
 				message.downVoters.push(req.session.userId);
 				message.downvotes += 1;
@@ -112,7 +94,7 @@ router.post('/downvote/:mesajid',allMiddlewares.requireAuth, async (req, res) =>
 				message.upvotes-=1;
 
 				await message.save();
-				res.redirect('/kampusemesajlar');
+				res.json({ success: true, type: 'downvote', newUpvoteCount: message.upvotes, newDownvoteCount: message.downvotes });
 			}
             
         } else {
@@ -134,7 +116,7 @@ router.post('/undo-upvote/:id',allMiddlewares.requireAuth, async (req, res) => {
 				message.upvotes-=1;
 			}
             await message.save();
-            res.redirect('/kampusemesajlar'); // Mesajlar sayfasına yönlendir
+            res.json({ success: true, type: 'undo-upvote', newUpvoteCount: message.upvotes, newDownvoteCount: message.downvotes });
         } else {
             res.status(404).send('Mesaj bulunamadı.');
         }
@@ -155,7 +137,7 @@ router.post('/undo-downvote/:id',allMiddlewares.requireAuth, async (req, res) =>
 				message.downvotes-=1;
 			}
             await message.save();
-            res.redirect('/kampusemesajlar'); // Mesajlar sayfasına yönlendir
+			res.json({ success: true, type: 'undo-downvote', newUpvoteCount: message.upvotes, newDownvoteCount: message.downvotes });
         } else {
             res.status(404).send('Mesaj bulunamadı.');
         }
