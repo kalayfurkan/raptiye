@@ -37,12 +37,23 @@
                                     <h5 class="card-title">
                                         <%= ilan.title %>
                                     </h5>
+<<<<<<< HEAD
                                     
                                     <p class="price">
                                         <%= ilan.price %>TL
                                     </p>    
                                         
                                     <a href="/profile/<%= ilan.owner%>">İlan veren profili</a>
+=======
+                                    <div class="card-content">
+                                        <p><%= ilan.description %></p>
+                                        <p class="price">
+                                            ₺<%= ilan.price %>
+                                        </p>
+                                    </div>
+                                    <span>İlan Sahibi:</span>
+                                    <a href="/profile/<%= ilan.owner._id.toString()%>"><%= ilan.owner.username  %></a>
+>>>>>>> 7b6d33a08af8c08d57a8e8f8c5fff4211e158100
                                     
                                     <a href="/ilan/<%= ilan._id %>" class="btn btn-primary">Detaylar</a>
 
