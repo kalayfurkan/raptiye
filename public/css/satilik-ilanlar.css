@@ -38,6 +38,7 @@
 .card-body {
     position: relative;
     padding-top: 0;
+    padding-bottom: 0;
     flex-grow: 1; /* Allow the body to grow and take available space */
     display: flex;
     flex-direction: column;
