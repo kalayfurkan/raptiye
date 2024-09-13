@@ -147,6 +147,35 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tüm silme butonlarını seç
+            document.querySelectorAll('form[action^="/deletefavorites"]').forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Sayfanın kendi kendine yenilenmesini engelle
+                    
+                    const actionUrl = form.getAttribute('action'); // Formun action URL'sini al
+                    
+                    fetch(actionUrl, {
+                        method: 'POST', // POST isteği gönder
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Eğer POST isteği başarılı olursa sayfayı yenile
+                            window.location.reload();
+                        } else {
+                            alert('Bir hata oluştu.');
+                        }
+                    })
+                    .catch(error => console.error('Hata:', error));
+                });
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

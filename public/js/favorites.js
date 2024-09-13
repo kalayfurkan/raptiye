@@ -5,9 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Sayfa yenilenmesini engelle
             
             const ilanId = button.getAttribute('data-ilan-id'); // Butonun data-ilan-id attribute'unu al
+            const isFavorite = button.classList.contains('spin'); // Eğer butonda 'spin' class'ı varsa favorilerde
             
-            fetch(`/addfavoritesilan/${ilanId}`, {
-                method: 'POST',
+            // Eğer favorilerde ise DELETE isteği gönder, değilse POST isteği gönder
+            const url = isFavorite ? `/deletefavorites/${ilanId}` : `/addfavoritesilan/${ilanId}`;
+            const method = isFavorite ? 'POST' : 'POST';
+            
+            fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -15,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json()) // JSON yanıtını işle
             .then(data => {
                 if (data.success) {
-                    button.classList.toggle('spin');
+                    button.classList.toggle('spin'); // Eğer başarıyla eklendi/silindiyse buton class'ını değiştir
                 } else {
                     alert('Bir hata oluştu.');
                 }

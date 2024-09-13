@@ -49,7 +49,8 @@ router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
 		const allPosts = await Ilan.find({})
 		.populate('owner','username')
 		.exec();
-		res.render('ilanlar', { ilanlar: allPosts });
+		const currentUser=await User.findById(req.session.userId);
+		res.render('ilanlar', { ilanlar: allPosts,currentUser });
 	} catch (error) {
 		res.send(error);
 	}

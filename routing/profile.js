@@ -41,7 +41,7 @@ router.post('/deletefavorites/:favoriteid', allMiddlewares.requireAuth, async (r
 
 		user.favorites = user.favorites.filter(fav => fav.toString() !== favoriteid);
 		await user.save();
-		res.redirect('/profile');
+		res.json({ success: true, message: 'Favorilerden silindi' });
 	} catch (error) {
 		console.error(error);
 		res.status(500).send('Bir hata oluştu');
