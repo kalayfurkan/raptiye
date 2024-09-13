@@ -27,22 +27,22 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
                             <% if (message.upVoters.includes(userId)) { %>
-                            <form id="undo-upvote-<%= message._id %>" action="/undo-upvote/<%= message._id %>"
-                                method="POST" class="d-inline">
-                                <button type="submit" class="btn btn-success btn-sm d-flex align-items-center">
-                                    <i class="bi bi-hand-thumbs-up"></i>
-                                    <span><%= message.upvotes %></span>
-                                </button>
-                            </form>
+                                <form id="undo-upvote-<%= message._id %>" action="/undo-upvote/<%= message._id %>"
+                                    method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-success btn-sm d-flex align-items-center">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        <span><%= message.upvotes %></span>
+                                    </button>
+                                </form>
                             <% } else { %>
-                            <form id="upvote-<%= message._id %>" action="/upvote/<%= message._id %>" method="POST"
-                                class="d-inline">
-                                <button type="submit"
-                                    class="btn btn-light border rounded-pill d-flex align-items-center">
-                                    <i class="bi bi-hand-thumbs-up text-success fs-4 me-2"></i>
-                                    <span class="fs-6"><%= message.upvotes %></span>
-                                </button>
-                            </form>
+                                <form id="upvote-<%= message._id %>" action="/upvote/<%= message._id %>" method="POST"
+                                    class="d-inline">
+                                    <button type="submit"
+                                        class="btn btn-light border rounded-pill d-flex align-items-center">
+                                        <i class="bi bi-hand-thumbs-up text-success fs-4 me-2"></i>
+                                        <span class="fs-6"><%= message.upvotes %></span>
+                                    </button>
+                                </form>
                             <% } %>
                             <% if (message.downVoters.includes(userId)) { %>
                             <form id="undo-downvote-<%= message._id %>" action="/undo-downvote/<%= message._id %>"
@@ -105,7 +105,7 @@
             </ul>
 
             <% } else { %>
-            <p>Henüz bir mesaj bırakılmadı.</p>
+            <p>Hadi! İlk mesajı sen bırak.</p>
             <% } %>
         </div>
         <%- include('partials/footer') %>

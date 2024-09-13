@@ -1,9 +1,5 @@
 favori simgesi eklenecek - star.svg sayfaya eklenecek ve tıklandığında dönem animasyonu olacak ve fill i sarı olacak değişecek
 
-satış ilan kartları flexbox ile düzeltilecek
-
-satış ilanaları görsel kaydırma çalışmıyor
-
 ilanlar consistent hale getirilecek (cards.css) bitmedi
 
 navbarda kalan turkuazı düzeltilecek
@@ -24,6 +20,8 @@ formlarda elementler arası boşluklar ayarlanacak
 
 ilan detay sayfaları consistent hale getirilecek (listings.css)
 
+kısa süreli ilanlarda tarih kötü duruyor
+
 rickroll eklenecek
 
 renk paletine karar verilecek ve renkler consistent olacak
@@ -35,3 +33,5 @@ alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 formlar consistent hale getirilecek (forms.css)(bitti)
 
 public/js içindeki vote.js dosyası incelenecek şu an doğru çalışmıyor.
+
+satış ilan kartları flexbox ile düzeltilecek (bitti ?)
