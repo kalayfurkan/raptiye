@@ -186,4 +186,44 @@ router.post('/ilan/delete/:ilanId', allMiddlewares.requireAuth, async (req, res)
 })
 
 
+
+router.post('/addfavoritesilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
+	const ilanid = req.params.ilanid;
+	const userId = req.session.userId;
+
+	try {
+		const user = await User.findById(userId);
+		if (!user.favorites.includes(ilanid)) {
+			user.favorites.push(ilanid);
+			await user.save();
+		}
+		res.json({ success: true, message: 'Favorilere eklendi' });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Sunucu hatası');
+	}
+})
+
+router.post('/deletefavorites/:favoriteid', allMiddlewares.requireAuth, async (req, res) => {
+	const favoriteid = req.params.favoriteid;
+	const userId = req.session.userId;
+
+	try {
+		const user = await User.findById(userId);
+
+		if (!user) {
+			return res.status(404).send('Kullanıcı bulunamadı');
+		}
+
+		user.favorites = user.favorites.filter(fav => fav.toString() !== favoriteid);
+		await user.save();
+		res.json({ success: true, message: 'Favorilerden silindi' });
+	} catch (error) {
+		console.error(error);
+		res.status(500).send('Bir hata oluştu');
+	}
+
+});
+
+
 module.exports = router;

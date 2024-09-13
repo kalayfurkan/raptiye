@@ -48,7 +48,8 @@ router.post('/addkiraoda',allMiddlewares.requireAuth,async(req,res) => {
 
 router.get('/kiraoda',allMiddlewares.requireAuth,async(req,res) => {
 	const kiraodalar=await Kiraoda.find({});
-	res.render('kiraodalar',{ilanlar:kiraodalar})
+	const currentUser=await User.findById(req.session.userId);
+	res.render('kiraodalar',{ilanlar:kiraodalar,currentUser})
 })
 
 router.get('/kiraoda/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
@@ -154,10 +155,55 @@ router.post('/kiraoda/delete/:kiraodaid',allMiddlewares.requireAuth,async(req, r
 
 	try {
 		await Kiraoda.deleteOne({ _id: kiraodaid });
+
+		await User.updateMany(
+			{ favoritesKira: kiraodaid },
+			{ $pull: { favoritesKira: kiraodaid } }
+		);
+
 		res.redirect('/profile');
 	} catch (error) {
 		console.error(error);
 		res.status(500).send('Bir hata oluştu.');
+	}
+})
+
+
+router.post('/kiraaddfavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+	const favoriteid = req.params.ilanid;
+	const userId = req.session.userId;
+
+	try {
+		const user = await User.findById(userId);
+		if (!user.favoritesKira.includes(favoriteid)) {
+			user.favoritesKira.push(favoriteid);
+			await user.save();
+		}
+		res.json({ success: true, message: 'Favorilere eklendi' });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Sunucu hatası');
+	}
+})
+
+router.post('/kiradeletefavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+	const favoriteid = req.params.ilanid;
+	const userId = req.session.userId;
+
+	
+	try {
+		const user = await User.findById(userId);
+
+		if (!user) {
+            return res.status(404).json({ success: false, message: 'Kullanıcı bulunamadı' });
+        }
+
+		user.favoritesKira = user.favoritesKira.filter(fav => fav.toString() !== favoriteid);
+		await user.save();
+		res.json({ success: true, message: 'Favorilerden silindi' });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Sunucu hatası');
 	}
 })
 

@@ -50,7 +50,8 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 
 router.get('/isler', allMiddlewares.requireAuth, async (req, res) => {
 	const jobs = await Job.find({});
-	res.render('isler', { jobs });
+	const currentUser=await User.findById(req.session.userId);
+	res.render('isler', { jobs, currentUser });
 })
 
 router.get('/isler/:jobid', allMiddlewares.requireAuth, async (req, res) => {
@@ -155,10 +156,56 @@ router.post('/job/delete/:jobid',allMiddlewares.requireAuth,async(req, res) => {
 
 	try {
 		await Job.deleteOne({ _id: jobId });
+
+		await User.updateMany(
+			{ favoritesJob: jobId },
+			{ $pull: { favoritesJob: jobId } }
+		);
+
 		res.redirect('/profile');
 	} catch (error) {
 		console.error(error);
 		res.status(500).send('Bir hata oluştu.');
+	}
+})
+
+
+
+router.post('/jobaddfavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+	const favoriteid = req.params.ilanid;
+	const userId = req.session.userId;
+
+	try {
+		const user = await User.findById(userId);
+		if (!user.favoritesJob.includes(favoriteid)) {
+			user.favoritesJob.push(favoriteid);
+			await user.save();
+		}
+		res.json({ success: true, message: 'Favorilere eklendi' });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Sunucu hatası');
+	}
+})
+
+router.post('/jobdeletefavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+	const favoriteid = req.params.ilanid;
+	const userId = req.session.userId;
+
+	
+	try {
+		const user = await User.findById(userId);
+
+		if (!user) {
+            return res.status(404).json({ success: false, message: 'Kullanıcı bulunamadı' });
+        }
+
+		user.favoritesJob = user.favoritesJob.filter(fav => fav.toString() !== favoriteid);
+		await user.save();
+		res.json({ success: true, message: 'Favorilerden silindi' });
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Sunucu hatası');
 	}
 })
 
