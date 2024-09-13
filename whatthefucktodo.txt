@@ -8,7 +8,7 @@ ilanlar consistent hale getirilecek (cards.css) bitmedi
 
 navbarda kalan turkuazı düzeltilecek
 
-navbar ilan ekle butonu değiştirilecek (?)(soru işareti kalmadı bence yap birder şunu)
+navbar ilan ekle butonu değiştirilecek (?)(soru işareti kalmadı bence yap birder şunu -fuat)
 
 + nın kutusu tam daire olacak, bir svg kullanılacak (eğer daire olarak kalırsa)
 

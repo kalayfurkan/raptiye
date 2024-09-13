@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json()) // JSON yanıtını işle
             .then(data => {
                 if (data.success) {
-                    alert(data.message); // Tarayıcıda olan değişiklikleri buraya girmeniz gerekecek 
+                    button.classList.toggle('spin');
                 } else {
                     alert('Bir hata oluştu.');
                 }

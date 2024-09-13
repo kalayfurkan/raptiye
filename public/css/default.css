@@ -41,8 +41,31 @@ body {
 a {
     text-decoration: none;
 }
+
 p{
     margin: 0;
+}
+
+.btn {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border-color: var(--secondary-color-dark2);
+    background-color: var(--secondary-color-dark);
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    color: white;
+    background-color: var(--secondary-color-dark2);
+    transform: scale(1.03);
+    border-color: var(--secondary-color-dark2);
+}
+
+.btn:active {
+    border-radius: 15px;
 }
 
 
