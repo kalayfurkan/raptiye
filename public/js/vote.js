@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({}) // Send an empty body if not needed
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log("Hey response.json() is: " , response.json())
+            return response.json()
+        })
         .then(data => {
             console.log('Server Response:', data); // Debug: Log server response
             if (data.success) {
@@ -33,9 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateVotes(formId, data) {
         const [actionType, messageId] = formId.split('-');
 
+        //aşağıdakilerden iki tanesi undefined
         const upvoteButton = document.querySelector(`#upvote-${messageId}`);
-        const undoUpvoteButton = document.querySelector(`#undo-upvote-${messageId}`);
-        const downvoteButton = document.querySelector(`#downvote-${messageId}`);
+        const undoUpvoteButton = document.querySelector(`#undo-upvote-${messageId}`);   //
+        const downvoteButton = document.querySelector(`#downvote-${messageId}`);        //
         const undoDownvoteButton = document.querySelector(`#undo-downvote-${messageId}`);
 
         // Update button states based on the action type
