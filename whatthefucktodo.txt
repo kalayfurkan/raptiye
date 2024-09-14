@@ -1,3 +1,5 @@
+dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
+
 favori simgesinin çevresine siyah outline çekilecek
 
 ilanlar consistent hale getirilecek (cards.css) bitmedi
@@ -8,11 +10,9 @@ butonlar styling'i default'a taşınacak ve a için styling eklenecek
 
 Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
 
-formlarda elementler arası boşluklar ayarlanacak
-
 ilan detay sayfaları consistent hale getirilecek (listings.css)
 
-kısa süreli ilanlarda tarih kötü duruyor
+kısa süreli ilanlarda tarih kısmı düzeltilecek
 
 hakkımızda kısmı eklenecek
 
@@ -24,11 +24,13 @@ alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
 public/js içindeki vote.js dosyası incelenecek şu an doğru çalışmıyor.
 
-satış ilan kartları flexbox ile düzeltilecek (bitti ?)
+ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
 
 navbar daki logoya tıklayınca ana sayfaya gitmiyor.
 
 profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
+
+satış ilan kartları flexbox ile düzeltilecek (bitti ?)
 
 
 
