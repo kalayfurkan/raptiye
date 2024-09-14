@@ -7,13 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const formId = form.id;
         const formAction = form.action;
 
+        const formData = new FormData(form); // Collect form data
+
         // Send AJAX request
         fetch(formAction, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
             },
-            body: JSON.stringify({}) // Send an empty body if not needed
+            body: formData // Send form data as form-urlencoded
         })
         .then(response => response.json())
         .then(data => {
@@ -29,46 +32,111 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Function to update vote counts and button states
     function updateVotes(formId, data) {
-        const [actionType, messageId] = formId.split('-');
+        // Update the vote counts and form states based on response data
+        const form = document.getElementById(formId);
+        if (!form) return;
 
-        const upvoteButton = document.querySelector(`#upvote-${messageId}`);
-        const undoUpvoteButton = document.querySelector(`#undo-upvote-${messageId}`);
-        const downvoteButton = document.querySelector(`#downvote-${messageId}`);
-        const undoDownvoteButton = document.querySelector(`#undo-downvote-${messageId}`);
+        const button = form.querySelector('button');
+        if (!button) return;
 
-        // Update button states based on the action type
-        switch (data.type) {
-            case 'upvote':
-                if (upvoteButton) upvoteButton.style.display = 'none';
-                if (undoUpvoteButton) undoUpvoteButton.style.display = 'inline';
-                break;
-            case 'undo-upvote':
-                if (upvoteButton) upvoteButton.style.display = 'inline';
-                if (undoUpvoteButton) undoUpvoteButton.style.display = 'none';
-                break;
-            case 'downvote':
-                if (downvoteButton) downvoteButton.style.display = 'none';
-                if (undoDownvoteButton) undoDownvoteButton.style.display = 'inline';
-                break;
-            case 'undo-downvote':
-                if (downvoteButton) downvoteButton.style.display = 'inline';
-                if (undoDownvoteButton) undoDownvoteButton.style.display = 'none';
-                break;
+        const messageId = formId.split('-').pop();
+        
+        if (formId.startsWith('undo-upvote')) {
+            undoUpvoted(button, messageId);
+        } else if (formId.startsWith('undo-downvote')) {
+            undoDownvoted(button, messageId);
+        } else if (formId.startsWith('upvote')) {
+            upvoted(button, messageId);
+        } else if (formId.startsWith('downvote')) {
+            downvoted(button, messageId);
+        }
+    }
+
+    function upvoted(button, messageId) {
+        button.classList.add('upvoted');
+        const form = button.closest('form');
+
+        const siblingForm = document.querySelector(`#undo-downvote-${messageId}`);
+        if (siblingForm) {
+            const siblingButton = siblingForm.querySelector('button');
+            undoDownvoted(siblingButton, messageId);
         }
 
-        // vote-render ile yapılıyor artık 
-        // // Update vote counts
-        // const upvoteCountElement = upvoteButton ? upvoteButton.querySelector('span') : undoUpvoteButton ? undoUpvoteButton.querySelector('span') : null;
-        // const downvoteCountElement = downvoteButton ? downvoteButton.querySelector('span') : undoDownvoteButton ? undoDownvoteButton.querySelector('span') : null;
+        if (form) {
+            form.id = `undo-upvote-${messageId}`;
+            form.action = `/undo-upvote/${messageId}`;
+        }
 
-        // if (data.newUpvoteCount !== undefined && upvoteCountElement) {
-        //     upvoteCountElement.textContent = data.newUpvoteCount;
-        // }
-        // if (data.newDownvoteCount !== undefined && downvoteCountElement) {
-        //     downvoteCountElement.textContent = data.newDownvoteCount;
-        // }
+        const span = button.querySelector('span');
+        if (span) {
+            let upvoteCount = parseInt(span.textContent, 10);
+            upvoteCount += 1;
+            span.textContent = upvoteCount;
+        }
+
+        button.setAttribute('onclick', `undoUpvoted(this, '${messageId}')`);
+    }
+
+    function undoUpvoted(button, messageId) {
+        button.classList.remove('upvoted');
+        const form = button.closest('form');
+        if (form) {
+            form.id = `upvote-${messageId}`;
+            form.action = `/upvote/${messageId}`;
+        }
+
+        const span = button.querySelector('span');
+        if (span) {
+            let upvoteCount = parseInt(span.textContent, 10);
+            upvoteCount -= 1;
+            span.textContent = upvoteCount;
+        }
+
+        button.setAttribute('onclick', `upvoted(this, '${messageId}')`);
+    }
+
+    function downvoted(button, messageId) {
+        button.classList.add('downvoted');
+        const form = button.closest('form');
+
+        const siblingForm = document.querySelector(`#undo-upvote-${messageId}`);
+        if (siblingForm) {
+            const siblingButton = siblingForm.querySelector('button');
+            undoUpvoted(siblingButton, messageId);
+        }
+
+        if (form) {
+            form.id = `undo-downvote-${messageId}`;
+            form.action = `/undo-downvote/${messageId}`;
+        }
+
+        const span = button.querySelector('span');
+        if (span) {
+            let downvoteCount = parseInt(span.textContent, 10);
+            downvoteCount += 1;
+            span.textContent = downvoteCount;
+        }
+
+        button.setAttribute('onclick', `undoDownvoted(this, '${messageId}')`);
+    }
+
+    function undoDownvoted(button, messageId) {
+        button.classList.remove('downvoted');
+        const form = button.closest('form');
+        if (form) {
+            form.id = `downvote-${messageId}`;
+            form.action = `/downvote/${messageId}`;
+        }
+
+        const span = button.querySelector('span');
+        if (span) {
+            let downvoteCount = parseInt(span.textContent, 10);
+            downvoteCount -= 1;
+            span.textContent = downvoteCount;
+        }
+
+        button.setAttribute('onclick', `downvoted(this, '${messageId}')`);
     }
 
     // Attach event listeners to all vote forms
