@@ -57,8 +57,14 @@ app.use(fileUpload());
 //for routing
 const mainRouter = require('./routing/mainRouter');
 app.use('/', mainRouter);
-/* 
-app.post("/test") */
+
+app.get("/test", (req, res)=> {
+  res.json("helloooo")
+})
+app.post("/test", (req, res)=> {
+  console.log(req.body)
+  res.json("helloooo")
+})
 
 
 const port = 3000;

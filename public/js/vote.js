@@ -15,10 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({}) // Send an empty body if not needed
         })
-        .then(response => {
-            console.log("Hey response.json() is: " , response.json())
-            return response.json()
-        })
+        .then(response => response.json())
         .then(data => {
             console.log('Server Response:', data); // Debug: Log server response
             if (data.success) {
@@ -36,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateVotes(formId, data) {
         const [actionType, messageId] = formId.split('-');
 
-        //aşağıdakilerden iki tanesi undefined
+        
         const upvoteButton = document.querySelector(`#upvote-${messageId}`);
-        const undoUpvoteButton = document.querySelector(`#undo-upvote-${messageId}`);   //
-        const downvoteButton = document.querySelector(`#downvote-${messageId}`);        //
+        const undoUpvoteButton = document.querySelector(`#undo-upvote-${messageId}`);
+        const downvoteButton = document.querySelector(`#downvote-${messageId}`);
         const undoDownvoteButton = document.querySelector(`#undo-downvote-${messageId}`);
 
         // Update button states based on the action type
@@ -62,16 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
         }
 
-        // Update vote counts
-        const upvoteCountElement = upvoteButton ? upvoteButton.querySelector('span') : undoUpvoteButton ? undoUpvoteButton.querySelector('span') : null;
-        const downvoteCountElement = downvoteButton ? downvoteButton.querySelector('span') : undoDownvoteButton ? undoDownvoteButton.querySelector('span') : null;
+        // vote-render ile yapılıyor artık 
+        // // Update vote counts
+        // const upvoteCountElement = upvoteButton ? upvoteButton.querySelector('span') : undoUpvoteButton ? undoUpvoteButton.querySelector('span') : null;
+        // const downvoteCountElement = downvoteButton ? downvoteButton.querySelector('span') : undoDownvoteButton ? undoDownvoteButton.querySelector('span') : null;
 
-        if (data.newUpvoteCount !== undefined && upvoteCountElement) {
-            upvoteCountElement.textContent = data.newUpvoteCount;
-        }
-        if (data.newDownvoteCount !== undefined && downvoteCountElement) {
-            downvoteCountElement.textContent = data.newDownvoteCount;
-        }
+        // if (data.newUpvoteCount !== undefined && upvoteCountElement) {
+        //     upvoteCountElement.textContent = data.newUpvoteCount;
+        // }
+        // if (data.newDownvoteCount !== undefined && downvoteCountElement) {
+        //     downvoteCountElement.textContent = data.newDownvoteCount;
+        // }
     }
 
     // Attach event listeners to all vote forms
