@@ -1,18 +1,14 @@
-favori simgesi eklenecek - star.svg sayfaya eklenecek ve tıklandığında dönem animasyonu olacak ve fill i sarı olacak değişecek
+favori simgesinin çevresine siyah outline çekilecek
 
 ilanlar consistent hale getirilecek (cards.css) bitmedi
 
-navbarda kalan turkuazı düzeltilecek
-
 navbar ilan ekle butonu değiştirilecek (?)(soru işareti kalmadı bence yap birder şunu -fuat)
 
-+ nın kutusu tam daire olacak, bir svg kullanılacak (eğer daire olarak kalırsa)
++ yerine svg kullanılacak
 
-+ ya hover yapınca altı çizilmeyecek ve tooltip görünecek
++ ya hover yapınca tooltip görünecek
 
 butonlar styling'i default'a taşınacak ve a için styling eklenecek
-
-ilan düzenle sayfaları forms.css e linklenmemiş
 
 Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
 
@@ -30,8 +26,20 @@ ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
 
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
-formlar consistent hale getirilecek (forms.css)(bitti)
-
 public/js içindeki vote.js dosyası incelenecek şu an doğru çalışmıyor.
 
 satış ilan kartları flexbox ile düzeltilecek (bitti ?)
+
+navbar daki logoya tıklayınca ana sayfaya gitmiyor.
+
+profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
+
+
+
+
+
+ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
+
+favori simgesi eklenecek - star.svg sayfaya eklenecek ve tıklandığında dönem animasyonu olacak ve fill i sarı olacak değişecek (bitti)
+
+navbarda kalan turkuazı düzeltilecek (bitti)
