@@ -145,18 +145,27 @@
 	background-color: var(--primary-color);
 }
 
+.plus-symbol {
+	height: 30px;
+	width: 30px;
+}
+
 .plus-link {
-	background-color: hsl(176, 95%, 63%);
-	margin: 5px 5px;
 	padding: 5px 12px;
-	border-radius: 50%;
 	font-size: 1.2rem;
 	text-align: center;
 	transition: background-color 0.2s, transform 0.2s;
+	margin: 5px 5px;
+	/*
+	border: 2px solid #333;
+	background-color: hsl(176, 95%, 63%);
+	*/
 }
 
 .plus-link:hover {
+	/*
 	background-color: var(--secondary-color-dark2);
+	*/
 	transform: scale(1.1);
 }
 
