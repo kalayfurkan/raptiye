@@ -119,16 +119,13 @@
 	position: relative;
 }
 
-.adjacent:hover {
-	background-color: var(--primary-color);
-}
-
 /* dropdown menu when hovered */
 .navbar-item:hover .dropdown-menu {
 	display: block;
 }
 
 .dropdown-link {
+	width: 100%;
 	color: black;
 	padding: 12px 16px;
 	text-decoration: none;
@@ -139,6 +136,7 @@
 
 .dropdown-link:hover {
 	color: black;
+	background-color: var(--primary-color);
 }
 
 .dropdown-campus:hover {
@@ -151,11 +149,13 @@
 }
 
 .plus-link {
-	padding: 5px 12px;
+	padding: 3px 4px;
 	font-size: 1.2rem;
 	text-align: center;
 	transition: background-color 0.2s, transform 0.2s;
 	margin: 5px 5px;
+	width: fit-content;
+	height: 100%;
 	/*
 	border: 2px solid #333;
 	background-color: hsl(176, 95%, 63%);
@@ -163,10 +163,8 @@
 }
 
 .plus-link:hover {
-	/*
-	background-color: var(--secondary-color-dark2);
-	*/
 	transform: scale(1.1);
+	background-color: var(--primary-color);
 }
 
 .tooltip {

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= user.name %> - Profile</title>
+    <link rel="icon" href="/img/logo.svg">
+    <title>
+        <%= user.name %> - Profile
+    </title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
     <style>
@@ -12,84 +16,109 @@
             padding: 20px;
             border-bottom: 1px solid #dee2e6;
         }
+
         .profile-header img {
             border-radius: 50%;
             width: 150px;
             height: 150px;
         }
+
         .profile-header h1 {
             margin: 20px 0 0 0;
         }
+
         .profile-section {
             margin: 20px 0;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-		<%- include('partials/navbar') %>
-        <div class="profile-header text-center">
-            <img src="<%= user.profilePic %>" alt="<%= user.name %>">
-            <h1><%= user.username %></h1>
-            <p><%= user.info %></p>
-        </div>
-
-        <div class="profile-section">
-            <h2>Posts</h2>
-            <div class="list-group">
-                <% posts.forEach(post => { %>
-                    <a href="/ilan/<%= post._id %>" class="list-group-item list-group-item-action">
-                        <h5 class="mb-1"><%= post.title %></h5>
-                        <p class="mb-1"><%= post.description %></p>
-                        <small>Posted on <%= post.createdAt.toDateString() %></small>
-                    </a>
-                <% }) %>
+        <%- include('partials/navbar') %>
+            <div class="profile-header text-center">
+                <img src="<%= user.profilePic %>" alt="<%= user.name %>">
+                <h1>
+                    <%= user.username %>
+                </h1>
+                <p>
+                    <%= user.info %>
+                </p>
             </div>
-        </div>
 
-        <div class="profile-section">
-            <h2>Jobs</h2>
-            <div class="list-group">
-                <% jobs.forEach(job => { %>
-                    <a href="/isler/<%= job._id %>" class="list-group-item list-group-item-action">
-                        <h5 class="mb-1"><%= job.title %></h5>
-                        <p class="mb-1"><%= job.description %></p>
-                        <small>Posted on <%= job.createdAt.toDateString() %></small>
-                    </a>
-                <% }) %>
+            <div class="profile-section">
+                <h2>Posts</h2>
+                <div class="list-group">
+                    <% posts.forEach(post=> { %>
+                        <a href="/ilan/<%= post._id %>" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">
+                                <%= post.title %>
+                            </h5>
+                            <p class="mb-1">
+                                <%= post.description %>
+                            </p>
+                            <small>Posted on <%= post.createdAt.toDateString() %></small>
+                        </a>
+                        <% }) %>
+                </div>
             </div>
-        </div>
 
-        <div class="profile-section">
-            <h2>Kiralıklar</h2>
-            <div class="list-group">
-                <% kiralar.forEach(kira => { %>
-                    <a href="/kiraoda/<%= kira._id %>" class="list-group-item list-group-item-action">
-                        <h5 class="mb-1"><%= kira.title %></h5>
-                        <p class="mb-1"><%= kira.description %></p>
-                        <small>Posted on <%= kira.createdAt.toDateString() %></small>
-                    </a>
-                <% }) %>
+            <div class="profile-section">
+                <h2>Jobs</h2>
+                <div class="list-group">
+                    <% jobs.forEach(job=> { %>
+                        <a href="/isler/<%= job._id %>" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">
+                                <%= job.title %>
+                            </h5>
+                            <p class="mb-1">
+                                <%= job.description %>
+                            </p>
+                            <small>Posted on <%= job.createdAt.toDateString() %></small>
+                        </a>
+                        <% }) %>
+                </div>
             </div>
-        </div>
 
-        <div class="profile-section">
-            <h2>Shortilanlar</h2>
-            <div class="list-group">
-                <% shortilanlar.forEach(shortilan => { %>
-                    <a href="/shortilanlar/<%= shortilan._id %>" class="list-group-item list-group-item-action">
-                        <h5 class="mb-1"><%= shortilan.title %></h5>
-                        <p class="mb-1"><%= shortilan.description %></p>
-                        <small>Posted on <%= shortilan.createdAt.toDateString() %></small>
-                    </a>
-                <% }) %>
+            <div class="profile-section">
+                <h2>Kiralıklar</h2>
+                <div class="list-group">
+                    <% kiralar.forEach(kira=> { %>
+                        <a href="/kiraoda/<%= kira._id %>" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">
+                                <%= kira.title %>
+                            </h5>
+                            <p class="mb-1">
+                                <%= kira.description %>
+                            </p>
+                            <small>Posted on <%= kira.createdAt.toDateString() %></small>
+                        </a>
+                        <% }) %>
+                </div>
             </div>
-        </div>
-		<%- include('partials/footer') %>
+
+            <div class="profile-section">
+                <h2>Shortilanlar</h2>
+                <div class="list-group">
+                    <% shortilanlar.forEach(shortilan=> { %>
+                        <a href="/shortilanlar/<%= shortilan._id %>" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">
+                                <%= shortilan.title %>
+                            </h5>
+                            <p class="mb-1">
+                                <%= shortilan.description %>
+                            </p>
+                            <small>Posted on <%= shortilan.createdAt.toDateString() %></small>
+                        </a>
+                        <% }) %>
+                </div>
+            </div>
+            <%- include('partials/footer') %>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

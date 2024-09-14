@@ -1,15 +1,42 @@
 <footer id="page-footer">
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Click me</a>
+
     <p>&copy; 2024 İlan Platformu</p>
+
+    <a href="/hakkimizda">Hakkımızda</a>
+
 </footer>
+
 <style>
+    :root {
+        --primary-color: hsl(356, 95%, 63%);
+        --primary-color-dark: hsl(356, 69%, 55%);
+        --primary-color-dark2: hsl(356, 57%, 45%);
+        --secondary-color: hsl(176, 95%, 63%);
+        --secondary-color-dark: hsl(176, 73%, 56%);
+        --secondary-color-dark2: hsl(176, 57%, 45%);
+        --navbar-color: hsl(200, 90%, 40%);
+    }
+
+    footer a,
     p {
         margin: 15px;
+    }
+
+    footer a {
+        color: white;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: var(--secondary-color);
+
     }
 
     #page-footer {
         display: flex;
         width: 100%;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-top: 40px;
         padding: 10px 30px;
         background-color: hsl(0, 0%, 20%);

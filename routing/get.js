@@ -31,4 +31,9 @@ router.get('/lettergrade', (req, res) => {
 	res.render('lettergrade');
 });
 
+//Ömer on it again
+router.get('/hakkimizda', (req, res) => {
+	res.render('hakkimizda');
+});
+
 module.exports = router;
