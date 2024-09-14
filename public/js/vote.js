@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateVotes(formId, data) {
         const [actionType, messageId] = formId.split('-');
 
-        
         const upvoteButton = document.querySelector(`#upvote-${messageId}`);
         const undoUpvoteButton = document.querySelector(`#undo-upvote-${messageId}`);
         const downvoteButton = document.querySelector(`#downvote-${messageId}`);

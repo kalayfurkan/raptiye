@@ -2,6 +2,14 @@ function upvoted(button, messageId) {
     button.classList.add('upvoted');
 
     const form = button.closest('form');
+
+    const siblingForm = document.querySelector(`#undo-downvote-${messageId}`);
+
+    if (siblingForm) {// Undo downvote if already selected
+        const siblingButton = siblingForm.querySelector('button');
+        undoDownvoted(siblingButton, messageId);
+    }
+
     if (form) {
       form.id = `undo-upvote-${messageId}`; // Change the ID from "upvote-123" to "undo-upvote-123"
       form.action = `/undo-upvote/${messageId}`; // Change action from "/upvote/123" to "/undo-upvote/123"
@@ -40,6 +48,13 @@ function downvoted(button, messageId) {
     button.classList.add('downvoted');
 
     const form = button.closest('form');
+
+    const siblingForm = document.querySelector(`#undo-upvote-${messageId}`);
+    if (siblingForm) { //Undo upvote if already selected
+        const siblingButton = siblingForm.querySelector('button');
+        undoUpvoted(siblingButton, messageId);
+    }
+
     if (form) {
       form.id = `undo-downvote-${messageId}`;
       form.action = `/undo-downvote/${messageId}`;
