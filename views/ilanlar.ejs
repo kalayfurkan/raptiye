@@ -25,7 +25,7 @@
                             <div class="card">
                                 <img src="<%= ilan.images[0] %>" onerror="this.src='img/satilik-img.jpg';" alt="İlan Fotoğrafı">
                                 <div class="card-body">
-                                    <form class="star-form" action="<% if (currentUser.favorites && currentUser.favorites.includes(ilan._id.toString())) { %>/deletefavorites/<%= ilan._id %><% } else { %>/addfavoritesilan/<%= ilan._id %><% } %>" method="post">
+                                    <form class="star-form" action="<% if (currentUser.favorites && currentUser.favorites.includes(ilan._id)) { %>/deletefavorites/<%= ilan._id %><% } else { %>/addfavoritesilan/<%= ilan._id %><% } %>" method="post">
                                         <input type="hidden" name="ilanid" value="<%= ilan._id %>">
                                         
                                         <button type="submit" class="star-btn <% if (currentUser.favorites && currentUser.favorites.includes(ilan._id.toString())) { %>spin<% } %>" data-ilan-id="<%= ilan._id %>">

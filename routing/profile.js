@@ -11,55 +11,24 @@ const fs = require('fs');
 const sharp = require('sharp');
 const bcrypt = require('bcrypt');
 
-router.post('/addfavoritesilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
-	const ilanid = req.params.ilanid;
-	const userId = req.session.userId;
-
-	try {
-		const user = await User.findById(userId);
-		if (!user.favorites.includes(ilanid)) {
-			user.favorites.push(ilanid);
-			await user.save();
-		}
-		res.json({ success: true, message: 'Favorilere eklendi' });
-	} catch (err) {
-		console.error(err);
-		res.status(500).send('Sunucu hatası');
-	}
-})
-
-router.post('/deletefavorites/:favoriteid', allMiddlewares.requireAuth, async (req, res) => {
-	const favoriteid = req.params.favoriteid;
-	const userId = req.session.userId;
-
-	try {
-		const user = await User.findById(userId);
-
-		if (!user) {
-			return res.status(404).send('Kullanıcı bulunamadı');
-		}
-
-		user.favorites = user.favorites.filter(fav => fav.toString() !== favoriteid);
-		await user.save();
-		res.json({ success: true, message: 'Favorilerden silindi' });
-	} catch (error) {
-		console.error(error);
-		res.status(500).send('Bir hata oluştu');
-	}
-
-});
-
 
 router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
-	const myAllPosts = await Ilan.find({ owner: req.session.userId });
+	const ilanlar = await Ilan.find({ owner: req.session.userId });
 	const user = await User.findById(req.session.userId);
 	const jobs = await Job.find({ owner: req.session.userId });
 	const kiralar = await Kiraoda.find({ owner: req.session.userId });
 	const shortilanlar = await Shortilan.find({ owner: req.session.userId });
 
 	const userFavorites = user.favorites;
-	const favorites = await Ilan.find({ _id: { $in: userFavorites } })
-	res.render('profile', { ilanlar: myAllPosts, user, jobs, kiralar, shortilanlar, favorites });
+	const userFavoritesJob=user.favoritesJob;
+	const userFavoritesKira=user.favoritesKira;
+
+	const favorites = await Ilan.find({ _id: { $in: userFavorites } });
+	const favoritesJob = await Job.find({ _id: { $in: userFavoritesJob } });
+	const favoritesKira = await Kiraoda.find({ _id: { $in: userFavoritesKira } });
+
+
+	res.render('profile', { ilanlar, user, jobs, kiralar, shortilanlar, favorites,favoritesJob,favoritesKira });
 });
 
 router.get('/profile/:userid', allMiddlewares.requireAuth, async (req, res) => {
