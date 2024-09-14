@@ -40,8 +40,13 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 			images: imagePaths,
 			owner: req.session.userId
 		})
+		req.session.sessionFlash = {
+			type: 'alert alert-success',
+			message: 'İlanınız başarılı bir şekilde oluşturuldu'
+		}
 
-		res.redirect('/');
+		res.redirect('/isler');
+
 	} catch (error) {
 		res.render('errorpage', { message: "Bir hata oluştu" + error });
 	}
@@ -50,7 +55,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 
 router.get('/isler', allMiddlewares.requireAuth, async (req, res) => {
 	const jobs = await Job.find({});
-	const currentUser=await User.findById(req.session.userId);
+	const currentUser = await User.findById(req.session.userId);
 	res.render('isler', { jobs, currentUser });
 })
 
@@ -65,28 +70,28 @@ router.get('/job/edit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
 
-	res.render('jobEdit',{job,jobid:jobId});
+	res.render('jobEdit', { job, jobid: jobId });
 })
 
-router.post('/jobedit/:jobid',allMiddlewares.requireAuth,async(req, res) => {
+router.post('/jobedit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
 
 	let images = req.files?.images;
 
-	if(images){
+	if (images) {
 		if (!Array.isArray(images)) {
 			images = [images];
 		}
-	
+
 		const maxWidth = 600;
 		const quality = 50;
-	
+
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
 			const imagePath = path.resolve(__dirname, '../public/img/jobimages', date + element.name);
 			job.images.push(`/img/jobimages/${date + element.name}`);
-	
+
 			try {
 				await sharp(element.data)
 					.resize(maxWidth)
@@ -97,10 +102,10 @@ router.post('/jobedit/:jobid',allMiddlewares.requireAuth,async(req, res) => {
 			}
 		}
 	}
-	
+
 	const updatedData = {
 		jobTitle: req.body.jobTitle,
-		removalDate:req.body.removalDate,
+		removalDate: req.body.removalDate,
 		description: req.body.description,
 		images: job.images,
 	};
@@ -120,7 +125,7 @@ router.post('/delete-jobimage/:jobid/:index', allMiddlewares.requireAuth, async 
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
 	console.log(job);
-	
+
 	const index = req.params.index;
 	const imageToDelete = path.join(__dirname, '../public', job.images[index]);
 
@@ -134,7 +139,7 @@ router.post('/delete-jobimage/:jobid/:index', allMiddlewares.requireAuth, async 
 
 })
 
-router.post('/job/delete/:jobid',allMiddlewares.requireAuth,async(req, res) => {
+router.post('/job/delete/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
 
@@ -171,7 +176,7 @@ router.post('/job/delete/:jobid',allMiddlewares.requireAuth,async(req, res) => {
 
 
 
-router.post('/jobaddfavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+router.post('/jobaddfavorites/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	const favoriteid = req.params.ilanid;
 	const userId = req.session.userId;
 
@@ -188,17 +193,17 @@ router.post('/jobaddfavorites/:ilanid',allMiddlewares.requireAuth,async (req,res
 	}
 })
 
-router.post('/jobdeletefavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+router.post('/jobdeletefavorites/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	const favoriteid = req.params.ilanid;
 	const userId = req.session.userId;
 
-	
+
 	try {
 		const user = await User.findById(userId);
 
 		if (!user) {
-            return res.status(404).json({ success: false, message: 'Kullanıcı bulunamadı' });
-        }
+			return res.status(404).json({ success: false, message: 'Kullanıcı bulunamadı' });
+		}
 
 		user.favoritesJob = user.favoritesJob.filter(fav => fav.toString() !== favoriteid);
 		await user.save();

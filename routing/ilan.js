@@ -35,8 +35,15 @@ router.post('/addpost', async (req, res) => {
 			images: imagePaths,
 			owner: req.session.userId
 		})
+		req.session.sessionFlash = {
+			type: 'alert alert-success',
+			message: 'İlanınız başarılı bir şekilde oluşturuldu'
+		}
 
-		res.redirect('/');
+
+		res.redirect('/ilanlar');
+
+
 	} catch (error) {
 		res.render('errorpage', { message: "Bir hata oluştu" + error });
 	}
@@ -47,10 +54,10 @@ router.post('/addpost', async (req, res) => {
 router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const allPosts = await Ilan.find({})
-		.populate('owner','username')
-		.exec();
-		const currentUser=await User.findById(req.session.userId);
-		res.render('ilanlar', { ilanlar: allPosts,currentUser });
+			.populate('owner', 'username')
+			.exec();
+		const currentUser = await User.findById(req.session.userId);
+		res.render('ilanlar', { ilanlar: allPosts, currentUser });
 	} catch (error) {
 		res.send(error);
 	}
@@ -60,8 +67,8 @@ router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
-		const user=await User.findById(ilan.owner);
-		res.render('ilandetay', { ilan,user });
+		const user = await User.findById(ilan.owner);
+		res.render('ilandetay', { ilan, user });
 
 	} catch (error) {
 		res.status(500).send('Bir hata oluştu.');
@@ -105,19 +112,19 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 
 	let images = req.files?.images;
 
-	if(images){
+	if (images) {
 		if (!Array.isArray(images)) {
 			images = [images];
 		}
-	
+
 		const maxWidth = 600;
 		const quality = 50;
-	
+
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
 			const imagePath = path.resolve(__dirname, '../public/img/postimages', date + element.name);
 			ilan.images.push(`/img/postimages/${date + element.name}`);
-	
+
 			try {
 				await sharp(element.data)
 					.resize(maxWidth)
@@ -127,9 +134,9 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 				return res.status(500).send('Resim işlenirken hata oluştu.');
 			}
 		}
-	
+
 	}
-	
+
 
 	const updatedData = {
 		title: req.body.title,
@@ -174,10 +181,10 @@ router.post('/ilan/delete/:ilanId', allMiddlewares.requireAuth, async (req, res)
 		await Ilan.findByIdAndDelete(ilanId);
 
 		await User.updateMany(
-            { favorites: ilanId }, // İlan favorilerde olan kullanıcıları bul
-            { $pull: { favorites: ilanId } } // Favorilerden ilanId'yi sil
-        );
-		
+			{ favorites: ilanId }, // İlan favorilerde olan kullanıcıları bul
+			{ $pull: { favorites: ilanId } } // Favorilerden ilanId'yi sil
+		);
+
 		res.redirect('/profile');
 	} catch (error) {
 		console.error(error);

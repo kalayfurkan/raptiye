@@ -33,6 +33,15 @@ app.use(expressSession({
   })
 }))
 
+//flash message middleware
+
+
+app.use((req, res, next) => {
+  res.locals.sessionFlash = req.session.sessionFlash
+  delete req.session.sessionFlash
+  next()
+})
+
 //auto delete
 require('./cleaner.js');
 //check login
@@ -58,10 +67,10 @@ app.use(fileUpload());
 const mainRouter = require('./routing/mainRouter');
 app.use('/', mainRouter);
 
-app.get("/test", (req, res)=> {
+app.get("/test", (req, res) => {
   res.json("helloooo")
 })
-app.post("/test", (req, res)=> {
+app.post("/test", (req, res) => {
   console.log(req.body)
   res.json("helloooo")
 })

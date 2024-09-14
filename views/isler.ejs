@@ -14,94 +14,123 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-        <div class="container">
-            <h1 class="mb-4">İş İlanları</h1>
-            <div class="card-box">
-                <% if (jobs.length> 0) { %>
-                    <% jobs.forEach(function(job) { %>
-                        <div class="card">
-                            <!-- Bootstrap Carousel Başlangıcı -->
-                            <% if (job.images.length> 0) { %>
-                                <div id="carousel<%= job._id %>" class="carousel slide" data-bs-ride="carousel">
-                                    <% if (job.images.length != 1) { %>
-                                        <div class="carousel-indicators">
-                                            <% job.images.forEach((image, index)=> { %>
-                                                <button type="button" data-bs-target="#ilanCarousel<%= job._id %>"
-                                                    data-bs-slide-to="<%= index %>"
-                                                    class="<%= index === 0 ? 'active' : '' %>"
-                                                    aria-current="<%= index === 0 ? 'true' : 'false' %>"
-                                                    aria-label="Slide <%= index + 1 %>">
-                                                </button>
-                                            <% }) %>
-                                        </div>
-                                    <% } %>
-                                    
-                                    <div class="carousel-inner">
-                                        <% job.images.forEach(function(image, index) { %>
-                                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                <img src="<%= image %>" onerror="this.src='img/job-img.jpg';" class="d-block w-100" alt="Job Image">
-                                            </div>
-                                        <% }) %>
-                                    </div>
-                                    <% if (job.images.length != 1) { %>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carousel<%= job._id %>" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carousel<%= job._id %>" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    <% } %>
-                                </div>
-                                <!-- Carousel Sonu -->
-                            <% } else { %>
-                                <div class="carousel slide">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="/img/job-img.jpg" class="d-block w-100"
-                                                alt="Default Job Image">
-                                        </div>
-                                    </div>
-                                </div>
-                            <% } %>
-                            <!-- Job Details -->
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">
-                                    <%= job.jobTitle %>
-                                </h5>
-                                <div class="card-content">
-                                    <p>
-                                       <strong>Şu tarihe kadar:</strong>
-                                       <%= job.removalDate.toDateString() %>
-                                    </p>
-                                    <p>
-                                        <%= job.description %>
-                                        <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint modi minima facere animi officiis nisi ullam natus reprehenderit asperiores ratione quos, inventore harum consequuntur, exercitationem adipisci laudantium, ab iure sunt? -->
-                                    </p>
+            <div class="container">
+                <h1 class="mb-4">İş İlanları</h1>
+                <!-- Flash message area -->
+                <% if (sessionFlash && sessionFlash.message) { %>
+                    <div class="alert <%= sessionFlash.type %>">
+                        <%= sessionFlash.message %>
+                    </div>
+                    <% } %>
+                        <div class="card-box">
+                            <% if (jobs.length> 0) { %>
+                                <% jobs.forEach(function(job) { %>
+                                    <div class="card">
+                                        <!-- Bootstrap Carousel Başlangıcı -->
+                                        <% if (job.images.length> 0) { %>
+                                            <div id="carousel<%= job._id %>" class="carousel slide"
+                                                data-bs-ride="carousel">
+                                                <% if (job.images.length !=1) { %>
+                                                    <div class="carousel-indicators">
+                                                        <% job.images.forEach((image, index)=> { %>
+                                                            <button type="button"
+                                                                data-bs-target="#ilanCarousel<%= job._id %>"
+                                                                data-bs-slide-to="<%= index %>"
+                                                                class="<%= index === 0 ? 'active' : '' %>"
+                                                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                                aria-label="Slide <%= index + 1 %>">
+                                                            </button>
+                                                            <% }) %>
+                                                    </div>
+                                                    <% } %>
 
-                                    <!-- Yıldız kısmı -->
-                                    <form class="star-form" action="<%= currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? '/jobdeletefavorites/' + job._id : '/jobaddfavorites/' + job._id %>" method="post">
-                                        <input type="hidden" name="ilanid" value="<%= job._id %>">
-                                        
-                                        <button type="submit" class="star-btn <%= currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? 'spin' : '' %>" data-ilan-id="<%= job._id %>">
-                                            <svg class="star" width="10" height="10" viewBox="0 0 642 642" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M295.833 60.199C303.543 36.9426 307.396 25.3148 313.098 22.092C318.031 19.3027 323.969 19.3027 328.905 22.092C334.603 25.3148 338.456 36.9426 346.166 60.199L397.133 213.947C399.327 220.566 400.423 223.875 402.401 226.34C404.147 228.517 406.375 230.214 408.889 231.283C411.733 232.493 415.074 232.564 421.755 232.707L576.948 236.023C600.424 236.525 612.161 236.776 616.847 241.464C620.9 245.522 622.735 251.446 621.729 257.228C620.57 263.909 611.215 271.344 592.504 286.222L468.808 384.557C463.482 388.793 460.821 390.909 459.196 393.64C457.76 396.057 456.911 398.802 456.718 401.638C456.502 404.851 457.467 408.203 459.402 414.912L504.354 570.71C511.151 594.277 514.552 606.06 511.747 612.179C509.319 617.477 504.514 621.137 498.958 621.923C492.54 622.827 482.905 615.797 463.632 601.733L336.218 508.763C330.733 504.76 327.992 502.759 325.011 501.981C322.377 501.296 319.623 501.296 316.991 501.981C314.011 502.759 311.266 504.76 305.781 508.763L178.369 601.733C159.096 615.797 149.46 622.827 143.042 621.923C137.488 621.137 132.682 617.477 130.254 612.179C127.45 606.06 130.849 594.277 137.648 570.71L182.598 414.912C184.533 408.203 185.501 404.851 185.283 401.638C185.09 398.802 184.24 396.057 182.805 393.64C181.18 390.909 178.518 388.793 173.193 384.557L49.4976 286.222C30.787 271.344 21.4318 263.909 20.2704 257.228C19.265 251.446 21.1007 245.522 25.1549 241.464C29.8389 236.776 41.5764 236.525 65.0512 236.023L220.245 232.707C226.926 232.564 230.266 232.493 233.113 231.283C235.627 230.214 237.854 228.517 239.6 226.34C241.577 223.875 242.674 220.566 244.869 213.947L295.833 60.199Z" fill="" stroke="grey" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </form>
-                                    
-                                </div>
-                                <a href="/isler/<%= job._id %>" class="btn btn-primary">Detaylar</a>
-                            </div>
+                                                        <div class="carousel-inner">
+                                                            <% job.images.forEach(function(image, index) { %>
+                                                                <div
+                                                                    class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                                                    <img src="<%= image %>"
+                                                                        onerror="this.src='img/job-img.jpg';"
+                                                                        class="d-block w-100" alt="Job Image">
+                                                                </div>
+                                                                <% }) %>
+                                                        </div>
+                                                        <% if (job.images.length !=1) { %>
+                                                            <button class="carousel-control-prev" type="button"
+                                                                data-bs-target="#carousel<%= job._id %>"
+                                                                data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon"
+                                                                    aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button"
+                                                                data-bs-target="#carousel<%= job._id %>"
+                                                                data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon"
+                                                                    aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
+                                                            <% } %>
+                                            </div>
+                                            <!-- Carousel Sonu -->
+                                            <% } else { %>
+                                                <div class="carousel slide">
+                                                    <div class="carousel-inner">
+                                                        <div class="carousel-item active">
+                                                            <img src="/img/job-img.jpg" class="d-block w-100"
+                                                                alt="Default Job Image">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                    <!-- Job Details -->
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">
+                                                            <%= job.jobTitle %>
+                                                        </h5>
+                                                        <div class="card-content">
+                                                            <p>
+                                                                <strong>Şu tarihe kadar:</strong>
+                                                                <%= job.removalDate.toDateString() %>
+                                                            </p>
+                                                            <p>
+                                                                <%= job.description %>
+                                                                    <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint modi minima facere animi officiis nisi ullam natus reprehenderit asperiores ratione quos, inventore harum consequuntur, exercitationem adipisci laudantium, ab iure sunt? -->
+                                                            </p>
+
+                                                            <!-- Yıldız kısmı -->
+                                                            <form class="star-form"
+                                                                action="<%= currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? '/jobdeletefavorites/' + job._id : '/jobaddfavorites/' + job._id %>"
+                                                                method="post">
+                                                                <input type="hidden" name="ilanid"
+                                                                    value="<%= job._id %>">
+
+                                                                <button type="submit"
+                                                                    class="star-btn <%= currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? 'spin' : '' %>"
+                                                                    data-ilan-id="<%= job._id %>">
+                                                                    <svg class="star" width="10" height="10"
+                                                                        viewBox="0 0 642 642" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M295.833 60.199C303.543 36.9426 307.396 25.3148 313.098 22.092C318.031 19.3027 323.969 19.3027 328.905 22.092C334.603 25.3148 338.456 36.9426 346.166 60.199L397.133 213.947C399.327 220.566 400.423 223.875 402.401 226.34C404.147 228.517 406.375 230.214 408.889 231.283C411.733 232.493 415.074 232.564 421.755 232.707L576.948 236.023C600.424 236.525 612.161 236.776 616.847 241.464C620.9 245.522 622.735 251.446 621.729 257.228C620.57 263.909 611.215 271.344 592.504 286.222L468.808 384.557C463.482 388.793 460.821 390.909 459.196 393.64C457.76 396.057 456.911 398.802 456.718 401.638C456.502 404.851 457.467 408.203 459.402 414.912L504.354 570.71C511.151 594.277 514.552 606.06 511.747 612.179C509.319 617.477 504.514 621.137 498.958 621.923C492.54 622.827 482.905 615.797 463.632 601.733L336.218 508.763C330.733 504.76 327.992 502.759 325.011 501.981C322.377 501.296 319.623 501.296 316.991 501.981C314.011 502.759 311.266 504.76 305.781 508.763L178.369 601.733C159.096 615.797 149.46 622.827 143.042 621.923C137.488 621.137 132.682 617.477 130.254 612.179C127.45 606.06 130.849 594.277 137.648 570.71L182.598 414.912C184.533 408.203 185.501 404.851 185.283 401.638C185.09 398.802 184.24 396.057 182.805 393.64C181.18 390.909 178.518 388.793 173.193 384.557L49.4976 286.222C30.787 271.344 21.4318 263.909 20.2704 257.228C19.265 251.446 21.1007 245.522 25.1549 241.464C29.8389 236.776 41.5764 236.525 65.0512 236.023L220.245 232.707C226.926 232.564 230.266 232.493 233.113 231.283C235.627 230.214 237.854 228.517 239.6 226.34C241.577 223.875 242.674 220.566 244.869 213.947L295.833 60.199Z"
+                                                                            fill="" stroke="grey" stroke-width="40"
+                                                                            stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
+
+                                                        </div>
+                                                        <a href="/isler/<%= job._id %>"
+                                                            class="btn btn-primary">Detaylar</a>
+                                                    </div>
+                                    </div>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <p>İş İlanı yoktur</p>
+                                            <% } %>
                         </div>
-                    <% }) %>
-                <% } else { %> <p>İş İlanı yoktur</p> <% } %>
             </div>
-        </div>
-        <%- include('partials/footer') %>
+            <%- include('partials/footer') %>
     </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

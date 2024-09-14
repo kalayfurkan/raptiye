@@ -45,19 +45,23 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 		images: imagePaths,
 		owner: req.session.userId,
 	})
+	req.session.sessionFlash = {
+		type: 'alert alert-success',
+		message: 'İlanınız başarılı bir şekilde oluşturuldu'
+	}
 
-	res.redirect('/addshortilan');
+	res.redirect('/kisailanlar');
 })
 
-router.get('/kisailanlar',allMiddlewares.requireAuth,async (req,res) => {
-	const kisaIlanlar=await Shortilan.find({});
+router.get('/kisailanlar', allMiddlewares.requireAuth, async (req, res) => {
+	const kisaIlanlar = await Shortilan.find({});
 
-	res.render('kisailanlar',{ilanlar:kisaIlanlar});
+	res.render('kisailanlar', { ilanlar: kisaIlanlar });
 })
 
-router.post('/shortilan/delete/:shortid',allMiddlewares.requireAuth,async(req,res) => {
-	const shortid=req.params.shortid;
-	const shortpost=await Shortilan.findById(shortid);
+router.post('/shortilan/delete/:shortid', allMiddlewares.requireAuth, async (req, res) => {
+	const shortid = req.params.shortid;
+	const shortpost = await Shortilan.findById(shortid);
 
 	if (!shortpost) {
 		return res.status(404).send('İlan bulunamadı.');

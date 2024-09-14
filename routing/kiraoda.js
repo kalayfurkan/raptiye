@@ -7,11 +7,11 @@ const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
 
-router.get('/addkiraoda',allMiddlewares.requireAuth,(req,res) => {
+router.get('/addkiraoda', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addkiraoda');
 })
 
-router.post('/addkiraoda',allMiddlewares.requireAuth,async(req,res) => {
+router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		let images = req.files?.images || [];  // Görsellerin olup olmadığını kontrol ediyoruz
 		let imagePaths = [];
@@ -39,52 +39,56 @@ router.post('/addkiraoda',allMiddlewares.requireAuth,async(req,res) => {
 			images: imagePaths,
 			owner: req.session.userId
 		})
+		req.session.sessionFlash = {
+			type: 'alert alert-success',
+			message: 'İlanınız başarılı bir şekilde oluşturuldu'
+		}
 
-		res.redirect('/');
+		res.redirect('/kiraoda');
 	} catch (error) {
 		res.render('errorpage', { message: "Bir hata oluştu" + error });
 	}
 })
 
-router.get('/kiraoda',allMiddlewares.requireAuth,async(req,res) => {
-	const kiraodalar=await Kiraoda.find({});
-	const currentUser=await User.findById(req.session.userId);
-	res.render('kiraodalar',{ilanlar:kiraodalar,currentUser})
+router.get('/kiraoda', allMiddlewares.requireAuth, async (req, res) => {
+	const kiraodalar = await Kiraoda.find({});
+	const currentUser = await User.findById(req.session.userId);
+	res.render('kiraodalar', { ilanlar: kiraodalar, currentUser })
 })
 
-router.get('/kiraoda/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
-	const kiraid=req.params.kiraodaid;
-	const kira=await Kiraoda.findById(kiraid);
-	const owner=await User.findById(kira.owner);
-	res.render('kiraodadetay',{ilan:kira,owner});
+router.get('/kiraoda/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
+	const kiraid = req.params.kiraodaid;
+	const kira = await Kiraoda.findById(kiraid);
+	const owner = await User.findById(kira.owner);
+	res.render('kiraodadetay', { ilan: kira, owner });
 })
 
-router.get('/kiraoda/edit/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
-	const kiraid=req.params.kiraodaid;
-	const kira=await Kiraoda.findById(kiraid);
+router.get('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
+	const kiraid = req.params.kiraodaid;
+	const kira = await Kiraoda.findById(kiraid);
 
-	res.render('kiraodaedit',{kira,kiraid});
+	res.render('kiraodaedit', { kira, kiraid });
 })
 
-router.post('/kiraoda/edit/:kiraodaid',allMiddlewares.requireAuth,async(req,res) => {
-	const kiraid=req.params.kiraodaid;
-	const kira=await Kiraoda.findById(kiraid);
+router.post('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
+	const kiraid = req.params.kiraodaid;
+	const kira = await Kiraoda.findById(kiraid);
 
 	let images = req.files?.images;
 
-	if(images){
+	if (images) {
 		if (!Array.isArray(images)) {
 			images = [images];
 		}
-	
+
 		const maxWidth = 600;
 		const quality = 50;
-	
+
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
 			const imagePath = path.resolve(__dirname, '../public/img/kiraodaimages', date + element.name);
 			kira.images.push(`/img/kiraodaimages/${date + element.name}`);
-	
+
 			try {
 				await sharp(element.data)
 					.resize(maxWidth)
@@ -95,11 +99,11 @@ router.post('/kiraoda/edit/:kiraodaid',allMiddlewares.requireAuth,async(req,res)
 			}
 		}
 	}
-	
+
 	const updatedData = {
 		title: req.body.title,
-		searchingFor:req.body.searchingFor,
-		reachYou:req.body.reachYou,
+		searchingFor: req.body.searchingFor,
+		reachYou: req.body.reachYou,
 		description: req.body.description,
 		images: kira.images,
 	};
@@ -118,7 +122,7 @@ router.post('/kiraoda/edit/:kiraodaid',allMiddlewares.requireAuth,async(req,res)
 router.post('/delete-kiraodaimage/:kiraid/:index', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraid = req.params.kiraid;
 	const kira = await Kiraoda.findById(kiraid);
-	
+
 	const index = req.params.index;
 	const imageToDelete = path.join(__dirname, '../public', kira.images[index]);
 
@@ -133,7 +137,7 @@ router.post('/delete-kiraodaimage/:kiraid/:index', allMiddlewares.requireAuth, a
 })
 
 
-router.post('/kiraoda/delete/:kiraodaid',allMiddlewares.requireAuth,async(req, res) => {
+router.post('/kiraoda/delete/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraodaid = req.params.kiraodaid;
 	const kira = await Kiraoda.findById(kiraodaid);
 
@@ -169,7 +173,7 @@ router.post('/kiraoda/delete/:kiraodaid',allMiddlewares.requireAuth,async(req, r
 })
 
 
-router.post('/kiraaddfavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+router.post('/kiraaddfavorites/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	const favoriteid = req.params.ilanid;
 	const userId = req.session.userId;
 
@@ -186,17 +190,17 @@ router.post('/kiraaddfavorites/:ilanid',allMiddlewares.requireAuth,async (req,re
 	}
 })
 
-router.post('/kiradeletefavorites/:ilanid',allMiddlewares.requireAuth,async (req,res) => {
+router.post('/kiradeletefavorites/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	const favoriteid = req.params.ilanid;
 	const userId = req.session.userId;
 
-	
+
 	try {
 		const user = await User.findById(userId);
 
 		if (!user) {
-            return res.status(404).json({ success: false, message: 'Kullanıcı bulunamadı' });
-        }
+			return res.status(404).json({ success: false, message: 'Kullanıcı bulunamadı' });
+		}
 
 		user.favoritesKira = user.favoritesKira.filter(fav => fav.toString() !== favoriteid);
 		await user.save();
