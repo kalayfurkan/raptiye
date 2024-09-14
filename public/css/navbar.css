@@ -229,7 +229,7 @@
 		position: absolute;
 		top: 60px;
 		left: 0;
-		background-color: hsl(176, 95%, 63%);
+		background-color: var(--navbar-color);
 		max-height: 0;
 		overflow: hidden;
 		transition: max-height 0.3s ease-out;
