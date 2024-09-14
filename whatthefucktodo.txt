@@ -18,7 +18,7 @@ ilan detay sayfaları consistent hale getirilecek (listings.css)
 
 kısa süreli ilanlarda tarih kötü duruyor
 
-rickroll eklenecek
+hakkımızda kısmı eklenecek
 
 renk paletine karar verilecek ve renkler consistent olacak
 
@@ -37,6 +37,9 @@ profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanları
 
 
 
+
+
+rickroll eklenecek (bitti)
 
 ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
 
