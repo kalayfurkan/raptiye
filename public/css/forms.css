@@ -46,6 +46,10 @@ h2 {
     width: 100%;
 }
 
+.form-select {
+    /*add something if necessary*/
+}
+
 .form-control {
     border-radius: 8px;
     border: 1px solid #ced4da;
