@@ -54,7 +54,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 
 
 router.get('/isler', allMiddlewares.requireAuth, async (req, res) => {
-	const jobs = await Job.find({});
+	const jobs = await Job.find({}).sort({createdAt:-1});
 	const currentUser = await User.findById(req.session.userId);
 	res.render('isler', { jobs, currentUser });
 })

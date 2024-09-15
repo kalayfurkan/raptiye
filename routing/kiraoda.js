@@ -51,7 +51,7 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 router.get('/kiraoda', allMiddlewares.requireAuth, async (req, res) => {
-	const kiraodalar = await Kiraoda.find({});
+	const kiraodalar = await Kiraoda.find({}).sort({createdAt:-1});
 	const currentUser = await User.findById(req.session.userId);
 	res.render('kiraodalar', { ilanlar: kiraodalar, currentUser })
 })
