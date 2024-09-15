@@ -1,5 +1,7 @@
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
+yorumların tarihleri güzel bi formatta gösterilemli
+
 favori simgesinin çevresine siyah outline çekilecek
 
 ilanlar consistent hale getirilecek (cards.css) bitmedi
