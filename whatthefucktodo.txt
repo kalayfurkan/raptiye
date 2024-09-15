@@ -37,8 +37,9 @@ Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tar
 
 footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
 
+search bar koyulacak
 
-
+gelen kutusu svgsi bulunacak
 
 
 navbar ilan ekle butonu değiştirilecek (bitti)

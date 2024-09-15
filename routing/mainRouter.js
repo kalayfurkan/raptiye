@@ -20,5 +20,7 @@ const kampuseBirMesaj=require('./kampusebirmesaj.js');
 router.use('/',kampuseBirMesaj);
 const shortilan=require('./shortTermilan.js');
 router.use('/',shortilan);
+const messages=require('./messages.js');
+router.use('/',messages);
 
 module.exports = router;

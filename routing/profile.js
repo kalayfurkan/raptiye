@@ -34,13 +34,18 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 router.get('/profile/:userid', allMiddlewares.requireAuth, async (req, res) => {
 	const userid = req.params.userid;
 	const user = await User.findById(userid);
+	const currentUser= await User.findById(req.session.userId);
+
+	if(currentUser._id.equals(user._id)){
+		res.redirect('/profile');
+	}
 
 	const posts = await Ilan.find({ owner: userid });
 	const jobs = await Job.find({ owner: userid });
 	const kiralar = await Kiraoda.find({ owner: userid });
 	const shortilanlar = await Shortilan.find({ owner: userid });
 
-	res.render('anyprofile', { user, posts, jobs, kiralar, shortilanlar });
+	res.render('anyprofile', { user, posts, jobs, kiralar, shortilanlar,currentUser });
 })
 
 router.get('/editprofile/:userid', allMiddlewares.requireAuth, async (req, res) => {
