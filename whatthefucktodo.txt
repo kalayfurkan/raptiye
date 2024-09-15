@@ -52,3 +52,7 @@ ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
 favori simgesi eklenecek - star.svg sayfaya eklenecek ve tıklandığında dönem animasyonu olacak ve fill i sarı olacak değişecek (bitti)
 
 navbarda kalan turkuazı düzeltilecek (bitti)
+
+register rememberme de düzeltilecek
+
+kullanıcı idlerinin gözükmesi sorun mu kontrol et

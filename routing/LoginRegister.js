@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, salt);
 		console.log("anan");
 		console.log(hashedPassword);
-		
+
 		await User.create({ username, password: hashedPassword, email, verificationToken });
 
 		const transporter = nodemailer.createTransport({
@@ -69,30 +69,40 @@ router.get('/verify-email', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		const { email, password } = req.body;
+		const { email, password, rememberMe } = req.body;
 
 		const user = await User.findOne({ email });
 
 		if (user) {
-			if (user.isVerified == false) {
-				return res.status(400).render('errorpage', { message: "Lütfen mailinizi doğrulayın." })
+			if (!user.isVerified) {
+				return res.status(400).render('errorpage', { message: "Lütfen mailinizi doğrulayın." });
 			}
 
 			const same = await bcrypt.compare(password, user.password);
 			if (same) {
-				req.session.userId = user._id;
-				res.redirect('/');
+				// Regenerating the session to prevent session fixation attacks
+				req.session.regenerate((err) => {
+					if (err) {
+						console.error('Session regeneration error:', err);
+						return res.status(500).render('errorpage', { message: "Oturum işlemi sırasında bir hata oluştu." });
+					}
+
+					// After regenerating, storing user info in the session
+					req.session.userId = user._id;
+					req.session.cookie.maxAge = rememberMe ? 14 * 24 * 60 * 60 * 1000 : 6 * 60 * 60 * 1000;  // 14 days or 6 hours
+
+					res.redirect('/');
+				});
 			} else {
-				res.status(401).render('errorpage', { message: "Şifrenizi yanlış girdiniz" });
+				res.status(401).render('errorpage', { message: "Şifrenizi yanlış girdiniz." });
 			}
-		}
-		else {
-			return res.status(401).render('errorpage', { message: "Sistemde kayıtlı mail adresi bulunamamıştır" });
+		} else {
+			return res.status(401).render('errorpage', { message: "Sistemde kayıtlı mail adresi bulunamamıştır." });
 		}
 	} catch (error) {
 		res.status(500).send(error);
 	}
-})
+});
 
 router.get('/logout', (req, res) => {
 	req.session.destroy((error) => {
