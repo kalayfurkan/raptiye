@@ -54,7 +54,7 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 router.get('/kisailanlar', allMiddlewares.requireAuth, async (req, res) => {
-	const kisaIlanlar = await Shortilan.find({});
+	const kisaIlanlar = await Shortilan.find({}).sort({createdAt:-1});
 
 	res.render('kisailanlar', { ilanlar: kisaIlanlar });
 })
