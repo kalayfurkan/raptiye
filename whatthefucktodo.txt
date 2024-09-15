@@ -34,6 +34,7 @@ satış ilan kartları flexbox ile düzeltilecek (bitti ?)
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
 
+footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
 
 
 
