@@ -5,6 +5,7 @@ favori simgesinin çevresine siyah outline çekilecek
 ilanlar consistent hale getirilecek (cards.css) bitmedi
 
 + ya hover yapınca tooltip görünecek
+ilanlar dropdown menu hover düzeltilecek
 
 butonlar styling'i default'a taşınacak ve a için styling eklenecek
 
