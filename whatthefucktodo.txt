@@ -41,8 +41,9 @@ Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tar
 
 footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
 
+search bar koyulacak
 
-
+gelen kutusu svgsi bulunacak
 
 
 navbar ilan ekle butonu değiştirilecek (bitti)
@@ -56,3 +57,7 @@ ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
 favori simgesi eklenecek - star.svg sayfaya eklenecek ve tıklandığında dönem animasyonu olacak ve fill i sarı olacak değişecek (bitti)
 
 navbarda kalan turkuazı düzeltilecek (bitti)
+
+register rememberme de düzeltilecek
+
+kullanıcı idlerinin gözükmesi sorun mu kontrol et
