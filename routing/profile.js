@@ -37,7 +37,7 @@ router.get('/profile/:userid', allMiddlewares.requireAuth, async (req, res) => {
 	const currentUser= await User.findById(req.session.userId);
 
 	if(currentUser._id.equals(user._id)){
-		res.redirect('/profile');
+		return res.redirect('/profile');
 	}
 
 	const posts = await Ilan.find({ owner: userid });
