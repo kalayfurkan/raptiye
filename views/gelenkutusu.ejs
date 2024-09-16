@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gelen Kutusu</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-	<%- include('partials/navbar') %>
-  <div class="container mt-4">
-    <h2>Gelen Kutusu</h2>
-    <div class="list-group">
-      <% messages.forEach(conversation => { %>
-        <% const otherUser = conversation.communicators.find(user => user._id.toString() !== currentUserId.toString()); %>
-        <a href="/messages/<%= currentUserId %>/<%= otherUser._id %>" class="list-group-item list-group-item-action">
-          <h5 class="mb-1"><%= otherUser.name %></h5>
-          <p class="mb-1">
-			<h3><%=otherUser.username %></h3>
-            <% if (conversation.texts.length > 0) { %>
-              <% const lastMessage = conversation.texts[conversation.texts.length - 1]; %>
-              <strong><%= lastMessage.sender.equals(currentUserId) ? 'Sen' : otherUser.username %>:</strong>
-              <%= lastMessage.content %>
-            <% } %>
-          </p>
-          <small class="text-muted">
-            <% if (conversation.texts.length > 0) { %>
-              <% const lastMessage = conversation.texts[conversation.texts.length - 1]; %>
-              <%= new Date(lastMessage.timestamp).toLocaleString() %>
-            <% } %>
-          </small>
-        </a>
-      <% }); %>
-    </div>
-	
-  </div>
 
-  <%- include('partials/footer') %>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/logo.svg">
+    <title>Gelen Kutusu</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/default.css">
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <%- include('partials/navbar') %>
+        <div class="container mt-4">
+            <h2>Gelen Kutusu</h2>
+            <div class="list-group">
+                <% messages.forEach(conversation=> { %>
+                    <% const otherUser=conversation.communicators.find(user=> user._id.toString() !== currentUserId.toString()); %>
+                        <a href="/messages/<%= currentUserId %>/<%= otherUser._id %>"
+                            class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">
+                                <%= otherUser.name %>
+                            </h5>
+                            <p class="mb-1">
+                                <h3>
+                                    <%=otherUser.username %>
+                                </h3>
+                                <% if (conversation.texts.length> 0) { %>
+                                    <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
+                                    <strong>
+                                        <%= lastMessage.sender.equals(currentUserId) ? 'Sen' : otherUser.username %>:
+                                    </strong>
+                                    <%= lastMessage.content %>
+                                <% } %>
+                            </p>
+                            <small class="text-muted">
+                                <% if (conversation.texts.length> 0) { %>
+                                    <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
+                                    <%= new Date(lastMessage.timestamp).toLocaleString() %>
+                                <% } %>
+                            </small>
+                        </a>
+                <% }); %>
+            </div>
+        </div>
+        <%- include('partials/footer') %>
+    </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
