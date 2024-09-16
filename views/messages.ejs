@@ -29,14 +29,14 @@
                                 </a>
                             </h4>
                         </div>
-                        <div class="card-body chat-messages" id="chat-messages">
+                        <div id="chat-messages">
                             <% if (messages.length===0) { %>
                                 <p class="text-center">No messages yet. Start the conversation!</p>
                             <% } else { %>
                                 <% messages.forEach(function(message) { %>
                                     <div class="message mb-2">
                                         <div class="d-flex <%= message.sender.equals(currentUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
-                                            <div class="p-2 rounded <%= message.sender.equals(currentUser._id) ? 'bg-primary text-white' : 'bg-light' %>">
+                                            <div class="message-bubble <%= message.sender.equals(currentUser._id) ? 'right-bubble' : 'left-bubble' %>">
                                                 <!-- <strong>
                                                     <%= message.sender.equals(currentUser._id) ? currentUser.username : (message.sender.equals(infoUser1._id) ? infoUser1.username : infoUser2.username) %>:
                                                 </strong> -->
@@ -67,10 +67,12 @@
             </div>
         </div>
         <%- include('partials/footer') %>
-    </div>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>  
+
+    <script src="/js/messages.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

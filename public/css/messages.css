@@ -1,6 +1,32 @@
+#chat-messages{
+    padding: 1rem; /* 16px */
+    flex: 1 1 auto;
+    min-height: 300px;
+    overflow-y: auto;
+    max-height: 700px;
+}
+
 .username{
     color: black;
 }
+
+.message-bubble{
+    padding: 0.5rem;
+}
+
+.left-bubble{
+    border-radius: 15px;
+    border-bottom-left-radius: 0;
+    background-color: #f8f9fa;
+}
+
+.right-bubble{
+    border-radius: 15px;
+    border-bottom-right-radius: 0;
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
 p.message-content{
     margin: 0;
 }
