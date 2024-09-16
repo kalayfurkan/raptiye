@@ -24,42 +24,55 @@
                     <li class="list-group-item">
                         <strong><%= message.owner %></strong>:
                         <p><%= message.mesaj %></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center">
-                                <% if (message.upVoters.includes(userId)) { %>
-                                    <form id="undo-upvote-<%= message._id %>" action="/undo-upvote/<%= message._id %>" method="POST" class="d-inline">
-                                        <button type="submit" onclick="undoUpvoted(this, '<%= message._id %>')" class="upvoted thumb">
-                                            <i class="bi bi-hand-thumbs-up"></i>
-                                            <span class="fs-6"><%= message.upvotes %></span>
-                                        </button>
-                                    </form>
-                                <% } else { %>
-                                    <!-- bura güncellendi -->
-                                    <form id="upvote-<%= message._id %>" action="/upvote/<%= message._id %>" method="POST" class="d-inline">
-                                        <button type="submit" onclick="upvoted(this, '<%= message._id %>')" class="thumb">
-                                            <i class="bi bi-hand-thumbs-up"></i>
-                                            <span class="fs-6"><%= message.upvotes %></span>
-                                        </button>
-                                    </form>
-                                <% } %>
-                                <!-------------------------------->
-                                <% if (message.downVoters.includes(userId)) { %>
-                                    <form id="undo-downvote-<%= message._id %>" action="/undo-downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
-                                        <button type="submit" onclick="undoDownvoted(this, '<%= message._id %>')" class="downvoted thumb">
-                                            <i class="bi bi-hand-thumbs-down"></i>
-                                            <span class="fs-6"><%= message.downvotes %></span>
-                                        </button>
-                                    </form>
-                                <% } else { %>
-                                    <form id="downvote-<%= message._id %>" action="/downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
-                                        <button type="submit" onclick="downvoted(this, '<%= message._id %>')" class="thumb">
-                                            <i class="bi bi-hand-thumbs-down"></i>
-                                            <span class="fs-6"><%= message.downvotes %></span>
-                                        </button>
-                                    </form>
-                                <% } %>
-                            </div>
+                        <div class="votes">
+                            <% if (message.upVoters.includes(userId)) { %>
+                                <form id="undo-upvote-<%= message._id %>" action="/undo-upvote/<%= message._id %>" method="POST" class="d-inline">
+                                    <button type="submit" onclick="undoUpvoted(this, '<%= message._id %>')" class="upvoted thumb">
+                                        <svg 
+                                        width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M158.333 250.334L158.333 583.667ZM158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667" fill="white"/>
+                                            <path d="M158.333 250.334L158.333 583.667M158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                                
+                                        <span class="fs-6"><%= message.upvotes %></span>
+                                    </button>
+                                </form>
+                            <% } else { %>
+                                <form id="upvote-<%= message._id %>" action="/upvote/<%= message._id %>" method="POST" class="d-inline">
+                                    <button type="submit" onclick="upvoted(this, '<%= message._id %>')" class="thumb">
+                                        <svg 
+                                        width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M158.333 250.334L158.333 583.667ZM158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667" fill="white"/>
+                                            <path d="M158.333 250.334L158.333 583.667M158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span class="fs-6"><%= message.upvotes %></span>
+                                    </button>
+                                </form>
+                            <% } %>
+                            <% if (message.downVoters.includes(userId)) { %>
+                                <form id="undo-downvote-<%= message._id %>" action="/undo-downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
+                                    <button type="submit" onclick="undoDownvoted(this, '<%= message._id %>')" class="downvoted thumb dislike">
+                                        <svg
+                                        width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M158.333 358.666L158.333 25.3329ZM158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329" fill="white"/>
+                                            <path d="M158.333 358.666L158.333 25.3329M158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                            
+                                        <span class="fs-6"><%= message.downvotes %></span>
+                                    </button>
+                                </form>
+                            <% } else { %>
+                                <form id="downvote-<%= message._id %>" action="/downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
+                                    <button type="submit" onclick="downvoted(this, '<%= message._id %>')" class="thumb dislike">
+                                        <svg
+                                        width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M158.333 358.666L158.333 25.3329ZM158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329" fill="white"/>
+                                            <path d="M158.333 358.666L158.333 25.3329M158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329" stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                            
+                                        <span class="fs-6"><%= message.downvotes %></span>
+                                    </button>
+                                </form>
+                            <% } %>
                         </div>
+                        
 
                         <!-- Yorumlar için dropdown -->
                         <div class="mt-3">

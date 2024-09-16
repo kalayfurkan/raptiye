@@ -6,6 +6,8 @@ favori simgesinin çevresine siyah outline çekilecek
 
 ilanlar consistent hale getirilecek (cards.css) bitmedi
 
+kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
+
 + ya hover yapınca tooltip görünecek
 ilanlar dropdown menu hover düzeltilecek
 
