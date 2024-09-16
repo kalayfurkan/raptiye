@@ -4,3 +4,27 @@
 p.message-content{
     margin: 0;
 }
+
+.card-footer {
+    padding: 0; /* Optional, remove padding for a tighter fit */
+}
+
+#message-form {
+    display: flex;
+    align-items: center;
+}
+
+div.input-group {
+    flex: 1; /* Make the input-group take up the available space */
+    display: flex;
+}
+
+#message-input {
+    flex: 1; /* Make the input take up the available space */
+    height: auto; /* Allow the height to adjust properly */
+    padding: 0.5rem; /* Add some padding for better look */
+}
+
+.input-group-append button {
+    height: auto; /* Ensure button height is consistent */
+}

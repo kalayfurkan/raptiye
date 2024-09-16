@@ -21,56 +21,46 @@
                         <div class="card-header bg-primary text-white">
                             <h4>Messages between
                                 <a class="username" href="/profile/<%=infoUser1._id  %>">
-                                    <%= infoUser1.username %>
+                                    <%= infoUser2.username %>
                                 </a>
                                 and
                                 <a class="username" href="/profile/<%=infoUser2._id  %>">
-                                    <%= infoUser2.username %>
+                                    <%= infoUser1.username %>
                                 </a>
                             </h4>
                         </div>
                         <div class="card-body chat-messages" id="chat-messages">
                             <% if (messages.length===0) { %>
                                 <p class="text-center">No messages yet. Start the conversation!</p>
-                                <% } else { %>
-                                    <% messages.forEach(function(message) { %>
-                                        <div class="message mb-2">
-                                            <div
-                                                class="d-flex <%= message.sender.equals(currentUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
-                                                <div class="p-2 rounded <%= message.sender.equals(currentUser._id) ? 'bg-primary text-white' : 'bg-light' %>">
-                                                    <!-- <strong>
-                                                        <%= message.sender.equals(currentUser._id) ? currentUser.username : (message.sender.equals(infoUser1._id) ? infoUser1.username : infoUser2.username) %>:
-                                                    </strong> -->
-                                                    <p class="message-content">
-                                                        <%= message.content %>
-                                                    </p>
-                                                    <small class="text-muted">
-                                                        <%= new Date(message.timestamp).toLocaleString() %>
-                                                    </small>
-                                                </div>
+                            <% } else { %>
+                                <% messages.forEach(function(message) { %>
+                                    <div class="message mb-2">
+                                        <div class="d-flex <%= message.sender.equals(currentUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
+                                            <div class="p-2 rounded <%= message.sender.equals(currentUser._id) ? 'bg-primary text-white' : 'bg-light' %>">
+                                                <!-- <strong>
+                                                    <%= message.sender.equals(currentUser._id) ? currentUser.username : (message.sender.equals(infoUser1._id) ? infoUser1.username : infoUser2.username) %>:
+                                                </strong> -->
+                                                <p class="message-content">
+                                                    <%= message.content %>
+                                                </p>
+                                                <small class="text-muted">
+                                                    <%= new Date(message.timestamp).toLocaleString() %>
+                                                </small>
                                             </div>
                                         </div>
-                                        <% }); %>
-                                            <% } %>
+                                    </div>
+                                <% }); %>
+                            <% } %>
                         </div>
                         <div class="card-footer">
-
-
-                            <form id="message-form" method="POST"
-                                action="/messages/<%=communicators[0]%>/<%=communicators[1] %>">
-
+                            <form id="message-form" method="POST" action="/messages/<%=communicators[0]%>/<%=communicators[1] %>" autocomplete="off">
                                 <div class="input-group">
-                                    <input type="text" name="message" id="message-input" class="form-control"
-                                        placeholder="Type your message..." required>
-
+                                    <input type="text" name="message" id="message-input" class="form-control" placeholder="Type your message..." required>
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-primary">Send</button>
                                     </div>
-
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
