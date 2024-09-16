@@ -77,9 +77,9 @@
 					<!-- Burası notification varsa yoksa style burdan ayarlanacak -->
 					<li class="navbar-item">
 						<a href="/gelenkutusu" class="navbar-link">
-							<% if (!hasNotification) { %>
+							<% if (hasNotification==0) { %>
 							<img src="/img/message-img.svg" alt="gelen kutusu">
-							<%} else{  %>
+							<%} else if(hasNotification>0){  %>
 							<img src="/img/dislike.svg" alt="burayı doldurun">
 							<% } %>
 						</a>

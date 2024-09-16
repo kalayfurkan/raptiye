@@ -23,11 +23,12 @@ async function isThereNotification(req, res, next) {
             const user = await User.findById(req.session.userId);
             if (user) {
                 const notificationMessages = await Message.find({ notification: user._id });
-    
+                console.log(notificationMessages.length);
+                
                 if (notificationMessages.length > 0) {
-                    res.locals.hasNotification = true;
+                    res.locals.hasNotification = notificationMessages.length;
                 } else {
-                    res.locals.hasNotification = false;
+                    res.locals.hasNotification = 0;
                 }
             }
         } catch (error) {
