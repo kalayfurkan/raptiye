@@ -15,43 +15,50 @@
 <body>
     <div id="wrapper">
         <%- include('partials/navbar') %>
-        <div class="container mt-4">
-            <h2>Gelen Kutusu</h2>
-            <div class="list-group">
-                <% messages.forEach(conversation=> { %>
-                    <% const otherUser=conversation.communicators.find(user=> user._id.toString() !== currentUserId.toString()); %>
-                        <a href="/messages/<%= currentUserId %>/<%= otherUser._id %>"
-                            class="list-group-item list-group-item-action">
-                            <h5 class="mb-1">
-                                <%= otherUser.name %>
-                            </h5>
-                            <p class="mb-1">
-                                <h3>
-                                    <%=otherUser.username %>
-                                </h3>
-                                <% if (conversation.texts.length> 0) { %>
-                                    <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
-                                    <strong>
-                                        <%= lastMessage.sender.equals(currentUserId) ? 'Sen' : otherUser.username %>:
-                                    </strong>
-                                    <%= lastMessage.content %>
-                                <% } %>
-                            </p>
-                            <small class="text-muted">
-                                <% if (conversation.texts.length> 0) { %>
-                                    <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
-                                    <%= new Date(lastMessage.timestamp).toLocaleString() %>
-                                <% } %>
-                            </small>
-                        </a>
-                <% }); %>
+            <div class="container mt-4">
+                <h2>Gelen Kutusu</h2>
+                <div class="list-group">
+                    <% messages.forEach(conversation=> { %>
+                        <% const otherUser=conversation.communicators.find(user=> user._id.toString() !==
+                            currentUserId.toString()); %>
+                            <a href="/messages/<%= currentUserId %>/<%= otherUser._id %>"
+                                class="list-group-item list-group-item-action">
+                                <p class="mb-1">
+                                    <h3>
+                                        <%=otherUser.username %>
+
+                                        <!-- Burası notification kısmı style çekersiniz -->
+                                            <% if (conversation.notification &&
+                                                conversation.notification.toString()===currentUserId.toString()) { %>
+                                                <small style="color: red; font-size: 10px;">Okunmamış mesaj
+                                                    mevcut</small>
+                                                <% } %>
+                                        <!-- Burası notification kısmı style çekersiniz bu bende niye yorum satırı olarak gözükmedi lan-->
+                                    </h3>
+                                    <% if (conversation.texts.length> 0) { %>
+                                        <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
+                                            <strong>
+                                                <%= lastMessage.sender.equals(currentUserId) ? 'Sen' :
+                                                    otherUser.username %>:
+                                            </strong>
+                                            <%= lastMessage.content %>
+                                                <% } %>
+                                </p>
+                                <small class="text-muted">
+                                    <% if (conversation.texts.length> 0) { %>
+                                        <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
+                                            <%= new Date(lastMessage.timestamp).toLocaleString() %>
+                                                <% } %>
+                                </small>
+                            </a>
+                            <% }); %>
+                </div>
             </div>
-        </div>
-        <%- include('partials/footer') %>
+            <%- include('partials/footer') %>
     </div>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

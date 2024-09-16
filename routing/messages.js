@@ -8,11 +8,13 @@ const router = express.Router();
 router.get('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (req, res) => {
 	const user1 = req.params.user1id;
 	const user2 = req.params.user2id;
-	const infoUser1 = await User.findById(user1);
-	const infoUser2 = await User.findById(user2);
 
-	const currentUser = await User.findById(req.session.userId);
 	try {
+		const infoUser1 = await User.findById(user1);
+		const infoUser2 = await User.findById(user2);
+
+		const currentUser = await User.findById(req.session.userId);
+
 		let conversation = await Message.findOne({
 			communicators: { $all: [user1, user2] } // İki kullanıcıyı array içinde sırasız olarak bulur
 		});
@@ -25,7 +27,11 @@ router.get('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (req
 
 			// Yeni konuşmayı veritabanına kaydet
 			await conversation.save();
-		};
+		} else {
+			if (conversation.notification && String(conversation.notification) === String(currentUser._id)) {
+				await Message.findByIdAndUpdate(conversation._id, { notification: null });
+			}
+		}
 
 		res.render('messages', { messages: conversation.texts, communicators: conversation.communicators, infoUser1, infoUser2, currentUser });
 	} catch (error) {
@@ -39,12 +45,22 @@ router.post('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (re
 	const user2 = req.params.user2id;
 
 	try {
-		const conversation = await Message.findOne({
+		let conversation = await Message.findOne({
 			communicators: { $all: [user1, user2] } // İki kullanıcıyı array içinde sırasız olarak bulur
 		});
 
-		conversation.texts.push({ sender: req.session.userId, content: req.body.message, timestamp: new Date() })
-		await conversation.save();
+		let user;
+		if (req.session.userId == user1) {
+			user = user2
+		} else {
+			user = user1;
+		}
+
+		await Message.findByIdAndUpdate(conversation._id, {
+			$push: { texts: { sender: req.session.userId, content: req.body.message, timestamp: new Date() } },
+			notification: user // Alıcının ID'sini notification'a kaydet
+		});
+
 
 		res.redirect(`/messages/${user1}/${user2}`);
 	} catch (error) {
@@ -54,20 +70,20 @@ router.post('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (re
 })
 
 
-router.get('/gelenkutusu',allMiddlewares.requireAuth,async (req,res) => {
-	const currentUserId=req.session.userId;
+router.get('/gelenkutusu', allMiddlewares.requireAuth, async (req, res) => {
+	const currentUserId = req.session.userId;
 
 	try {
 		const messages = await Message.find({
-		  communicators: currentUserId
+			communicators: currentUserId
 		}).populate('communicators', 'username') // İsteğe bağlı: Kullanıcı adlarını da ekleyebiliriz
-		  .sort({ 'texts.timestamp': -1 }); // İsteğe bağlı: Mesajları zaman sırasına göre sıralayabiliriz
-	
+			.sort({ 'texts.timestamp': -1 }); // İsteğe bağlı: Mesajları zaman sırasına göre sıralayabiliriz
+
 		res.render('gelenkutusu', { messages, currentUserId });
-	  } catch (error) {
+	} catch (error) {
 		console.error(error);
 		res.status(500).send('Server Error');
-	  }
+	}
 });
 
 module.exports = router;

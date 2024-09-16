@@ -16,10 +16,10 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		const isAnonim = !!req.body.anonim;
 
 		if (isAnonim) {
-			user = "Anonim"
+			user = null;
 		} else {
 			const userid = await User.findById(req.session.userId);
-			user = userid.username;
+			user = userid._id;
 		}
 
 		await Kampusemesaj.create({
@@ -35,12 +35,30 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 
 router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
 	const messages = await Kampusemesaj.find({})
-					.populate('yorumlar.owner','username')
-					.exec();
+		.populate('owner')
+		.exec();
 	const userId = req.session.userId;
+	
 	res.render('kampusemesajlar', { messages, userId });
 })
 
+router.post('/deletekampusmesaj/:kampusemesajid', allMiddlewares.requireAuth, async (req, res) => {
+	const kampusemesajid = req.params.kampusemesajid;
+	try {
+		const currentUser=await User.findById(req.session.userId);
+		const currentMessage=await Kampusemesaj.findById(kampusemesajid);
+
+		if(currentUser && currentMessage && currentUser._id.equals(currentMessage.owner)){
+			await Kampusemesaj.findByIdAndDelete(kampusemesajid);
+			res.redirect('/kampusemesajlar');
+		}else{
+			res.status(403).send('Bu mesajı silme izniniz yok.');
+		}
+	} catch (error) {
+		console.error('Mesaj silinirken bir hata oluştu:', error);
+		res.status(500).send('Bir hata oluştu. Lütfen tekrar deneyin.');
+	}
+})
 
 router.post('/upvote/:mesajid', allMiddlewares.requireAuth, async (req, res) => {
 	try {

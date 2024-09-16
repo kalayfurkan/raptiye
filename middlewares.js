@@ -1,3 +1,6 @@
+const Message = require('./models/messageSchema');
+const User = require('./models/userSchema');
+
 function requireAuth(req, res, next) {
     if (!req.session.userId) {
         return res.status(401).redirect('/login');
@@ -14,4 +17,25 @@ function checkSession(req, res, next) {
     next(); // Sonraki middleware ya da route'ye geç
 }
 
-module.exports = {requireAuth,checkSession};
+async function isThereNotification(req, res, next) {
+    if (req.session.userId) {
+        try {
+            const user = await User.findById(req.session.userId);
+            if (user) {
+                const notificationMessages = await Message.find({ notification: user._id });
+    
+                if (notificationMessages.length > 0) {
+                    res.locals.hasNotification = true;
+                } else {
+                    res.locals.hasNotification = false;
+                }
+            }
+        } catch (error) {
+            console.error('User fetch error:', error);
+        }
+    }
+
+    next();
+}
+
+module.exports = { requireAuth, checkSession, isThereNotification };

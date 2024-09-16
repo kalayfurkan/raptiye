@@ -47,6 +47,8 @@ app.use((req, res, next) => {
 require('./cleaner.js');
 //check login
 app.use(allMiddlewares.checkSession);
+//notification middleware
+app.use(allMiddlewares.isThereNotification);
 
 //to set view engine as ejs
 app.set('view engine', 'ejs');

@@ -46,3 +46,7 @@ ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
 register rememberme de düzeltilecek
 
 kullanıcı idlerinin gözükmesi sorun mu kontrol et
+
+kampüse mesajlar kısmında sil butonu ekledim styleı düzeltilecek
+
+notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek kısımları yorum satırına koydum
