@@ -34,7 +34,6 @@ async function isThereNotification(req, res, next) {
             console.error('User fetch error:', error);
         }
     }
-
     next();
 }
 
