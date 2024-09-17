@@ -7,7 +7,6 @@ favori simgesinin çevresine siyah outline çekilecek
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
 + ya hover yapınca tooltip görünecek
-ilanlar dropdown menu hover düzeltilecek
 
 butonlar styling'i default'a taşınacak ve a için styling eklenecek
 
@@ -39,10 +38,6 @@ footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyec
 
 search bar koyulacak
 
-navbar ilan ekle butonu değiştirilecek (bitti)
-
-ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
-
 register rememberme de düzeltilecek
 
 kullanıcı idlerinin gözükmesi sorun mu kontrol et
@@ -50,3 +45,13 @@ kullanıcı idlerinin gözükmesi sorun mu kontrol et
 kampüse mesajlar kısmında sil butonu ekledim styleı düzeltilecek
 
 notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek kısımları yorum satırına koydum
+
+
+
+
+
+ilanlar dropdown menu hover düzeltilecek (bitti)
+
+navbar ilan ekle butonu değiştirilecek (bitti)
+
+ilan düzenle sayfaları forms.css e linklenmemiş (bitti)

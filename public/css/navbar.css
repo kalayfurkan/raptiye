@@ -144,18 +144,19 @@
 }
 
 .plus-symbol {
+	margin-top: -4px;
+	margin-left: -1px;
 	height: 30px;
 	width: 30px;
 }
 
 .plus-link {
-	padding: 3px 4px;
 	font-size: 1.2rem;
 	text-align: center;
 	transition: background-color 0.2s, transform 0.2s;
-	margin: 5px 5px;
-	width: fit-content;
-	height: 100%;
+	margin: 12px 8px;
+	height: 28px;
+	width: 28px;
 	/*
 	border: 2px solid #333;
 	background-color: hsl(176, 95%, 63%);
