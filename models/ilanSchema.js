@@ -13,7 +13,6 @@ const ilanSchema = new mongoose.Schema({
 	},
 	reachYou: {
 		type: String,
-		required: true,
 	},
 	price: {
 		type: Number,

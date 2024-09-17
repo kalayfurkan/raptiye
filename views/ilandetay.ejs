@@ -59,6 +59,13 @@
                             <%= ilan.reachYou %>
                         </div>
                         <div class="seller-info">
+                            <h3>ya da doğrudan mesaj gönderin</h3>
+                            <a href="/messages/<%=currentUserId%>/<%=ilan.owner%>">
+                                <button>Mesaj At</button>
+                            </a>
+                        </div>
+                        
+                        <div class="seller-info">
                             <h3>Satıcı Profili:
                                  <a href="/profile/<%=user._id  %>"><%=user.username  %> </a>
                             </h3>

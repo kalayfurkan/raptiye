@@ -69,6 +69,14 @@
                                 </a>
                             </p>
                             <p>
+                                <strong>İlan Sahibine Mesaj Atın: </strong>
+                                <a href="/messages/<%= owner._id %>/<%=currentUserID%>">
+                                    <button>
+                                        Mesaj At
+                                    </button>
+                                </a>
+                            </p>
+                            <p>
                                 <strong>Created At:</strong>
                                 <%= new Date(job.createdAt).toLocaleDateString() %>
                             </p>

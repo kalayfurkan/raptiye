@@ -17,7 +17,6 @@ const kiraodaSchema = new mongoose.Schema({
 	},
 	reachYou:{
 		type: String,
-		required:true,
 	},
 	images: {
 	  type: [String],

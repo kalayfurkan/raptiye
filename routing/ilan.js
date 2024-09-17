@@ -69,7 +69,8 @@ router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
 		const user = await User.findById(ilan.owner);
-		res.render('ilandetay', { ilan, user });
+		const currentUserId=req.session.userId;
+		res.render('ilandetay', { ilan, user,currentUserId });
 
 	} catch (error) {
 		res.status(500).send('Bir hata oluştu.');

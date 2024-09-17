@@ -28,8 +28,15 @@
                         <p><strong>İlan Türü:</strong>
                             <%= ilan.searchingFor %>
                         </p>
+                        
                         <p><strong>İletişim Bilgileri:</strong>
                             <%= ilan.reachYou %>
+                        </p>
+
+                        <p><strong>Doğrudan Mesaj Atın:</strong>
+                            <a href="/messages/<%=currentUserID%>/<%=ilan.owner %>">
+                                <button>Mesaj At</button>
+                            </a>
                         </p>
                         <p>
                             <strong>İlan Sahibi Profili: </strong>

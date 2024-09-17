@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
 				res.status(401).render('errorpage', { message: "Şifrenizi yanlış girdiniz." });
 			}
 		} else {
-			return res.status(401).render('errorpage', { message: "Sistemde kayıtlı mail adresi bulunamamıştır." });
+			return res.status(401).render('errorpage', { message: "E-posta adresi veya şifre hatalı." });
 		}
 	} catch (error) {
 		res.status(500).send(error);

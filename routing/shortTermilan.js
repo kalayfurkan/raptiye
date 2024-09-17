@@ -54,9 +54,12 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 router.get('/kisailanlar', allMiddlewares.requireAuth, async (req, res) => {
-	const kisaIlanlar = await Shortilan.find({}).sort({createdAt:-1});
-
-	res.render('kisailanlar', { ilanlar: kisaIlanlar });
+	const kisaIlanlar = await Shortilan.find({})
+	.populate('owner')
+	.sort({ createdAt: -1 })
+	.exec();
+	const currentUserid = req.session.userId;
+	res.render('kisailanlar', { ilanlar: kisaIlanlar, currentUserid });
 })
 
 router.post('/shortilan/delete/:shortid', allMiddlewares.requireAuth, async (req, res) => {
