@@ -77,10 +77,11 @@
 					<!-- Burası notification varsa yoksa style burdan ayarlanacak -->
 					<li class="navbar-item">
 						<a href="/gelenkutusu" class="navbar-link">
+							<!-- hasNotification stores a number not a bool-->
 							<% if (hasNotification==0) { %>
-							<img src="/img/message-img.svg" alt="gelen kutusu">
+								<img src="/img/message-img.svg" alt="gelen kutusu">
 							<%} else if(hasNotification>0){  %>
-							<img src="/img/dislike.svg" alt="burayı doldurun">
+								<img src="/img/message-notification-img.svg" alt="burayı doldurun">
 							<% } %>
 						</a>
 					</li>
@@ -88,7 +89,7 @@
 					<li id="logout-btn" class="navbar-item">
 						<a href="/logout" class="navbar-link"><img src="/img/log-out.svg" alt="çıkış yap"></a>
 					</li>
-					<% } %>
+				<% } %>
 	</ul>
 </nav>
 
