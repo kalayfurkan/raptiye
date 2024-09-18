@@ -7,12 +7,12 @@ const path = require('path');
 const sharp = require('sharp');
 const fs = require('fs');
 
-router.get('/addjob', allMiddlewares.requireAuth, (req, res) => {
-	res.render('addjob');
+router.get('/is-ilani-ekle', allMiddlewares.requireAuth, (req, res) => {
+	res.render('is-ilani-ekle');
 })
 
 
-router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
+router.post('/is-ilani-ekle', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		let images = req.files?.images || [];  // Görsellerin olup olmadığını kontrol ediyoruz
 		let imagePaths = [];
@@ -45,7 +45,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 			message: 'İlanınız başarılı bir şekilde oluşturuldu'
 		}
 
-		res.redirect('/isler');
+		res.redirect('/is-ilanlari');
 
 	} catch (error) {
 		res.render('errorpage', { message: "Bir hata oluştu" + error });
@@ -53,13 +53,13 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 
-router.get('/isler', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/is-ilanlari', allMiddlewares.requireAuth, async (req, res) => {
 	const jobs = await Job.find({}).sort({ createdAt: -1 });
 	const currentUser = await User.findById(req.session.userId);
 	res.render('isler', { jobs, currentUser });
 })
 
-router.get('/isler/:jobid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/is-ilanlari/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobid = req.params.jobid;
 	const job = await Job.findById(jobid);
 	const owner = await User.findById(job.owner);

@@ -7,7 +7,7 @@ const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
 
-router.post('/addpost', async (req, res) => {
+router.post('/satis-ilani-ekle', async (req, res) => {
 	try {
 		let images = req.files?.images || [];
 		let imagePaths = [];
@@ -41,7 +41,7 @@ router.post('/addpost', async (req, res) => {
 		}
 
 
-		res.redirect('/ilanlar');
+		res.redirect('/satis-ilanlari');
 
 
 	} catch (error) {
@@ -51,11 +51,11 @@ router.post('/addpost', async (req, res) => {
 });
 
 
-router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/satis-ilanlari', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const allPosts = await Ilan.find({})
 			.populate('owner', 'username')
-			.sort({createdAt:-1})
+			.sort({ createdAt: -1 })
 			.exec();
 		const currentUser = await User.findById(req.session.userId);
 		res.render('ilanlar', { ilanlar: allPosts, currentUser });
@@ -69,8 +69,8 @@ router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
 		const user = await User.findById(ilan.owner);
-		const currentUserId=req.session.userId;
-		res.render('ilandetay', { ilan, user,currentUserId });
+		const currentUserId = req.session.userId;
+		res.render('ilandetay', { ilan, user, currentUserId });
 
 	} catch (error) {
 		res.status(500).send('Bir hata oluştu.');

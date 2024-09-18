@@ -1,8 +1,8 @@
-dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
-
 yorumların tarihleri güzel bi formatta gösterilemli
 
 favori simgesinin çevresine siyah outline çekilecek
+
+ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş
 
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
@@ -49,6 +49,11 @@ notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek
 
 
 
+
+
+
+
+dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (bitti)
 
 ilanlar dropdown menu hover düzeltilecek (bitti)
 

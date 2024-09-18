@@ -12,8 +12,8 @@ router.get('/login', (req, res) => {
 router.get('/ilandetay', (req, res) => {
 	res.render('ilandetay');
 });
-router.get('/addpost', allMiddlewares.requireAuth, (req, res) => {
-	res.render('addpost');
+router.get('/satis-ilani-ekle', allMiddlewares.requireAuth, (req, res) => {
+	res.render('satis-ilani-ekle');
 });
 router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
@@ -27,8 +27,8 @@ router.get('/register', (req, res) => {
 });
 
 //Ömer done that
-router.get('/lettergrade', (req, res) => {
-	res.render('lettergrade');
+router.get('/harfnotuhesapla', (req, res) => {
+	res.render('harfnotuhesapla');
 });
 
 //Ömer on it again

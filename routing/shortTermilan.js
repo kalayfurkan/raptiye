@@ -8,11 +8,11 @@ const sharp = require('sharp');
 const fs = require('fs');
 
 
-router.get('/addshortilan', allMiddlewares.requireAuth, (req, res) => {
-	res.render('addshortilan')
+router.get('/kisa-sureli-ilan-ekle', allMiddlewares.requireAuth, (req, res) => {
+	res.render('kisa-sureli-ilan-ekle')
 })
 
-router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
+router.post('/kisa-sureli-ilan-ekle', allMiddlewares.requireAuth, async (req, res) => {
 	let images = req.files?.images || [];
 	let imagePaths = [];
 
@@ -50,14 +50,14 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 		message: 'İlanınız başarılı bir şekilde oluşturuldu'
 	}
 
-	res.redirect('/kisailanlar');
+	res.redirect('/kisasureliilanlar');
 })
 
-router.get('/kisailanlar', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) => {
 	const kisaIlanlar = await Shortilan.find({})
-	.populate('owner')
-	.sort({ createdAt: -1 })
-	.exec();
+		.populate('owner')
+		.sort({ createdAt: -1 })
+		.exec();
 	const currentUserid = req.session.userId;
 	res.render('kisailanlar', { ilanlar: kisaIlanlar, currentUserid });
 })
