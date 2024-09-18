@@ -23,7 +23,6 @@ async function isThereNotification(req, res, next) {
             const user = await User.findById(req.session.userId);
             if (user) {
                 const notificationMessages = await Message.find({ notification: user._id });
-                console.log(notificationMessages.length);
                 
                 if (notificationMessages.length > 0) {
                     res.locals.hasNotification = notificationMessages.length;
@@ -35,7 +34,6 @@ async function isThereNotification(req, res, next) {
             console.error('User fetch error:', error);
         }
     }
-
     next();
 }
 

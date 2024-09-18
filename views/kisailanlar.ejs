@@ -92,9 +92,16 @@
                                                                 <%= ilan.description %>
                                                             </p>
                                                         </div>
+                                                        <div class="card-content">
+                                                            <p>
+                                                                <a href="/messages/<%=currentUserid%>/<%=ilan.owner%>">
+                                                                    <button>Mesaj at</button>
+                                                                </a>
+                                                            </p>
+                                                        </div>
                                                         <p>
-                                                            <a href="/profile/<%= ilan.owner%>">İlan veren profili</a>
-                                                            <p />
+                                                            <a href="/profile/<%= ilan.owner._id%>"><%=ilan.owner.username%></a>
+                                                        </p>
                                                     </div>
                                                     <div class="card-footer text-muted text-center">
                                                         Bitiş Tarihi: <%= ilan.removalDate %>

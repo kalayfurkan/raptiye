@@ -60,7 +60,8 @@ router.get('/kiraoda/:kiraodaid', allMiddlewares.requireAuth, async (req, res) =
 	const kiraid = req.params.kiraodaid;
 	const kira = await Kiraoda.findById(kiraid);
 	const owner = await User.findById(kira.owner);
-	res.render('kiraodadetay', { ilan: kira, owner });
+	const currentUserID=req.session.userId;
+	res.render('kiraodadetay', { ilan: kira, owner,currentUserID });
 })
 
 router.get('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
