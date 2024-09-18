@@ -1,3 +1,5 @@
+satış ilan kartları flexbox ile düzeltilecek (bitti ?) 
+
 yorumların tarihleri güzel bi formatta gösterilemli
 
 favori simgesinin çevresine siyah outline çekilecek
@@ -16,7 +18,7 @@ ilan detay sayfaları consistent hale getirilecek (listings.css)
 
 kısa süreli ilanlarda tarih kısmı düzeltilecek
 
-hakkımızda kısmı eklenecek
+footera hakkımızda ve bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
 
 renk paletine karar verilecek ve renkler consistent olacak
 
@@ -25,16 +27,13 @@ ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
 ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
+(Kampüsebirmesaj unutulmuş)
 
 navbar daki logoya tıklayınca ana sayfaya gitmiyor.
 
 profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
 
-satış ilan kartları flexbox ile düzeltilecek (bitti ?)
-
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
-
-footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
 
 search bar koyulacak
 
