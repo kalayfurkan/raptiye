@@ -1,32 +1,56 @@
-/* sadece boş kalmasın diye oluşturdum tekrar bakılacak */
-
 /* Başlık */
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #2c3e50;
     text-align: center;
     margin-bottom: 40px;
+}
+
+#wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.butonlardivi {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 /* Mesaj Listesi */
 ul.list-group {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px 30px 12px 30px;
+    margin: 0 auto;
+    max-width: 800px;
+    margin-bottom: 50px;
 }
+
 
 .list-group-item {
     background-color: #f7f8fa;
     border: none;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding: 20px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+textarea {
+    margin-top: -20px;
+}
+
+.btn-secondary {
+    margin: 15px 15px 0 0;
 }
 
 .list-group-item:hover {
     background-color: #f0f4f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
 }
 
 strong {
@@ -40,7 +64,7 @@ p {
 }
 
 /* thumbs styling */
-div.votes{
+div.votes {
     background-color: #ffffff;
     border-radius: 9999px;
     padding: 10px;
@@ -48,12 +72,19 @@ div.votes{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 button.thumb {
     height: 100%;
     border: none;
     background-color: transparent;
+}
+
+button.thumb:hover svg {
+    transform: scale(1.2);
+    fill: #ffcc00;
+    /* Sarı olmuş mu burda */
 }
 
 button.upvoted.thumb {
@@ -64,48 +95,59 @@ button.downvoted.thumb {
     border: none;
 }
 
-button.thumb svg{
-    transition: transform 0.6s cubic-bezier(0, 0.42, 0.99, 0.58);
+button.thumb svg {
+    transition: transform 0.2s cubic-bezier(0, 0.42, 0.99, 0.58);
     transform-origin: bottom left;
     width: 16px;
     height: 16px;
     margin-bottom: 5px;
 }
 
-button.dislike svg{
+button.dislike svg {
     transform-origin: 0% 58%;
 }
 
-button.upvoted svg{
+button.upvoted svg {
     fill: green;
     animation: left-spin-scale 0.3s ease forwards;
 }
 
-button.downvoted svg{
+button.downvoted svg {
     fill: red;
     animation: right-spin-scale 0.3s ease forwards;
-
 }
+
 
 @keyframes left-spin-scale {
     0% {
-        transform: scale(1) rotate(0deg);  /* Initial state */
+        transform: scale(1) rotate(0deg);
+        /* Initial state */
     }
+
     50% {
-        transform: scale(1.1) rotate(-15deg);  /* Halfway: scaled up and rotated */
+        transform: scale(1.1) rotate(-15deg);
+        /* Halfway: scaled up and rotated */
     }
+
     100% {
-        transform: scale(1) rotate(0deg);  /* Back to original state */
+        transform: scale(1) rotate(0deg);
+        /* Back to original state */
     }
 }
+
 @keyframes right-spin-scale {
     0% {
-        transform: scale(1) rotate(0deg);  /* Initial state */
+        transform: scale(1) rotate(0deg);
+        /* Initial state */
     }
+
     50% {
-        transform: scale(1.1) rotate(15deg);  /* Halfway: scaled up and rotated */
+        transform: scale(1.1) rotate(15deg);
+        /* Halfway: scaled up and rotated */
     }
+
     100% {
-        transform: scale(1) rotate(0deg);  /* Back to original state */
+        transform: scale(1) rotate(0deg);
+        /* Back to original state */
     }
 }

@@ -35,6 +35,8 @@ profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanları
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
 
+pagination eklenecek
+
 search bar koyulacak
 
 register rememberme de düzeltilecek
