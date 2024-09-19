@@ -36,6 +36,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
 	const messages = await Kampusemesaj.find({})
 		.populate('owner')
+		.populate('yorumlar.owner')
 		.exec();
 	const userId = req.session.userId;
 	
