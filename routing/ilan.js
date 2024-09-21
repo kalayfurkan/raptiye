@@ -234,5 +234,28 @@ router.post('/deletefavorites/:favoriteid', allMiddlewares.requireAuth, async (r
 
 });
 
+router.post('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
+    const query = req.body.search;
+    try {
+        // MongoDB'de başlık veya açıklama içinde arama yap
+        const results = await Ilan.find({
+            $or: [
+                { title: new RegExp(query, 'i') },       // Başlıkta arama
+                { description: new RegExp(query, 'i') }  // Açıklamada arama
+            ]
+        })
+        .populate('owner', 'username')
+        .sort({ createdAt: -1 })
+        .exec();
+
+        const currentUser = await User.findById(req.session.userId);
+        
+        // Sonuçları arama sonuçları sayfasına render et
+        res.render('aramasonuc', { ilanlar: results, searchTerm: query, currentUser });
+    } catch (err) {
+        res.status(500).send('Bir hata oluştu');
+    }
+});
+
 
 module.exports = router;

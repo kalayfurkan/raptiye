@@ -19,9 +19,6 @@ router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
 });
 
-router.get('/listsearchresult', allMiddlewares.requireAuth, (req, res) => {
-	res.render('listsearchresult');
-});
 router.get('/register', (req, res) => {
 	res.render('register');
 });
