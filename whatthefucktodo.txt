@@ -7,7 +7,7 @@ favori simgesinin çevresine siyah outline çekilecek
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
 + ya hover yapınca tooltip görünecek
-
+p
 butonlar styling'i default'a taşınacak ve a için styling eklenecek
 
 Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
@@ -26,17 +26,13 @@ alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
 ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
 
-navbar daki logoya tıklayınca ana sayfaya gitmiyor.
-
-profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
+profilim sayfası düzenlenecek
 
 satış ilan kartları flexbox ile düzeltilecek (bitti ?)
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
 
-footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
-
-search bar koyulacak
+footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz. 
 
 register rememberme de düzeltilecek
 

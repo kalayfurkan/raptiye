@@ -26,7 +26,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 			mesaj: message,
 			owner: user,
 		})
-		res.redirect('/kampusebirmesajbirak');
+		res.redirect('/kampusemesajlar');
 	} catch (error) {
 		res.status(400).send('bir şeyler yanlış gitti');
 	}
