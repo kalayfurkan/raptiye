@@ -46,7 +46,9 @@ kampüse mesajlar kısmında sil butonu ekledim styleı düzeltilecek
 
 notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek kısımları yorum satırına koydum
 
+sayfa linki paylaşılınca bi görselin olması için meta tag i eklenecek
 
+telden girince güzel durmuyor çoğu sayfa
 
 
 

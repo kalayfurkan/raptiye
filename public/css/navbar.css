@@ -151,16 +151,13 @@
 }
 
 .plus-link {
+	position: relative;
 	font-size: 1.2rem;
 	text-align: center;
 	transition: background-color 0.2s, transform 0.2s;
 	margin: 12px 8px;
 	height: 28px;
 	width: 28px;
-	/*
-	border: 2px solid #333;
-	background-color: hsl(176, 95%, 63%);
-	*/
 }
 
 .plus-link:hover {
@@ -171,9 +168,7 @@
 .tooltip {
 	display: none;
 	position: absolute;
-	left: 100%;
-	margin-left: 10px;
-	background-color: black;
+	background-color: #2c2c2c;
 	color: white;
 	padding: 5px;
 	border-radius: 5px;
