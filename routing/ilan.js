@@ -7,7 +7,7 @@ const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
 
-router.post('/addpost', async (req, res) => {
+router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		let images = req.files?.images || [];
 		let imagePaths = [];

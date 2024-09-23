@@ -24,15 +24,11 @@ ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
 
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
-ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
-
 profilim sayfası düzenlenecek
 
 satış ilan kartları flexbox ile düzeltilecek (bitti ?)
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
-
-footera bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz. 
 
 register rememberme de düzeltilecek
 
