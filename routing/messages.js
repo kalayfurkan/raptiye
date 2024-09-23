@@ -8,6 +8,9 @@ const router = express.Router();
 router.get('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (req, res) => {
 	const user1 = req.params.user1id;
 	const user2 = req.params.user2id;
+	if(user1!=req.session.userId && user2!=req.session.userId){
+		return res.redirect('/');
+	}
 	if(user1==user2){
 		return res.render('errorpage',{message:"Kendinize mesaj göndermezsiniz"});
 	}
@@ -45,6 +48,10 @@ router.get('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (req
 router.post('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (req, res) => {
 	const user1 = req.params.user1id;
 	const user2 = req.params.user2id;
+	if(user1!=req.session.userId && user2!=req.session.userId){
+		return res.redirect('/');
+	}
+
 	if(user1==user2){
 		return res.render('errorpage',{message:"Kendinize mesaj göndermezsiniz"});
 	}

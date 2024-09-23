@@ -28,6 +28,16 @@
                     </div>
                     <% } %>
 
+                        <!-- Şık Search Bar -->
+                        <form action="/ilan/arama" method="POST">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Aradığınız ilan başlıklarını giriniz" name="search"
+                                    required>
+                                <button class="btn btn-outline-primary" type="submit">Ara</button>
+                            </div>
+                        </form>
+
+
                         <div class="card-box">
                             <% if (ilanlar.length> 0) { %>
                                 <% ilanlar.forEach(function(ilan) { %>

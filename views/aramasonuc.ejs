@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arama Sonuçları</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/satilik-ilanlar.css">
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!-- Navbar -->
+        <%- include('partials/navbar') %>
+
+        <div class="container mt-4">
+            <h1 class="mb-4">Arama Sonuçları</h1>
+
+            <!-- Flash message area -->
+            <% if (sessionFlash && sessionFlash.message) { %>
+                <div class="alert <%= sessionFlash.type %>">
+                    <%= sessionFlash.message %>
+                </div>
+            <% } %>
+
+            <!-- Şık Search Bar -->
+            <form action="/ilan/arama" method="POST" class="mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Aradığınız ilan başlıklarını giriniz" name="search" required>
+                    <button class="btn btn-outline-primary" type="submit">Ara</button>
+                </div>
+            </form>
+			<a href="/ilanlar">Tüm ilanlar sayfasına geri dön</a>
+            <div class="card-box">
+                <% if (ilanlar && ilanlar.length > 0) { %>
+                    <% ilanlar.forEach(function(ilan) { %>
+                        <div class="card mb-3">
+                            <img src="<%= ilan.images[0] %>" onerror="this.src='/img/satilik-img.jpg';" alt="İlan Fotoğrafı" class="card-img-top">
+                            <div class="card-body">
+                                <!-- Favori Butonu -->
+                                <form class="star-form" action="<% if (currentUser.favorites && currentUser.favorites.includes(ilan._id)) { %>/deletefavorites/<%= ilan._id %><% } else { %>/addfavoritesilan/<%= ilan._id %><% } %>" method="post">
+                                    <input type="hidden" name="ilanid" value="<%= ilan._id %>">
+                                    <button type="submit" class="star-btn <% if (currentUser.favorites && currentUser.favorites.includes(ilan._id.toString())) { %>spin<% } %>" data-ilan-id="<%= ilan._id %>">
+                                        <svg class="star" width="642" height="642" viewBox="0 0 642 642" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M295.833 60.199C303.543 36.9426 307.396 25.3148 313.098 22.092C318.031 19.3027 323.969 19.3027 328.905 22.092C334.603 25.3148 338.456 36.9426 346.166 60.199L397.133 213.947C399.327 220.566 400.423 223.875 402.401 226.34C404.147 228.517 406.375 230.214 408.889 231.283C411.733 232.493 415.074 232.564 421.755 232.707L576.948 236.023C600.424 236.525 612.161 236.776 616.847 241.464C620.9 245.522 622.735 251.446 621.729 257.228C620.57 263.909 611.215 271.344 592.504 286.222L468.808 384.557C463.482 388.793 460.821 390.909 459.196 393.64C457.76 396.057 456.911 398.802 456.718 401.638C456.502 404.851 457.467 408.203 459.402 414.912L504.354 570.71C511.151 594.277 514.552 606.06 511.747 612.179C509.319 617.477 504.514 621.137 498.958 621.923C492.54 622.827 482.905 615.797 463.632 601.733L336.218 508.763C330.733 504.76 327.992 502.759 325.011 501.981C322.377 501.296 319.623 501.296 316.991 501.981C314.011 502.759 311.266 504.76 305.781 508.763L178.369 601.733C159.096 615.797 149.46 622.827 143.042 621.923C137.488 621.137 132.682 617.477 130.254 612.179C127.45 606.06 130.849 594.277 137.648 570.71L182.598 414.912C184.533 408.203 185.501 404.851 185.283 401.638C185.09 398.802 184.24 396.057 182.805 393.64C181.18 390.909 178.518 388.793 173.193 384.557L49.4976 286.222C30.787 271.344 21.4318 263.909 20.2704 257.228C19.265 251.446 21.1007 245.522 25.1549 241.464C29.8389 236.776 41.5764 236.525 65.0512 236.023L220.245 232.707C226.926 232.564 230.266 232.493 233.113 231.283C235.627 230.214 237.854 228.517 239.6 226.34C241.577 223.875 242.674 220.566 244.869 213.947L295.833 60.199Z" fill="" stroke="grey" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </form>
+
+                                <h5 class="card-title">
+                                    <%= ilan.title %>
+                                </h5>
+
+                                <p class="price">
+                                    <%= ilan.price %>TL
+                                </p>
+
+                                <p class="links">
+                                    <a href="/profile/<%= ilan.owner._id.toString() %>" class="user">
+                                        <%= ilan.owner.username %>
+                                    </a>
+                                    <a href="/ilan/<%= ilan._id %>" class="btn">Detaylar</a>
+                                </p>
+
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>Sonuç bulunamadı.</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+
+    <script src="/js/favorites.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
