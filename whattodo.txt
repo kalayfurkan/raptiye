@@ -1,3 +1,5 @@
+navbarı 80 yerine 64px yapacaktın kenobi
+
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
 yorumların tarihleri güzel bi formatta gösterilemli
