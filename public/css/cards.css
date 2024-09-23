@@ -59,8 +59,8 @@
 
 button.star-btn{
     position: absolute;
-    right:0;
-    top: 0;
+    right:20px;
+    top: 15px;
     background-color: transparent;
     padding: 0;
     border: none;

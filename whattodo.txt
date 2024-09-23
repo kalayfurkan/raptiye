@@ -1,5 +1,7 @@
 navbarı 80 yerine 64px yapacaktın kenobi
 
+footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
+
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
 yorumların tarihleri güzel bi formatta gösterilemli
@@ -43,6 +45,8 @@ notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek
 sayfa linki paylaşılınca bi görselin olması için meta tag i eklenecek
 
 telden girince güzel durmuyor çoğu sayfa
+
+navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor çözemedim niye (çok önemli değil sona bırakılsın)
 
 
 

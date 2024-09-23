@@ -27,11 +27,27 @@
     color: #ffffff;
 }
 
+a.daha-fazla{
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+}
+
+small.timestamp{
+    color: rgb(218, 218, 218);
+}
 p.message-content{
+    max-height: 50px; /* Limit the height */
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin: 0;
 }
 
+.message-content.expanded {
+    max-height: none; /* Allow full content to be visible */
+}
+
 .card-footer {
+    border-radius: 8px !important; /*important due to boots*/
     padding: 0; /* Optional, remove padding for a tighter fit */
 }
 

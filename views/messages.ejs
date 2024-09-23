@@ -37,15 +37,12 @@
                                     <div class="message mb-2">
                                         <div class="d-flex <%= message.sender.equals(currentUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
                                             <div class="message-bubble <%= message.sender.equals(currentUser._id) ? 'right-bubble' : 'left-bubble' %>">
-                                                <!-- <strong>
-                                                    <%= message.sender.equals(currentUser._id) ? currentUser.username : (message.sender.equals(infoUser1._id) ? infoUser1.username : infoUser2.username) %>:
-                                                </strong> -->
                                                 <p class="message-content">
                                                     <%= message.content %>
                                                 </p>
-                                                <small class="text-muted">
-                                                    <%= new Date(message.timestamp).toLocaleString() %>
-                                                </small>
+                                                <a href="javascript:void(0);" class="daha-fazla" style="display:none;">Daha fazla</a>
+                                                <!-- small etiketi içinde fazla boşluk olmamalı -->
+                                                <small class="timestamp"><%= new Date(message.timestamp).toLocaleString() %></small>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +54,7 @@
                                 <div class="input-group">
                                     <input type="text" name="message" id="message-input" class="form-control" placeholder="Type your message..." required>
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary">Send</button>
+                                        <button type="submit" class="btn btn-primary">Gönder</button>
                                     </div>
                                 </div>
                             </form>
@@ -69,10 +66,12 @@
         <%- include('partials/footer') %>
     </div>  
 
-    <script src="/js/messages.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/update-timestamps.js"></script>
+    <script src="/js/messages.js"></script>
+    <!-- timestamp class ına sahip etiketlein formatını değiştiriyor sadece -->
 </body>
 
 </html>

@@ -71,6 +71,11 @@
 	align-items: center;
 }
 
+.dropdown-menu a {
+	cursor: pointer;
+	user-select: none;
+}
+
 /* Main menu list styles */
 .navbar-menu {
 	display: flex;

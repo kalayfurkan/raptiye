@@ -39,73 +39,79 @@ p {
     color: #555;
 }
 
-/* thumbs styling */
-div.votes{
-    background-color: #ffffff;
-    border-radius: 9999px;
-    padding: 10px;
-    width: 90px;
+div.mesaj-alt-butonalar{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 20px;
 }
 
-button.thumb {
-    height: 100%;
-    border: none;
-    background-color: transparent;
-}
-
-button.upvoted.thumb {
-    border: none;
-}
-
-button.downvoted.thumb {
-    border: none;
-}
-
-button.thumb svg{
-    transition: transform 0.6s cubic-bezier(0, 0.42, 0.99, 0.58);
-    transform-origin: bottom left;
-    width: 16px;
-    height: 16px;
-    margin-bottom: 5px;
-}
-
-button.dislike svg{
-    transform-origin: 0% 58%;
-}
-
-button.upvoted svg{
-    fill: green;
-    animation: left-spin-scale 0.3s ease forwards;
-}
-
-button.downvoted svg{
-    fill: red;
-    animation: right-spin-scale 0.3s ease forwards;
-
-}
-
-@keyframes left-spin-scale {
-    0% {
-        transform: scale(1) rotate(0deg);  /* Initial state */
+/* thumbs styling */
+    div.votes{
+        background-color: #ffffff;
+        border-radius: 9999px;
+        padding: 10px;
+        width: 105px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    50% {
-        transform: scale(1.1) rotate(-15deg);  /* Halfway: scaled up and rotated */
+
+    button.thumb {
+        height: 100%;
+        border: none;
+        background-color: transparent;
     }
-    100% {
-        transform: scale(1) rotate(0deg);  /* Back to original state */
+
+    button.upvoted.thumb {
+        border: none;
     }
-}
-@keyframes right-spin-scale {
-    0% {
-        transform: scale(1) rotate(0deg);  /* Initial state */
+
+    button.downvoted.thumb {
+        border: none;
     }
-    50% {
-        transform: scale(1.1) rotate(15deg);  /* Halfway: scaled up and rotated */
+
+    button.thumb svg{
+        transition: transform 0.6s cubic-bezier(0, 0.42, 0.99, 0.58);
+        transform-origin: bottom left;
+        width: 16px;
+        height: 16px;
+        margin-bottom: 5px;
     }
-    100% {
-        transform: scale(1) rotate(0deg);  /* Back to original state */
+
+    button.dislike svg{
+        transform-origin: 0% 58%;
     }
-}
+
+    button.upvoted svg{
+        fill: green;
+        animation: left-spin-scale 0.3s ease forwards;
+    }
+
+    button.downvoted svg{
+        fill: red;
+        animation: right-spin-scale 0.3s ease forwards;
+
+    }
+
+    @keyframes left-spin-scale {
+        0% {
+            transform: scale(1) rotate(0deg);  /* Initial state */
+        }
+        50% {
+            transform: scale(1.1) rotate(-15deg);  /* Halfway: scaled up and rotated */
+        }
+        100% {
+            transform: scale(1) rotate(0deg);  /* Back to original state */
+        }
+    }
+    @keyframes right-spin-scale {
+        0% {
+            transform: scale(1) rotate(0deg);  /* Initial state */
+        }
+        50% {
+            transform: scale(1.1) rotate(15deg);  /* Halfway: scaled up and rotated */
+        }
+        100% {
+            transform: scale(1) rotate(0deg);  /* Back to original state */
+        }
+    }
+/*thumbs styling end*/
