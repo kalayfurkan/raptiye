@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+form.search{
+    margin: 20px 0;
+}
+
 .card img {
     width: 150px !important; /* bootstrapdan dolayı zorunlu */
     height: auto;
