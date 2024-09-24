@@ -1,13 +1,4 @@
-/* red hsl(356deg, 95%, 63%)    */
-/* Turquoise hsl(176, 95%, 63%) */
-:root {
-	--primary-color: hsl(356deg, 95%, 63%);
-	--navbar-color: hsl(200, 90%, 40%);
-	--secondary-color-dark2: hsl(176, 57%, 45%);
-}
-
 @keyframes wiggle {
-
 	0%,
 	100% {
 		transform: rotate(0deg);
@@ -32,7 +23,7 @@
 	height: 5em;
 	width: 100%;
 	z-index: 1;
-	background-color: var(--navbar-color);
+	background-color: var(--secondary-color);
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
@@ -90,7 +81,7 @@
 }
 
 .navbar-item:hover {
-	background-color: var(--primary-color);
+	background-color: var(--secondary-color-dark);
 }
 
 /* Menu link styles */
@@ -111,7 +102,7 @@
 	display: none;
 	position: absolute;
 	top: 90%;
-	background-color: var(--navbar-color);
+	background-color: var(--secondary-color);
 	min-width: 240px;
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 	z-index: 2;
@@ -141,11 +132,11 @@
 
 .dropdown-link:hover {
 	color: black;
-	background-color: var(--primary-color);
+	background-color: var(--secondary-color-dark);
 }
 
 .dropdown-campus:hover {
-	background-color: var(--primary-color);
+	background-color: var(--secondary-color-dark);
 }
 
 .plus-symbol {
@@ -167,7 +158,7 @@
 
 .plus-link:hover {
 	transform: scale(1.1);
-	background-color: var(--primary-color);
+	background-color: var(--secondary-color-dark);
 }
 
 .tooltip {
@@ -185,6 +176,23 @@
 /* tip when hovered over */
 .adjacent:hover .tooltip {
 	display: block;
+}
+
+a.notification {
+    position: relative;
+	display: inline-block;
+	animation: wiggle 0.5s ease 5;
+}
+a.notification span{
+	font-weight:bold;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the badge horizontally and vertically */
+    font-size: 15px;
+    display: inline-block;
+    min-width: 20px;
+    text-align: center;
 }
 
 /* Logout button styles */
@@ -237,7 +245,7 @@
 		position: absolute;
 		top: 60px;
 		left: 0;
-		background-color: var(--navbar-color);
+		background-color: var(--secondary-color);
 		max-height: 0;
 		overflow: hidden;
 		transition: max-height 0.3s ease-out;

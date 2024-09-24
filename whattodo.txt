@@ -48,6 +48,7 @@ telden girince güzel durmuyor çoğu sayfa
 
 navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor çözemedim niye (çok önemli değil sona bırakılsın)
 
+navbar notification içi için köşesiz soft bi font seçilebilir
 
 
 ilanlar dropdown menu hover düzeltilecek (bitti)
