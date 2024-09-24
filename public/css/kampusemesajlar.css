@@ -43,6 +43,19 @@ div.mesaj-alt-butonalar{
     gap: 20px;
 }
 
+p.daha-fazla.collapsed {
+    text-overflow: ellipsis;
+    max-height: 50px;
+    overflow: hidden;
+}
+
+.daha-fazla-link {
+    font-size: 15px;
+    display: block;
+    color: black;
+    cursor: pointer;
+}
+
 /* thumbs styling */
     div.votes{
         background-color: #ffffff;
