@@ -33,6 +33,17 @@
                                     <!-- messajlar ve yorumlara content class ı eklenecek -->
                                     <%= message.mesaj %>
                                 </p>
+                                <!-- TARİH BURDA  -->
+                                <p>
+                                    <%= new Date(message.createdAt).toLocaleDateString('tr-TR', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    }) %>
+                                </p>
+
                                 <div class="votes">
                                     <% if (message.upVoters.includes(userId)) { %>
                                         <form id="undo-upvote-<%= message._id %>"
