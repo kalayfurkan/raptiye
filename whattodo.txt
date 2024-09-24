@@ -1,3 +1,5 @@
+satış ilan kartları flexbox ile düzeltilecek (bitti ?) 
+
 navbarı 80 yerine 64px yapacaktın kenobi
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
@@ -9,6 +11,8 @@ dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 yorumların tarihleri güzel bi formatta gösterilemli
 
 favori simgesinin çevresine siyah outline çekilecek
+
+ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş
 
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
@@ -22,7 +26,7 @@ ilan detay sayfaları consistent hale getirilecek (listings.css)
 
 kısa süreli ilanlarda tarih kısmı düzeltilecek
 
-hakkımızda kısmı eklenecek
+footera hakkımızda ve bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
 
 renk paletine karar verilecek ve renkler consistent olacak
 
@@ -30,11 +34,18 @@ ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
 
 alakalı fotolar eklenecek ve arka plana bir texture eklenecek
 
-profilim sayfası düzenlenecek
+ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
+(Kampüsebirmesaj unutulmuş)
 
-satış ilan kartları flexbox ile düzeltilecek (bitti ?)
+navbar daki logoya tıklayınca ana sayfaya gitmiyor.
+
+profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
+
+pagination eklenecek
+
+search bar koyulacak
 
 register rememberme de düzeltilecek
 
@@ -52,6 +63,11 @@ navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan l
 
 navbar notification içi için köşesiz soft bi font seçilebilir
 
+
+
+
+
+dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (bitti)
 
 ilanlar dropdown menu hover düzeltilecek (bitti)
 
