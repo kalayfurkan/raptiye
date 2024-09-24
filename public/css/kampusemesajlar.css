@@ -38,6 +38,7 @@ p {
 }
 
 div.mesaj-alt-butonalar{
+    align-items: center;
     display: flex;
     gap: 20px;
 }
