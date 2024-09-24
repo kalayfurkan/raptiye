@@ -27,9 +27,9 @@ ul.list-group {
     background-color: #f0f4f8;
 }
 
-strong {
+strong.message-sender a{
     font-size: 1.1rem;
-    color: #34495e;
+    color: var(--secondary-color-dark2);
 }
 
 p {
@@ -42,7 +42,9 @@ div.mesaj-alt-butonalar{
     display: flex;
     gap: 20px;
 }
-
+small.message-time{
+    margin-left: auto;
+}
 p.daha-fazla.collapsed {
     text-overflow: ellipsis;
     max-height: 50px;
