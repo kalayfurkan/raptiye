@@ -24,14 +24,13 @@
                             <li class="list-group-item">
                                 <strong>
                                     <% if (message.owner) { %>
-                                        <a href="/profile/<%= message.owner._id %>">
-                                            <%= message.owner.username %>
-                                        </a>
-                                        <% } else { %>
-                                            Anonim
-                                            <% } %>
+                                        <a href="/profile/<%= message.owner._id %>"><%= message.owner.username %></a>
+                                    <% } else { %>
+                                        Anonim
+                                    <% } %>
                                 </strong>
                                 <p>
+                                    <!-- messajlar ve yorumlara content class ı eklenecek -->
                                     <%= message.mesaj %>
                                 </p>
                                 <div class="votes">
@@ -180,7 +179,7 @@
 
                     <% } else { %>
                         <p>Hadi! İlk mesajı sen bırak.</p>
-                        <% } %>
+                    <% } %>
             </div>
             <%- include('partials/footer') %>
     </div>

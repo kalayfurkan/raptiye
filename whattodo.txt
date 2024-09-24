@@ -2,6 +2,8 @@ navbarı 80 yerine 64px yapacaktın kenobi
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
+kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action olacak
+
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
 yorumların tarihleri güzel bi formatta gösterilemli
