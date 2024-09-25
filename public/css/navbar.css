@@ -92,6 +92,10 @@
 	transition: color 0.3s;
 }
 
+.navbar-link:hover{
+	color: black;
+}
+
 .navbar-link img {
 	max-height: 30px;
 	width: auto;

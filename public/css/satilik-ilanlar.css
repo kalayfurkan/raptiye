@@ -90,11 +90,6 @@ svg.star path {
     transition: fill 0.7s ease, stroke 0.7s ease;
 }
 
-.star-btn:hover svg.star path {
-    fill: rgba(255, 255, 0, 0.2);
-}
-
-.star-btn.spin svg.star path {
-    fill: yellow;
-    stroke: yellow;
+.star-btn:hover svg.star path, .star-btn.spin svg.star path {
+    fill: #ffff00;
 }

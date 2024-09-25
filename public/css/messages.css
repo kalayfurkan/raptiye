@@ -6,8 +6,19 @@
     max-height: 700px;
 }
 
+.card-header{
+    background-color: var(--secondary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
 .username{
+    font-size: 1.5rem;
     color: black;
+}
+.username:hover{
+    color: white;
 }
 
 .message-bubble{
@@ -17,13 +28,14 @@
 .left-bubble{
     border-radius: 15px;
     border-bottom-left-radius: 0;
-    background-color: #f8f9fa;
+    background-color: var(--primary-color);
+    color: #ffffff;
 }
 
 .right-bubble{
     border-radius: 15px;
     border-bottom-right-radius: 0;
-    background-color: #0d6efd;
+    background-color: var(--secondary-color);
     color: #ffffff;
 }
 

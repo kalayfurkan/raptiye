@@ -4,6 +4,8 @@ navbarı 80 yerine 64px yapacaktın kenobi
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
+Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
+
 kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action olacak
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
@@ -30,18 +32,12 @@ footera hakkımızda ve bize ulaşın kısmı eklenecek ve mail göndermeleri i�
 
 renk paletine karar verilecek ve renkler consistent olacak
 
-ana sayfa düzeni elden geçecek, belki ilanlar direkt orada görüntülenecek
-
-alakalı fotolar eklenecek ve arka plana bir texture eklenecek
+ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir texture eklenecek, belki ilanlar direkt orada görüntülenecek
 
 ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
 (Kampüsebirmesaj unutulmuş)
 
-navbar daki logoya tıklayınca ana sayfaya gitmiyor.
-
 profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
-
-Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
 
 pagination eklenecek
 
@@ -50,8 +46,6 @@ search bar koyulacak
 register rememberme de düzeltilecek
 
 kullanıcı idlerinin gözükmesi sorun mu kontrol et
-
-kampüse mesajlar kısmında sil butonu ekledim styleı düzeltilecek
 
 notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek kısımları yorum satırına koydum
 
@@ -69,8 +63,6 @@ navbar notification içi için köşesiz soft bi font seçilebilir
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (bitti)
 
-ilanlar dropdown menu hover düzeltilecek (bitti)
-
-navbar ilan ekle butonu değiştirilecek (bitti)
+ilanlar dropdown menu hover düzeltilecek (z-indexte ufak tefek sıkıntılar var ama çözemedim sona bırakalım)
 
 ilan düzenle sayfaları forms.css e linklenmemiş (bitti)

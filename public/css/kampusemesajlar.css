@@ -96,12 +96,12 @@ p.daha-fazla.collapsed {
     }
 
     button.upvoted svg{
-        fill: green;
+        fill: hsl(147, 95%, 63%);
         animation: left-spin-scale 0.3s ease forwards;
     }
 
     button.downvoted svg{
-        fill: red;
+        fill: #ff0064;
         animation: right-spin-scale 0.3s ease forwards;
 
     }
