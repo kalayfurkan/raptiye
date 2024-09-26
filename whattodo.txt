@@ -1,6 +1,13 @@
-satış ilan kartları flexbox ile düzeltilecek (bitti ?) 
+satış ilan kartları flexbox ile düzeltilecek (bitti ?)
 
-navbarı 80 yerine 64px yapacaktın kenobi
+favori simgesinin çevresine siyah outline çekilecek (bitti ?)
+
+ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş (bitti ?)
+
+
+
+
+
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
@@ -11,10 +18,6 @@ kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
 yorumların tarihleri güzel bi formatta gösterilmeli
-
-favori simgesinin çevresine siyah outline çekilecek
-
-ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş
 
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
@@ -53,6 +56,12 @@ navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan l
 navbar notification içi için köşesiz soft bi font seçilebilir
 
 
+
+
+
+
+
+navbarı 80 yerine 64px yapacaktın kenobi (bitti)
 
 ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
 (Kampüsebirmesaj unutulmuş) (bitti)
