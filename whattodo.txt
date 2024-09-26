@@ -1,11 +1,16 @@
-satış ilan kartları flexbox ile düzeltilecek (bitti ?)
+.fuatBunlariKontrolEtGülüm{
+    satış ilan kartları flexbox ile düzeltilecek (bitti ?)
 
-favori simgesinin çevresine siyah outline çekilecek (bitti ?)
+    favori simgesinin çevresine siyah outline çekilecek (bitti ?)
 
-ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş (bitti ?)
+    ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş (bitti ?)
+
+    + ya hover yapınca tooltip görünecek (gerek var mı ya bariz zaten)
+}   
+    
 
 
-
+search bar koyulacak (furkan bitti mi bu)
 
 
 
@@ -21,8 +26,6 @@ yorumların tarihleri güzel bi formatta gösterilmeli
 
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
-+ ya hover yapınca tooltip görünecek
-p
 butonlar styling'i default'a taşınacak ve a için styling eklenecek
 
 Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
@@ -38,8 +41,6 @@ ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir t
 profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
 
 pagination eklenecek
-
-search bar koyulacak
 
 register rememberme de düzeltilecek
 
