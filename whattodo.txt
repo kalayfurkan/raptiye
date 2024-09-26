@@ -10,7 +10,7 @@ kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
-yorumların tarihleri güzel bi formatta gösterilemli
+yorumların tarihleri güzel bi formatta gösterilmeli
 
 favori simgesinin çevresine siyah outline çekilecek
 
@@ -28,14 +28,9 @@ ilan detay sayfaları consistent hale getirilecek (listings.css)
 
 kısa süreli ilanlarda tarih kısmı düzeltilecek
 
-footera hakkımızda ve bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
-
 renk paletine karar verilecek ve renkler consistent olacak
 
 ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir texture eklenecek, belki ilanlar direkt orada görüntülenecek
-
-ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
-(Kampüsebirmesaj unutulmuş)
 
 profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
 
@@ -59,7 +54,8 @@ navbar notification içi için köşesiz soft bi font seçilebilir
 
 
 
-
+ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
+(Kampüsebirmesaj unutulmuş) (bitti)
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (bitti)
 
