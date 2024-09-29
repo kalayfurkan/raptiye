@@ -1,4 +1,4 @@
-Özel mesajlar sayfasına "tüm mesajlarım" diye bir buton eklenecek
+Özel mesajlar sayfasındaki "tüm mesajlarım" butonuna styling eklenecek
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
