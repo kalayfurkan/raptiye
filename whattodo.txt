@@ -40,13 +40,13 @@ sayfa linki paylaşılınca bi görselin olması için meta tag i eklenecek
 
 telden girince güzel durmuyor çoğu sayfa
 
-navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor çözemedim niye (çok önemli değil sona bırakılsın)
-
 navbar notification içi için köşesiz soft bi font seçilebilir
 
 
 
 
+
+navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor (bitti)
 
 satış ilan kartları flexbox ile düzeltilecek (bitti)
 
