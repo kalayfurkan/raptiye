@@ -1,18 +1,4 @@
-.fuatBunlariKontrolEtGülüm{
-    satış ilan kartları flexbox ile düzeltilecek (bitti ?)
-
-    favori simgesinin çevresine siyah outline çekilecek (bitti ?)
-
-    ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş (bitti ?)
-
-    + ya hover yapınca tooltip görünecek (gerek var mı ya bariz zaten)
-}   
-    
-
-
-search bar koyulacak (furkan bitti mi bu)
-
-
+Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
@@ -60,7 +46,13 @@ navbar notification içi için köşesiz soft bi font seçilebilir
 
 
 
+satış ilan kartları flexbox ile düzeltilecek (bitti)
 
+favori simgesinin çevresine siyah outline çekilecek (bitti)
+
+ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş (bitti)
+
+search bar koyulacak (bitti)
 
 navbarı 80 yerine 64px yapacaktın kenobi (bitti)
 
