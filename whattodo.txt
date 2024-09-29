@@ -1,5 +1,3 @@
-Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek
-
 Özel mesajlar sayfasına "tüm mesajlarım" diye bir buton eklenecek
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
@@ -46,6 +44,11 @@ DM kutusunda NaN yıl önce yazıyor
 
 
 
+
+
+
+
+Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek (bitti)
 
 navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor (bitti)
 
