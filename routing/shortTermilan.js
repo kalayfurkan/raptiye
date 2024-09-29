@@ -8,7 +8,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 
 
-router.get('/addshortilan', allMiddlewares.requireAuth, (req, res) => {
+router.get('/kisasureliilanekle', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addshortilan')
 })
 
@@ -50,10 +50,10 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 		message: 'İlanınız başarılı bir şekilde oluşturuldu'
 	}
 
-	res.redirect('/kisailanlar');
+	res.redirect('/kisasureliilanlar');
 })
 
-router.get('/kisailanlar', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) => {
 	const kisaIlanlar = await Shortilan.find({})
 	.populate('owner')
 	.sort({ createdAt: -1 })

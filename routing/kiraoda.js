@@ -7,7 +7,7 @@ const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
 
-router.get('/addkiraoda', allMiddlewares.requireAuth, (req, res) => {
+router.get('/evarkadasiilaniekle', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addkiraoda');
 })
 
@@ -44,19 +44,19 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 			message: 'İlanınız başarılı bir şekilde oluşturuldu'
 		}
 
-		res.redirect('/kiraoda');
+		res.redirect('/evarkadasiilanlari');
 	} catch (error) {
 		res.render('errorpage', { message: "Bir hata oluştu" + error });
 	}
 })
 
-router.get('/kiraoda', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/evarkadasiilanlari', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraodalar = await Kiraoda.find({}).sort({createdAt:-1});
 	const currentUser = await User.findById(req.session.userId);
 	res.render('kiraodalar', { ilanlar: kiraodalar, currentUser })
 })
 
-router.get('/kiraoda/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/evarkadasiilani/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraid = req.params.kiraodaid;
 	const kira = await Kiraoda.findById(kiraid);
 	const owner = await User.findById(kira.owner);
@@ -64,7 +64,7 @@ router.get('/kiraoda/:kiraodaid', allMiddlewares.requireAuth, async (req, res) =
 	res.render('kiraodadetay', { ilan: kira, owner,currentUserID });
 })
 
-router.get('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/evarkadasiilani/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraid = req.params.kiraodaid;
 	const kira = await Kiraoda.findById(kiraid);
 

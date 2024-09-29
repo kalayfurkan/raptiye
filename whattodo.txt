@@ -42,6 +42,7 @@ telden girince güzel durmuyor çoğu sayfa
 
 navbar notification içi için köşesiz soft bi font seçilebilir
 
+DM kutusunda NaN yıl önce yazıyor
 
 
 
