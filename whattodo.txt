@@ -1,5 +1,7 @@
 Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek
 
+Özel mesajlar sayfasına "tüm mesajlarım" diye bir buton eklenecek
+
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
