@@ -1,12 +1,12 @@
 Özel mesajlar sayfasındaki "tüm mesajlarım" butonuna styling eklenecek
 
-footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
+footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak (bitti)
 
-Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine.
+Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine. (bitti)
 
 kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action olacak
 
-dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
+dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (saçmaaaaa)
 
 yorumların tarihleri güzel bi formatta gösterilmeli
 
@@ -18,13 +18,11 @@ Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
 
 ilan detay sayfaları consistent hale getirilecek (listings.css)
 
-kısa süreli ilanlarda tarih kısmı düzeltilecek
-
 renk paletine karar verilecek ve renkler consistent olacak
 
 ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir texture eklenecek, belki ilanlar direkt orada görüntülenecek
 
-profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
+profilim sayfası düzenlenecek
 
 pagination eklenecek
 
@@ -47,6 +45,8 @@ Satış ilanları mobilde kötü görünüyor ve navbara tıklayınca ara butonu
 carouseller ile favorilere ekleme butonları çakışıyor caourselin oku varsa favorilere eklenmiyor ilan
 
 Eğer fotoğraf yoksa detay sayfaları sıkıntı çıkarıyor
+
+Kampüse mesaj bırakma kısmına görsel ekleme yapılacak
 
 
 Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek (bitti)

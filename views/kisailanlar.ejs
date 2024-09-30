@@ -94,18 +94,28 @@
                                                         </div>
                                                         <div class="card-content">
                                                             <p>
-                                                                <a href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">
+                                                                <a
+                                                                    href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">
                                                                     <button>Mesaj at</button>
                                                                 </a>
                                                             </p>
                                                         </div>
                                                         <p>
-                                                            <a href="/profile/<%= ilan.owner.username%>"><%=ilan.owner.username%></a>
+                                                            <a href="/profile/<%= ilan.owner.username%>">
+                                                                <%=ilan.owner.username%>
+                                                            </a>
                                                         </p>
                                                     </div>
-                                                    <div class="card-footer text-muted text-center">
-                                                        Bitiş Tarihi: <%= ilan.removalDate %>
-                                                    </div>
+
+                                                    <% var removalDate=new Date(ilan.removalDate); var now=new Date();
+                                                        var timeDiff=removalDate - now; // Gün ve saat hesaplaması var
+                                                        days=Math.floor(timeDiff / (1000 * 60 * 60 * 24)); var
+                                                        hours=Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60
+                                                        * 60)); %>
+
+                                                        <div class="card-footer text-muted text-center">
+                                                            <%= days %> gün <%= hours %> saat kaldı %>
+                                                        </div>
                                     </div>
                                     <% }) %>
                                         <% } else { %>

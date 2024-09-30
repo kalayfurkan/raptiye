@@ -24,7 +24,7 @@
                             <li class="list-group-item">
                                 <strong class="message-sender">
                                     <% if (message.owner) { %>
-                                        <a href="/profile/<%= message.owner._id %>"><%= message.owner.username %></a>
+                                        <a href="/profile/<%= message.owner.username %>"><%= message.owner.username %></a>
                                     <% } else { %>
                                         Anonim
                                     <% } %>
@@ -143,7 +143,7 @@
                                                 <% message.yorumlar.forEach(function(yorum) { %>
                                                     <li class="list-group-item">
                                                         <p class="daha-fazla">
-                                                            <a href="/profile/<%=yorum.owner._id.toString() %>"></a>
+                                                            <a href="/profile/<%=yorum.owner.username %>">
                                                                 <strong><%= yorum.owner.username %></strong>
                                                             </a>
                                                             : <%= yorum.yorum %>
