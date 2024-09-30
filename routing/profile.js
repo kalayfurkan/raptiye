@@ -31,32 +31,32 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 	res.render('profile', { ilanlar, user, jobs, kiralar, shortilanlar, favorites,favoritesJob,favoritesKira });
 });
 
-router.get('/profile/:userid', allMiddlewares.requireAuth, async (req, res) => {
-	const userid = req.params.userid;
-	const user = await User.findById(userid);
+router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) => {
+	const username = req.params.username;
+	const user = await User.findOne({username:username});
 	const currentUser= await User.findById(req.session.userId);
 
 	if(currentUser._id.equals(user._id)){
 		return res.redirect('/profile');
 	}
 
-	const posts = await Ilan.find({ owner: userid });
-	const jobs = await Job.find({ owner: userid });
-	const kiralar = await Kiraoda.find({ owner: userid });
-	const shortilanlar = await Shortilan.find({ owner: userid });
+	const posts = await Ilan.find({ owner: user._id });
+	const jobs = await Job.find({ owner: user._id });
+	const kiralar = await Kiraoda.find({ owner: user._id });
+	const shortilanlar = await Shortilan.find({ owner: user._id });
 
 	res.render('anyprofile', { user, posts, jobs, kiralar, shortilanlar,currentUser });
 })
 
-router.get('/editprofile/:userid', allMiddlewares.requireAuth, async (req, res) => {
-	const userid = req.params.userid;
-	const user = await User.findById(userid);
+router.get('/editprofile/:username', allMiddlewares.requireAuth, async (req, res) => {
+	const username = req.params.username;
+	const user = await User.findOne({username:username});
 	res.render('editprofile', { user });
 });
 
-router.post('/editprofile/:userid', allMiddlewares.requireAuth, async (req, res) => {
-	const userid = req.params.userid;
-	const user = await User.findById(userid);
+router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, res) => {
+	const username = req.params.username;
+	const user = await User.findOne({username:username});
 
 	if (!user) {
 		return res.status(404).send('User not found.');
@@ -65,7 +65,7 @@ router.post('/editprofile/:userid', allMiddlewares.requireAuth, async (req, res)
 	try {
 		if (req.files && req.files.profilePic) {
 			try {
-				if (user.profilePic) {
+				if (user.profilePic && user.profilePic!="/img/Default_pfp.svg.png") {
 					const oldPicPath = path.join(__dirname, '../public/', user.profilePic);
 					if (fs.existsSync(oldPicPath)) {
 						fs.unlinkSync(oldPicPath);
@@ -83,13 +83,13 @@ router.post('/editprofile/:userid', allMiddlewares.requireAuth, async (req, res)
 					.jpeg({ quality: quality })
 					.toFile(imagePath);
 
-				await User.updateOne({ _id: userid }, { $set: { profilePic: `/img/profilepictures/${date + req.files.profilePic.name}` } });
+				await User.updateOne({ username: username }, { $set: { profilePic: `/img/profilepictures/${date + req.files.profilePic.name}` } });
 			} catch (error) {
 				res.status(400).send('Bir hata oluştu');
 			}
 		}
 		if(req.body.username!=user.username || req.body.info!=user.info){
-			await User.updateOne({ _id: userid }, { $set: { info: req.body.info, username: req.body.username } });
+			await User.updateOne({ username: username }, { $set: { info: req.body.info, username: req.body.username } });
 		}
 		res.redirect('/profile');
 	} catch (error) {
