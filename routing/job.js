@@ -7,7 +7,7 @@ const path = require('path');
 const sharp = require('sharp');
 const fs = require('fs');
 
-router.get('/addjob', allMiddlewares.requireAuth, (req, res) => {
+router.get('/isilaniekle', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addjob');
 })
 
@@ -45,7 +45,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 			message: 'İlanınız başarılı bir şekilde oluşturuldu'
 		}
 
-		res.redirect('/isler');
+		res.redirect('/isilanlari');
 
 	} catch (error) {
 		res.render('errorpage', { message: "Bir hata oluştu" + error });
@@ -53,13 +53,13 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 
-router.get('/isler', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/isilanlari', allMiddlewares.requireAuth, async (req, res) => {
 	const jobs = await Job.find({}).sort({ createdAt: -1 });
 	const currentUser = await User.findById(req.session.userId);
 	res.render('isler', { jobs, currentUser });
 })
 
-router.get('/isler/:jobid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/isilani/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobid = req.params.jobid;
 	const job = await Job.findById(jobid);
 	const owner = await User.findById(job.owner);
@@ -67,7 +67,7 @@ router.get('/isler/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	res.render('jobDetails', { job, owner, currentUserID });
 })
 
-router.get('/job/edit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/isilani/edit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
 

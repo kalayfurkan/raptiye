@@ -23,12 +23,9 @@ async function isThereNotification(req, res, next) {
             const user = await User.findById(req.session.userId);
             if (user) {
                 const notificationMessages = await Message.find({ notification: user._id });
-                
-                if (notificationMessages.length > 0) {
+            
                     res.locals.hasNotification = notificationMessages.length;
-                } else {
-                    res.locals.hasNotification = 0;
-                }
+                
             }
         } catch (error) {
             console.error('User fetch error:', error);

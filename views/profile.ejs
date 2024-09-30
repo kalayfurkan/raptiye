@@ -26,7 +26,7 @@
                         <h2>
                             <%= user.username %>
                         </h2>
-                        <a href="/editprofile/<%=user._id%>" class="edit-profile-btn">Profili Düzenle</a>
+                        <a href="/editprofile/<%=user.username%>" class="edit-profile-btn">Profili Düzenle</a>
 
                         <!-- şurayı editlersiniz kullanıcı hakkında info -->
                         <h6>
@@ -42,14 +42,14 @@
                                 <% ilanlar.forEach(function(ilan) { %>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/ilan/<%= ilan._id %>" class="text-dark fw-bold"
+                                        <a href="/satisilani/<%= ilan._id %>" class="text-dark fw-bold"
                                             style="font-size: 18px; text-decoration: none;">
                                             <%= ilan.title %> - ₺<%= ilan.price %>
                                         </a>
                                         <!-- Düzenle ve Sil Butonları -->
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
                                             <!-- Düzenle Butonu -->
-                                            <a href="/ilan/edit/<%= ilan._id %>"
+                                            <a href="/satisilani/edit/<%= ilan._id %>"
                                                 class="btn btn-primary btn-md">Düzenle</a>
                                             <!-- Sil Butonu -->
                                             <form action="/ilan/delete/<%= ilan._id %>" method="POST" class="d-inline">
@@ -66,14 +66,14 @@
                                 <% jobs.forEach(function(job) { %>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/job/<%= job._id %>" class="text-dark fw-bold"
+                                        <a href="/isilani/<%= job._id %>" class="text-dark fw-bold"
                                             style="font-size: 18px; text-decoration: none;">
                                             <%= job.jobTitle %> - ₺<%= job.price %>
                                         </a>
 
                                         <!-- Düzenle ve Sil Butonları -->
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <a href="/job/edit/<%= job._id %>"
+                                            <a href="/isilani/edit/<%= job._id %>"
                                                 class="btn btn-primary btn-md">Düzenle</a>
                                             <form action="/job/delete/<%= job._id %>" method="POST" class="d-inline">
                                                 <button type="submit" class="btn btn-danger btn-md">Sil</button>
@@ -89,14 +89,14 @@
                                 <% kiralar.forEach(function(kira) { %>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/kiraoda/<%= kira._id %>" class="text-dark fw-bold"
+                                        <a href="/evarkadasiilani/<%= kira._id %>" class="text-dark fw-bold"
                                             style="font-size: 18px; text-decoration: none;">
                                             <%= kira.title %>
                                         </a>
 
                                         <!-- Düzenle ve Sil Butonları -->
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <a href="/kiraoda/edit/<%= kira._id %>"
+                                            <a href="/evarkadasiilani/edit/<%= kira._id %>"
                                                 class="btn btn-primary btn-md">Düzenle</a>
                                             <form action="/kiraoda/delete/<%= kira._id %>" method="POST"
                                                 class="d-inline">

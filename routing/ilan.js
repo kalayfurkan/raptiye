@@ -7,6 +7,11 @@ const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
 
+
+router.get('/satisilaniekle', allMiddlewares.requireAuth, (req, res) => {
+	res.render('addpost');
+});
+
 router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		let images = req.files?.images || [];
@@ -41,7 +46,7 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 		}
 
 
-		res.redirect('/ilanlar');
+		res.redirect('/satisilanlari');
 
 
 	} catch (error) {
@@ -51,7 +56,7 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 });
 
 
-router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/satisilanlari', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const allPosts = await Ilan.find({})
 			.populate('owner', 'username')
@@ -64,7 +69,7 @@ router.get('/ilanlar', allMiddlewares.requireAuth, async (req, res) => {
 	}
 });
 
-router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/satisilani/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
@@ -78,7 +83,7 @@ router.get('/ilan/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 
-router.get('/ilan/edit/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/satisilani/edit/:ilanid', allMiddlewares.requireAuth, async (req, res) => {
 	try {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);

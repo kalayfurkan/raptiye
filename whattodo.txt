@@ -1,6 +1,4 @@
-satış ilan kartları flexbox ile düzeltilecek (bitti ?) 
-
-navbarı 80 yerine 64px yapacaktın kenobi
+Özel mesajlar sayfasındaki "tüm mesajlarım" butonuna styling eklenecek
 
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak
 
@@ -10,16 +8,10 @@ kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek
 
-yorumların tarihleri güzel bi formatta gösterilemli
-
-favori simgesinin çevresine siyah outline çekilecek
-
-ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş
+yorumların tarihleri güzel bi formatta gösterilmeli
 
 kampüse mesaj bırakmak önceki mesajların tepesinde sayfaya bitişik olacak
 
-+ ya hover yapınca tooltip görünecek
-p
 butonlar styling'i default'a taşınacak ve a için styling eklenecek
 
 Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
@@ -28,20 +20,13 @@ ilan detay sayfaları consistent hale getirilecek (listings.css)
 
 kısa süreli ilanlarda tarih kısmı düzeltilecek
 
-footera hakkımızda ve bize ulaşın kısmı eklenecek ve mail göndermeleri için form ekleyeceğiz.
-
 renk paletine karar verilecek ve renkler consistent olacak
 
 ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir texture eklenecek, belki ilanlar direkt orada görüntülenecek
 
-ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
-(Kampüsebirmesaj unutulmuş)
-
 profilim sayfası düzenlenecek (kira ilanlarım yerine oda arkadaşı ilanlarım yazılacak)
 
 pagination eklenecek
-
-search bar koyulacak
 
 register rememberme de düzeltilecek
 
@@ -53,13 +38,33 @@ sayfa linki paylaşılınca bi görselin olması için meta tag i eklenecek
 
 telden girince güzel durmuyor çoğu sayfa
 
-navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor çözemedim niye (çok önemli değil sona bırakılsın)
-
 navbar notification içi için köşesiz soft bi font seçilebilir
 
+DM kutusunda NaN yıl önce yazıyor
+
+Satış ilanları mobilde kötü görünüyor ve navbara tıklayınca ara butonu navbarın üstüne geliyor
+
+carouseller ile favorilere ekleme butonları çakışıyor caourselin oku varsa favorilere eklenmiyor ilan
+
+Eğer fotoğraf yoksa detay sayfaları sıkıntı çıkarıyor
 
 
+Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek (bitti)
 
+navbarda dropdown içindeki soldaki linklerde eğer tam text üstüne basarsan link çalışmıyor (bitti)
+
+satış ilan kartları flexbox ile düzeltilecek (bitti)
+
+favori simgesinin çevresine siyah outline çekilecek (bitti)
+
+ilanlar sayfalarındaki favori yıldızları köşeye fazla yakında ve küçük olmuş (bitti)
+
+search bar koyulacak (bitti)
+
+navbarı 80 yerine 64px yapacaktın kenobi (bitti)
+
+ilan verdikten sonra ne ilanıysa o tip ilanlar sayfasına köprü konacak
+(Kampüsebirmesaj unutulmuş) (bitti)
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (bitti)
 

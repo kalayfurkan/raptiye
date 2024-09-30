@@ -40,14 +40,14 @@
                         </p>
                         <p>
                             <strong>İlan Sahibi Profili: </strong>
-                            <a href="/profile/<%= owner._id %>">
+                            <a href="/profile/<%= owner.username %>">
                                 <%= owner.username %>
                             </a>
                         </p>
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="/kiraoda" class="btn btn-primary">Tüm İlanlara Geri Dön</a>
+                    <a href="/evarkadasiilanlari" class="btn btn-primary">Tüm İlanlara Geri Dön</a>
                 </div>
             </div>
             <%- include('partials/footer') %>

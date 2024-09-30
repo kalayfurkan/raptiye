@@ -94,13 +94,13 @@
                                                         </div>
                                                         <div class="card-content">
                                                             <p>
-                                                                <a href="/messages/<%=currentUserid%>/<%=ilan.owner%>">
+                                                                <a href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">
                                                                     <button>Mesaj at</button>
                                                                 </a>
                                                             </p>
                                                         </div>
                                                         <p>
-                                                            <a href="/profile/<%= ilan.owner._id%>"><%=ilan.owner.username%></a>
+                                                            <a href="/profile/<%= ilan.owner.username%>"><%=ilan.owner.username%></a>
                                                         </p>
                                                     </div>
                                                     <div class="card-footer text-muted text-center">

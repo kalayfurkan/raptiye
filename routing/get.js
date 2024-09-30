@@ -10,12 +10,6 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
 	res.render('login');
 });
-router.get('/ilandetay', (req, res) => {
-	res.render('ilandetay');
-});
-router.get('/addpost', allMiddlewares.requireAuth, (req, res) => {
-	res.render('addpost');
-});
 router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
 });
@@ -24,7 +18,7 @@ router.get('/register', (req, res) => {
 });
 
 //Ömer done that
-router.get('/lettergrade', (req, res) => {
+router.get('/harfnotuhesapla', (req, res) => {
 	res.render('lettergrade');
 });
 
