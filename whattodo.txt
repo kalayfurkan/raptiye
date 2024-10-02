@@ -1,5 +1,9 @@
 Özel mesajlar sayfasındaki "tüm mesajlarım" butonuna styling eklenecek
 
+mobilde ilanlar üstüne hover yapınca sıkıntı oluyor
+
+yıldızın initail fill i beyazımsı olsun
+
 footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak (bitti)
 
 Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine. (bitti)

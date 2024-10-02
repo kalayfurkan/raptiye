@@ -23,7 +23,7 @@
 	top: 0; */
 	height: 64px;
 	width: 100%;
-	z-index: 1;
+	z-index: 5;
 	background-color: var(--secondary-color);
 	display: flex;
 	justify-content: space-between;
@@ -116,7 +116,7 @@
 	background-color: var(--secondary-color);
 	min-width: 240px;
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-	z-index: 2;
+	z-index: 5;
 	padding: 10px 0;
 }
 

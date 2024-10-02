@@ -88,8 +88,14 @@
                                                         <h5 class="card-title">
                                                             <%= ilan.title %>
                                                         </h5>
+                                                        
                                                         <p class="card-content">
                                                             <%= ilan.description %>
+                                                        </p>
+
+                                                        <p class="card-content">
+                                                            <strong>İlan Türü:</strong>
+                                                            <%= ilan.searchingFor %>
                                                         </p>
 
                                                         <!-- yıldız butonu -->
@@ -113,9 +119,6 @@
                                                             </button>
                                                         </form>
 
-                                                        <p><strong>İlan Türü:</strong>
-                                                            <%= ilan.searchingFor %>
-                                                        </p>
                                                         <a href="/evarkadasiilani/<%=ilan._id  %>"
                                                             class="btn btn-outline-primary btn-lg px-4 py-2 rounded-pill">
                                                             Detaylar

@@ -93,3 +93,13 @@ svg.star path {
 .star-btn:hover svg.star path, .star-btn.spin svg.star path {
     fill: #ffff00;
 }
+
+@media only screen and (max-width: 500px) {
+    .container{
+        padding: 0;
+        padding-top: 10px;
+    }
+    .card img{
+        width: 100px !important; /* bootstrapdan dolayı zorunlu */
+    }
+}  
