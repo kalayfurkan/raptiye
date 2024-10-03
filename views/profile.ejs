@@ -29,11 +29,9 @@
                         <a href="/editprofile/<%=user.username%>" class="edit-profile-btn">Bilgilerini Düzenle</a>
 
                         <!-- şurayı editlersiniz kullanıcı hakkında info -->
-                        <h6>
-                            <%= user.info ? user.info
-                                : "Hakkınızda Kısmı"
-                                %>
-                        </h6>
+                        <p>
+                            <%= user.info ? user.info : "Hakkınızda Kısmı" %>
+                        </p>
                     </div>
                     <div class="profile-details">
                         <h2>Satış İlanlarım</h2>

@@ -24,6 +24,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.profile-container p{
+    margin-top: 20px;
+    /* text-align: start; */
+}
+
+
 .profile-sidebar {
     flex: 1;
     text-align: center;
@@ -53,7 +59,7 @@
 .edit-profile-btn {
     display: inline-block;
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 6px 12px;
     background-color: var(--secondary-color-dark);
     color: #333;
     text-decoration: none;
