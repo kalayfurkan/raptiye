@@ -3,6 +3,9 @@ const router = express.Router();
 const allMiddlewares = require('../middlewares.js');
 const Kampusemesaj = require('../models/kampusemesajSchema.js');
 const User = require('../models/userSchema');
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs');
 
 router.get('/kampusebirmesajbirak', allMiddlewares.requireAuth, (req, res) => {
 	res.render('kampusebirmesajver');
@@ -15,16 +18,40 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		let user;
 		const isAnonim = !!req.body.anonim;
 
+		const maxWidth = 600;
+		const quality = 50;
+
 		if (isAnonim) {
 			user = null;
 		} else {
 			const userid = await User.findById(req.session.userId);
 			user = userid._id;
 		}
+		
+		let imagePath = null;
+		
+		// Dosya var mı kontrolü
+		if (req.files && req.files.images) {
+			try {
+				const image = req.files.images;
+				const date = new Date().toISOString().replace(/:/g, '-');
+				imagePath = path.resolve(__dirname, '../public/img/kampusemesajimages', date+image.name);
+
+				await sharp(image.data)
+					.resize(maxWidth)
+					.jpeg({ quality: quality })
+					.toFile(imagePath);
+				
+				imagePath = `/img/kampusemesajimages/${date+image.name}`;
+			} catch (error) {
+				return res.render('errorpage', { message: "Bir hata oluştu: " + error.message });
+			}
+		}
 
 		await Kampusemesaj.create({
 			mesaj: message,
 			owner: user,
+			images:imagePath
 		})
 		res.redirect('/kampusemesajlar');
 	} catch (error) {
@@ -49,7 +76,17 @@ router.post('/deletekampusmesaj/:kampusemesajid', allMiddlewares.requireAuth, as
 		const currentUser=await User.findById(req.session.userId);
 		const currentMessage=await Kampusemesaj.findById(kampusemesajid);
 
+		
 		if(currentUser && currentMessage && currentUser._id.equals(currentMessage.owner)){
+			if (currentMessage.images) {
+					const fullImagePath = path.join(__dirname, '../public', currentMessage.images);
+					try {
+						fs.unlinkSync(fullImagePath);
+						console.log(`Image deleted: ${fullImagePath}`);
+					} catch (error) {
+						console.error(`Failed to delete image: ${fullImagePath}`, error);
+					}
+			}
 			await Kampusemesaj.findByIdAndDelete(kampusemesajid);
 			res.redirect('/kampusemesajlar');
 		}else{

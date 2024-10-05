@@ -28,6 +28,9 @@ const kampusemesajSchema = new mongoose.Schema({
 		default: Date.now,
 		expires: 604800,
 	},
+	images: {
+		type: String,
+	},
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
