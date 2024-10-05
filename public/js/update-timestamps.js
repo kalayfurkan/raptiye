@@ -1,6 +1,6 @@
 function timeAgo(inputTime) {
     const now = new Date();
-    const [date, time] = inputTime.split(" ");
+    const [date, time] = inputTime.trim().split(" "); // Trim extra spaces and then split
     const [day, month, year] = date.split(".");
     const [hours, minutes, seconds] = time.split(":");
 
@@ -24,9 +24,17 @@ function timeAgo(inputTime) {
         return formatTime(pastDate);
     } else if (diff < oneDay) {
         return formatTime(pastDate);
-    } else if (now.getDate() === pastDate.getDate() + 1 && now.getMonth() === pastDate.getMonth() && now.getFullYear() === pastDate.getFullYear()) {
+    } else if (
+        now.getFullYear() === pastDate.getFullYear() &&
+        now.getMonth() === pastDate.getMonth() &&
+        now.getDate() === pastDate.getDate() + 1
+    ) {
         return `dün`;
-    } else if (now.getDate() === pastDate.getDate() + 2 && now.getMonth() === pastDate.getMonth() && now.getFullYear() === pastDate.getFullYear()) {
+    } else if (
+        now.getFullYear() === pastDate.getFullYear() &&
+        now.getMonth() === pastDate.getMonth() &&
+        now.getDate() === pastDate.getDate() + 2
+    ) {
         return `geçen gün`;
     } else if (diff < oneMonth) {
         const daysAgo = Math.floor(diff / oneDay);
@@ -46,7 +54,7 @@ function updateTimestamps() {
     
     // Loop through each element and apply the timeAgo function
     timestamps.forEach(element => {
-        const timeText = element.textContent; // Get the text content of the element
+        const timeText = element.textContent.trim(); // Trim the text content
         const updatedTime = timeAgo(timeText); // Apply the timeAgo function
         element.textContent = updatedTime; // Update the text with the result
     });
