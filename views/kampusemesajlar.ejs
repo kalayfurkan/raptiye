@@ -32,7 +32,12 @@
                                 <p class="daha-fazla">
                                     <%= message.mesaj %>
                                 </p>
+
+                                <!-- Görsel kısmı burdan-->
                                 
+                                <% if(message.images){ %>
+                                      <img src="<%=message.images  %>" alt="">
+                                <% } %>
                                 <!-- Yorumlar için dropdown -->
                                 <div class="mt-3">
                                     <div class="mesaj-alt-butonalar">
