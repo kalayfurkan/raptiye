@@ -28,8 +28,7 @@
                                     <div class="card">
                                         <!-- Bootstrap Carousel Başlangıcı -->
                                         <% if (job.images.length> 0) { %>
-                                            <div id="carousel<%= job._id %>" class="carousel slide"
-                                                data-bs-ride="carousel">
+                                            <div id="carousel<%= job._id %>" class="carousel slide" data-bs-ride="carousel">
                                                 <% if (job.images.length !=1) { %>
                                                     <div class="carousel-indicators">
                                                         <% job.images.forEach((image, index)=> { %>
@@ -40,19 +39,16 @@
                                                                 aria-current="<%= index === 0 ? 'true' : 'false' %>"
                                                                 aria-label="Slide <%= index + 1 %>">
                                                             </button>
-                                                            <% }) %>
+                                                        <% }) %>
                                                     </div>
-                                                    <% } %>
-
+                                                <% } %>
                                                         <div class="carousel-inner">
                                                             <% job.images.forEach(function(image, index) { %>
                                                                 <div
                                                                     class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                                    <img src="<%= image %>"
-                                                                        onerror="this.src='img/job-img.jpg';"
-                                                                        class="d-block w-100" alt="Job Image">
+                                                                    <img src="<%= image %>" onerror="this.src='img/job-img.jpg';" class="d-block w-100" alt="Job Image">
                                                                 </div>
-                                                                <% }) %>
+                                                            <% }) %>
                                                         </div>
                                                         <% if (job.images.length !=1) { %>
                                                             <button class="carousel-control-prev" type="button"
@@ -69,7 +65,7 @@
                                                                     aria-hidden="true"></span>
                                                                 <span class="visually-hidden">Next</span>
                                                             </button>
-                                                            <% } %>
+                                                        <% } %>
                                             </div>
                                             <!-- Carousel Sonu -->
                                             <% } else { %>

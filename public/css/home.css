@@ -41,13 +41,11 @@ header{
 
 h1 {
     font-size: 3rem;
-    color: 10 10 10;
     margin-top: 30px;
 }
 
 h2 {
     font-size: 1.5em;
-    color: 10 10 10;
     margin-top: 15px;
     margin-bottom: 30px;
 }
@@ -64,4 +62,10 @@ p {
 a {
     color: #007bff;
     text-decoration: none;
+}
+
+@media only screen and (max-width: 500px) {
+    h1{
+        font-size: 2rem;
+    }
 }
