@@ -1,3 +1,5 @@
+Kampüse mesajlar bölümüne foto atmak olsun mu
+
 Özel mesajlar sayfasındaki "tüm mesajlarım" butonuna styling eklenecek
 
 mobilde ilanlar üstüne hover yapınca sıkıntı oluyor

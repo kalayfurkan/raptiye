@@ -21,12 +21,12 @@
                 </header>
                 <div class="profile-container">
                     <div class="profile-sidebar">
-                        <img src="<%=user.profilePic  %>" onerror="this.src='img/profile-circle.svg';"
+                        <img class="profile-pic" src="<%=user.profilePic  %>" onerror="this.src='img/profile-circle.svg';"
                             alt="Profil Fotoğrafı">
                         <h2>
                             <%= user.username %>
                         </h2>
-                        <a href="/editprofile/<%=user.username%>" class="edit-profile-btn">Bilgilerini Düzenle</a>
+                        <a href="/editprofile/<%=user.username%>" class="edit-profile-btn">Düzenle</a>
 
                         <!-- şurayı editlersiniz kullanıcı hakkında info -->
                         <p>
@@ -40,9 +40,8 @@
                                 <% ilanlar.forEach(function(ilan) { %>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/satisilani/<%= ilan._id %>" class="text-dark fw-bold"
-                                            style="font-size: 18px; text-decoration: none;">
-                                            <%= ilan.title %> - ₺<%= ilan.price %>
+                                        <a href="/satisilani/<%= ilan._id %>" class="text-dark fw-bold" style="font-size: 18px; text-decoration: none;">
+                                            <%= ilan.title %>
                                         </a>
                                         <!-- Düzenle ve Sil Butonları -->
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
@@ -66,7 +65,7 @@
                                         <!-- İlan Başlığı ve Fiyatı -->
                                         <a href="/isilani/<%= job._id %>" class="text-dark fw-bold"
                                             style="font-size: 18px; text-decoration: none;">
-                                            <%= job.jobTitle %> - ₺<%= job.price %>
+                                            <%= job.jobTitle %>
                                         </a>
 
                                         <!-- Düzenle ve Sil Butonları -->
@@ -140,7 +139,7 @@
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
                                             <form action="/deletefavorites/<%=favorite._id%>" method="POST"
                                                 class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Favorilerden Çıkar</button>
+                                                <button type="submit" class="btn btn-danger btn-md">Çıkar</button>
                                             </form>
                                         </div>
                                     </li>
@@ -155,7 +154,7 @@
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
                                             <form action="/jobdeletefavorites/<%=favoriteJob._id%>" method="POST"
                                                 class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Favorilerden Çıkar</button>
+                                                <button type="submit" class="btn btn-danger btn-md">Çıkar</button>
                                             </form>
                                         </div>
                                     </li>
@@ -171,7 +170,7 @@
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
                                             <form action="/kiradeletefavorites/<%=favoriteKira._id%>" method="POST"
                                                 class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Favorilerden Çıkar</button>
+                                                <button type="submit" class="btn btn-danger btn-md">Çıkar</button>
                                             </form>
                                         </div>
                                     </li>
