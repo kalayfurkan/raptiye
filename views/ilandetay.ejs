@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/img/logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlanlar</title>
+    <title>İlan Detayları</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/ilandetay.css">
@@ -21,7 +21,59 @@
 
                 <div class="content">
                     <div class="image-gallery">
+                        <!--  -->
                         <% if (ilan.images.length> 0) { %>
+                            <div id="carousel<%= ilan._id %>" class="carousel slide" data-bs-ride="carousel">
+                                <% if (ilan.images.length !=1) { %>
+                                    <div class="carousel-indicators">
+                                        <% ilan.images.forEach((image, index)=> { %>
+                                            <button type="button"
+                                                data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                                data-bs-slide-to="<%= index %>"
+                                                class="<%= index === 0 ? 'active' : '' %>"
+                                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                aria-label="Slide <%= index + 1 %>">
+                                            </button>
+                                        <% }) %>
+                                    </div>
+                                <% } %>
+                                <div class="carousel-inner">
+                                    <% ilan.images.forEach(function(image, index) { %>
+                                        <div
+                                            class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                            <img src="<%= image %>" onerror="this.src='img/satilik-img.jpg';" class="d-block w-100" alt="Item Image">
+                                        </div>
+                                    <% }) %>
+                                </div>
+                                <% if (ilan.images.length !=1) { %>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carousel<%= ilan._id %>"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carousel<%= ilan._id %>"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                <% } %>
+                            </div>
+                            <!-- Carousel Sonu -->
+                        <% } else { %>
+                            <div class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="/img/satilik-img.jpg" class="d-block w-100" alt="Default Item Image">
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <!--  -->
+                        <!-- <% if (ilan.images.length> 0) { %>
                             <div id="carouselIlan" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <% ilan.images.forEach(function(image, index) { %>
@@ -41,7 +93,7 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
-                            <% } %>
+                            <% } %> -->
                     </div>
 
                     <div class="details">

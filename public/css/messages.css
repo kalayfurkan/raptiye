@@ -51,7 +51,7 @@
 .right-bubble {
     border-radius: 15px;
     border-bottom-right-radius: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color-dark2);
     color: #ffffff;
 }
 
