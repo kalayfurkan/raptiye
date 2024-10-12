@@ -13,7 +13,7 @@
 
 <body>
     <div id="wrapper">
-        <%- include('partials/navbar') %>
+            <%- include('partials/navbar') %>
             <div class="container">
                 <header>
                     <h1>İlan Detayları</h1>
@@ -41,7 +41,7 @@
                                     <% ilan.images.forEach(function(image, index) { %>
                                         <div
                                             class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                            <img src="<%= image %>" onerror="this.src='img/satilik-img.jpg';" class="d-block w-100" alt="Item Image">
+                                            <img src="<%= image %>" onerror="this.src='img/satilik-img.jpg';" class="d-block" alt="Item Image">
                                         </div>
                                     <% }) %>
                                 </div>
@@ -67,7 +67,7 @@
                             <div class="carousel slide">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="/img/satilik-img.jpg" class="d-block w-100" alt="Default Item Image">
+                                        <img src="/img/satilik-img.jpg" class="d-block" alt="Default Item Image">
                                     </div>
                                 </div>
                             </div>
@@ -97,35 +97,33 @@
                     </div>
 
                     <div class="details">
-                        <h2 class="ilanbasligi">
-                            <%= ilan.title %>
-                        </h2>
-                        <p class="price">
-                            <%= ilan.price %> TL
-                        </p>
-                        <p class="description">
-                            <%= ilan.description %>
-                        </p>
-                        <div class="seller-info">
-                            <h3>Satıcıya ulaşmak için</h3>
-                            <%= ilan.reachYou %>
+                        <div class="item-info">
+                            <h2 class="ilanbasligi">
+                                <%= ilan.title %>
+                            </h2>
+                            <p class="price">
+                                <%= ilan.price %> TL
+                            </p>
+                            <p class="description">
+                                <%= ilan.description %>
+                            </p>
                         </div>
                         <div class="seller-info">
-                            <h3>ya da doğrudan mesaj gönderin</h3>
-                            <a href="/messages/<%=currentUserId%>/<%=ilan.owner%>">
-                                <button>Mesaj At</button>
-                            </a>
-                        </div>
-                        
-                        <div class="seller-info">
-                            <h3>Satıcı Profili:
-                                 <a href="/profile/<%=user.username  %>"><%=user.username  %> </a>
-                            </h3>
+                            <div>
+                                <h3>Satıcıya ulaşmak için</h3>
+                                <p class="reach-you"><%= ilan.reachYou %></p>
+                            </div>
+                            <div class="reach-info">
+                                <p>
+                                    <strong>Satıcı Profili:</strong>
+                                    <a href="/profile/<%=user.username  %>"><%=user.username  %> </a>
+                                </p>
+                                <a class="btn btn-primary mesaj-at-btn" href="/messages/<%=currentUserId%>/<%=ilan.owner%>">Mesaj At</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <%- include('partials/footer') %>
     </div>
 

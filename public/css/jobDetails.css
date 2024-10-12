@@ -38,7 +38,7 @@ header h1 {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
 }
 
 .details h2 {
@@ -46,9 +46,7 @@ header h1 {
     color: #333;
     margin-top: 0;
 }
-.item-info{
-    flex: 1;
-}
+
 .price {
     color: var(--primary-color);
     font-size: 20px;
@@ -68,24 +66,19 @@ header h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 10px;
 }
 
-.seller-info h3 {
-    font-size: 1em;
-    font-weight: bold;
-    margin: 0 0 5px 0;
-    
-    color: #333;
-}
-.seller-info .reach-info{
-    display: flex;
-    flex-direction: column;
-    /* width: 100%; */
-}
-.seller-info .reach-info .mesaj-at-btn{
+.mesaj-at-btn{
     align-self: flex-end;
 }
+
+.back-to-inbox{
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+
 .description::first-letter,
 .ilanbasligi::first-letter {
     text-transform: uppercase;

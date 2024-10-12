@@ -70,9 +70,17 @@ p{
     border-radius: 15px;
 }
 
+img.back-to-prev {
+    height: 15px;
+    width: auto;
+    margin: 0 5px 2px 2px;
+    transform: rotate(90deg);
+    transform-origin: center;
+}
 
-
-
+.carousel-item img{
+    border-radius: 5px;
+}
 
 /* accessibility için */
 input:focus-visible,

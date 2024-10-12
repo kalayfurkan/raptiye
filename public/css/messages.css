@@ -20,14 +20,6 @@
 }
 */
 
-.left-arrow {
-    height: 15px;
-    width: auto;
-    margin: 0 5px 2px 2px;
-    transform: rotate(90deg);
-    transform-origin: center;
-}
-
 .username {
     font-size: 1.5rem;
     color: black;
