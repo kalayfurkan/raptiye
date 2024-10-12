@@ -66,8 +66,9 @@ router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
 		.populate('yorumlar.owner')
 		.exec();
 	const userId = req.session.userId;
+	const myMessages=await Kampusemesaj.find({owner:userId});
 	
-	res.render('kampusemesajlar', { messages, userId });
+	res.render('kampusemesajlar', { messages, userId, myMessages});
 })
 
 router.post('/deletekampusmesaj/:kampusemesajid', allMiddlewares.requireAuth, async (req, res) => {

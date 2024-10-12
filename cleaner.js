@@ -36,6 +36,11 @@ const deleteIlan=new CronJob('*/30 * * * *',async () => {
   try {
 	const now = new Date();
 	const result = await Shortilan.find({ removalDate: { $lt: now } });
+
+	if (result.length === 0) {
+		return; // Eğer silinecek ilan yoksa fonksiyonu sonlandırıyoruz
+	}
+
 	for (const ilan of result) {
 		if (ilan.images && ilan.images.length > 0) {
 			ilan.images.forEach((image) => {
