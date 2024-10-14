@@ -246,7 +246,7 @@ a.notification span {
 	}
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 850px) {
 	.navbar-brand span {
 		display: inline;
 	}

@@ -70,6 +70,10 @@ p{
     border-radius: 15px;
 }
 
+.back-to-inbox{
+    display: inline-block;
+    margin-top: 10px;
+}
 img.back-to-prev {
     height: 15px;
     width: auto;
@@ -80,6 +84,8 @@ img.back-to-prev {
 
 .carousel-item img{
     border-radius: 5px;
+    display: inline-block;
+    margin: auto;
 }
 
 /* accessibility için */

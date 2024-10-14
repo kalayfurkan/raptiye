@@ -9,123 +9,119 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/cards.css">
+    <link rel="stylesheet" href="/css/kisailanlar.css">
 </head>
 
 <body>
-    <div id="wrapper">
-        <%- include('partials/navbar') %>
-            <div class="container">
-                <h1 class="mb-4">Kısa Süreli İlanlar</h1>
-                <!-- Flash message area -->
-                <% if (sessionFlash && sessionFlash.message) { %>
-                    <div class="alert <%= sessionFlash.type %>">
-                        <%= sessionFlash.message %>
-                    </div>
-                    <% } %>
-                        <div class="card-box">
-                            <% if (ilanlar.length> 0) { %>
-                                <% ilanlar.forEach(function(ilan) { %>
-                                    <div class="card">
-                                        <% if (ilan.images.length> 0) { %>
-                                            <!-- Bootstrap Carousel Başlangıcı -->
-                                            <div id="ilanCarousel<%= ilan._id %>" class="carousel slide"
-                                                data-bs-ride="carousel">
-                                                <% if (ilan.images.length !=1) { %>
-                                                    <div class="carousel-indicators">
-                                                        <% ilan.images.forEach((image, index)=> { %>
-                                                            <button type="button"
-                                                                data-bs-target="#ilanCarousel<%= ilan._id %>"
-                                                                data-bs-slide-to="<%= index %>"
-                                                                class="<%= index === 0 ? 'active' : '' %>"
-                                                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
-                                                                aria-label="Slide <%= index + 1 %>">
-                                                            </button>
-                                                            <% }) %>
-                                                    </div>
-                                                    <% } %>
-
-                                                        <div class="carousel-inner">
-                                                            <% ilan.images.forEach((image, index)=> { %>
-                                                                <div
-                                                                    class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                                    <img src="<%= image %>"
-                                                                        onerror="this.src='img/kiralik-img.jpg';"
-                                                                        class="d-block w-100" alt="İlan Fotoğrafı">
-                                                                </div>
-                                                                <% }) %>
-                                                        </div>
-
-                                                        <% if (ilan.images.length !=1) { %>
-                                                            <button class="carousel-control-prev" type="button"
-                                                                data-bs-target="#ilanCarousel<%= ilan._id %>"
-                                                                data-bs-slide="prev">
-                                                                <span class="carousel-control-prev-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Previous</span>
-                                                            </button>
-                                                            <button class="carousel-control-next" type="button"
-                                                                data-bs-target="#ilanCarousel<%= ilan._id %>"
-                                                                data-bs-slide="next">
-                                                                <span class="carousel-control-next-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Next</span>
-                                                            </button>
-                                                            <% } %>
-                                            </div>
-                                            <!-- Carousel Sonu -->
-                                            <% } else { %>
-                                                <div class="carousel slide">
-                                                    <div class="carousel-inner">
-                                                        <div class="carousel-item active">
-                                                            <img src="/img/kiralik-img.jpg" class="d-block w-100"
-                                                                alt="Varsayılan kiralık Fotoğrafı">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% } %>
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">
-                                                            <%= ilan.title %>
-                                                        </h5>
-                                                        <div class="card-content">
-                                                            <p>
-                                                                <%= ilan.description %>
-                                                            </p>
-                                                        </div>
-                                                        <div class="card-content">
-                                                            <p>
-                                                                <a class="btn" href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">
-                                                                    Mesaj at
-                                                                </a>
-                                                            </p>
-                                                        </div>
-                                                        <p>
-                                                            <a href="/profile/<%= ilan.owner.username%>">
-                                                                <%=ilan.owner.username%>
-                                                            </a>
-                                                        </p>
-                                                    </div>
-
-                                                    <% var removalDate=new Date(ilan.removalDate); var now=new Date();
-                                                        var timeDiff=removalDate - now; // Gün ve saat hesaplaması var
-                                                        days=Math.floor(timeDiff / (1000 * 60 * 60 * 24)); var
-                                                        hours=Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60
-                                                        * 60)); %>
-
-                                                        <div class="card-footer text-muted text-center">
-                                                            <%= days %> gün <%= hours %> saat kaldı %>
-                                                        </div>
-                                    </div>
-                                    <% }) %>
-                                        <% } else { %>
-                                            <p>Kısa Süreli İlan Yoktur</p>
-                                            <% } %>
-                        </div>
+    
+<div id="wrapper">
+    <%- include('partials/navbar') %>
+    <div class="container">
+        <h1 class="mb-4">Kısa Süreli İlanlar</h1>
+        <!-- Flash message area -->
+        <% if (sessionFlash && sessionFlash.message) { %>
+           <div class="alert <%= sessionFlash.type %>">
+                <%= sessionFlash.message %>
             </div>
-            <%- include('partials/footer') %>
+        <% } %>
+        <div class="card-box">
+            <% if (ilanlar.length> 0) { %>
+                <% ilanlar.forEach(function(ilan) { %>
+                    <div class="card">
+                        <% if (ilan.images.length> 0) { %>
+                            <!-- Bootstrap Carousel Başlangıcı -->
+                            <div id="ilanCarousel<%= ilan._id %>" class="carousel slide"
+                                data-bs-ride="carousel">
+                                <% if (ilan.images.length !=1) { %>
+                                    <div class="carousel-indicators">
+                                        <% ilan.images.forEach((image, index)=> { %>
+                                            <button type="button"
+                                                data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                                data-bs-slide-to="<%= index %>"
+                                                class="<%= index === 0 ? 'active' : '' %>"
+                                                aria-current="<%= index === 0 ? 'true' : 'false' %>"
+                                                aria-label="Slide <%= index + 1 %>">
+                                            </button>
+                                        <% }) %>
+                                    </div>
+                                <% } %>
+                                <div class="carousel-inner">
+                                    <% ilan.images.forEach((image, index)=> { %>
+                                        <div
+                                            class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                            <img src="<%= image %>"
+                                                onerror="this.src='img/kiralik-img.jpg';"
+                                                class="d-block w-100" alt="İlan Fotoğrafı">
+                                        </div>
+                                    <% }) %>
+                                </div>
+                                <% if (ilan.images.length !=1) { %>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#ilanCarousel<%= ilan._id %>"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"
+                                            aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                <% } %>
+                            </div>
+                            <!-- Carousel Sonu -->
+                        <% } else { %>
+                            <div class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="/img/kiralik-img.jpg" class="d-block w-100"
+                                            alt="Varsayılan kiralık Fotoğrafı">
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= ilan.title %>
+                            </h5>
+                            <div class="card-content">
+                                <p>
+                                    <%= ilan.description %>
+                                </p>
+                            </div>
+                            
+                            <div class="card-end-links">
+                                <a href="/profile/<%= ilan.owner.username%>">
+                                    <%=ilan.owner.username%>
+                                </a>
+                                <a class="btn" href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">
+                                    Mesaj at
+                                </a>
+                            </div>
+                        </div>
+                        <%  var removalDate=new Date(ilan.removalDate); var now=new Date();
+                            var timeDiff=removalDate - now; // Gün ve saat hesaplaması var
+                            days=Math.floor(timeDiff / (1000 * 60 * 60 * 24)); var
+                            hours=Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60
+                            * 60)); 
+                        %>
+                        <div class="card-footer text-muted text-center">
+                            <%= days %> gün <%= hours %> saat kaldı %>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Kısa Süreli İlan Yoktur</p>
+            <% } %>
+        </div>
     </div>
+    <%- include('partials/footer') %>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
