@@ -8,10 +8,6 @@ yıldızın initail fill i beyazımsı olsun
 
 buttonların effectler standart olacak
 
-footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak (bitti)
-
-Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine. (bitti)
-
 kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action olacak
 
 dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (saçmaaaaa)
@@ -26,7 +22,8 @@ Mevcut Görselleri Düzenle yazısı sadece görsel varsa gözükecek
 
 ilan detay sayfaları consistent hale getirilecek (listings.css)
 
-renk paletine karar verilecek ve renkler consistent olacak
+renk paletine karar verilecek
+navbar lacivert denenebilir, navbar yazıları beyaz yapılacak ve footer da aynı renk olacak.
 
 ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir texture eklenecek, belki ilanlar direkt orada görüntülenecek
 
@@ -56,6 +53,15 @@ Eğer fotoğraf yoksa detay sayfaları sıkıntı çıkarıyor
 
 Kampüse mesaj bırakma kısmına görsel ekleme yapılacak
 
+
+
+
+
+
+
+footerdaki bize ulaşın bölümü butona basınca görüncek şekilde ayarlanacak (bitti)
+
+Kısa süreli ilanlarda deadlinea kaç saat kaç gün kaldı eklenecek bitme tarihi yerine. (bitti)
 
 Navbardaki ilanlar simgesinin yanına aşağı ok eklenecek (bitti)
 
