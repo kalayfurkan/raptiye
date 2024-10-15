@@ -91,6 +91,10 @@
 	background-color: var(--secondary-color-dark);
 }
 
+.navbar-item > a{
+	width: 100%;
+}
+
 /* Menu link styles */
 .navbar-link {
 	color: black;
