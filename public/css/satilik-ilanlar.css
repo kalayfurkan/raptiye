@@ -17,6 +17,7 @@ form.search{
 .card-box {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 2em;
 }
@@ -96,7 +97,7 @@ svg.star path {
 
 @media only screen and (max-width: 500px) {
     .container{
-        padding: 0;
+        padding: 8px;
         padding-top: 10px;
     }
     .card img{
