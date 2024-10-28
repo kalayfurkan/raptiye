@@ -29,7 +29,7 @@ ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir t
 
 profilim sayfası düzenlenecek
 
-pagination eklenecek
+pagination eklenecek ya da show more yapılacak bu önemli
 
 register rememberme de düzeltilecek
 

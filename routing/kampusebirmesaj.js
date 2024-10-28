@@ -61,15 +61,49 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 })
 
 router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
-	const messages = await Kampusemesaj.find({})
+	const sortOption = req.query.sort;
+	const userId = req.session.userId;
+	let messages;
+
+	// Sıralama seçeneğine göre sorguyu değiştiriyoruz
+	if (sortOption === 'topVotes') {
+		// Upvote ve downvote toplamına göre sıralama
+		messages = await Kampusemesaj.find({})
+		.sort({ upvotes: -1 })
 		.populate('owner')
 		.populate('yorumlar.owner')
 		.exec();
-	const userId = req.session.userId;
-	const myMessages=await Kampusemesaj.find({owner:userId});
-	
-	res.render('kampusemesajlar', { messages, userId, myMessages});
-})
+
+	}else if (sortOption === 'worstVotes') {
+		// Upvote ve downvote toplamına göre sıralama
+		messages = await Kampusemesaj.find({})
+		.sort({ downvotes: -1 })
+		.populate('owner')
+		.populate('yorumlar.owner')
+		.exec();
+
+	}  else if (sortOption === 'myMessages') {
+		// Sadece kullanıcının mesajlarını çekme
+		messages = await Kampusemesaj.find({ owner: userId })
+			.populate('owner')
+			.populate('yorumlar.owner')
+			.exec();
+
+	} else {
+		// Default: Yeniden eskiye sıralama (createdAt alanına göre)
+		messages = await Kampusemesaj.find({})
+			.sort({ createdAt: -1 })
+			.populate('owner')
+			.populate('yorumlar.owner')
+			.exec();
+	}
+
+	// Kullanıcının kendi mesajlarını ayrıca çekiyoruz (istenirse diğer seçeneklerde de kullanılabilir)
+	const myMessages = await Kampusemesaj.find({ owner: userId });
+
+	res.render('kampusemesajlar', { messages, userId, myMessages,sortOption });
+});
+
 
 router.post('/deletekampusmesaj/:kampusemesajid', allMiddlewares.requireAuth, async (req, res) => {
 	const kampusemesajid = req.params.kampusemesajid;

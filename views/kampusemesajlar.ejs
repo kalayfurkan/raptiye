@@ -21,6 +21,29 @@
             
             <h1 class="header">Kampüse Bırakılan Mesajlar</h1>
             <a href="/kampusebirmesajbirak" class="btn sesiniduyur">Sen de sesini duyur!</a>
+
+            <div class="sorting-buttons">
+                <a href="/kampusemesajlar?sort=newest" 
+                   class="btn btn-outline-primary <%= sortOption === 'newest' || !sortOption ? 'active' : '' %>">
+                  <i class="bi bi-clock"></i> Yeniden Eskiye
+                </a>
+                
+                <a href="/kampusemesajlar?sort=topVotes" 
+                   class="btn btn-outline-primary <%= sortOption === 'topVotes' ? 'active' : '' %>">
+                  <i class="bi bi-hand-thumbs-up"></i> En Beğenilen
+                </a>
+                <a href="/kampusemesajlar?sort=worstVotes" 
+                   class="btn btn-outline-primary <%= sortOption === 'worstVotes' ? 'active' : '' %>">
+                  <i class="bi bi-hand-thumbs-down"></i> En Beğenilmeyen fuat bokunu yiyim düzelt şurayı
+                </a>
+                
+                <a href="/kampusemesajlar?sort=myMessages" 
+                   class="btn btn-outline-primary <%= sortOption === 'myMessages' ? 'active' : '' %>">
+                  <i class="bi bi-person"></i> Sadece Benim Mesajlarım aslında düzeltme la iyi görünüyor iki ayar çek kafi
+                </a>
+              </div>
+              
+              
             <% if (messages.length> 0) { %>
                 <ul class="list-group">
                     <% messages.forEach(function(message) { %>
