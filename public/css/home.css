@@ -1,42 +1,61 @@
-header{
+:root {
+    --background-color1: hsl(0, 80%, 80%);
+    --background-color2: hsl(40, 80%, 80%);
+    --background-color3: hsl(80, 80%, 80%);
+    --background-color4: hsl(120, 80%, 80%);
+    --background-color5: hsl(160, 80%, 80%);
+}
+
+header {
     padding-left: 10px;
 }
 
-#pano {
+/* Style to make navbar fixed, maybe footer too. */
+/* #footer, */
+#navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+}
+
+#footer {
+    bottom: 0;
+}
+
+#content-wrapper {
+    padding-top: 60px;
+}
+
+/* Full viewport height sections for each page */
+.section {
+    height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
 }
 
-.postit {
-    /* border-radius: 10px; */
-    position: relative;
-    padding: 10px;
-    margin: 10px;
-    border: 2px solid grey;
-    width: 274px;
-    height: 274px;
-    transition: box-shadow 0.3s ease;
+/* Arka plan renkleri */
+#section1 {
+    background-color: var(--background-color1);
 }
 
-.postit:hover{
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
+#section2 {
+    background-color: var(--background-color2);
 }
 
-.postit>svg:first-child {
-    /*tüm postitlerin ilk svg çocuğunu alır yatayda ortalar*/
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#section3 {
+    background-color: var(--background-color3);
 }
 
-.postit-top {
-    /* border-radius: 10px 10px 0px 0px; */
-    border-bottom: 1px solid grey;
-    margin: -10px -10px 5px -10px;
-    display: block;
-    height: 50px;
+#section4 {
+    background-color: var(--background-color4);
+}
+
+#section5 {
+    background-color: var(--background-color5);
+    margin-bottom: -180px;
 }
 
 h1 {
@@ -65,7 +84,7 @@ a {
 }
 
 @media only screen and (max-width: 500px) {
-    h1{
+    h1 {
         font-size: 2rem;
     }
 }
