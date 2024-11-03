@@ -70,33 +70,38 @@
 }
 
 #ilanlar-dropdown {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    padding: 10px 0; /* Preserve padding but hide it visually */
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: top;
+	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	padding: 10px 0;
+	/* Preserve padding but hide it visually */
 }
 
 #ilanlar-dropdown.active {
-    max-height: 500px; /* Adjust based on your content */
-    opacity: 1;
-    transform: scaleY(1);
+	max-height: 500px;
+	/* Adjust based on your content */
+	opacity: 1;
+	transform: scaleY(1);
 }
 
 .dropdown-menu a {
 	cursor: pointer;
 	user-select: none;
 }
+
 /* Main menu list styles */
 .navbar-menu {
 	display: flex;
 	list-style-type: none;
 }
-ul.navbar-menu{
+
+ul.navbar-menu {
 	padding: 0 10px 0 10px;
 }
+
 /* Individual menu item styles */
 .navbar-item {
 	transition: background-color 0.2s;
@@ -108,7 +113,7 @@ ul.navbar-menu{
 	background-color: var(--secondary-color-dark);
 }
 
-.navbar-item > a{
+.navbar-item>a {
 	width: 100%;
 }
 
@@ -135,7 +140,7 @@ ul.navbar-menu{
 	background-color: var(--secondary-color);
 	display: block;
 	width: 100%;
-	min-width: 200px;
+	min-width: 220px;
 	z-index: 5;
 	top: 100%;
 	left: 0;
