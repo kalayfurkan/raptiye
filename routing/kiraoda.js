@@ -20,8 +20,8 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 			images = [images];  // Tek bir görselse, bunu diziye dönüştürüyoruz
 		}
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -51,10 +51,43 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 router.get('/evarkadasiilanlari', allMiddlewares.requireAuth, async (req, res) => {
-	const kiraodalar = await Kiraoda.find({}).sort({createdAt:-1});
-	const currentUser = await User.findById(req.session.userId);
-	res.render('kiraodalar', { ilanlar: kiraodalar, currentUser })
-})
+    const page = parseInt(req.query.page) || 1; // Varsayılan sayfa 1
+    const limit = 8; // Sayfa başına 10 ilan
+    const skip = (page - 1) * limit;
+
+    try {
+        // Kira odalarını veritabanından çek
+        const kiraodalar = await Kiraoda.find({})
+            .sort({ createdAt: -1 }) // En son oluşturulan ilanları önce göster
+            .skip(skip) // Atlanacak öğeler
+            .limit(limit); // Sayfa başına gösterilecek öğe sayısı
+
+        // Toplam ilan sayısını al
+        const totalKiraodalar = await Kiraoda.countDocuments();
+
+        // Toplam sayfa sayısını hesapla
+        const totalPages = Math.ceil(totalKiraodalar / limit);
+
+        // Mevcut kullanıcıyı al
+        const currentUser = await User.findById(req.session.userId);
+
+        // Sayfayı render et
+        res.render('kiraodalar', {
+            ilanlar: kiraodalar,
+            currentUser,
+            pagination: {
+                totalKiraodalar,
+                totalPages,
+                currentPage: page,
+                perPage: limit,
+            },
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 router.get('/evarkadasiilani/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraid = req.params.kiraodaid;
@@ -82,8 +115,8 @@ router.post('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, 
 			images = [images];
 		}
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');

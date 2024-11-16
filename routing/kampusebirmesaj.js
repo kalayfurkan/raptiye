@@ -18,8 +18,8 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		let user;
 		const isAnonim = !!req.body.anonim;
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		if (isAnonim) {
 			user = null;
@@ -61,47 +61,54 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 })
 
 router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
-	const sortOption = req.query.sort;
-	const userId = req.session.userId;
-	let messages;
+    const sortOption = req.query.sort || 'newest'; // Varsayılan sıralama: newest
+    const userId = req.session.userId;
+    const page = parseInt(req.query.page) || 1; // Varsayılan sayfa: 1
+    const limit = 20; // Sayfa başına 10 mesaj
+    const skip = (page - 1) * limit;
 
-	// Sıralama seçeneğine göre sorguyu değiştiriyoruz
-	if (sortOption === 'topVotes') {
-		// Upvote ve downvote toplamına göre sıralama
-		messages = await Kampusemesaj.find({})
-		.sort({ upvotes: -1 })
-		.populate('owner')
-		.populate('yorumlar.owner')
-		.exec();
+    let query = {};
+    let sort = {};
 
-	}else if (sortOption === 'worstVotes') {
-		// Upvote ve downvote toplamına göre sıralama
-		messages = await Kampusemesaj.find({})
-		.sort({ downvotes: -1 })
-		.populate('owner')
-		.populate('yorumlar.owner')
-		.exec();
+    // Sıralama seçeneğine göre sorguyu değiştiriyoruz
+    if (sortOption === 'topVotes') {
+        sort = { upvotes: -1 };
+    } else if (sortOption === 'worstVotes') {
+        sort = { downvotes: -1 };
+    } else if (sortOption === 'myMessages') {
+        query = { owner: userId };
+    } else {
+        sort = { createdAt: -1 }; // Default sıralama: yeniden eskiye
+    }
 
-	}  else if (sortOption === 'myMessages') {
-		// Sadece kullanıcının mesajlarını çekme
-		messages = await Kampusemesaj.find({ owner: userId })
-			.populate('owner')
-			.populate('yorumlar.owner')
-			.exec();
+    try {
+        // Mesajları getir
+        const messages = await Kampusemesaj.find(query)
+            .sort(sort)
+            .populate('owner')
+            .populate('yorumlar.owner')
+            .skip(skip)
+            .limit(limit)
+            .exec();
 
-	} else {
-		// Default: Yeniden eskiye sıralama (createdAt alanına göre)
-		messages = await Kampusemesaj.find({})
-			.sort({ createdAt: -1 })
-			.populate('owner')
-			.populate('yorumlar.owner')
-			.exec();
-	}
+        // Toplam mesaj sayısını hesapla
+        const totalMessages = await Kampusemesaj.countDocuments(query);
+        const totalPages = Math.ceil(totalMessages / limit);
 
-	// Kullanıcının kendi mesajlarını ayrıca çekiyoruz (istenirse diğer seçeneklerde de kullanılabilir)
-	const myMessages = await Kampusemesaj.find({ owner: userId });
-
-	res.render('kampusemesajlar', { messages, userId, myMessages,sortOption });
+        res.render('kampusemesajlar', {
+            messages,
+            userId,
+            sortOption,
+            pagination: {
+                currentPage: page,
+                totalPages,
+                perPage: limit,
+                totalMessages,
+            },
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
 });
 
 

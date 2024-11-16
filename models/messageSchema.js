@@ -11,7 +11,7 @@ const messageSchema = new mongoose.Schema({
 		ref: 'User',
 	}],
 	notification:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	createdAt: { type: Date, default: Date.now, expires: '7d' }
+	createdAt: { type: Date, default: Date.now, expires: '30d' }
 });
 
 const Message = mongoose.model('message', messageSchema);

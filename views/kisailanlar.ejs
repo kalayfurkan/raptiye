@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/logo.svg">
-    <title>Kısa İlanlar</title>
+    <title>Genel İlanlar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/cards.css">
@@ -17,7 +17,7 @@
 <div id="wrapper">
     <%- include('partials/navbar') %>
     <div class="container">
-        <h1 class="mb-4">Kısa Süreli İlanlar</h1>
+        <h1 class="mb-4">Genel İlanlar</h1>
         <!-- Flash message area -->
         <% if (sessionFlash && sessionFlash.message) { %>
            <div class="alert <%= sessionFlash.type %>">
@@ -114,9 +114,77 @@
                     </div>
                 <% }) %>
             <% } else { %>
-                <p>Kısa Süreli İlan Yoktur</p>
+                <p>Genel İlan Yoktur</p>
             <% } %>
         </div>
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination">
+                <!-- Geri Butonu -->
+                <% if (pagination.currentPage > 1) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<%= pagination.currentPage - 1 %>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-hidden="true">&laquo;</span>
+                    </li>
+                <% } %>
+        
+                <!-- Dinamik Sayfa Numaraları -->
+                <% 
+                    const maxVisiblePages = 3; // Bir seferde görünecek maksimum sayfa numarası
+                    let startPage = Math.max(1, pagination.currentPage - Math.floor(maxVisiblePages / 2));
+                    let endPage = Math.min(pagination.totalPages, startPage + maxVisiblePages - 1);
+        
+                    if (endPage - startPage < maxVisiblePages - 1) {
+                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                    }
+                %>
+        
+                <!-- İlk Sayfa -->
+                <% if (startPage > 1) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">1</a>
+                    </li>
+                    <% if (startPage > 2) { %>
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <% } %>
+                <% } %>
+        
+                <!-- Orta Sayfalar -->
+                <% for (let i = startPage; i <= endPage; i++) { %>
+                    <li class="page-item <%= pagination.currentPage === i ? 'active' : '' %>">
+                        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+        
+                <!-- Son Sayfa -->
+                <% if (endPage < pagination.totalPages) { %>
+                    <% if (endPage < pagination.totalPages - 1) { %>
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <% } %>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<%= pagination.totalPages %>"><%= pagination.totalPages %></a>
+                    </li>
+                <% } %>
+        
+                <!-- İleri Butonu -->
+                <% if (pagination.currentPage < pagination.totalPages) { %>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<%= pagination.currentPage + 1 %>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item disabled">
+                        <span class="page-link" aria-hidden="true">&raquo;</span>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+        
     </div>
     <%- include('partials/footer') %>
 </div>

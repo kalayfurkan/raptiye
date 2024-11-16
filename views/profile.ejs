@@ -105,7 +105,7 @@
                             </ul>
                         </ul>
 
-                        <h2>Kısa Süreli İlanlarım</h2>
+                        <h2>Genel İlanlarım</h2>
                         <ul class="ads-list">
                             <ul class="list-group">
                                 <% shortilanlar.forEach(function(short) { %>
@@ -133,7 +133,7 @@
                             <ul class="list-group">
                                 <% favorites.forEach(function(favorite) { %>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark fw-bold" href="/ilan/<%= favorite._id %>">
+                                        <a class="text-dark fw-bold" href="/satisilani/<%= favorite._id %>">
                                             <%= favorite.title %>
                                         </a>
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">
@@ -164,7 +164,7 @@
                             <ul class="list-group">
                                 <% favoritesKira.forEach(function(favoriteKira) { %>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark fw-bold" href="/kiraoda/<%= favoriteKira._id %>">
+                                        <a class="text-dark fw-bold" href="/evarkadasiilani/<%= favoriteKira._id %>">
                                             <%= favoriteKira.title %>
                                         </a>
                                         <div class="btn-group" role="group" aria-label="İlan işlemleri">

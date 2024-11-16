@@ -21,8 +21,8 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 			images = [images];
 		}
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -58,12 +58,32 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 
 router.get('/satisilanlari', allMiddlewares.requireAuth, async (req, res) => {
 	try {
+		const page = parseInt(req.query.page) || 1; // Varsayılan sayfa: 1
+    	const limit = 9; // Sayfa başına 10 öğe
+    	const skip = (page - 1) * limit;
+
 		const allPosts = await Ilan.find({})
 			.populate('owner', 'username')
 			.sort({createdAt:-1})
+			.skip(skip)
+			.limit(limit)
 			.exec();
+		const totalPosts = await Ilan.countDocuments();
+		const totalPages = Math.ceil(totalPosts / limit);
+
 		const currentUser = await User.findById(req.session.userId);
-		res.render('ilanlar', { ilanlar: allPosts, currentUser });
+
+
+		res.render('ilanlar', {
+            ilanlar: allPosts,
+            currentUser,
+            pagination: {
+                totalPosts,
+                totalPages,
+                currentPage: page,
+                perPage: limit,
+            },
+        });
 	} catch (error) {
 		res.send(error);
 	}
@@ -124,8 +144,8 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 			images = [images];
 		}
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -239,28 +259,51 @@ router.post('/deletefavorites/:favoriteid', allMiddlewares.requireAuth, async (r
 
 });
 
-router.post('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
-    const query = req.body.search;
+router.get('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
+    const query = req.query.search || ''; // Arama terimini query'den al
+    const page = parseInt(req.query.page) || 1; // Sayfa numarasını al
+    const limit = 9; // Sayfa başına gösterilecek öğe sayısı
+    const skip = (page - 1) * limit;
+
     try {
-        // MongoDB'de başlık veya açıklama içinde arama yap
         const results = await Ilan.find({
             $or: [
-                { title: new RegExp(query, 'i') },       // Başlıkta arama
-                { description: new RegExp(query, 'i') }  // Açıklamada arama
+                { title: new RegExp(query, 'i') },
+                { description: new RegExp(query, 'i') }
             ]
         })
         .populate('owner', 'username')
         .sort({ createdAt: -1 })
-        .exec();
+        .skip(skip)
+        .limit(limit);
 
+        const totalResults = await Ilan.countDocuments({
+            $or: [
+                { title: new RegExp(query, 'i') },
+                { description: new RegExp(query, 'i') }
+            ]
+        });
+
+        const totalPages = Math.ceil(totalResults / limit);
         const currentUser = await User.findById(req.session.userId);
-        
-        // Sonuçları arama sonuçları sayfasına render et
-        res.render('aramasonuc', { ilanlar: results, searchTerm: query, currentUser });
+
+        res.render('aramasonuc', {
+            ilanlar: results,
+            searchTerm: query,
+            currentUser,
+            pagination: {
+                totalResults,
+                totalPages,
+                currentPage: page,
+                perPage: limit,
+            },
+        });
     } catch (err) {
         res.status(500).send('Bir hata oluştu');
     }
 });
+
+
 
 
 module.exports = router;

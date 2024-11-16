@@ -83,19 +83,22 @@ router.post('/messages/:user1id/:user2id', allMiddlewares.requireAuth, async (re
 
 
 router.get('/gelenkutusu', allMiddlewares.requireAuth, async (req, res) => {
-	const currentUserId = req.session.userId;
+    const currentUserId = req.session.userId;
 
-	try {
-		const messages = await Message.find({
-			communicators: currentUserId
-		}).populate('communicators', 'username') // İsteğe bağlı: Kullanıcı adlarını da ekleyebiliriz
-			.sort({ 'texts.timestamp': -1 }); // İsteğe bağlı: Mesajları zaman sırasına göre sıralayabiliriz
+    try {
+        const messages = await Message.find({
+            communicators: currentUserId,
+            $expr: { $gt: [{ $size: "$texts" }, 0] } // texts dizisinin uzunluğu > 0
+        })
+        .populate('communicators', 'username') // Kullanıcı adlarını ekliyoruz
+        .sort({ 'texts.timestamp': -1 }); // Mesajları zaman sırasına göre sıralıyoruz
 
-		res.render('gelenkutusu', { messages, currentUserId });
-	} catch (error) {
-		console.error(error);
-		res.status(500).send('Server Error');
-	}
+        res.render('gelenkutusu', { messages, currentUserId });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
 });
+
 
 module.exports = router;

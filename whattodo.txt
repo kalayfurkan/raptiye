@@ -1,16 +1,10 @@
-Kampüse mesajlar bölümüne foto atmak olsun mu
-
 Özel mesajlar sayfasındaki "tüm mesajlarım" butonuna styling eklenecek
-
-mobilde ilanlar üstüne hover yapınca sıkıntı oluyor
 
 yıldızın initail fill i beyazımsı olsun
 
 buttonların effectler standart olacak
 
 kampüse mesajlar sayfasının tepesinde mesaj bırak gibi linkli call to action olacak
-
-dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (saçmaaaaa)
 
 yorumların tarihleri güzel bi formatta gösterilmeli
 
@@ -29,11 +23,7 @@ ana sayfa düzeni elden geçecek, alakalı fotolar eklenecek ve arka plana bir t
 
 profilim sayfası düzenlenecek
 
-pagination eklenecek ya da show more yapılacak bu önemli
-
 register rememberme de düzeltilecek
-
-kullanıcı idlerinin gözükmesi sorun mu kontrol et
 
 notification kısmı ekledim navbarda ve inbox kısmında ilgili style eklenecek kısımları yorum satırına koydum
 
@@ -45,14 +35,7 @@ navbar notification içi için köşesiz soft bi font seçilebilir
 
 DM kutusunda NaN yıl önce yazıyor
 
-Satış ilanları mobilde kötü görünüyor ve navbara tıklayınca ara butonu navbarın üstüne geliyor
-
 carouseller ile favorilere ekleme butonları çakışıyor caourselin oku varsa favorilere eklenmiyor ilan
-
-Eğer fotoğraf yoksa detay sayfaları sıkıntı çıkarıyor
-
-Kampüse mesaj bırakma kısmına görsel ekleme yapılacak
-
 
 
 

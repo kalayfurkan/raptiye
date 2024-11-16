@@ -21,8 +21,8 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 			images = [images];  // Tek bir görselse, bunu diziye dönüştürüyoruz
 		}
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -54,10 +54,43 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 
 
 router.get('/isilanlari', allMiddlewares.requireAuth, async (req, res) => {
-	const jobs = await Job.find({}).sort({ createdAt: -1 });
-	const currentUser = await User.findById(req.session.userId);
-	res.render('isler', { jobs, currentUser });
-})
+    const page = parseInt(req.query.page) || 1; // Varsayılan sayfa 1
+    const limit = 10; // Sayfa başına 10 iş ilanı
+    const skip = (page - 1) * limit;
+
+    try {
+        // İlanları veritabanından çek
+        const jobs = await Job.find({})
+            .sort({ createdAt: -1 }) // En son oluşturulan iş ilanlarını önce göster
+            .skip(skip) // Atlanacak öğeler
+            .limit(limit); // Sayfa başına gösterilecek öğe sayısı
+
+        // Toplam iş ilanı sayısını al
+        const totalJobs = await Job.countDocuments();
+
+        // Toplam sayfa sayısını hesapla
+        const totalPages = Math.ceil(totalJobs / limit);
+
+        // Mevcut kullanıcıyı al
+        const currentUser = await User.findById(req.session.userId);
+
+        // Sayfayı render et
+        res.render('isler', {
+            jobs,
+            currentUser,
+            pagination: {
+                totalJobs,
+                totalPages,
+                currentPage: page,
+                perPage: limit,
+            },
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 router.get('/isilani/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobid = req.params.jobid;
@@ -85,8 +118,8 @@ router.post('/jobedit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 			images = [images];
 		}
 
-		const maxWidth = 600;
-		const quality = 50;
+		const maxWidth = 1920;
+		const quality = 70;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -125,7 +158,6 @@ router.post('/jobedit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 router.post('/delete-jobimage/:jobid/:index', allMiddlewares.requireAuth, async (req, res) => {
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
-	console.log(job);
 
 	const index = req.params.index;
 	const imageToDelete = path.join(__dirname, '../public', job.images[index]);
@@ -136,7 +168,7 @@ router.post('/delete-jobimage/:jobid/:index', allMiddlewares.requireAuth, async 
 		{ $pull: { images: job.images[index] } } // Görseli diziden çıkarın
 	);
 
-	res.redirect(`/job/edit/${jobId}`);
+	res.redirect(`/isilani/edit/${jobId}`);
 
 })
 

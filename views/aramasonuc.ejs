@@ -19,8 +19,7 @@
         <%- include('partials/navbar') %>
 
         <div class="container mt-4">
-            <h1 class="mb-4">Arama Sonuçları</h1>
-
+            <h1 class="mb-4">Arama Sonuçları:<%=searchTerm %></h1>
             <!-- Flash message area -->
             <% if (sessionFlash && sessionFlash.message) { %>
                 <div class="alert <%= sessionFlash.type %>">
@@ -29,7 +28,7 @@
             <% } %>
 
             <!-- Şık Search Bar -->
-            <form action="/ilan/arama" method="POST" class="mb-4">
+            <form action="/ilan/arama" method="GET" class="mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Aradığınız ilan başlıklarını giriniz" name="search" required>
                     <button class="btn btn-outline-primary" type="submit">Ara</button>
@@ -61,10 +60,10 @@
                                 </p>
 
                                 <p class="links">
-                                    <a href="/profile/<%= ilan.owner._id.toString() %>" class="user">
+                                    <a href="/profile/<%= ilan.owner.username %>" class="user">
                                         <%= ilan.owner.username %>
                                     </a>
-                                    <a href="/ilan/<%= ilan._id %>" class="btn">Detaylar</a>
+                                    <a href="/satisilani/<%= ilan._id %>" class="btn">Detaylar</a>
                                 </p>
 
                             </div>
@@ -74,6 +73,75 @@
                     <p>Sonuç bulunamadı.</p>
                 <% } %>
             </div>
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination">
+                  <!-- Geri Butonu -->
+                  <% if (pagination.currentPage > 1) { %>
+                    <li class="page-item">
+                      <a class="page-link" href="?search=<%= encodeURIComponent(searchTerm) %>&page=<%= pagination.currentPage - 1 %>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                  <% } else { %>
+                    <li class="page-item disabled">
+                      <span class="page-link" aria-hidden="true">&laquo;</span>
+                    </li>
+                  <% } %>
+              
+                  <!-- Dinamik Sayfa Numaraları -->
+                  <% 
+                    const maxVisiblePages = 3; // Bir seferde görünecek maksimum sayfa numarası
+                    let startPage = Math.max(1, pagination.currentPage - Math.floor(maxVisiblePages / 2));
+                    let endPage = Math.min(pagination.totalPages, startPage + maxVisiblePages - 1);
+              
+                    if (endPage - startPage < maxVisiblePages - 1) {
+                      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                    }
+                  %>
+              
+                  <!-- İlk Sayfa -->
+                  <% if (startPage > 1) { %>
+                    <li class="page-item">
+                      <a class="page-link" href="?search=<%= encodeURIComponent(searchTerm) %>&page=1">1</a>
+                    </li>
+                    <% if (startPage > 2) { %>
+                      <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <% } %>
+                  <% } %>
+              
+                  <!-- Orta Sayfalar -->
+                  <% for (let i = startPage; i <= endPage; i++) { %>
+                    <li class="page-item <%= pagination.currentPage === i ? 'active' : '' %>">
+                      <a class="page-link" href="?search=<%= encodeURIComponent(searchTerm) %>&page=<%= i %>"><%= i %></a>
+                    </li>
+                  <% } %>
+              
+                  <!-- Son Sayfa -->
+                  <% if (endPage < pagination.totalPages) { %>
+                    <% if (endPage < pagination.totalPages - 1) { %>
+                      <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <% } %>
+                    <li class="page-item">
+                      <a class="page-link" href="?search=<%= encodeURIComponent(searchTerm) %>&page=<%= pagination.totalPages %>"><%= pagination.totalPages %></a>
+                    </li>
+                  <% } %>
+              
+                  <!-- İleri Butonu -->
+                  <% if (pagination.currentPage < pagination.totalPages) { %>
+                    <li class="page-item">
+                      <a class="page-link" href="?search=<%= encodeURIComponent(searchTerm) %>&page=<%= pagination.currentPage + 1 %>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  <% } else { %>
+                    <li class="page-item disabled">
+                      <span class="page-link" aria-hidden="true">&raquo;</span>
+                    </li>
+                  <% } %>
+                </ul>
+              </nav>
+              
+              
         </div>
     </div>
 

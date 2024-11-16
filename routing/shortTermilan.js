@@ -54,13 +54,41 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) => {
-	const kisaIlanlar = await Shortilan.find({})
-	.populate('owner')
-	.sort({ createdAt: -1 })
-	.exec();
-	const currentUserid = req.session.userId;
-	res.render('kisailanlar', { ilanlar: kisaIlanlar, currentUserid });
-})
+    try {
+        const page = parseInt(req.query.page) || 1; // Varsayılan sayfa: 1
+        const limit = 8; // Sayfa başına 9 öğe
+        const skip = (page - 1) * limit;
+
+        // Veritabanından ilanları getirme ve pagination uygulama
+        const kisaIlanlar = await Shortilan.find({})
+            .populate('owner') // owner alanını doldur
+            .sort({ createdAt: -1 }) // En yeni olanları önce getir
+            .skip(skip) // Belirli sayıda öğe atla
+            .limit(limit) // Belirli sayıda öğe al
+            .exec();
+
+        // Toplam ilan sayısını bulma
+        const totalPosts = await Shortilan.countDocuments();
+        const totalPages = Math.ceil(totalPosts / limit); // Toplam sayfa sayısını hesapla
+
+        const currentUserid = req.session.userId;
+
+        // Verileri render et
+        res.render('kisailanlar', {
+            ilanlar: kisaIlanlar,
+            currentUserid,
+            pagination: {
+                totalPosts,
+                totalPages,
+                currentPage: page,
+                perPage: limit,
+            },
+        });
+    } catch (error) {
+        res.send(error); // Hata durumunda hata mesajını gönder
+    }
+});
+
 
 router.post('/shortilan/delete/:shortid', allMiddlewares.requireAuth, async (req, res) => {
 	const shortid = req.params.shortid;
