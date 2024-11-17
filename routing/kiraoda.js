@@ -21,7 +21,7 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 		}
 
 		const maxWidth = 1920;
-		const quality = 70;
+		const quality = 50;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -116,7 +116,7 @@ router.post('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, 
 		}
 
 		const maxWidth = 1920;
-		const quality = 70;
+		const quality = 50;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');

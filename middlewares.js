@@ -18,6 +18,7 @@ function checkSession(req, res, next) {
 }
 
 async function isThereNotification(req, res, next) {
+    res.locals.hasNotification = 0;
     if (req.session.userId) {
         try {
             const user = await User.findById(req.session.userId);

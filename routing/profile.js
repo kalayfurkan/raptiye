@@ -76,7 +76,7 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
 				const imagePath = path.resolve(__dirname, '../public/img/profilepictures', date + req.files.profilePic.name);
 
 				const maxWidth = 1000;
-				const quality = 100;
+				const quality = 50;
 
 				await sharp(req.files.profilePic.data)
 					.resize(maxWidth)

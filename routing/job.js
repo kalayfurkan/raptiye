@@ -22,7 +22,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 		}
 
 		const maxWidth = 1920;
-		const quality = 70;
+		const quality = 50;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');
@@ -119,7 +119,7 @@ router.post('/jobedit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 		}
 
 		const maxWidth = 1920;
-		const quality = 70;
+		const quality = 50;
 
 		for (let element of images) {
 			const date = new Date().toISOString().replace(/:/g, '-');

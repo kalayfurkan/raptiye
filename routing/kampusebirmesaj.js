@@ -19,7 +19,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		const isAnonim = !!req.body.anonim;
 
 		const maxWidth = 1920;
-		const quality = 70;
+		const quality = 50;
 
 		if (isAnonim) {
 			user = null;

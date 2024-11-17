@@ -64,7 +64,7 @@ router.get('/verify-email', async (req, res) => {
 	user.verificationToken = null;
 	await user.save();
 
-	res.send('Mailiniz doğrulandı. <a href="localhost:3000/">Buradan</a> ana sayfaya dönüp giriş yapabilirsiniz.');
+	res.send('Mailiniz doğrulandı. <a href="localhost:3000">Buradan</a> ana sayfaya dönüp giriş yapabilirsiniz.');
 });
 
 router.post('/login', async (req, res) => {
