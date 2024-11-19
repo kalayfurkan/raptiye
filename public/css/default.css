@@ -1,4 +1,11 @@
-/* navbar ve footer style buraya eklenecek */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.font-nunito{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: italic;
+}
 
 :root {
     --primary-color: hsl(356, 95%, 63%);
@@ -17,7 +24,7 @@
 
 html,
 body {
-    font-family: sans-serif;
+    font-family: "Roboto", serif;
     min-height: 100vh;
     height: 100%;
     margin: 0;

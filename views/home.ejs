@@ -3,46 +3,61 @@
 
 <head>
 	<meta charset="UTF-8">
+	<title>İTÜ Raptiye</title>
 	<link rel="icon" href="/img/logo.svg">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>İTÜ Raptiye</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/default.css">
 	<link rel="stylesheet" href="/css/home.css">
 
 </head>
 
 <body>
-	<!-- Fixed Navbar -->
-	<div id="navbar">
-		<%- include('partials/navbar') %>
-	</div>
+	<div id="wrapper">
+        <%- include('partials/navbar') %>
+		<div class="container">
+			
+			<div class="intro">
+				<h1 class="font-nunito">Raptiye</h1>
+			    <p class="font-nunito">İTÜ öğrencileri için satış ve ilan sitesi</p>
+			</div>
 
-	<div id="content-wrapper">
-		<div id="section1" class="section">
-			<h2>İkinci El Sahibinden Al</h2>
-			<p>İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla.</p>
+			<div class="feature-container">
+				<div class="feature">
+					<div class="feature-box">
+						<h2>İkinci El Sahibinden Al</h2>
+						<p>İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla.</p>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature-box">
+						<h2>Kiradan Eşya Al</h2>
+						<p>Günlük lazım olan bisiklet, krampon, sözlük vs. aradığın ihtiyaçlarını kiradan al.</p>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature-box">
+						<h2>Harf Notu Hesapla</h2>
+						<p>Matematik, Fizik, Kimya notunu herkesten önce öğren.</p>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature-box">
+						<h2>İlan Ver</h2>
+						<p>Dilediğin her şeyi kolayca satışa çıkar, kirala ve alıcısıyla buluştur.</p>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature-box">
+						<h2>İş Bul</h2>
+						<p>Günübirlik veya uzun vadeli sana uygun ne varsa başvurabilirsin.</p>
+					</div>
+				</div>
+			</div>
+			
+		
 		</div>
-		<div id="section2" class="section">
-			<h2>Kiradan Eşya Al</h2>
-			<p>Günlük lazım olan bisiklet, krampon, sözlük vs. aradığın ihtiyaçlarını kiradan al.</p>
-		</div>
-		<div id="section3" class="section">
-			<h2>Harf Notu Hesapla</h2>
-			<p>Matematik, Fizik, Kimya notunu herkesten önce öğren.</p>
-		</div>
-		<div id="section4" class="section">
-			<h2>İlan Ver</h2>
-			<p>Dilediğin her şeyi kolayca satışa çıkar, kirala ve alıcısıyla buluştur.</p>
-		</div>
-		<div id="section5" class="section">
-			<h2>İş Bul</h2>
-			<p>Günübirlik veya uzun vadeli sana uygun ne varsa başvurabilirsin.</p>
-		</div>
-	</div>
 
-	<div id="footer">
 		<%- include('partials/footer') %>
 	</div>
 
@@ -50,29 +65,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-	<!-- for scrolling between pages -->
 	<script>
-		let currentSection = 0;
-		const sections = document.querySelectorAll('.section');
-		const numSections = sections.length;
-
-		window.addEventListener('wheel', (event) => {
-			// Check scroll direction
-			if (event.deltaY > 0) {
-				// Scroll down
-				currentSection = Math.min(currentSection + 1, numSections - 1);
-			} else {
-				// Scroll up
-				currentSection = Math.max(currentSection - 1, 0);
-			}
-
-			sections[currentSection].scrollIntoView({
-				behavior: 'smooth',
-				block: 'start' // Aligns the section to the top
-			});
-
-			// Prevent default scroll
-			event.preventDefault();
+		document.querySelectorAll('.feature').forEach((feature, index) => {
+			feature.classList.add(index % 2 === 0 ? 'align-left' : 'align-right');
 		});
 	</script>
 </body>

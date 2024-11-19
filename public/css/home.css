@@ -1,4 +1,5 @@
-:root {
+
+  :root {
     --background-color1: hsl(0, 80%, 80%);
     --background-color2: hsl(40, 80%, 80%);
     --background-color3: hsl(80, 80%, 80%);
@@ -6,65 +7,61 @@
     --background-color5: hsl(160, 80%, 80%);
 }
 
-header {
-    padding-left: 10px;
+.intro {
+    margin: 0;
+    margin-top: 40px;
+    margin-bottom: 10vw;
+    text-align: center;
 }
-
-/* Style to make navbar fixed, maybe footer too. */
-/* #footer, */
-#navbar {
-    position: fixed;
-    width: 100%;
-    z-index: 10;
-    top: 0;
+.intro h1{
+    font-size: 4rem;
 }
-
-#footer {
-    bottom: 0;
+.intro p{
+    font-size: 2rem;
 }
-
-#content-wrapper {
-    padding-top: 60px;
-}
-
-/* Full viewport height sections for each page */
-.section {
-    height: 100vh;
+.feature {
+    height: 50vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.feature h2{
+    font-size: 2.5em;
+}
+
+.feature p{
     font-size: 2em;
 }
 
-/* Arka plan renkleri */
-#section1 {
-    background-color: var(--background-color1);
+.feature.align-left{
+    justify-content: start;
 }
 
-#section2 {
-    background-color: var(--background-color2);
+.feature.align-right{
+    justify-content: end;
 }
 
-#section3 {
-    background-color: var(--background-color3);
+.feature .feature-box{
+    max-width: 40vw;
 }
 
-#section4 {
-    background-color: var(--background-color4);
+.feature .feature-box h2{
+    text-align: center;
+}
+/* 
+.feature.left .feature-box{
+    max-width: 50vw;
 }
 
-#section5 {
-    background-color: var(--background-color5);
-    margin-bottom: -180px;
-}
-
+.feature.right .feature-box{
+    max-width: 40vw;
+} */
 h1 {
     font-size: 3rem;
     margin-top: 30px;
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 2rem;
     margin-top: 15px;
     margin-bottom: 30px;
 }
