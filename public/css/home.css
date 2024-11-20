@@ -35,6 +35,7 @@ html, body {
 }
 
 .feature-container{
+    position: relative;
     flex-direction: column;
     display: flex;
     gap: 60px;
@@ -121,18 +122,40 @@ a {
 .hexagon-bg::before {
     content: "";
     position: absolute;
-    top: -90px; /* Adjust to position the hexagon properly */
-    left: -40px; /* Adjust to position the hexagon properly */
-    width: 500px; /* Adjust width and height according to your design */
-    height: 500px;
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="%23FFD700"/%3E%3C/svg%3E') no-repeat center center;
+    top: -200px; /* Adjust to position the hexagon properly */
+    left: -80px; /* Adjust to position the hexagon properly */
+    width: 700px; /* Adjust width and height according to your design */
+    height: 700px;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cdefs%3E%3ClinearGradient id="hexGradient" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23f7941f;stop-opacity:1"%3E%3C/stop%3E%3Cstop offset="100%25" style="stop-color:%23f5e9da;stop-opacity:1"%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="url(%23hexGradient)" /%3E%3C/svg%3E') no-repeat center center;
+    /* stop-color: */
     background-size: cover;
-    z-index: -1; /* Make sure the SVG stays behind the content */
+    z-index: -2; /* Make sure the SVG stays behind the content */
     opacity: 0.2; /* Adjust for a subtle background effect */
     filter: blur(5px);
     pointer-events: none;
     animation: rotate360 100s linear infinite;
 }
+
+        .feature-box.circle-bg{
+            position: relative;
+        }
+
+        /* Target the second feature-box to add a circle using ::before */
+        .feature-box.circle-bg:before {
+            content: "";
+            position: absolute;
+            top: 50%; /* Adjust positioning based on container height */
+            right: -150px; /* Adjust to place the circle to the left of the feature-box */
+            transform: translateY(-50%); /* Vertically center the circle */
+            width: 60%; /* Adjust the size of the circle */
+            aspect-ratio: 1/1; /* Ensure height equals width to maintain the circle shape */
+            background-color: #6969ff; /* Change to desired color (here, orange-red) */
+            border-radius: 50%; /* Make the element a circle */
+            opacity: 0.2; /* Adjust for a subtle background effect */
+            filter: blur(10px);
+
+            z-index: 0; /*Position behind the feature-box content*/
+        }
 
 @media only screen and (max-width: 1000px) {
     .hexagon-bg::before {
