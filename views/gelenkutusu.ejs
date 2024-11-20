@@ -26,14 +26,9 @@
                                 <p class="mb-1">
                                     <h3>
                                         <%=otherUser.username %>
-
-                                        <!-- Burası notification kısmı style çekersiniz -->
-                                            <% if (conversation.notification &&
-                                                conversation.notification.toString()===currentUserId.toString()) { %>
-                                                <small style="color: red; font-size: 10px;">Okunmamış mesaj
-                                                    mevcut</small>
-                                                <% } %>
-                                        <!-- Burası notification kısmı style çekersiniz bu bende niye yorum satırı olarak gözükmedi lan-->
+                                        <% if (conversation.notification && conversation.notification.toString()===currentUserId.toString()) { %>
+                                            <small style="color: red; font-size: 10px;">yeni mesaj</small>
+                                        <% } %>
                                     </h3>
                                     <% if (conversation.texts.length> 0) { %>
                                         <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
@@ -44,11 +39,11 @@
                                             <%= lastMessage.content %>
                                                 <% } %>
                                 </p>
-                                <small class="text-muted">
+                                <small class="text-muted timestamp">
                                     <% if (conversation.texts.length> 0) { %>
                                         <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
-                                            <%= new Date(lastMessage.timestamp).toLocaleString() %>
-                                                <% } %>
+                                        <%= new Date(lastMessage.timestamp).toLocaleString() %>
+                                    <% } %>
                                 </small>
                             </a>
                             <% }); %>
@@ -56,6 +51,8 @@
             </div>
             <%- include('partials/footer') %>
     </div>
+    <!-- timestamp class ına sahip etiketlein formatını değiştiriyor sadece -->
+    <script src="/js/update-timestamps.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

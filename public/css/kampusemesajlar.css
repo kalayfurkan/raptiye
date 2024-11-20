@@ -8,6 +8,12 @@ h1.header {
 a.sesiniduyur{
     margin-bottom: 20px;
 }
+.sorting-buttons{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 /* Mesaj Listesi */
 ul.list-group {
     background-color: #fff;
@@ -24,7 +30,12 @@ ul.list-group {
     border-radius: 8px;
     transition: background-color 0.3s ease;
 }
-
+.list-group-item img{
+    width: 50vw;
+    max-height: max(50vh, 250px);
+    height: auto;
+    width: auto;
+}
 .list-group-item:hover {
     background-color: #f0f4f8;
 }
@@ -131,6 +142,11 @@ p.daha-fazla.collapsed {
         }
     }
 /*thumbs styling end*/
+@media screen and (max-width: 780px) {
+ span.alan-yetersiz{
+    display: none;
+ }
+}
 
 @media screen and (max-width: 570px) {
 	h1.header {

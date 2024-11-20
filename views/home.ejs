@@ -24,33 +24,44 @@
 
 			<div class="feature-container">
 				<div class="feature">
-					<div class="feature-box">
-						<h2>İkinci El Sahibinden Al</h2>
-						<p>İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla.</p>
+					<div class="feature-box hexagon-bg">
+						<!-- buraya şekil şukul ekleniyor -->
+						<div class="feature-content">
+							<h2>İkinci El Sahibinden Al</h2>
+							<p>İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla.</p>
+						</div>
 					</div>
 				</div>
 				<div class="feature">
 					<div class="feature-box">
-						<h2>Kiradan Eşya Al</h2>
-						<p>Günlük lazım olan bisiklet, krampon, sözlük vs. aradığın ihtiyaçlarını kiradan al.</p>
+						<div class="feature-content">
+							<h2>Kiradan Eşya Al</h2>
+							<p>Günlük lazım olan bisiklet, krampon, sözlük, hesap makinesi vs. aradığın ihtiyaçlarını kiralayan birini bul.</p>
+						</div>
 					</div>
 				</div>
 				<div class="feature">
 					<div class="feature-box">
-						<h2>Harf Notu Hesapla</h2>
-						<p>Matematik, Fizik, Kimya notunu herkesten önce öğren.</p>
+						<div class="feature-content">
+							<h2>Harf Notu Hesapla</h2>
+							<p>Matematik, Fizik, Kimya harf notunu herkesten önce öğren.</p>
+						</div>
 					</div>
 				</div>
 				<div class="feature">
 					<div class="feature-box">
-						<h2>İlan Ver</h2>
-						<p>Dilediğin her şeyi kolayca satışa çıkar, kirala ve alıcısıyla buluştur.</p>
+						<div class="feature-content">
+							<h2>İlan Ver</h2>
+							<p>Dilediğin her şeyi kolayca satışa çıkar, kirala ve alıcısıyla buluştur.</p>
+						</div>
 					</div>
 				</div>
 				<div class="feature">
 					<div class="feature-box">
-						<h2>İş Bul</h2>
-						<p>Günübirlik veya uzun vadeli sana uygun ne varsa başvurabilirsin.</p>
+						<div class="feature-content">
+							<h2>İş Bul</h2>
+							<p>Günübirlik veya uzun vadeli sana uygun ne varsa başvurabilirsin.</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -65,36 +76,30 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-	<script>
+	<script defer>
 		document.querySelectorAll('.feature').forEach((feature, index) => {
 			feature.classList.add(index % 2 === 0 ? 'align-left' : 'align-right');
+
+			const hue = index * 40; // Increment hue by 40 for each feature
+			feature.style.color = `hsl(${hue}, 31%, 34%)`;
 		});
+
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				console.log(entry);
+				if (entry.isIntersecting) {
+					entry.target.classList.add('show');
+				} else {
+					entry.target.classList.remove('show');
+				}
+			});
+		});
+
+		const hiddenElements = document.querySelectorAll('.feature'); //effect e sahip olacak olan tagler
+		hiddenElements.forEach((el) => observer.observe(el));
+
 	</script>
 </body>
 
 </html>
-
-
-
-<!--
-{
-	title: "İkinci El Sahibinden Al",
-	content: "İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla."
-},
-{
-	title: "Kiradan Eşya Al",
-	content: "Günlük lazım olan bisiklet, krampon, sözlük vs. aradığın ihtiyaçlarını kiradan al."
-},
-{
-	title: "Harf Notu Hesapla",
-	content: "Matematik, Fizik, Kimya notunu herkesten önce öğren."
-},
-{
-	title: "İlan Ver",
-	content: "Dilediğin her şeyi kolayca satışa çıkar, kirala ve alıcısıyla buluştur."
-},
-{
-	title: "İş Bul",
-	content: "Günübirlik veya uzun vadeli sana uygun ne varsa başvurabilirsin."
-}
--->

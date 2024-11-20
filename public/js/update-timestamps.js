@@ -1,10 +1,53 @@
 function timeAgo(inputTime) {
     const now = new Date();
-    const [date, time] = inputTime.trim().split(" "); // Trim extra spaces and then split
-    const [day, month, year] = date.split(".");
-    const [hours, minutes, seconds] = time.split(":");
 
-    const pastDate = new Date(year, month - 1, day, hours, minutes, seconds);
+    // Trim the input and split into date and time
+    const parts = inputTime.trim().split(" ");
+    if (parts.length !== 2) {
+        // If the input doesn't have exactly two parts, return it as is
+        return inputTime;
+    }
+
+    const [date, time] = parts;
+
+    const dateParts = date.split(".");
+    if (dateParts.length !== 3) {
+        // If the date doesn't have exactly three parts, return it as is
+        return inputTime;
+    }
+
+    const timeParts = time.split(":");
+    if (timeParts.length !== 3) {
+        // If the time doesn't have exactly three parts, return it as is
+        return inputTime;
+    }
+
+    const [day, month, year] = dateParts;
+    const [hours, minutes, seconds] = timeParts;
+
+    // Convert all parts to integers
+    const dayNum = parseInt(day, 10);
+    const monthNum = parseInt(month, 10) - 1; // Months are zero-based in JavaScript
+    const yearNum = parseInt(year, 10);
+    const hoursNum = parseInt(hours, 10);
+    const minutesNum = parseInt(minutes, 10);
+    const secondsNum = parseInt(seconds, 10);
+
+    // Check for invalid number parsing
+    if (
+        isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum) ||
+        isNaN(hoursNum) || isNaN(minutesNum) || isNaN(secondsNum)
+    ) {
+        return inputTime;
+    }
+
+    const pastDate = new Date(yearNum, monthNum, dayNum, hoursNum, minutesNum, secondsNum);
+
+    // Check if the date is valid
+    if (isNaN(pastDate.getTime())) {
+        return inputTime;
+    }
+
     const diff = (now - pastDate) / 1000; // difference in seconds
 
     const oneMinute = 60;
@@ -51,7 +94,7 @@ function timeAgo(inputTime) {
 function updateTimestamps() {
     // Get all elements with the class 'timestamp'
     const timestamps = document.querySelectorAll('.timestamp');
-    
+
     // Loop through each element and apply the timeAgo function
     timestamps.forEach(element => {
         const timeText = element.textContent.trim(); // Trim the text content

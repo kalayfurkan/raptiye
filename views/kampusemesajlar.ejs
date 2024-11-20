@@ -25,21 +25,21 @@
             <div class="sorting-buttons">
                 <a href="/kampusemesajlar?sort=newest" 
                    class="btn btn-outline-primary <%= sortOption === 'newest' || !sortOption ? 'active' : '' %>">
-                  <i class="bi bi-clock"></i> Yeniden Eskiye
+                  <i class="bi bi-clock"></i> <span class="alan-yetersiz">Yeniden Eskiye</span>
                 </a>
                 
                 <a href="/kampusemesajlar?sort=topVotes" 
                    class="btn btn-outline-primary <%= sortOption === 'topVotes' ? 'active' : '' %>">
-                  <i class="bi bi-hand-thumbs-up"></i> En Beğenilen
+                  <i class="bi bi-hand-thumbs-up"></i> <span class="alan-yetersiz">Beğenilenler</span>
                 </a>
                 <a href="/kampusemesajlar?sort=worstVotes" 
                    class="btn btn-outline-primary <%= sortOption === 'worstVotes' ? 'active' : '' %>">
-                  <i class="bi bi-hand-thumbs-down"></i> En Beğenilmeyen fuat bokunu yiyim düzelt şurayı
+                  <i class="bi bi-hand-thumbs-down"></i> <span class="alan-yetersiz">Beğenilmeyenler</span>
                 </a>
                 
                 <a href="/kampusemesajlar?sort=myMessages" 
                    class="btn btn-outline-primary <%= sortOption === 'myMessages' ? 'active' : '' %>">
-                  <i class="bi bi-person"></i> Sadece Benim Mesajlarım aslında düzeltme la iyi görünüyor iki ayar çek kafi
+                  <i class="bi bi-person"></i> <span class="alan-yetersiz">Benim Mesajlarım</span>
                 </a>
               </div>
               
@@ -57,17 +57,17 @@
                                     Anonim
                                 <% } %>
                             </strong>
-                            <p>
+                            <p class="mb-2">
                                 <%= message.mesaj %>
                             </p>
                             <% if(message.images){ %>
-                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images%>" aria-expanded="false" aria-controls="imageCollapse<%= message.images%>">
-                                    Görseli Göster/Gizle
+                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images%>" aria-expanded="false" aria-controls="imageCollapse<%= message.images%>">
+                                    <i class="bi bi-image"></i>
                                 </button>
                             
                                 <!-- Görsel -->
                                 <div class="collapse mt-3" id="imageCollapse<%= message.images%>">
-                                    <img src="<%= message.images %>" alt="görsel" style="max-width: 100%; height: auto;" class="img-fluid">
+                                    <img src="<%= message.images %>" alt="görsel"  class="img-fluid img-kampuse">
                                 </div>
                                 <% } %>
                                     <!-- Yorumlar için dropdown -->
@@ -171,7 +171,7 @@
                                                                     </form>
                                                                     <% } %>
                                             </div>
-                                            <button class="btn btn-secondary" type="button"
+                                            <button class="btn" type="button"
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false"
                                                 aria-controls="yorumlar-<%= message._id %>">
@@ -180,7 +180,7 @@
 
                                             <% if (message.owner && userId==message.owner._id.toString()) { %>
                                                 <form action="/deletekampusmesaj/<%= message._id %>" method="POST">
-                                                    <button class="btn btn-secondary" type="submit">
+                                                    <button class="btn" type="submit">
                                                         Sil
                                                     </button>
                                                 </form>
@@ -221,7 +221,7 @@
                                                         placeholder="Yorumunuzu buraya yazın" required></textarea>
                                                 </div>
                                                 <input type="hidden" name="messageId" value="<%= message._id %>">
-                                                <button type="submit" class="btn btn-primary">Yorum Yap</button>
+                                                <button type="submit" class="btn">Yorum Yap</button>
                                             </form>
                                         </div>
                                     </div>

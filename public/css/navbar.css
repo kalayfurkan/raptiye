@@ -265,6 +265,12 @@ a.notification span {
 	.navbar-brand span {
 		display: none;
 	}
+	a.notification span {
+		left: 15px;
+	}
+	a.notification {
+		animation: none;
+	}
 }
 
 @media screen and (max-width: 850px) {

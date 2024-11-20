@@ -1,28 +1,72 @@
 
   :root {
-    --background-color1: hsl(0, 80%, 80%);
+    --background-color1: hsl(0, 21%, 24%);
     --background-color2: hsl(40, 80%, 80%);
     --background-color3: hsl(80, 80%, 80%);
     --background-color4: hsl(120, 80%, 80%);
     --background-color5: hsl(160, 80%, 80%);
 }
 
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff; /* To prevent content from overlapping */
+}
+
 .intro {
+    min-height: 15vh;
     margin: 0;
     margin-top: 40px;
     margin-bottom: 10vw;
     text-align: center;
 }
+
 .intro h1{
     font-size: 4rem;
 }
+
 .intro p{
     font-size: 2rem;
 }
-.feature {
-    height: 50vh;
+
+.feature{
+    min-height: 40vh;
     display: flex;
+
 }
+
+
+.feature.align-left{
+    justify-content: start;
+}
+.feature.align-right{
+    justify-content: end;
+}
+
+.feature.align-left .feature-content{
+    transform: translateX(-100%);
+}
+.feature.align-right .feature-content{
+    transform: translateX(100%);
+}
+
+.feature .feature-content{
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+}
+
+.feature.show .feature-content{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+/* @media(prefers-reduced-motion){
+    .feature{
+        transition: hidden;
+    }
+} */
 
 .feature h2{
     font-size: 2.5em;
@@ -32,14 +76,6 @@
     font-size: 2em;
 }
 
-.feature.align-left{
-    justify-content: start;
-}
-
-.feature.align-right{
-    justify-content: end;
-}
-
 .feature .feature-box{
     max-width: 40vw;
 }
@@ -47,23 +83,10 @@
 .feature .feature-box h2{
     text-align: center;
 }
-/* 
-.feature.left .feature-box{
-    max-width: 50vw;
-}
 
-.feature.right .feature-box{
-    max-width: 40vw;
-} */
 h1 {
     font-size: 3rem;
     margin-top: 30px;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-top: 15px;
-    margin-bottom: 30px;
 }
 
 .lead {
@@ -76,12 +99,56 @@ p {
 }
 
 a {
-    color: #007bff;
     text-decoration: none;
 }
 
+@media only screen and (max-width: 1000px) {
+    .feature.feature.align-right{
+        justify-content: start;
+    }
+    .feature .feature-box{
+        max-width: none;
+    }
+}
 @media only screen and (max-width: 500px) {
     h1 {
         font-size: 2rem;
     }
+    .intro h1{
+        font-size: 2.2rem;
+    }
+    .intro p{
+        font-size: 1.2rem;
+    }
+    .feature h2{
+        font-size: 2rem;
+    }
+
+    .feature p{
+        font-size: 1.2rem;
+    }
+    .feature .feature-box h2{
+        text-align: start;
+    }
+}
+
+/* Styling for the hexagon background */
+.hexagon-bg {
+    position: relative; /* Allows you to position the SVG background relative to this container */
+    z-index: 1; /* Keep the text and content above the background */
+}
+
+.hexagon-bg::before {
+    content: "";
+    position: absolute;
+    transform: rotate(60deg);
+    top: -80px; /* Adjust to position the hexagon properly */
+    left: -40px; /* Adjust to position the hexagon properly */
+    width: 500px; /* Adjust width and height according to your design */
+    height: 500px;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="%23FFD700"/%3E%3C/svg%3E') no-repeat center center;
+    background-size: cover;
+    z-index: -1; /* Make sure the SVG stays behind the content */
+    opacity: 0.2; /* Adjust for a subtle background effect */
+    filter: blur(5px);
 }

@@ -76,6 +76,10 @@ p{
 .btn:active {
     border-radius: 15px;
 }
+.btn.active{
+    background-color: var(--secondary-color-dark2);
+    border-color: var(--secondary-color-dark2);
+}
 
 .back-to-inbox{
     display: inline-block;
