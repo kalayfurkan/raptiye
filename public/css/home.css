@@ -1,4 +1,8 @@
-
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal overflow */
+}
   :root {
     --background-color1: hsl(0, 21%, 24%);
     --background-color2: hsl(40, 80%, 80%);
@@ -30,15 +34,22 @@
     font-size: 2rem;
 }
 
+.feature-container{
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    gap: 60px;
+}
 .feature{
     min-height: 40vh;
     display: flex;
-
+    gap: 20px;
 }
 
 
 .feature.align-left{
     justify-content: start;
+    gap: 10vw;
 }
 .feature.align-right{
     justify-content: end;
@@ -55,6 +66,7 @@
     opacity: 0;
     filter: blur(5px);
     transition: all 1s;
+    overflow: hidden;
 }
 
 .feature.show .feature-content{
@@ -62,11 +74,6 @@
     filter: blur(0);
     transform: translateX(0);
 }
-/* @media(prefers-reduced-motion){
-    .feature{
-        transition: hidden;
-    }
-} */
 
 .feature h2{
     font-size: 2.5em;
@@ -84,10 +91,48 @@
     text-align: center;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-top: 30px;
+/*//////////////*/
+
+/* Image Slider Container */
+.image-slider {
+    position: relative;
+    width: 40vw; /* Adjust width as needed */
+    height: 40vh; /* Adjust height as needed */
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px; /* Space between feature-box and slider */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: transparent;
 }
+
+/* Slider Images */
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 100%; /* Start off-screen to the right */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the entire image is visible */
+    /* transform: translate(-50%, -50%); Centers the image */
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+/* Active Image */
+.slider-image.active {
+    left: 0;
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Previous Image for Sliding Out */
+.slider-image.previous {
+    left: -100%; /* Slide off to the left */
+    opacity: 0;
+    z-index: 1;
+}
+
+/*//////////////*/
 
 .lead {
     font-size: 1.25rem;
@@ -102,16 +147,94 @@ a {
     text-decoration: none;
 }
 
+/* Styling for the hexagon background */
+.hexagon-bg {
+    position: relative; /* Allows you to position the SVG background relative to this container */
+    z-index: 1; /* Keep the text and content above the background */
+
+}
+
+.hexagon-bg::before {
+    content: "";
+    position: absolute;
+    top: -200px; /* Adjust to position the hexagon properly */
+    left: -80px; /* Adjust to position the hexagon properly */
+    width: 700px; /* Adjust width and height according to your design */
+    height: 700px;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cdefs%3E%3ClinearGradient id="hexGradient" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23f7941f;stop-opacity:1"%3E%3C/stop%3E%3Cstop offset="100%25" style="stop-color:%23f5e9da;stop-opacity:1"%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="url(%23hexGradient)" /%3E%3C/svg%3E') no-repeat center center;
+    /* stop-color: */
+    background-size: cover;
+    z-index: -2; /* Make sure the SVG stays behind the content */
+    opacity: 0.2; /* Adjust for a subtle background effect */
+    filter: blur(5px);
+    pointer-events: none;
+    animation: rotate360 100s linear infinite;
+}
+
+.feature-box.circle-bg{
+    position: relative;
+}
+
+/* Target the second feature-box to add a circle using ::before */
+.feature-box.circle-bg:before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Adjust positioning based on container height */
+    right: -150px; /* Adjust to place the circle to the left of the feature-box */
+    transform: translateY(-50%); /* Vertically center the circle */
+    width: 60%; /* Adjust the size of the circle */
+    aspect-ratio: 1/1; /* Ensure height equals width to maintain the circle shape */
+    background-color: #6969ff; /* Change to desired color (here, orange-red) */
+    border-radius: 50%; /* Make the element a circle */
+    opacity: 0.2; /* Adjust for a subtle background effect */
+    filter: blur(10px);
+    animation: updown 20s ease-in-out infinite;
+    z-index: 0; /*Position behind the feature-box content*/
+}
+
 @media only screen and (max-width: 1000px) {
+    .hexagon-bg::before {
+        top:0;
+        width: 250px;
+        height: 250px;
+    }
     .feature.feature.align-right{
         justify-content: start;
     }
     .feature .feature-box{
         max-width: none;
     }
+    /*  */
+    .image-slider {
+        display: none;
+        width: 60vw;
+        height: 30vh;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    /*  */
 }
 @media only screen and (max-width: 500px) {
-    h1 {
+    .hexagon-bg::before {
+        top:-40px;
+    }
+    .feature{
+        min-height: 30vh;
+    }
+    .feature-container{
+        gap: 10px;
+    }
+    /* */
+    .image-slider {
+        width: 80vw;
+        height: 20vh;
+    } 
+    /* */
+    .hexagon-bg::before {
+        width: 250px;
+        height: 250px;
+    }
+    .intro h1{
         font-size: 2rem;
     }
     .intro h1{
@@ -132,23 +255,23 @@ a {
     }
 }
 
-/* Styling for the hexagon background */
-.hexagon-bg {
-    position: relative; /* Allows you to position the SVG background relative to this container */
-    z-index: 1; /* Keep the text and content above the background */
+@keyframes rotate360{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+@keyframes updown {
+    0% { transform: translateY(0); background-color: #6969ff;}
+    50% { transform: translateY(-250px); background-color: #47bffa;}
+    100% { transform: translateY(0); background-color: #6969ff;}
 }
 
-.hexagon-bg::before {
-    content: "";
-    position: absolute;
-    transform: rotate(60deg);
-    top: -80px; /* Adjust to position the hexagon properly */
-    left: -40px; /* Adjust to position the hexagon properly */
-    width: 500px; /* Adjust width and height according to your design */
-    height: 500px;
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="%23FFD700"/%3E%3C/svg%3E') no-repeat center center;
-    background-size: cover;
-    z-index: -1; /* Make sure the SVG stays behind the content */
-    opacity: 0.2; /* Adjust for a subtle background effect */
-    filter: blur(5px);
+@media (prefers-reduced-motion: reduce) {
+    .feature {
+        transition: none;
+    }
+
+    .hexagon-bg::before,
+    .feature-box.circle-bg::before {
+        animation: none;
+    }
 }
