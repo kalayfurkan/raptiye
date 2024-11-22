@@ -128,7 +128,7 @@ router.post('/delete-image/:ilanid/:index', allMiddlewares.requireAuth, async (r
 		{ $pull: { images: ilan.images[index] } } // Görseli diziden çıkarın
 	);
 
-	res.redirect(`/ilan/edit/${ilanId}`);
+	res.redirect(`/satisilani/edit/${ilanId}`);
 
 })
 

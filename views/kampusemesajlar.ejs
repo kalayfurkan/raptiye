@@ -61,12 +61,12 @@
                                 <%= message.mesaj %>
                             </p>
                             <% if(message.images){ %>
-                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images%>" aria-expanded="false" aria-controls="imageCollapse<%= message.images%>">
+                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images %>" aria-expanded="false" aria-controls="imageCollapse<%= message.images %>">
                                     <i class="bi bi-image"></i>
                                 </button>
                             
                                 <!-- Görsel -->
-                                <div class="collapse mt-3" id="imageCollapse<%= message.images%>">
+                                <div class="collapse mt-3" id="imageCollapse<%= message.images %>">
                                     <img src="<%= message.images %>" alt="görsel"  class="img-fluid img-kampuse">
                                 </div>
                                 <% } %>
