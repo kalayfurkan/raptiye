@@ -43,11 +43,13 @@ html, body {
 .feature{
     min-height: 40vh;
     display: flex;
+    gap: 20px;
 }
 
 
 .feature.align-left{
     justify-content: start;
+    gap: 10vw;
 }
 .feature.align-right{
     justify-content: end;
@@ -72,11 +74,6 @@ html, body {
     filter: blur(0);
     transform: translateX(0);
 }
-/* @media(prefers-reduced-motion){
-    .feature{
-        transition: hidden;
-    }
-} */
 
 .feature h2{
     font-size: 2.5em;
@@ -94,10 +91,48 @@ html, body {
     text-align: center;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-top: 30px;
+/*//////////////*/
+
+/* Image Slider Container */
+.image-slider {
+    position: relative;
+    width: 40vw; /* Adjust width as needed */
+    height: 40vh; /* Adjust height as needed */
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px; /* Space between feature-box and slider */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: transparent;
 }
+
+/* Slider Images */
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 100%; /* Start off-screen to the right */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the entire image is visible */
+    /* transform: translate(-50%, -50%); Centers the image */
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+/* Active Image */
+.slider-image.active {
+    left: 0;
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Previous Image for Sliding Out */
+.slider-image.previous {
+    left: -100%; /* Slide off to the left */
+    opacity: 0;
+    z-index: 1;
+}
+
+/*//////////////*/
 
 .lead {
     font-size: 1.25rem;
@@ -136,26 +171,26 @@ a {
     animation: rotate360 100s linear infinite;
 }
 
-        .feature-box.circle-bg{
-            position: relative;
-        }
+.feature-box.circle-bg{
+    position: relative;
+}
 
-        /* Target the second feature-box to add a circle using ::before */
-        .feature-box.circle-bg:before {
-            content: "";
-            position: absolute;
-            top: 50%; /* Adjust positioning based on container height */
-            right: -150px; /* Adjust to place the circle to the left of the feature-box */
-            transform: translateY(-50%); /* Vertically center the circle */
-            width: 60%; /* Adjust the size of the circle */
-            aspect-ratio: 1/1; /* Ensure height equals width to maintain the circle shape */
-            background-color: #6969ff; /* Change to desired color (here, orange-red) */
-            border-radius: 50%; /* Make the element a circle */
-            opacity: 0.2; /* Adjust for a subtle background effect */
-            filter: blur(10px);
-
-            z-index: 0; /*Position behind the feature-box content*/
-        }
+/* Target the second feature-box to add a circle using ::before */
+.feature-box.circle-bg:before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Adjust positioning based on container height */
+    right: -150px; /* Adjust to place the circle to the left of the feature-box */
+    transform: translateY(-50%); /* Vertically center the circle */
+    width: 60%; /* Adjust the size of the circle */
+    aspect-ratio: 1/1; /* Ensure height equals width to maintain the circle shape */
+    background-color: #6969ff; /* Change to desired color (here, orange-red) */
+    border-radius: 50%; /* Make the element a circle */
+    opacity: 0.2; /* Adjust for a subtle background effect */
+    filter: blur(10px);
+    animation: updown 20s ease-in-out infinite;
+    z-index: 0; /*Position behind the feature-box content*/
+}
 
 @media only screen and (max-width: 1000px) {
     .hexagon-bg::before {
@@ -169,6 +204,15 @@ a {
     .feature .feature-box{
         max-width: none;
     }
+    /*  */
+    .image-slider {
+        display: none;
+        width: 60vw;
+        height: 30vh;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    /*  */
 }
 @media only screen and (max-width: 500px) {
     .hexagon-bg::before {
@@ -180,11 +224,17 @@ a {
     .feature-container{
         gap: 10px;
     }
+    /* */
+    .image-slider {
+        width: 80vw;
+        height: 20vh;
+    } 
+    /* */
     .hexagon-bg::before {
         width: 250px;
         height: 250px;
     }
-    h1 {
+    .intro h1{
         font-size: 2rem;
     }
     .intro h1{
@@ -208,4 +258,20 @@ a {
 @keyframes rotate360{
     0% {transform: rotate(0deg);}
     100% {transform: rotate(360deg);}
+}
+@keyframes updown {
+    0% { transform: translateY(0); background-color: #6969ff;}
+    50% { transform: translateY(-250px); background-color: #69c8ff;}
+    100% { transform: translateY(0); background-color: #6969ff;}
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .feature {
+        transition: none;
+    }
+
+    .hexagon-bg::before,
+    .feature-box.circle-bg::before {
+        animation: none;
+    }
 }

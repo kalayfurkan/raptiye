@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
 	<meta charset="UTF-8">
@@ -9,6 +9,16 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/default.css">
 	<link rel="stylesheet" href="/css/home.css">
+
+	<meta property="og:title" content="İTÜ Raptiye">
+	<meta property="og:description" content="İTÜ öğrencileri için satış ve ilan sitesi">
+	<meta property="og:image" content="/img/logo.svg">
+	<!-- <meta property="og:url" content="https://www.link.com"> güncellenecek -->
+	<meta property="og:type" content="website">
+
+	<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline';"> -->
+	<!-- Implement a CSP to prevent XSS attacks and other code injection vulnerabilities. -->
+
 
 </head>
 
@@ -30,6 +40,14 @@
 							<h2>İkinci El Sahibinden Al</h2>
 							<p>İtülülerden uygun fiyata ders kitaplarını, mutfak malzemelerini, spor aksesuarlarını karşıla.</p>
 						</div>
+					</div>
+
+					<div class="image-slider">
+						<img src="/img/anasayfa/1.png" class="slider-image active" alt="İkinci El Örnek Ürün 1">
+						<img src="/img/anasayfa/2.png" class="slider-image" alt="İkinci El Örnek Ürün 2">
+						<img src="/img/anasayfa/3.png" class="slider-image" alt="İkinci El Örnek Ürün 3">
+						<img src="/img/anasayfa/4.png" class="slider-image" alt="İkinci El Örnek Ürün 4">
+
 					</div>
 				</div>
 				<div class="feature">
@@ -72,9 +90,9 @@
 		<%- include('partials/footer') %>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Bootstrap 5 JS Bundle includes Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+F/KNpi6kK+1b+Y5FQgR4V1S3bzQ" crossorigin="anonymous"></script>
+
 
 	<script defer>
 		document.querySelectorAll('.feature').forEach((feature, index) => {
@@ -100,6 +118,44 @@
 		hiddenElements.forEach((el) => observer.observe(el));
 
 	</script>
+
+	<!-- sliding images -->
+	<script defer>
+		document.addEventListener('DOMContentLoaded', () => {
+			const images = document.querySelectorAll('.image-slider .slider-image');
+			let currentIndex = 0;
+			const totalImages = images.length;
+			const intervalTime = 3000; // 3 seconds
+	
+			// Function to show the next image
+			const showNextImage = () => {
+				// Current image
+				const currentImage = images[currentIndex];
+				// Calculate next index
+				const nextIndex = (currentIndex + 1) % totalImages;
+				const nextImage = images[nextIndex];
+	
+				// Add 'previous' class to current image to slide it out
+				currentImage.classList.add('previous');
+	
+				// Activate the next image
+				nextImage.classList.add('active');
+	
+				// Remove 'active' and 'previous' classes after transition
+				setTimeout(() => {
+					currentImage.classList.remove('active', 'previous');
+					currentIndex = nextIndex;
+				}, 1000); // Duration matches CSS transition
+			};
+	
+			// Start the slider
+			setInterval(showNextImage, intervalTime);
+		});
+	</script>
+	
+	<!-- Include Intersection Observer polyfill for older browsers -->
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+
 </body>
 
 </html>
