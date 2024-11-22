@@ -261,7 +261,7 @@ a {
 }
 @keyframes updown {
     0% { transform: translateY(0); background-color: #6969ff;}
-    50% { transform: translateY(-250px); background-color: #69c8ff;}
+    50% { transform: translateY(-250px); background-color: #47bffa;}
     100% { transform: translateY(0); background-color: #6969ff;}
 }
 
