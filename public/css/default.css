@@ -11,9 +11,12 @@
     --primary-color: hsl(356, 95%, 63%);
     --primary-color-dark: hsl(356, 69%, 55%);
     --primary-color-dark2: hsl(356, 57%, 45%);
-    --secondary-color: #47bffa;
-    --secondary-color-dark: #3fabe1;
-    --secondary-color-dark2: #3899ca;
+    
+    --secondary-color: hsl(200, 95%, 63%);
+    --secondary-color-dark: hsl(200, 73%, 56%);
+    --secondary-color-dark2: hsl(200, 58%, 51%);
+
+    --ternary-color-dark2:hsl(217, 100%, 20%);
 }
 
 * {
