@@ -188,7 +188,7 @@ a {
     border-radius: 50%; /* Make the element a circle */
     opacity: 0.2; /* Adjust for a subtle background effect */
     filter: blur(10px);
-    animation: updown 20s ease-in-out infinite;
+    animation: updown 15s ease-in-out infinite;
     z-index: 0; /*Position behind the feature-box content*/
 }
 
