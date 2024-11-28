@@ -24,7 +24,7 @@
 	height: 64px;
 	width: 100%;
 	z-index: 5;
-	background-color: var(--secondary-color);
+	background-color: var(--ternary-color);
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
@@ -39,7 +39,7 @@
 	display: flex;
 	align-items: center;
 	font-size: 1.5rem;
-	color: black;
+	color: var(--navbar-font-color);
 	text-decoration: none;
 }
 
@@ -54,6 +54,7 @@
 	height: 15px;
 	width: auto;
 	margin: 0 10px 3px 2px;
+	filter: invert(0.8); /*beyaz yazı için*/
 }
 
 .navbar-brand:hover img {
@@ -110,7 +111,7 @@ ul.navbar-menu {
 }
 
 .navbar-item:hover {
-	background-color: var(--secondary-color-dark);
+	background-color: var(--ternary-color-light);
 }
 
 .navbar-item>a {
@@ -119,7 +120,7 @@ ul.navbar-menu {
 
 /* Menu link styles */
 .navbar-link {
-	color: black;
+	color: var(--navbar-font-color);
 	text-decoration: none;
 	font-size: 1.2em;
 	transition: color 0.3s;
@@ -137,7 +138,7 @@ ul.navbar-menu {
 /* Dropdown menu styles */
 .dropdown-menu {
 	padding: 10px 0;
-	background-color: var(--secondary-color);
+	background-color: var(--ternary-color);
 	display: block;
 	width: 100%;
 	min-width: 220px;
@@ -163,12 +164,12 @@ ul.navbar-menu {
 }
 
 .dropdown-link:hover {
-	color: black;
-	background-color: var(--secondary-color-dark);
+	color: var(--navbar-font-color);
+	background-color: var(--ternary-color-light);
 }
 
 .dropdown-campus:hover {
-	background-color: var(--secondary-color-dark);
+	background-color: var(--ternary-color-light);
 }
 
 .plus-symbol {
@@ -190,7 +191,7 @@ ul.navbar-menu {
 
 .plus-link:hover {
 	transform: scale(1.1);
-	background-color: var(--secondary-color-dark);
+	background-color: var(--ternary-color-light);
 }
 
 .tooltip {
