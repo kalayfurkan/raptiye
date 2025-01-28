@@ -63,6 +63,7 @@ html, body {
 }
 
 .feature .feature-content{
+    text-align: center;
     opacity: 0;
     filter: blur(5px);
     transition: all 1s;
@@ -80,7 +81,7 @@ html, body {
 }
 
 .feature p{
-    font-size: 2em;
+    font-size: 1.7em;
 }
 
 .feature .feature-box{
@@ -96,12 +97,12 @@ html, body {
 /* Image Slider Container */
 .image-slider {
     position: relative;
-    width: 40vw; /* Adjust width as needed */
+    width: 50vw; /* Adjust width as needed */
     height: 40vh; /* Adjust height as needed */
     overflow: hidden;
     border-radius: 10px;
     margin-left: 20px; /* Space between feature-box and slider */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     background-color: transparent;
 }
 
@@ -115,7 +116,9 @@ html, body {
     object-fit: contain; /* Ensures the entire image is visible */
     /* transform: translate(-50%, -50%); Centers the image */
     opacity: 0;
-    transition: all 1s ease-in-out;
+    transition: left 1s ease-in-out, opacity 0.5s ease-in-out;
+    overflow: visible;
+
 }
 
 /* Active Image */
@@ -161,12 +164,12 @@ a {
     left: -80px; /* Adjust to position the hexagon properly */
     width: 700px; /* Adjust width and height according to your design */
     height: 700px;
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cdefs%3E%3ClinearGradient id="hexGradient" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23f7941f;stop-opacity:1"%3E%3C/stop%3E%3Cstop offset="100%25" style="stop-color:%23f5e9da;stop-opacity:1"%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="url(%23hexGradient)" /%3E%3C/svg%3E') no-repeat center center;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="87" viewBox="0 0 100 100"%3E%3Cdefs%3E%3ClinearGradient id="hexGradient" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23fa4753;stop-opacity:1"%3E%3C/stop%3E%3Cstop offset="100%25" style="stop-color:%23fa7647;stop-opacity:1"%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="url(%23hexGradient)" /%3E%3C/svg%3E') no-repeat center center;
     /* stop-color: */
     background-size: cover;
     z-index: -2; /* Make sure the SVG stays behind the content */
     opacity: 0.2; /* Adjust for a subtle background effect */
-    filter: blur(5px);
+    filter: blur(4px);
     pointer-events: none;
     animation: rotate360 100s linear infinite;
 }
@@ -193,6 +196,9 @@ a {
 }
 
 @media only screen and (max-width: 1000px) {
+    .feature .feature-content{
+        text-align: start;
+    }
     .hexagon-bg::before {
         top:0;
         width: 250px;

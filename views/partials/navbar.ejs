@@ -2,7 +2,7 @@
 <nav class="navbar">
 	<!-- Logo and brand name -->
 	<a href="/" class="navbar-brand">
-		<img src="/img/logo.svg" alt="Logo">
+		<img src="/img/icons/logo.svg" alt="Logo">
 		<span class="font-nunito"> İTÜ Raptiye</span>
 	</a>
 	<!-- Mobile menu toggle button -->
@@ -15,32 +15,32 @@
 		</li>
 		<li class="navbar-item">
 			<a href="#" class="navbar-link ilanlar-toggle">İlanlar 
-				<img class="downward-arrow" src="/img/downward-arrow.svg">
+				<img class="downward-arrow" src="/img/icons/downward-arrow.svg">
 			</a>
 			<!-- Dropdown menu for "İlanlar" -->
 			<div class="dropdown-menu" id="ilanlar-dropdown">
 				<div class="adjacent">
 					<a href="/satisilanlari" class="dropdown-link"><span>Satış İlanları</span></a>
 					<a href="/satisilaniekle" class="plus-link" id="tumplus">
-						<img src="/img/plus-symbol.svg" class="plus-symbol" alt="+">
+						<img src="/img/icons/plus-symbol.svg" class="plus-symbol" alt="+">
 					</a>
 				</div>
 				<div class="adjacent">
 					<a href="/isilanlari" class="dropdown-link">İş İlanları</a>
 					<a href="/isilaniekle" class="plus-link" id="isplus">
-						<img src="/img/plus-symbol.svg" class="plus-symbol" alt="+">
+						<img src="/img/icons/plus-symbol.svg" class="plus-symbol" alt="+">
 					</a>
 				</div>
 				<div class="adjacent">
 					<a href="/evarkadasiilanlari" class="dropdown-link">Ev Arkadaşı İlanları</a>
 					<a href="/evarkadasiilaniekle" class="plus-link" id="evplus">
-						<img src="/img/plus-symbol.svg" class="plus-symbol" alt="+">
+						<img src="/img/icons/plus-symbol.svg" class="plus-symbol" alt="+">
 					</a>
 				</div>
 				<div class="adjacent">
 					<a href="/kisasureliilanlar" class="dropdown-link">Genel İlanlar</a>
 					<a href="/kisasureliilanekle" class="plus-link" id="kisaplus">
-						<img src="/img/plus-symbol.svg" class="plus-symbol" alt="+">
+						<img src="/img/icons/plus-symbol.svg" class="plus-symbol" alt="+">
 					</a>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 
 				<% if (user) { %>
 					<li class="navbar-item">
-						<a href="/profile" class="navbar-link"><img src="/img/profile-circle.svg" alt="profil"></a>
+						<a href="/profile" class="navbar-link"><img src="/img/icons/profile-circle.svg" alt="profil"></a>
 					</li>
 
 					<!-- Burası notification varsa yoksa style burdan ayarlanacak -->
@@ -73,9 +73,9 @@
 						<a href="/gelenkutusu" class="<% if (hasNotification>0) { %> notification<% } %> navbar-link">
 							<!-- hasNotification stores a number not a bool-->
 							<% if (hasNotification==0) { %>
-								<img src="/img/message-img.svg" alt="gelen kutusu">
+								<img src="/img/icons/message-img.svg" alt="gelen kutusu">
 								<%} else if(hasNotification>0){ %>
-									<img src="/img/message-notification-img.svg" alt="<%=hasNotification%> mesaj">
+									<img src="/img/icons/message-notification-img.svg" alt="<%=hasNotification%> mesaj">
 									<span>
 										<%=hasNotification%>
 									</span>
@@ -84,7 +84,7 @@
 					</li>
 
 					<li id="logout-btn" class="navbar-item">
-						<a href="/logout" class="navbar-link"><img src="/img/log-out.svg" alt="çıkış yap"></a>
+						<a href="/logout" class="navbar-link"><img src="/img/icons/log-out.svg" alt="çıkış yap"></a>
 					</li>
 					<% } %>
 	</ul>
