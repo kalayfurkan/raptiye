@@ -107,7 +107,6 @@ ul.navbar-menu {
 .navbar-item {
 	transition: background-color 0.2s;
 	position: relative;
-	padding: 16px;
 }
 
 .navbar-item:hover {
@@ -120,6 +119,7 @@ ul.navbar-menu {
 
 /* Menu link styles */
 .navbar-link {
+	padding: 16px;
 	color: var(--navbar-font-color);
 	text-decoration: none;
 	font-size: 1.2em;
