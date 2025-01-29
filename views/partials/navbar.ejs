@@ -106,6 +106,15 @@
         // Toggle the active class to open/close the dropdown
         ilanlarDropdown.classList.toggle('active');
     });
+	
+	// JavaScript to hide ilanlarDropdown when clicking outside
+		document.addEventListener('click', function (e) {
+        const ilanlarDropdown = document.getElementById('ilanlar-dropdown');
+        const ilanlarToggle = document.querySelector('.ilanlar-toggle');
+        if (!ilanlarDropdown.contains(e.target) && !ilanlarToggle.contains(e.target)) {
+            ilanlarDropdown.classList.remove('active');
+        }
+    });
 
 	// JavaScript to handle window resize
     window.addEventListener('resize', function () {
