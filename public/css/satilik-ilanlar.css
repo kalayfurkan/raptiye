@@ -15,18 +15,16 @@ form.search{
 }
 
 .card-box {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 2em;
-}
+  }
 
 .card {
     padding: 20px;
     display: flex;
     flex-direction: row;
-    width: 400px;
+    min-width: 400px;
     height: 200px;
     background-color: #fff;
     border: none;
@@ -35,10 +33,10 @@ form.search{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
-
+/* 
 .card:hover {
     transform: scale(1.02);
-}
+} */
 
 .card-body {
     position: relative;
