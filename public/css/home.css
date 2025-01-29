@@ -3,13 +3,6 @@ html, body {
     padding: 0;
     overflow-x: hidden; /* Prevents horizontal overflow */
 }
-  :root {
-    --background-color1: hsl(0, 21%, 24%);
-    --background-color2: hsl(40, 80%, 80%);
-    --background-color3: hsl(80, 80%, 80%);
-    --background-color4: hsl(120, 80%, 80%);
-    --background-color5: hsl(160, 80%, 80%);
-}
 
 .navbar {
     position: sticky;
@@ -76,9 +69,18 @@ html, body {
     transform: translateX(0);
 }
 
-.feature h2{
+.feature h2 {
     font-size: 2.5em;
 }
+
+.feature h2 a{
+    color: black;
+}
+
+.feature h2 a:hover{
+    color: var(--ternary-color);
+}
+
 
 .feature p{
     font-size: 1.7em;

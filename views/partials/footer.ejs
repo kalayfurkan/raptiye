@@ -2,7 +2,9 @@
     <!-- Sol taraf (linkler ve metinler) -->
     <div class="left-footer">
         <p class="footer-font">&copy; 2024 İlan Platformu</p>
+
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Click me</a>
+
         <a href="/hakkimizda">Hakkımızda</a>
     </div>
 
@@ -136,14 +138,32 @@
     }
 
     @media only screen and (max-width: 530px) {
+
+        .left-footer a, .left-footer p {
+            font-size: 14px;
+        }
+
         .left-footer {
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         #toggle-form {
             height: 40px;
+            padding: 6px;
+            min-width: 100px;
+            font-size: 14px;
         }
     }
+    @media only screen and (max-width: 460px) {
+        .left-footer a, .left-footer p {
+            font-size: 12px;
+        }
+        .left-footer {
+        gap: 8px;
+    }
+    }
+
 </style>
 
 <script>
