@@ -107,4 +107,21 @@
         ilanlarDropdown.classList.toggle('active');
     });
 
+	// JavaScript to handle window resize
+    window.addEventListener('resize', function () {
+        const menu = document.getElementById('navbar-menu');
+        if (window.innerWidth > 850) {
+            menu.style.maxHeight = 'none'; // Remove max-height
+            menu.classList.remove('active'); // Remove active class
+        } else {
+            menu.style.maxHeight = '0'; // Reset max-height for smaller screens
+        }
+    });
+
+    // Initial check to apply the correct styles on page load
+    if (window.innerWidth > 850) {
+        const menu = document.getElementById('navbar-menu');
+        menu.style.maxHeight = 'none'; // Remove max-height
+        menu.classList.remove('active'); // Remove active class
+    }
 </script>

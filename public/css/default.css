@@ -12,7 +12,7 @@
     --primary-color-dark: hsl(356, 69%, 55%);
     --primary-color-dark2: hsl(356, 57%, 45%);
 
-    --secondary-color: hsl(200, 95%, 63%);
+    --secondary-color: hsl(218, 92%, 55%);
     --secondary-color-dark: hsl(200, 73%, 56%);
     --secondary-color-dark2: hsl(200, 58%, 51%);
 
@@ -76,16 +76,18 @@ p{
 .btn:hover {
     color: white;
     background-color: var(--primary-color-dark2);
-    transform: scale(1.03);
+    /* transform: scale(1.03); */
     border-color: var(--primary-color-dark2);
 }
 
 .btn:active {
     border-radius: 15px;
+    /* background-color: white !important; */
 }
 .btn.active{
-    background-color: var(--secondary-color-dark2);
-    border-color: var(--secondary-color-dark2);
+    cursor: context-menu;
+    background-color: var(--ternary-color);
+    border-color: var(--ternary-color);
 }
 
 .back-to-inbox{
