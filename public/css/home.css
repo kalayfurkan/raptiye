@@ -117,8 +117,6 @@ html, body {
     /* transform: translate(-50%, -50%); Centers the image */
     opacity: 0;
     transition: left 1s ease-in-out, opacity 0.5s ease-in-out;
-    overflow: visible;
-
 }
 
 /* Active Image */

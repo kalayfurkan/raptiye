@@ -1,7 +1,7 @@
 <footer id="page-footer">
     <!-- Sol taraf (linkler ve metinler) -->
     <div class="left-footer">
-        <p>&copy; 2024 İlan Platformu</p>
+        <p class="footer-font">&copy; 2024 İlan Platformu</p>
         <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Click me</a>
         <a href="/hakkimizda">Hakkımızda</a>
     </div>
@@ -15,11 +15,11 @@
         <h4>İletişim Formu</h4>
         <form action="/contact-us" method="POST">
             <label for="email">E-posta:</label>
-            <input type="email" id="email" name="email" required>
-
+            <input type="email" id="email" name="email" autocomplete="email" required>
+        
             <label for="message">Mesajınız:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-
+            <textarea id="message" name="message" rows="4" autocomplete="off" required></textarea>
+        
             <button type="submit" class="btn btn-danger btn-md">Gönder</button>
         </form>
     </div>
@@ -45,7 +45,11 @@
 
     .left-footer a,
     .left-footer p {
+        color: var(--nav-text-color);
         margin: 5px 0;
+    }
+    .left-footer p {
+        cursor: default;
     }
 
     .left-footer a {
@@ -54,7 +58,7 @@
     }
 
     .left-footer a:hover {
-        color: var(--secondary-color);
+        color: var(--ternary-color-light);
     }
 
     /* Sağ Taraf İçin - İletişim Formu */
@@ -134,8 +138,6 @@
     @media only screen and (max-width: 530px) {
         .left-footer {
             flex-wrap: wrap;
-            /* flex-direction: column;
-        gap: 0; */
         }
 
         #toggle-form {

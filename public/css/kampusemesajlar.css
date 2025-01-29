@@ -3,10 +3,10 @@ h1.header {
     font-size: 2.5rem;
     color: #2c3e50;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 a.sesiniduyur{
-    margin-bottom: 20px;
+    margin-right: auto;
 }
 .sorting-buttons{
     display: flex;
@@ -23,7 +23,6 @@ ul.list-group {
 }
 
 .list-group-item {
-    background-color: #f7f8fa;
     border: none;
     margin-bottom: 15px;
     padding: 20px;
@@ -42,12 +41,11 @@ ul.list-group {
 
 strong.message-sender a{
     font-size: 1.1rem;
-    color: var(--secondary-color-dark2);
+    color: var(--primary-color-dark2);
 }
 
 p {
     font-size: 1rem;
-    color: #555;
 }
 
 div.mesaj-alt-butonalar{
