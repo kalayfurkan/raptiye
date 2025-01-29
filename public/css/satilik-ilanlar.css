@@ -18,7 +18,7 @@ form.search{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 2em;
-  }
+}
 
 .card {
     padding: 20px;

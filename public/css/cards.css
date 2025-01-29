@@ -1,15 +1,13 @@
 .card-box {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2em;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    width: 350px;
+    min-width: 350px;
     height: 500px;
     word-wrap: break-word;
     background-color: #fff;
