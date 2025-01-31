@@ -18,7 +18,7 @@
         <%- include('partials/navbar') %>
         <div class="container">
             <header>
-                <h1>İş İlanı Detayları</h1>
+                <h1>İlan Detayları</h1>
             </header>
 
             <div class="content">
@@ -89,15 +89,12 @@
                     </p>
                     <div class="reach-info">
                         <a href="/profile/<%= owner.username %>"><%= owner.username %></a>
-                        <a class="btn btn-primary mesaj-at-btn" href="/messages/<%= owner._id %>/<%=currentUserID%>">Mesaj At</a>
+                        <a class="btn1 align-self-end" href="/messages/<%= owner._id %>/<%=currentUserID%>">Mesaj At</a>
                     </div>
                 </div>
             </div>
             <span class="back-to-inbox">
-                <a href="/isilanlari">
-                    <img class="back-to-prev" src="/img/icons/downward-arrow.svg">
-                    İlanlara geri dön
-                </a>
+                <a href="/isilanlari"><img class="back-to-prev" src="/img/icons/downward-arrow.svg">İş İlanları</a>
             </span>
         </div>
         <%- include('partials/footer') %>

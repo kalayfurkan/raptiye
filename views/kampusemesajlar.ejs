@@ -170,25 +170,22 @@
                                                                             </span>
                                                                         </button>
                                                                     </form>
-                                                                    <% } %>
+                                                                <% } %>
                                             </div>
-                                            <button class="btn" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false"
-                                                aria-controls="yorumlar-<%= message._id %>">
-                                                Yorumlar
+                                            <button class="btn1" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
+                                                <img src="/img/icons/message-img.svg">
                                             </button>
 
                                             <% if (message.owner && userId==message.owner._id.toString()) { %>
                                                 <form action="/deletekampusmesaj/<%= message._id %>" method="POST">
-                                                    <button class="btn" type="submit">
-                                                        Sil
+                                                    <button type="submit" class="btn2">
+                                                        <img src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
-                                                <% } %>
-                                                    <small class="timestamp text-muted message-time">
-                                                        <%= new Date(message.createdAt).toLocaleString() %>
-                                                    </small>
+                                            <% } %>
+                                            <small class="timestamp text-muted message-time">
+                                                <%= new Date(message.createdAt).toLocaleString() %>
+                                            </small>
                                         </div>
                                         <div class="collapse mt-2" id="yorumlar-<%= message._id %>">
                                             <ul class="list-group">

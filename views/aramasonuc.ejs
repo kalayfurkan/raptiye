@@ -19,7 +19,7 @@
         <%- include('partials/navbar') %>
 
         <div class="container mt-4">
-            <h1 class="mb-4">Arama Sonuçları:<%=searchTerm %></h1>
+            <h1 class="mb-4">Arama Sonuçları: <%=searchTerm %></h1>
             <!-- Flash message area -->
             <% if (sessionFlash && sessionFlash.message) { %>
                 <div class="alert <%= sessionFlash.type %>">
@@ -31,10 +31,10 @@
             <form action="/ilan/arama" method="GET" class="mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Aradığınız ilan başlıklarını giriniz" name="search" required>
-                    <button class="btn btn-outline-primary" type="submit">Ara</button>
+                    <button class="search-btn" type="submit"><img height="20px" width="20px" src="/img/icons/search.svg"></button>
                 </div>
             </form>
-			<a href="/satisilanlari">Tüm ilanlar sayfasına geri dön</a>
+			<a class="mb-3 d-block" href="/satisilanlari">Tüm ilanlar</a>
             <div class="card-box">
                 <% if (ilanlar && ilanlar.length > 0) { %>
                     <% ilanlar.forEach(function(ilan) { %>
@@ -63,7 +63,7 @@
                                     <a href="/profile/<%= ilan.owner.username %>" class="user">
                                         <%= ilan.owner.username %>
                                     </a>
-                                    <a href="/satisilani/<%= ilan._id %>" class="btn">Detaylar</a>
+                                    <a href="/satisilani/<%= ilan._id %>" class="btn1">Detaylar</a>
                                 </p>
 
                             </div>

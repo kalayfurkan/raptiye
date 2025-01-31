@@ -26,159 +26,171 @@
                         <h2>
                             <%= user.username %>
                         </h2>
-                        <a href="/editprofile/<%=user.username%>" class="edit-profile-btn">Düzenle</a>
-
-                        <!-- şurayı editlersiniz kullanıcı hakkında info -->
                         <p>
                             <%= user.info ? user.info : "Hakkınızda Kısmı" %>
                         </p>
+                        <a href="/editprofile/<%=user.username%>" class="btn1 d-inline-block mt-4">
+                            <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -2px;"> Düzenle
+                        </a>
                     </div>
                     <div class="profile-details">
-                        <h2>Satış İlanlarım</h2>
-                        <ul class="ads-list">
-                            <ul class="list-group">
-                                <% ilanlar.forEach(function(ilan) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/satisilani/<%= ilan._id %>" class="text-dark fw-bold" style="font-size: 18px; text-decoration: none;">
-                                            <%= ilan.title %>
-                                        </a>
-                                        <!-- Düzenle ve Sil Butonları -->
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <!-- Düzenle Butonu -->
-                                            <a href="/satisilani/edit/<%= ilan._id %>"
-                                                class="btn btn-primary btn-md">Düzenle</a>
-                                            <!-- Sil Butonu -->
-                                            <form action="/ilan/delete/<%= ilan._id %>" method="POST" class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Sil</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                        <% if (ilanlar.length > 0) { %>
+                            <h2>Satış İlanlarım</h2>
+                            <ul class="ads-list">
+                                <ul class="list-group">
+                                    <% ilanlar.forEach(function(ilan) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a href="/satisilani/<%= ilan._id %>" class="text-dark fw-bold" style="font-size: 18px; text-decoration: none;">
+                                                <%= ilan.title %>
+                                            </a>
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                                <a href="/satisilani/edit/<%= ilan._id %>" class="btn1">
+                                                    <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
+                                                </a>
+                                                <form action="/ilan/delete/<%= ilan._id %>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
                                     <% }) %>
+                                </ul>
                             </ul>
-                        </ul>
-                        <h2>İş İlanlarım</h2>
-                        <ul class="ads-list">
-                            <ul class="list-group">
-                                <% jobs.forEach(function(job) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/isilani/<%= job._id %>" class="text-dark fw-bold"
-                                            style="font-size: 18px; text-decoration: none;">
-                                            <%= job.jobTitle %>
-                                        </a>
-
-                                        <!-- Düzenle ve Sil Butonları -->
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <a href="/isilani/edit/<%= job._id %>"
-                                                class="btn btn-primary btn-md">Düzenle</a>
-                                            <form action="/job/delete/<%= job._id %>" method="POST" class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Sil</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                        <% } %>
+                        <% if (jobs.length > 0) { %>
+                            <h2>İş İlanlarım</h2>
+                            <ul class="ads-list">
+                                <ul class="list-group">
+                                    <% jobs.forEach(function(job) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <!-- İlan Başlığı ve Fiyatı -->
+                                            <a href="/isilani/<%= job._id %>" class="text-dark fw-bold" style="font-size: 18px; text-decoration: none;">
+                                                <%= job.jobTitle %>
+                                            </a>
+                        
+                                            <!-- Düzenle ve Sil Butonları -->
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                                <a href="/isilani/edit/<%= job._id %>" class="btn1">
+                                                    <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
+                                                </a>
+                                                <form action="/job/delete/<%= job._id %>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
                                     <% }) %>
+                                </ul>
                             </ul>
-                        </ul>
-                        <h2>Ev Arkadaşı İlanlarım</h2>
-                        <ul class="ads-list">
-                            <ul class="list-group">
-                                <% kiralar.forEach(function(kira) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/evarkadasiilani/<%= kira._id %>" class="text-dark fw-bold"
-                                            style="font-size: 18px; text-decoration: none;">
-                                            <%= kira.title %>
-                                        </a>
+                        <% } %>
+                        <% if (kiralar.length > 0) { %>
+                            <h2>Ev Arkadaşı İlanlarım</h2>
+                            <ul class="ads-list">
+                                <ul class="list-group">
+                                    <% kiralar.forEach(function(kira) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <!-- İlan Başlığı ve Fiyatı -->
+                                            <a href="/evarkadasiilani/<%= kira._id %>" class="text-dark fw-bold" style="font-size: 18px; text-decoration: none;">
+                                                <%= kira.title %>
+                                            </a>
 
-                                        <!-- Düzenle ve Sil Butonları -->
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <a href="/evarkadasiilani/edit/<%= kira._id %>"
-                                                class="btn btn-primary btn-md">Düzenle</a>
-                                            <form action="/kiraoda/delete/<%= kira._id %>" method="POST"
-                                                class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Sil</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                                            <!-- Düzenle ve Sil Butonları -->
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+
+                                                <a href="/evarkadasiilani/edit/<%= kira._id %>" class="btn1">
+                                                    <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
+                                                </a>
+                                                <form action="/kiraoda/delete/<%= kira._id %>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
                                     <% }) %>
+                                </ul>
                             </ul>
-                        </ul>
+                        <% } %>
+                        <% if (shortilanlar.length > 0) { %>
+                            <h2>Genel İlanlarım</h2>
+                            <ul class="ads-list">
+                                <ul class="list-group">
+                                    <% shortilanlar.forEach(function(short) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <!-- İlan Başlığı ve Fiyatı -->
+                                            <a href="/kiraoda/<%= short._id %>" class="text-dark fw-bold"
+                                                style="font-size: 18px; text-decoration: none;">
+                                                <%= short.title %>
+                                            </a>
 
-                        <h2>Genel İlanlarım</h2>
-                        <ul class="ads-list">
-                            <ul class="list-group">
-                                <% shortilanlar.forEach(function(short) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <!-- İlan Başlığı ve Fiyatı -->
-                                        <a href="/kiraoda/<%= short._id %>" class="text-dark fw-bold"
-                                            style="font-size: 18px; text-decoration: none;">
-                                            <%= short.title %>
-                                        </a>
-
-                                        <!-- Düzenle ve Sil Butonları -->
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <form action="/shortilan/delete/<%= short._id %>" method="POST"
-                                                class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Sil</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                                <form action="/shortilan/delete/<%= short._id %>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
                                     <% }) %>
+                                </ul>
                             </ul>
-                        </ul>
-
-                        <h3>Favorilerim</h3>
-                        <ul class="ads-list">
-                            <ul class="list-group">
-                                <% favorites.forEach(function(favorite) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark fw-bold" href="/satisilani/<%= favorite._id %>">
-                                            <%= favorite.title %>
-                                        </a>
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <form action="/deletefavorites/<%=favorite._id%>" method="POST"
-                                                class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Çıkar</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                        <% } %>
+                        <% if (favorites.length > 0 || favoritesJob.length > 0 || favoritesKira.length > 0) { %>
+                            <h3>Favorilerim</h3>
+                            <ul class="ads-list">
+                                <ul class="list-group">
+                                    <% favorites.forEach(function(favorite) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a class="text-dark fw-bold" href="/satisilani/<%= favorite._id %>">
+                                                <%= favorite.title %>
+                                            </a>
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                                <form action="/deletefavorites/<%=favorite._id%>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
                                     <% }) %>
-                            </ul>
-                            <ul class="list-group">
-                                <% favoritesJob.forEach(function(favoriteJob) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark fw-bold" href="/isler/<%= favoriteJob._id %>">
-                                            <%= favoriteJob.jobTitle %>
-                                        </a>
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <form action="/jobdeletefavorites/<%=favoriteJob._id%>" method="POST"
-                                                class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Çıkar</button>
-                                            </form>
-                                        </div>
-                                    </li>
+                                </ul>
+                                <ul class="list-group">
+                                    <% favoritesJob.forEach(function(favoriteJob) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a class="text-dark fw-bold" href="/isler/<%= favoriteJob._id %>">
+                                                <%= favoriteJob.jobTitle %>
+                                            </a>
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                                <form action="/jobdeletefavorites/<%=favoriteJob._id%>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
                                     <% }) %>
+                                </ul>
+
+                                <ul class="list-group">
+                                    <% favoritesKira.forEach(function(favoriteKira) { %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a class="text-dark fw-bold" href="/evarkadasiilani/<%= favoriteKira._id %>">
+                                                <%= favoriteKira.title %>
+                                            </a>
+                                            <div class="btn-group" role="group" aria-label="İlan işlemleri">
+                                                <form action="/kiradeletefavorites/<%=favoriteKira._id%>" method="POST" class="d-inline">
+                                                    <button type="submit" class="btn2">
+                                                        <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    <% }) %>
+                                </ul>
                             </ul>
-
-                            <ul class="list-group">
-                                <% favoritesKira.forEach(function(favoriteKira) { %>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a class="text-dark fw-bold" href="/evarkadasiilani/<%= favoriteKira._id %>">
-                                            <%= favoriteKira.title %>
-                                        </a>
-                                        <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                            <form action="/kiradeletefavorites/<%=favoriteKira._id%>" method="POST"
-                                                class="d-inline">
-                                                <button type="submit" class="btn btn-danger btn-md">Çıkar</button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                <% }) %>
-                            </ul>
-
-                        </ul>
-
+                        <% } %>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@
     </div>
 
     <!-- Sağ taraf (form açma butonu) -->
-    <button id="toggle-form">Bize Ulaşın</button>
+    <button id="toggle-form" class="btn2">Bize Ulaşın</button>
 
     <!-- İletişim Formu -->
     <div id="contact-form">
@@ -60,7 +60,7 @@
     }
 
     .left-footer a:hover {
-        color: var(--ternary-color-light);
+        color: var(--secondary-color-light);
     }
 
     /* Sağ Taraf İçin - İletişim Formu */
@@ -109,32 +109,14 @@
 
     #contact-form button[type="submit"] {
         margin-top: 15px;
-        padding: 10px;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
         align-self: flex-end;
-    }
-
-    #contact-form button[type="submit"]:hover {
-        background-color: var(--primary-color-dark);
     }
 
     /* Buton Stili */
     #toggle-form {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 8px 16px;
         border: none;
-        border-radius: 5px;
-        cursor: pointer;
+        padding: 8px 16px;
         min-width: 120px;
-    }
-
-    #toggle-form:hover {
-        background-color: var(--primary-color-dark);
     }
 
     @media only screen and (max-width: 530px) {
