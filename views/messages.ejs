@@ -17,58 +17,51 @@
         <%- include('partials/navbar') %>
             <div class="container mt-4">
                 <span class="back-to-inbox">
-                    <a href="/gelenkutusu">
-                        <img class="back-to-prev" src="/img/icons/downward-arrow.svg">
-                        Gelen kutusuna geri dön
-                    </a>
+                    <a href="/gelenkutusu"><img class="back-to-prev" src="/img/icons/downward-arrow.svg">Gelen Kutusu</a>
                 </span>
-                <div class="row">
-                            <div class="col-md-6 offset-md-3">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <!--Messages with -->
-                                        <a class="username" href="/profile/<%=infoUser2.username  %>">
-                                            <%= infoUser2.username %>
-                                        </a>
-                                    </div>
-                                    <div id="chat-messages">
-                                        <% if (messages.length===0) { %>
-                                            <p class="text-center">No messages yet. Start the conversation!</p>
-                                        <% } else { %>
-                                            <% messages.forEach(function(message) { %>
-                                                <div class="message mb-2">
-                                                    <div class="d-flex <%= message.sender.equals(currentUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
-                                                        <div class="message-bubble <%= message.sender.equals(currentUser._id) ? 'right-bubble' : 'left-bubble' %>">
-                                                            <p class="message-content daha-fazla-container">
-                                                                <%= message.content %>
-                                                            </p>
-                                                            <a href="javascript:void(0);" class="daha-fazla" style="display:none;">Daha fazla</a>
-                                                            <!-- small etiketi içinde fazla boşluk olmamalı -->
-                                                            <small class="timestamp"><%= new Date(message.timestamp).toLocaleString() %></small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <% }); %>
-                                        <% } %>
-                                    </div>
-                                    <div class="card-footer">
-                                        <form id="message-form" method="POST"
-                                            action="/messages/<%=communicators[0]%>/<%=communicators[1] %>"
-                                            autocomplete="off">
-                                            <div class="input-group">
-                                                <input type="text" name="message" id="message-input"
-                                                    class="form-control" placeholder="Type your message..." required>
-                                                <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-primary">Gönder</button>
-                                                </div>
+                <div class="message-box-container">
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <a class="username" href="/profile/<%=infoUser2.username  %>">
+                                <%= infoUser2.username %>
+                            </a>
+                        </div>
+                        <div id="chat-messages">
+                            <% if (messages.length===0) { %>
+                                <p class="text-center">No messages yet. Start the conversation!</p>
+                            <% } else { %>
+                                <% messages.forEach(function(message) { %>
+                                    <div class="message mb-2">
+                                        <div class="d-flex <%= message.sender.equals(currentUser._id) ? 'justify-content-end' : 'justify-content-start' %>">
+                                            <div class="message-bubble <%= message.sender.equals(currentUser._id) ? 'right-bubble' : 'left-bubble' %>">
+                                                <p class="message-content daha-fazla-container">
+                                                    <%= message.content %>
+                                                </p>
+                                                <a href="javascript:void(0);" class="daha-fazla" style="display:none;">daha fazla</a>
+                                                <!-- small etiketi içinde fazla boşluk olmamalı -->
+                                                <small class="timestamp"><%= new Date(message.timestamp).toLocaleString() %></small>
                                             </div>
-                                        </form>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            <% } %>
+                        </div>
+                        <div class="card-footer">
+                            <form id="message-form" method="POST" action="/messages/<%=communicators[0]%>/<%=communicators[1] %>" autocomplete="off">
+                                <div class="input-group">
+                                    <input type="text" name="message" id="message-input" class="form-control" placeholder="Mesaj at" required>
+                                    <div class="input-group-append">
+                                        <button id="btn-send" type="submit" class="btn1">
+                                            <img src="/img/icons/send.svg" alt="Send">
+                                        </button>
                                     </div>
                                 </div>
-                                <small>(Mevcut sohbet başladıktan 1 ay sonra tüm konuşma silinir.)</small>
-                                <br>
-                                <small>(Mesajlaşma sistemi gerçek zamanlı değildir.)</small>
-                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    <small>Yeni mesajları görmek için sayfayı yenileyin. Mesajlaşma sistemi gerçek zamanlı değildir, daha güvenilir yollarla iletişim kurmanızı öneririz.</small>
+                    <br>
+                    <small>Mevcut sohbet başladıktan 1 ay sonra tüm konuşma silinir.</small>
                 </div>
             </div>
             <%- include('partials/footer') %>
