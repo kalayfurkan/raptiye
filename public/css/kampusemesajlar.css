@@ -41,7 +41,7 @@ ul.list-group {
 
 strong.message-sender a{
     font-size: 1.1rem;
-    color: var(--primary-color-dark);
+    color: var(--ternary-color);
 }
 
 p {
