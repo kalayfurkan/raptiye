@@ -1,3 +1,4 @@
+// if the window is resized, the daha-fazla feature will break
 function initializeDahaFazla(className = 'daha-fazla', contentClass = 'daha-fazla-container', maxVisibleHeight = 50) {
     document.querySelectorAll(`.${contentClass}`).forEach(function(messageContent) {
         // Temporarily show the container if it's hidden
@@ -23,7 +24,7 @@ function initializeDahaFazla(className = 'daha-fazla', contentClass = 'daha-fazl
             const readMoreLink = document.createElement('a');
             readMoreLink.href = 'javascript:void(0);';
             readMoreLink.className = className;
-            readMoreLink.textContent = 'Daha fazla';
+            readMoreLink.textContent = 'daha fazla';
             readMoreLink.style.display = 'block';  // Make the link visible
 
             // Insert the link right after the message content
@@ -33,10 +34,10 @@ function initializeDahaFazla(className = 'daha-fazla', contentClass = 'daha-fazl
             readMoreLink.addEventListener('click', function() {
                 if (messageContent.style.maxHeight === `${maxVisibleHeight}px`) {
                     messageContent.style.maxHeight = messageHeight + 'px';  // Expand content
-                    readMoreLink.textContent = 'Daha az';  // Change link text
+                    readMoreLink.textContent = 'daha az';  // Change link text
                 } else {
                     messageContent.style.maxHeight = maxVisibleHeight + 'px';  // Collapse content
-                    readMoreLink.textContent = 'Daha fazla';  // Change link text back
+                    readMoreLink.textContent = 'daha fazla';  // Change link text back
                 }
             });
         }
