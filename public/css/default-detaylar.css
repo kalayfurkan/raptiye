@@ -10,6 +10,7 @@ header {
 header h1 {
     margin: 10px 10px -10px 2px;
     color: #333;
+    font-size: 2rem;
 }
 
 .content {
@@ -68,9 +69,6 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.mesaj-at-btn{
-    align-self: flex-end;
 }
 
 .description::first-letter,

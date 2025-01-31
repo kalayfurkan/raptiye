@@ -117,6 +117,16 @@ p.daha-fazla.collapsed {
 
     }
 
+    .btn1 img,
+    .btn2 img{
+        width: 18px;
+        height: 18px;
+    }
+    .btn1:active img,
+    .btn2:active img{
+        filter: invert(1);
+    }
+
     @keyframes left-spin-scale {
         0% {
             transform: scale(1) rotate(0deg);  /* Initial state */

@@ -33,22 +33,22 @@
                         <div class="col-md-4 mb-4">
                             <div class="card">
                                 <% if (post.images.length> 0) { %>
-                                    <img src="<%= post.images[0] %>" class="card-img-top" alt="<%= post.title %>">
-                                    <% } %>
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <%= post.title %>
-                                            </h5>
-                                            <p class="card-text">
-                                                <%= post.description %>
-                                            </p>
-                                            <p class="card-text"><strong>Fiyat:</strong>
-                                                <%= post.price %>
-                                            </p>
-                                            <p class="card-text"><small class="text-muted">Tarih: <%= new
-                                                        Date(post.date).toLocaleDateString() %></small></p>
-                                            <a href="/list/<%= post._id %>" class="btn btn-primary">Detaylar</a>
-                                        </div>
+                                <img src="<%= post.images[0] %>" class="card-img-top" alt="<%= post.title %>">
+                                <% } %>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= post.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= post.description %>
+                                    </p>
+                                    <p class="card-text"><strong>Fiyat:</strong>
+                                        <%= post.price %>
+                                    </p>
+                                    <p class="card-text"><small class="text-muted">Tarih: <%= new
+                                                Date(post.date).toLocaleDateString() %></small></p>
+                                    <a href="/list/<%= post._id %>" class="btn1">Detaylar</a>
+                                </div>
                             </div>
                         </div>
                         <% }); %>

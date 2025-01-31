@@ -7,7 +7,6 @@
 
 .baslik {
     padding: 10px 0;
-    border-bottom: 2px solid #e0e0e0;
 }
 
 .baslik h1 {
@@ -56,26 +55,12 @@
     color: #555;
 }
 
-.edit-profile-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 6px 12px;
-    background-color: var(--secondary-color-dark);
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.edit-profile-btn:hover {
-    background-color: var(--secondary-color-dark2);
-}
-
 .profile-details {
     flex: 2;
 }
 
 .profile-details h2 {
+    font-size: 1.8rem;
     color: #333;
     margin-top: 0;
 }
@@ -106,19 +91,14 @@
     text-transform: capitalize;
 }
 
-.btn{
-    color: white;
-    border-radius: 5px !important; /* important used out of neccessaty (couldn't overwrite bootstrap) */
-    margin: 3px;
+.btn-group .btn1,
+.btn-group .btn2{
+    margin: 0 3px;
 }
-.btn-danger{
-    background-color: var(--primary-color-dark);
-}
-.btn-danger:hover{
-    background-color: var(--primary-color-dark2);
-}
-.btn-primary{
-    /* background-color: var(--secondary-color-dark); */
+
+.btn-group .btn1:active img,
+.btn-group .btn2:active img{
+    filter: invert(1);
 }
 
 footer {

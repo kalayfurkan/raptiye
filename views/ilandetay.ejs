@@ -93,16 +93,13 @@
                             </div>
                             <div class="reach-info">
                                 <a href="/profile/<%=user.username  %>"><%=user.username  %> </a>
-                                <a class="btn btn-primary mesaj-at-btn" href="/messages/<%=currentUserId%>/<%=ilan.owner%>">Mesaj At</a>
+                                <a class="btn1 align-self-end" href="/messages/<%=currentUserId%>/<%=ilan.owner%>">Mesaj At</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <span class="back-to-inbox">
-                    <a href="/satisilanlari">
-                        <img class="back-to-prev" src="/img/icons/downward-arrow.svg">
-                        İlanlara geri dön
-                    </a>
+                    <a href="/satisilanlari"><img class="back-to-prev" src="/img/icons/downward-arrow.svg">Satış İlanları</a>
                 </span>
             </div>
             <%- include('partials/footer') %>
