@@ -63,22 +63,26 @@ p{
     margin: 0;
 }
 .search-btn{
+    height: 38px;
+    width: 61px;
     padding: 5px 10px;
     font-size: 16px;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 20px;
     border: 0.8px solid;
     border-color: #dee2e6;
     background-color: white;
-
-    
     transition: all 0.3s ease;
 }
 .search-btn:active {
     border-color: var(--secondary-color-dark);
     background-color: var(--secondary-color-light);
-
 }
+.search-btn img{
+    height: 20px;
+    width: 20px;
+}
+
 .btn1 {
     text-align: center;
     padding: 4px 8px;

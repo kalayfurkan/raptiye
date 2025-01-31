@@ -3,8 +3,13 @@
     margin: 0 auto;
 }
 
-form.search{
+form.search{ /* bu nerede kullanılmış??? */
     margin: 20px 0;
+}
+
+input.satilik-search {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .card img {
@@ -33,10 +38,6 @@ form.search{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
-/* 
-.card:hover {
-    transform: scale(1.02);
-} */
 
 .card-body {
     position: relative;
