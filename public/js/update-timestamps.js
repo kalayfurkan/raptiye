@@ -81,13 +81,13 @@ function timeAgo(inputTime) {
         return `geçen gün`;
     } else if (diff < oneMonth) {
         const daysAgo = Math.floor(diff / oneDay);
-        return `${daysAgo} gün önce`;
+        return `${daysAgo} gün`;
     } else if (diff < oneYear) {
         const monthsAgo = Math.floor(diff / oneMonth);
-        return `${monthsAgo} ay önce`;
+        return `${monthsAgo} ay`;
     } else {
         const yearsAgo = Math.floor(diff / oneYear);
-        return `${yearsAgo} yıl önce`;
+        return `${yearsAgo} yıl`;
     }
 }
 
