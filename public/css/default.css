@@ -176,6 +176,11 @@ area:focus-visible {
 }
 
 
+.list-group-item {
+    overflow-wrap: break-word;
+}
+
+
 button:focus {
     outline: none;
 }
