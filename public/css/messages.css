@@ -14,66 +14,66 @@
     align-items: center;
 }
 
-/*
-.back-to-inbox {
-    border: black;
-}
-*/
-
 .username {
     font-size: 1.5rem;
-    color: black;
+    color: white;
+    transition: color 0.3s ease;
 }
 
 .username:hover {
-    color: white;
+    color: black;
+
 }
 
 .message-bubble {
+    height: auto;
+    max-width: 100%;
     padding: 0.5rem;
 }
 
 .left-bubble {
     border-radius: 15px;
     border-bottom-left-radius: 0;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color-light);
     color: #ffffff;
 }
 
 .right-bubble {
     border-radius: 15px;
     border-bottom-right-radius: 0;
-    background-color: var(--secondary-color-dark2);
-    color: #ffffff;
+    background-color: var(--navbar-font-color);
+    color: #555;
 }
 
 a.daha-fazla {
     font-size: 13px;
     color: rgb(0, 0, 0);
 }
-
+.right-bubble small.timestamp {
+    color: gray;
+}
+.left-bubble small.timestamp {
+    color: lightgray;
+}
 small.timestamp {
-    color: rgb(218, 218, 218);
+    font-weight: 300;
 }
 
 p.message-content {
     max-height: 50px;
-    /* Limit the height */
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow-wrap: break-word;
     text-overflow: ellipsis;
     margin: 5px 0 5px;
 }
 
 .message-content.expanded {
-    max-height: none;
-    /* Allow full content to be visible */
+    max-height: none; /* Allow full content to be visible */
 }
 
 .card-footer {
-    border-radius: 8px !important;
-    /*important due to boots*/
+    border-radius: 8px !important; /*important due to boots*/
     padding: 0;
-    /* Optional, remove padding for a tighter fit */
 }
 
 #message-form {
@@ -83,17 +83,37 @@ p.message-content {
 
 div.input-group {
     flex: 1;
-    /* Make the input-group take up the available space */
     display: flex;
 }
 
 #message-input {
     flex: 1;
-    /* Make the input take up the available space */
     height: auto;
-    /* Allow the height to adjust properly */
     padding: 0.5rem;
-    /* Add some padding for better look */
+}
+#btn-send{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    z-index: 2;
+    height: auto;
+    background-color: var(--secondary-color);
+}
+#btn-send:hover{
+    background-color: var(--secondary-color-dark);
+}
+#btn-send:active{
+    background-color: white;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
+}
+#btn-send:active img{
+    filter: invert(1);
+}
+
+#btn-send img{
+    height: 20px;
+    width: 33px;
 }
 
 .input-group-append button {
