@@ -115,11 +115,21 @@
 
 <script defer>
 	// JavaScript to toggle mobile menu with sliding effect
+	
 	document.getElementById('navbar-toggle').addEventListener('click', function () {
-		const menu = document.getElementById('navbar-menu');
-		menu.classList.toggle('active');
-		menu.style.maxHeight = menu.classList.contains('active') ? menu.scrollHeight + "px" : "0";
-	});
+    const menu = document.getElementById('navbar-menu');
+    menu.classList.toggle('active');
+    menu.style.maxHeight = menu.classList.contains('active') ? menu.scrollHeight + "px" : "0";
+    
+    if (menu.classList.contains('active')) {
+        menu.style.overflow = 'hidden'; // Initially hidden during animation
+        setTimeout(() => {
+            menu.style.overflow = 'visible';
+        }, 500);
+    } else {
+        menu.style.overflow = 'hidden';
+    }
+});
 
 	// JavaScript to toggle ilanlar
     document.querySelector('.ilanlar-toggle').addEventListener('click', function (e) {
