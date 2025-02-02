@@ -6,7 +6,32 @@
 		<span class="font-nunito"> İTÜ Raptiye</span>
 	</a>
 	<!-- Mobile menu toggle button -->
-	<button class="navbar-toggle" id="navbar-toggle">☰</button>
+	<% if (user) { %>
+		<ul class="mobile-icons">	
+			<li class="navbar-item">
+				<a href="/profile" class="navbar-link"><img src="/img/icons/profile-circle.svg" alt="profil"></a>
+			</li>
+	
+			<!-- Burası notification varsa yoksa style burdan ayarlanacak -->
+			<li class="navbar-item">
+				<a href="/gelenkutusu" class="<% if (hasNotification>0) { %> notification<% } %> navbar-link">
+					<!-- hasNotification stores a number not a bool-->
+					<% if (hasNotification==0) { %>
+						<img src="/img/icons/message-img.svg" alt="gelen kutusu">
+					<%} else if(hasNotification>0){ %>
+						<img src="/img/icons/message-notification-img.svg" alt="<%=hasNotification%> mesaj">
+						<span><%=hasNotification%></span>
+					<% } %>
+				</a>
+			</li>
+	
+			<li id="logout-btn" class="navbar-item">
+				<a href="/logout" class="navbar-link"><img src="/img/icons/log-out.svg" alt="çıkış yap"></a>
+			</li>
+			<button class="navbar-toggle" id="navbar-toggle">☰</button>
+		</ul>
+	<% } %>
+	
 	<!-- Main menu items -->
 	<ul class="navbar-menu" id="navbar-menu">
 
@@ -62,32 +87,29 @@
 			<li class="navbar-item">
 				<a href="/login" class="navbar-link">Giriş yap</a>
 			</li>
-			<% } %>
+		<% } %>
+		<% if (user) { %>
+			<li class="navbar-item web-icons">
+				<a href="/profile" class="navbar-link"><img src="/img/icons/profile-circle.svg" alt="profil"></a>
+			</li>
 
-				<% if (user) { %>
-					<li class="navbar-item">
-						<a href="/profile" class="navbar-link"><img src="/img/icons/profile-circle.svg" alt="profil"></a>
-					</li>
+			<!-- Burası notification varsa yoksa style burdan ayarlanacak -->
+			<li class="navbar-item web-icons">
+				<a href="/gelenkutusu" class="<% if (hasNotification>0) { %> notification<% } %> navbar-link">
+					<!-- hasNotification stores a number not a bool-->
+					<% if (hasNotification==0) { %>
+						<img src="/img/icons/message-img.svg" alt="gelen kutusu">
+					<%} else if(hasNotification>0){ %>
+						<img src="/img/icons/message-notification-img.svg" alt="<%=hasNotification%> mesaj">
+						<span><%=hasNotification%></span>
+					<% } %>
+				</a>
+			</li>
 
-					<!-- Burası notification varsa yoksa style burdan ayarlanacak -->
-					<li class="navbar-item">
-						<a href="/gelenkutusu" class="<% if (hasNotification>0) { %> notification<% } %> navbar-link">
-							<!-- hasNotification stores a number not a bool-->
-							<% if (hasNotification==0) { %>
-								<img src="/img/icons/message-img.svg" alt="gelen kutusu">
-								<%} else if(hasNotification>0){ %>
-									<img src="/img/icons/message-notification-img.svg" alt="<%=hasNotification%> mesaj">
-									<span>
-										<%=hasNotification%>
-									</span>
-									<% } %>
-						</a>
-					</li>
-
-					<li id="logout-btn" class="navbar-item">
-						<a href="/logout" class="navbar-link"><img src="/img/icons/log-out.svg" alt="çıkış yap"></a>
-					</li>
-					<% } %>
+			<li id="logout-btn" class="navbar-item web-icons">
+				<a href="/logout" class="navbar-link"><img src="/img/icons/log-out.svg" alt="çıkış yap"></a>
+			</li>
+		<% } %>
 	</ul>
 </nav>
 
@@ -134,4 +156,5 @@
         menu.style.maxHeight = 'none'; // Remove max-height
         menu.classList.remove('active'); // Remove active class
     }
+	
 </script>
