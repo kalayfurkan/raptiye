@@ -103,6 +103,7 @@
 
 /* Main menu list styles */
 .navbar-menu {
+	overflow: visible;
 	display: flex;
 	list-style-type: none;
 }
@@ -265,7 +266,7 @@ a.notification span {
 /* Mobile menu toggle button styles */
 .navbar-toggle {
 	color: var(--navbar-font-color);
-	width: 4em;
+	width: 2em;
 	display: none;
 	background: none;
 	border: none;
@@ -273,7 +274,15 @@ a.notification span {
 	cursor: pointer;
 }
 
+ul.mobile-icons {
+	margin: 0;
+	padding: 0 10px 0 10px;
+	list-style-type: none;
+	display: none;
+}
+
 /* Responsive styles for mobile devices */
+/* @media screen and (max-width: 1255px) { */
 @media screen and (max-width: 1075px) {
 	.navbar-link {
 		padding: 10px;
@@ -288,12 +297,29 @@ a.notification span {
 	}
 }
 
+/* @media screen and (max-width: 1150px) { */
 @media screen and (max-width: 850px) {
+	/* .mobile-float-left { gereksiz
+		width: 60px;
+		float: left;
+	} */
+	ul.mobile-icons .navbar-link {
+		padding: 10px;
+		padding-left: 16px;
+	}
+
+	ul.mobile-icons {
+		display: flex;
+	}
+	.navbar-item.web-icons {
+		display: none;
+	}
 	.navbar-brand span {
 		display: inline;
 	}
 
-	.navbar-menu {
+	ul.navbar-menu {
+		padding-bottom: 8px;
 		display: block;
 		flex-direction: column;
 		width: 100%;
@@ -306,6 +332,9 @@ a.notification span {
 		transition: max-height 0.3s ease-out;
 	}
 
+	ul.navbar-menu.active {
+		overflow: visible;
+	}
 	.dropdown-menu {
 		box-shadow: none;
 	}
