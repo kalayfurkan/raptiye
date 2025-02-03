@@ -282,7 +282,6 @@ ul.mobile-icons {
 }
 
 /* Responsive styles for mobile devices */
-/* @media screen and (max-width: 1255px) { */
 @media screen and (max-width: 1075px) {
 	.navbar-link {
 		padding: 10px;
@@ -297,12 +296,7 @@ ul.mobile-icons {
 	}
 }
 
-/* @media screen and (max-width: 1150px) { */
 @media screen and (max-width: 850px) {
-	/* .mobile-float-left { gereksiz
-		width: 60px;
-		float: left;
-	} */
 	ul.mobile-icons .navbar-link {
 		padding: 10px;
 		padding-left: 16px;
@@ -373,5 +367,21 @@ ul.mobile-icons {
 
 	a.notification span {
 		left: 31px;
+	}
+}
+@media screen and (max-width: 440px) {
+	ul.mobile-icons .navbar-link {
+		padding: 2px;
+		padding-left: 16px;
+	}
+	.navbar-brand {
+		margin: 0;
+		font-size: 1.2rem;
+		padding: 10px 0;
+	}
+}
+@media screen and (max-width: 360px) {
+	.navbar-brand span.font-nunito{
+		display: none;
 	}
 }

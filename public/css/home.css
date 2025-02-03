@@ -13,9 +13,7 @@ html, body {
 
 .intro {
     min-height: 15vh;
-    margin: 0;
-    margin-top: 40px;
-    margin-bottom: 20vw;
+    margin: 15vh 0;
     text-align: center;
 }
 
@@ -87,9 +85,12 @@ html, body {
 }
 
 .feature .feature-box{
+    margin: auto;
     max-width: 40vw;
 }
-
+.feature-box.spread-out{
+    max-width: 95vw;
+}
 .feature .feature-box h2{
     text-align: center;
 }
@@ -244,13 +245,13 @@ a {
         font-size: 2rem;
     }
     .intro h1{
-        font-size: 2.2rem;
+        font-size: 2.4rem;
     }
     .intro p{
         font-size: 1.2rem;
     }
     .feature h2{
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .feature p{
