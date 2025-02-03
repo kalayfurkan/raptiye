@@ -29,7 +29,7 @@
 			
 			<div class="intro">
 				<h1 class="font-nunito">Raptiye</h1>
-			    <p class="font-nunito">İTÜ öğrencileri için satış ve ilan sitesi</p>
+			    <p class="font-nunito">İTÜ öğrencileri için satış ve ilan platformu</p>
 			</div>
 
 			<div class="feature-container">
@@ -38,7 +38,7 @@
 						<!-- buraya şekil şukul ekleniyor -->
 						<div class="feature-content">
 							<h2><a class="home-links" href="/satisilanlari">Satış İlanı Ver</a></h2>
-							<p>0 veya 2. el satmak istediklerini İTÜ'lülerle buluştur.</p>
+							<p>Sıfır veya ikinci el eşyalarını İTÜ'lülerle buluştur!</p>
 						</div>
 					</div>
 
@@ -47,14 +47,58 @@
 						<img src="/img/anasayfa/2.png" class="slider-image" alt="İkinci El Örnek Ürün 2">
 						<img src="/img/anasayfa/3.png" class="slider-image" alt="İkinci El Örnek Ürün 3">
 						<img src="/img/anasayfa/4.png" class="slider-image" alt="İkinci El Örnek Ürün 4">
-
 					</div>
 				</div>
 				<div class="feature">
+					<div class="image-slider">
+						<img src="/img/anasayfa/1.png" class="slider-image" alt="Genel İlan Örnek 1">
+						<img src="/img/anasayfa/2.png" class="slider-image active" alt="Genel İlan Örnek 2">
+						<img src="/img/anasayfa/3.png" class="slider-image" alt="Genel İlan Örnek 3">
+						<img src="/img/anasayfa/4.png" class="slider-image" alt="Genel İlan Örnek 4">
+					</div>
+
 					<div class="feature-box circle-bg">
 						<div class="feature-content">
 							<h2><a class="home-links" href="/kisasureliilanlar">Genel İlanlar</a></h2>
-							<p>Sözlük mü arıyorsun, önlük mü? Diğer ilanlar sekmesine dilediğin ilanı koy.</p>
+							<p>Sözlük mü arıyorsun, önlük mü? Diğer ilanlar sekmesine istediğini ekle.</p>
+						</div>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature-box spread-out">
+						<div class="feature-content">
+							<h2><a class="home-links" href="/kampusemesajlar">Kampüse Mesaj Ver</a></h2>
+							<p>Bilgi ver ya da derdini paylaş, sesini tüm kampüse duyur!</p>
+						</div>
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature-box">
+						<div class="feature-content">
+							<h2><a class="home-links" href="/evarkadasiilanlari">Ev İlanları</a></h2>
+							<p>Kendine ev arkadaşı bul ya da barınma ve konaklamayla ilgili ilanını ver.</p>
+						</div>
+					</div>
+
+					<div class="image-slider">
+						<img src="/img/anasayfa/1.png" class="slider-image" alt="Barınma İlanı 1">
+						<img src="/img/anasayfa/2.png" class="slider-image" alt="Barınma İlanı Örnek 2">
+						<img src="/img/anasayfa/3.png" class="slider-image active" alt="Barınma İlanı Örnek 3">
+						<img src="/img/anasayfa/4.png" class="slider-image" alt="Barınma İlanı Örnek 4">
+					</div>
+				</div>
+				<div class="feature">
+					<div class="image-slider">
+						<img src="/img/anasayfa/1.png" class="slider-image" alt="İş İlanı 1">
+						<img src="/img/anasayfa/2.png" class="slider-image" alt="İş İlanı Örnek 2">
+						<img src="/img/anasayfa/3.png" class="slider-image" alt="İş İlanı Örnek 3">
+						<img src="/img/anasayfa/4.png" class="slider-image active" alt="İş İlanı Örnek 4">
+					</div>
+
+					<div class="feature-box circle-bg">
+						<div class="feature-content">
+							<h2><a class="home-links" href="/isilanlari">İş İlanları</a></h2>
+							<p>Tek seferlik, kısa süreli veya uzun vadeli iş ilanlarını incele.</p>
 						</div>
 					</div>
 				</div>
@@ -67,30 +111,6 @@
 						</div>
 					</div>
 				</div> -->
-				<div class="feature">
-					<div class="feature-box">
-						<div class="feature-content">
-							<h2><a class="home-links" href="/kampusemesajlar">Kampüse Mesaj Ver</a></h2>
-							<p>Bilgi mi vermek istiyorsun yoksa şikayet mi etmek istiyorsun? Tüm kampüse sesini duyur.</p>
-						</div>
-					</div>
-				</div>
-				<div class="feature">
-					<div class="feature-box">
-						<div class="feature-content">
-							<h2><a class="home-links" href="/evarkadasiilanlari">Ev İlanları</a></h2>
-							<p>Kendine ev arkadaşı bul veya barınma, konaklamayla ilgili ilan ver.</p>
-						</div>
-					</div>
-				</div>
-				<div class="feature">
-					<div class="feature-box circle-bg">
-						<div class="feature-content">
-							<h2><a class="home-links" href="/isilanlari">İş İlanları</a></h2>
-							<p>Tek seferlik, Kısa süreli veya uzun vadeli iş ilanlarına göz at.</p>
-						</div>
-					</div>
-				</div>
 			</div>
 			
 		
@@ -130,36 +150,38 @@
 
 	<!-- sliding images -->
 	<script defer>
-		document.addEventListener('DOMContentLoaded', () => {
-			const images = document.querySelectorAll('.image-slider .slider-image');
-			let currentIndex = 0;
-			const totalImages = images.length;
-			const intervalTime = 3000; // 3 seconds
-	
-			// Function to show the next image
-			const showNextImage = () => {
-				// Current image
-				const currentImage = images[currentIndex];
-				// Calculate next index
-				const nextIndex = (currentIndex + 1) % totalImages;
-				const nextImage = images[nextIndex];
-	
-				// Add 'previous' class to current image to slide it out
-				currentImage.classList.add('previous');
-	
-				// Activate the next image
-				nextImage.classList.add('active');
-	
-				// Remove 'active' and 'previous' classes after transition
-				setTimeout(() => {
-					currentImage.classList.remove('active', 'previous');
-					currentIndex = nextIndex;
-				}, 1000); // Duration matches CSS transition
-			};
-	
-			// Start the slider
-			setInterval(showNextImage, intervalTime);
-		});
+    document.addEventListener('DOMContentLoaded', () => {
+        const sliders = document.querySelectorAll('.image-slider');
+        
+        sliders.forEach(slider => {
+            const images = slider.querySelectorAll('.slider-image');
+            const totalImages = images.length;
+            // Find initial active image
+            let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+            // Default to 0 if no active image found
+            if (currentIndex === -1) currentIndex = 0;
+            
+            const intervalTime = 3000;
+            
+            const showNextImage = () => {
+                const currentImage = images[currentIndex];
+                const nextIndex = (currentIndex + 1) % totalImages;
+                const nextImage = images[nextIndex];
+
+                currentImage.classList.add('previous');
+                nextImage.classList.add('active');
+
+                setTimeout(() => {
+                    currentImage.classList.remove('active', 'previous');
+                    currentIndex = nextIndex;
+                }, 1000);
+            };
+
+            if (totalImages > 1) {
+                setInterval(showNextImage, intervalTime);
+            }
+        });
+    });
 	</script>
 	
 	<!-- Include Intersection Observer polyfill for older browsers -->
