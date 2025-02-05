@@ -68,3 +68,6 @@ dosya isimleri, yolları ve görünen köprü isimleri eşlenecek (bitti)
 ilanlar dropdown menu hover düzeltilecek (z-indexte ufak tefek sıkıntılar var ama çözemedim sona bırakalım)
 
 ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
+
+SECURITY!!
+image olarak .exe yüklenmesin
