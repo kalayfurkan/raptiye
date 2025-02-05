@@ -69,5 +69,11 @@ ilanlar dropdown menu hover düzeltilecek (z-indexte ufak tefek sıkıntılar va
 
 ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
 
+
+image olarak:
+    svg yüklenirse => chromium tabanlı tarayıcılarda profil fotoğrafı gözükmüyor, firefox'ta gözüküyor.
+    heif || ico yüklenirse => website çöküyor
+    png && jpg => normal bir şekilde çalışıyor
+
 SECURITY!!
 image olarak .exe yüklenmesin
