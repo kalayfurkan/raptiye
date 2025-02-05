@@ -10,11 +10,22 @@ const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
 const bcrypt = require('bcrypt');
+const { uploadToR2, getLoadURL }= require('./s3.js');
 
 
 router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 	const ilanlar = await Ilan.find({ owner: req.session.userId });
-	const user = await User.findById(req.session.userId);
+	
+    const user = await User.findById(req.session.userId);
+    try {
+        const url = await getLoadURL(user.profilePic)
+        console.log("URL:", url);
+        console.log("user.ProfilePic:", user.profilePic);
+        user.profilePic = url;        
+    } catch (error) {
+        console.error("Error while getting profile picture URL:", error);
+    }
+
 	const jobs = await Job.find({ owner: req.session.userId });
 	const kiralar = await Kiraoda.find({ owner: req.session.userId });
 	const shortilanlar = await Shortilan.find({ owner: req.session.userId });
@@ -64,30 +75,44 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
 
 	try {
 		if (req.files && req.files.profilePic) {
-			try {
-				if (user.profilePic && user.profilePic!="/img/Default_pfp.svg.png") {
-					const oldPicPath = path.join(__dirname, '../public/', user.profilePic);
-					if (fs.existsSync(oldPicPath)) {
-						fs.unlinkSync(oldPicPath);
-					}
+            try {
+                // Delete old profile picture if it's not the default one
+                if (user.profilePic && user.profilePic !== "/img/Default_pfp.svg.png") {
+                    // Delete the old image from Cloudflare R2
+                    // const result = await deleteFromR2(user.profilePic);
+                    // if (result) {
+                    //     console.log(`result: ${result}`);
+                    //
+                }
+
+                // Prepare the new image
+                const date = new Date().toISOString().replace(/:/g, '-');
+                const fileName = `${date}-${req.files.profilePic.name}`;
+
+                const maxWidth = 1000;
+                const quality = 50;
+
+                // Resize and compress the image
+                const compressedBuffer = await sharp(req.files.profilePic.data)
+                    .resize(maxWidth)
+                    .jpeg({ quality: quality })
+                    .toBuffer();
+                
+                // Upload to Cloudflare R2
+                const result = uploadToR2(compressedBuffer, fileName, req.files.profilePic.mimetype);
+               
+				if (result) {
+					console.log(`result: ${result}`);
 				}
+				
+                // Update user profile picture URL in database
+                await User.updateOne({ username: username }, { $set: { profilePic: `${fileName}` } });
 
-				const date = new Date().toISOString().replace(/:/g, '-');
-				const imagePath = path.resolve(__dirname, '../public/img/profilepictures', date + req.files.profilePic.name);
-
-				const maxWidth = 1000;
-				const quality = 50;
-
-				await sharp(req.files.profilePic.data)
-					.resize(maxWidth)
-					.jpeg({ quality: quality })
-					.toFile(imagePath);
-
-				await User.updateOne({ username: username }, { $set: { profilePic: `/img/profilepictures/${date + req.files.profilePic.name}` } });
-			} catch (error) {
-				res.status(400).send('Bir hata oluştu');
-			}
-		}
+            } catch (error) {
+                console.error("Error while processing profile picture:", error);
+                return res.status(400).send('Bir hata oluştu');
+            }
+        }
 		if(req.body.username!=user.username || req.body.info!=user.info){
 			await User.updateOne({ username: username }, { $set: { info: req.body.info, username: req.body.username } });
 		}
