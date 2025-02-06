@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/icons/logo.svg">
     <title>
-        <%= user.name %> - Profile
+        <%= user.username %> - Profile
     </title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
@@ -34,8 +34,9 @@
 </head>
 
 <body>
-    <div class="container">
+	<div id="wrapper">
         <%- include('partials/navbar') %>
+        <div class="container">
             <div class="profile-header text-center">
                 <img src="<%= user.profilePic %>" alt="<%= user.name %>">
                 <h1>
@@ -46,7 +47,7 @@
                 </p>
                 <a href="/messages/<%=currentUser._id%>/<%=user._id %>"> Kullanıcıya mesaj gönderin</a>
             </div>
-
+            <% if (posts.length > 0) { %>
             <div class="profile-section">
                 <h2>İlanlar</h2>
                 <div class="list-group">
@@ -63,7 +64,8 @@
                         <% }) %>
                 </div>
             </div>
-
+            <% } %>
+            <% if (jobs.length > 0) { %>
             <div class="profile-section">
                 <h2>İş İlanları</h2>
                 <div class="list-group">
@@ -80,7 +82,8 @@
                         <% }) %>
                 </div>
             </div>
-
+            <% } %>
+            <% if (kiralar.length > 0) { %>
             <div class="profile-section">
                 <h2>Ev Arkadaşı İlanları</h2>
                 <div class="list-group">
@@ -97,7 +100,8 @@
                         <% }) %>
                 </div>
             </div>
-
+            <% } %>
+            <% if (shortilanlar.length > 0) { %>
             <div class="profile-section">
                 <h2>Diğer İlanlar</h2>
                 <div class="list-group">
@@ -114,8 +118,12 @@
                         <% }) %>
                 </div>
             </div>
-            <%- include('partials/footer') %>
+            <% } %>
+
     </div>
+        <%- include('partials/footer') %>
+    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
