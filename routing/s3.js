@@ -2,6 +2,7 @@ const {
     S3Client,
     PutObjectCommand,
     GetObjectCommand,
+    DeleteObjectCommand
 } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
@@ -19,11 +20,11 @@ const s3 = new S3Client({
 
 
 
-const uploadToR2 = async (fileBuffer, fileName, mimeType) => {
+const uploadToR2 = async (fileBuffer, fileName, mimeType, bucket) => {
     try {        
         // Set up S3 params
         const params = {
-            Bucket: "profile-images",
+            Bucket: bucket,
             Key: fileName,
             Body: fileBuffer,
             ContentType: mimeType || "application/octet-stream"
@@ -40,11 +41,11 @@ const uploadToR2 = async (fileBuffer, fileName, mimeType) => {
     }
 }
 
-/*
-const deleteFromR2 = async (fileName) => {
+
+const deleteFromR2 = async (fileName, bucket) => {
     try {
         const params = {
-            Bucket: "profile-images",
+            Bucket: bucket,
             Key: fileName
         };
 
@@ -57,12 +58,11 @@ const deleteFromR2 = async (fileName) => {
         throw error;
     }
 }
-*/
 
 
-const getLoadURL= async (fileName) => {
+const getLoadURL= async (fileName, bucket) => {
     const command = new GetObjectCommand({
-        Bucket: "profile-images",
+        Bucket: bucket,
         Key: fileName,
         ContentType: "application/octet-stream",
     });
@@ -71,4 +71,4 @@ const getLoadURL= async (fileName) => {
     return signedUrl;
 }
 
-module.exports = { uploadToR2, getLoadURL };
+module.exports = { uploadToR2, getLoadURL, deleteFromR2 };
