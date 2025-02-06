@@ -51,10 +51,7 @@
 				</div>
 				<div class="feature">
 					<div class="image-slider">
-						<img src="/img/anasayfa/1.png" class="slider-image" alt="Genel İlan Örnek 1">
 						<img src="/img/anasayfa/2.png" class="slider-image active" alt="Genel İlan Örnek 2">
-						<img src="/img/anasayfa/3.png" class="slider-image" alt="Genel İlan Örnek 3">
-						<img src="/img/anasayfa/4.png" class="slider-image" alt="Genel İlan Örnek 4">
 					</div>
 
 					<div class="feature-box circle-bg">
@@ -81,17 +78,11 @@
 					</div>
 
 					<div class="image-slider">
-						<img src="/img/anasayfa/1.png" class="slider-image" alt="Barınma İlanı 1">
-						<img src="/img/anasayfa/2.png" class="slider-image" alt="Barınma İlanı Örnek 2">
 						<img src="/img/anasayfa/3.png" class="slider-image active" alt="Barınma İlanı Örnek 3">
-						<img src="/img/anasayfa/4.png" class="slider-image" alt="Barınma İlanı Örnek 4">
 					</div>
 				</div>
 				<div class="feature">
 					<div class="image-slider">
-						<img src="/img/anasayfa/1.png" class="slider-image" alt="İş İlanı 1">
-						<img src="/img/anasayfa/2.png" class="slider-image" alt="İş İlanı Örnek 2">
-						<img src="/img/anasayfa/3.png" class="slider-image" alt="İş İlanı Örnek 3">
 						<img src="/img/anasayfa/4.png" class="slider-image active" alt="İş İlanı Örnek 4">
 					</div>
 
@@ -126,9 +117,6 @@
 	<script defer>
 		document.querySelectorAll('.feature').forEach((feature, index) => {
 			feature.classList.add(index % 2 === 0 ? 'align-left' : 'align-right');
-
-			const hue = index * 40; // Increment hue by 60 for each feature
-			//feature.style.color = `hsl(${hue}, 40%, 40%)`;
 		});
 
 
@@ -150,38 +138,37 @@
 
 	<!-- sliding images -->
 	<script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sliders = document.querySelectorAll('.image-slider');
-        
-        sliders.forEach(slider => {
-            const images = slider.querySelectorAll('.slider-image');
-            const totalImages = images.length;
-            // Find initial active image
-            let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-            // Default to 0 if no active image found
-            if (currentIndex === -1) currentIndex = 0;
-            
-            const intervalTime = 3000;
-            
-            const showNextImage = () => {
-                const currentImage = images[currentIndex];
-                const nextIndex = (currentIndex + 1) % totalImages;
-                const nextImage = images[nextIndex];
-
-                currentImage.classList.add('previous');
-                nextImage.classList.add('active');
-
-                setTimeout(() => {
-                    currentImage.classList.remove('active', 'previous');
-                    currentIndex = nextIndex;
-                }, 1000);
-            };
-
-            if (totalImages > 1) {
-                setInterval(showNextImage, intervalTime);
-            }
-        });
-    });
+		document.addEventListener('DOMContentLoaded', () => {
+		  const firstSlider = document.querySelector('.image-slider'); // Select only the first slider
+	  
+		  if (firstSlider) { // Check if a slider was found
+			const images = firstSlider.querySelectorAll('.slider-image');
+			const totalImages = images.length;
+	  
+			let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+			if (currentIndex === -1) currentIndex = 0;
+	  
+			const intervalTime = 3000;
+	  
+			const showNextImage = () => {
+			  const currentImage = images[currentIndex];
+			  const nextIndex = (currentIndex + 1) % totalImages;
+			  const nextImage = images[nextIndex];
+	  
+			  currentImage.classList.add('previous');
+			  nextImage.classList.add('active');
+	  
+			  setTimeout(() => {
+				currentImage.classList.remove('active', 'previous');
+				currentIndex = nextIndex;
+			  }, 1000);
+			};
+	  
+			if (totalImages > 1) {
+			  setInterval(showNextImage, intervalTime);
+			}
+		  }
+		});
 	</script>
 	
 	<!-- Include Intersection Observer polyfill for older browsers -->
