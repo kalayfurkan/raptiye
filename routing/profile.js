@@ -44,12 +44,23 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 
 router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) => {
 	const username = req.params.username;
+    console.log("username:", username);
 	const user = await User.findOne({username:username});
+    console.log("user:", user);
 	const currentUser= await User.findById(req.session.userId);
-
-	if(currentUser._id.equals(user._id)){
+    console.log("currentUser&user:", currentUser, user);
+	if(currentUser._id.equals(user?._id)){
 		return res.redirect('/profile');
 	}
+
+    try {
+        const url = await getLoadURL(user.profilePic)
+        console.log("URL:", url);
+        console.log("user.ProfilePic:", user.profilePic);
+        user.profilePic = url;        
+    } catch (error) {
+        console.error("Error while getting profile picture URL:", error);
+    }
 
 	const posts = await Ilan.find({ owner: user._id });
 	const jobs = await Job.find({ owner: user._id });
