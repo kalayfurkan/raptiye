@@ -17,7 +17,7 @@
     <div id="wrapper">
         <%- include('partials/navbar') %>
         <div class="container">
-            <h1 class="text-center mb-4">Tüm İlanlar</h1>
+            <h1 class="mb-2">Ev Arkadaşı İlanları</h1>
               
             <!-- Flash message area -->
             <% if (sessionFlash && sessionFlash.message) { %>
@@ -25,6 +25,7 @@
                     <%= sessionFlash.message %>
                 </div>
             <% } %>
+            <a class="mb-3 d-block" href="/evarkadasiilaniekle">Kendi ilanını ver</a>
             <div class="card-box">
                 <% if (ilanlar.length> 0) { %>
                     <% ilanlar.forEach(function(ilan) { %>

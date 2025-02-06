@@ -17,13 +17,15 @@
 <div id="wrapper">
     <%- include('partials/navbar') %>
     <div class="container">
-        <h1 class="mb-4">Genel İlanlar</h1>
+        <h1 class="mb-2">Genel İlanlar</h1>
         <!-- Flash message area -->
         <% if (sessionFlash && sessionFlash.message) { %>
            <div class="alert <%= sessionFlash.type %>">
                 <%= sessionFlash.message %>
             </div>
         <% } %>
+        <a class="mb-3 d-block" href="/kisasureliilanekle">Kendi ilanını ver</a>
+
         <div class="card-box">
             <% if (ilanlar.length> 0) { %>
                 <% ilanlar.forEach(function(ilan) { %>
