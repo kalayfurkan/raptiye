@@ -84,7 +84,6 @@ textarea.form-control {
 .btn:hover {
     color: white;
     background-color: var(--primary-color-dark);
-    transform: scale(1.03);
     border-color: var(--primary-color-dark);
 }
 
