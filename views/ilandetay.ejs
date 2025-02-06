@@ -93,7 +93,8 @@
                             </div>
                             <div class="reach-info">
                                 <a href="/profile/<%=user.username  %>"><%=user.username  %> </a>
-                                <a class="btn1 align-self-end" href="/messages/<%=currentUserId%>/<%=ilan.owner%>">Mesaj At</a>
+                                <a class="btn1 align-self-end" href="<%= currentUserId.toString() === ilan.owner.toString() ? '/profile' : '/messages/' + currentUserId.toString() + '/' + ilan.owner%>">Mesaj at</a>
+                                <!-- <a class="btn1 align-self-end" href="/messages/<%=currentUserId%>/<%=ilan.owner%>">Mesaj At</a> -->
                             </div>
                         </div>
                     </div>
