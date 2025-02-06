@@ -314,7 +314,7 @@ ul.mobile-icons {
 
 	ul.navbar-menu {
 		padding-bottom: 8px;
-		display: block;
+		display: none;
 		flex-direction: column;
 		width: 100%;
 		position: absolute;
@@ -327,6 +327,7 @@ ul.mobile-icons {
 	}
 
 	ul.navbar-menu.active {
+		display: block;
 		overflow: visible;
 	}
 	.dropdown-menu {
