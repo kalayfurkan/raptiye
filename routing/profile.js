@@ -10,7 +10,7 @@ const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
 const bcrypt = require('bcrypt');
-const { uploadToR2, getLoadURL }= require('./s3.js');
+const { uploadToR2, getLoadURL, deleteFromR2 }= require('./s3.js');
 
 
 router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
@@ -18,7 +18,7 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 	
     const user = await User.findById(req.session.userId);
     try {
-        const url = await getLoadURL(user.profilePic)
+        const url = await getLoadURL(user.profilePic, "profile-images");
         console.log("URL:", url);
         console.log("user.ProfilePic:", user.profilePic);
         user.profilePic = url;        
@@ -54,7 +54,7 @@ router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) =>
 	}
 
     try {
-        const url = await getLoadURL(user.profilePic)
+        const url = await getLoadURL(user.profilePic, "profile-images");
         console.log("URL:", url);
         console.log("user.ProfilePic:", user.profilePic);
         user.profilePic = url;        
@@ -87,14 +87,7 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
 	try {
 		if (req.files && req.files.profilePic) {
             try {
-                // Delete old profile picture if it's not the default one
-                if (user.profilePic && user.profilePic !== "/img/Default_pfp.svg.png") {
-                    // Delete the old image from Cloudflare R2
-                    // const result = await deleteFromR2(user.profilePic);
-                    // if (result) {
-                    //     console.log(`result: ${result}`);
-                    //
-                }
+                const oldProfilePic = user.profilePic; 
 
                 // Prepare the new image
                 const date = new Date().toISOString().replace(/:/g, '-');
@@ -103,14 +96,22 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
                 const maxWidth = 1000;
                 const quality = 50;
 
-                // Resize and compress the image
+                // Check the file extension
+                const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
+                const fileExtension = path.extname(req.files.profilePic.name).toLowerCase();
+
+                if (!allowedExtensions.includes(fileExtension)) {
+                    return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+                }
+
+
                 const compressedBuffer = await sharp(req.files.profilePic.data)
                     .resize(maxWidth)
                     .jpeg({ quality: quality })
                     .toBuffer();
                 
                 // Upload to Cloudflare R2
-                const result = uploadToR2(compressedBuffer, fileName, req.files.profilePic.mimetype);
+                const result = uploadToR2(compressedBuffer, fileName, req.files.profilePic.mimetype, "profile-images");
                
 				if (result) {
 					console.log(`result: ${result}`);
@@ -119,6 +120,11 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
                 // Update user profile picture URL in database
                 await User.updateOne({ username: username }, { $set: { profilePic: `${fileName}` } });
 
+
+                // Delete old profile picture if it's not the default one
+                if (oldProfilePic && oldProfilePic !== "/img/Default_pfp.svg.png")
+                    deleteFromR2(oldProfilePic, "profile-images");
+                    
             } catch (error) {
                 console.error("Error while processing profile picture:", error);
                 return res.status(400).send('Bir hata oluştu');

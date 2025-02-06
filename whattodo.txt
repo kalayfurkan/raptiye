@@ -71,9 +71,7 @@ ilan düzenle sayfaları forms.css e linklenmemiş (bitti)
 
 
 image olarak:
-    svg yüklenirse => chromium tabanlı tarayıcılarda profil fotoğrafı gözükmüyor, firefox'ta gözüküyor.
-    heif || ico yüklenirse => website çöküyor
-    png && jpg => normal bir şekilde çalışıyor
-
-SECURITY!!
-image olarak .exe yüklenmesin
+    heif || ico yüklenirse => website çöküyor (bitti)
+    Opsiyonel => .ico dosyalarını destekleyebilecek şekilde kod yenilenebilir (sharp package'ı .ico dosyalarını desteklemiyor).
+    Önemli => Resim yükleme için sadece .webp, .png, .jpg, .avif, .jpeg, .gif dosyalarını kabul etmeli. (bitti)
+    Opsiyonel => .svg dosyası yüklenirse chromium tabanlı tarayıcılarda profil fotoğrafı gözükmüyor, firefox'ta gözüküyor. Eğer .svg dosyalarının chromium tabanlı tarayıcıları da desteklemesi isteniyorsa kodda birtakım büyük değişiklikler yapılmalı sanırım.
