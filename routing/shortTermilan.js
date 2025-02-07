@@ -28,12 +28,12 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 	const maxWidth = 600;
 	const quality = 50;
 
-	const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
+	const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg'];
 
 	for (let element of images) {
 		const fileExtension = path.extname(element.name).toLowerCase();
 		if (!allowedExtensions.includes(fileExtension)) {
-			return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+			return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg dosyalarına izin verilmektedir.');
 		}
 
 		const date = new Date().toISOString().replace(/:/g, '-');
