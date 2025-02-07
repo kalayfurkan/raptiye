@@ -70,7 +70,7 @@
                 <h2>İş İlanları</h2>
                 <div class="list-group">
                     <% jobs.forEach(job=> { %>
-                        <a href="/isler/<%= job._id %>" class="list-group-item list-group-item-action">
+                        <a href="/isilani/<%= job._id %>" class="list-group-item list-group-item-action">
                             <h5 class="mb-1">
                                 <%= job.title %>
                             </h5>
@@ -88,7 +88,7 @@
                 <h2>Ev Arkadaşı İlanları</h2>
                 <div class="list-group">
                     <% kiralar.forEach(kira=> { %>
-                        <a href="/kiraoda/<%= kira._id %>" class="list-group-item list-group-item-action">
+                        <a href="/evarkadasiilani/<%= kira._id %>" class="list-group-item list-group-item-action">
                             <h5 class="mb-1">
                                 <%= kira.title %>
                             </h5>
