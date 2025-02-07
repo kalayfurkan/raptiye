@@ -52,19 +52,21 @@
                         <button type="submit" class="btn">Değişiklikleri kaydet</button>
                     </form>
 
-                    <h3 class="img-header">Mevcut Görselleri Düzenle</h3>
-                    <div class="image-gallery">
-                        <% ilan.images.forEach((image,index)=> { %>
-                            <div class="image-item edit-img-item">
-                                <img src="<%= image %>" alt="Görsel" width="200">
-                                <form class="delete-btn-form" action="/delete-image/<%=ilan._id %>/<%=index%>"
-                                    method="POST" style="display:inline;">
-                                    <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button class="btn" type="submit">Görseli kaldır</button>
-                                </form>
-                            </div>
+                    <% if (ilan.images && ilan.images.length > 0) { %>
+                        <h3 class="img-header">Mevcut Görselleri Düzenle</h3>
+                        <div class="image-gallery">
+                            <% ilan.images.forEach((image,index)=> { %>
+                                <div class="image-item edit-img-item">
+                                    <img src="<%= image %>" alt="Görsel" width="200">
+                                    <form class="delete-btn-form" action="/delete-image/<%=ilan._id %>/<%=index%>"
+                                        method="POST" style="display:inline;">
+                                        <input type="hidden" name="imagePath" value="<%= image %>">
+                                        <button class="btn" type="submit">Görseli kaldır</button>
+                                    </form>
+                                </div>
                             <% }); %>
-                    </div>
+                        </div>
+                    <% } %>
                 </div>
 
                 <div class="register-div">

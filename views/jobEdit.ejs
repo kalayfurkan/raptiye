@@ -42,6 +42,7 @@
                         </div>
                         <button type="submit" class="btn">İlanı Düzenle</button>
                     </form>
+                    <% if (job.images && job.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
                     <div class="image-gallery">
                         <% job.images.forEach((image,index)=> { %>
@@ -50,11 +51,12 @@
                                 <form action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button type="submit" class="btn">Sil</button>
+                                    <button type="submit" class="btn2"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
-                            <% }); %>
+                        <% }); %>
                     </div>
+                    <% } %>
                 </div>
 
                 <div class="register-div">

@@ -53,7 +53,8 @@
                         </div>
                         <button type="submit" class="btn btn-primary">İlan Ver</button>
                     </form>
-                    <h4>Mevcut Görselleri Düzenle</h4>
+                    <% if (kira.images && kira.images.length > 0) { %>
+                    <h3>Mevcut Görselleri Düzenle</h3>
                     <div class="image-gallery">
                         <% kira.images.forEach((image,index)=> { %>
                             <div class="image-item">
@@ -61,11 +62,12 @@
                                 <form action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button type="submit">Sil</button>
+                                    <button class="btn2" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
-                            <% }); %>
+                        <% }); %>
                     </div>
+                    <% } %>
                 </div>
 
                 <div class="register-div">
