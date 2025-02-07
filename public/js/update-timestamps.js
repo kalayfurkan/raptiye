@@ -64,7 +64,7 @@ function timeAgo(inputTime) {
     };
 
     if (diff < oneHour) {
-        return formatTime(pastDate);
+        return 'bir saatten az';
     } else if (diff < oneDay) {
         return formatTime(pastDate);
     } else if (
@@ -81,7 +81,7 @@ function timeAgo(inputTime) {
         return `geçen gün`;
     } else if (diff < oneMonth) {
         const daysAgo = Math.floor(diff / oneDay);
-        return `${daysAgo} gün`;
+        return daysAgo > 0 ? `${daysAgo} gün` : 'bir saatten az';
     } else if (diff < oneYear) {
         const monthsAgo = Math.floor(diff / oneMonth);
         return `${monthsAgo} ay`;
