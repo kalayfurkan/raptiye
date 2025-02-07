@@ -6,6 +6,7 @@ const User = require('../models/userSchema');
 const path = require('path');
 const sharp = require('sharp');
 const fs = require('fs');
+const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
 
 
 router.get('/kisasureliilanekle', allMiddlewares.requireAuth, (req, res) => {
@@ -27,15 +28,30 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 	const maxWidth = 600;
 	const quality = 50;
 
-	for (let element of images) {
-		const date = new Date().toISOString().replace(/:/g, '-');
-		const imagePath = path.resolve(__dirname, '../public/img/shortilanimages', date + element.name);
-		imagePaths.push(`/img/shortilanimages/${date + element.name}`);
+	const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
 
-		await sharp(element.data)
+	for (let element of images) {
+		const fileExtension = path.extname(element.name).toLowerCase();
+		if (!allowedExtensions.includes(fileExtension)) {
+			return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+		}
+
+		const date = new Date().toISOString().replace(/:/g, '-');
+		const fileName = `${date}-${element.name}`;
+
+		const compressedBuffer = await sharp(element.data)
 			.resize(maxWidth)
 			.jpeg({ quality: quality })
-			.toFile(imagePath);
+			.toBuffer();
+
+		// Upload to Cloudflare R2
+		try {
+			await uploadToR2(compressedBuffer, fileName, element.mimetype, "kisa-ilan");
+			imagePaths.push(fileName); // Store the filename in the array
+		} catch (uploadError) {
+			console.error("Error uploading to R2:", uploadError);
+			return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
+		}
 	}
 
 	await Shortilan.create({
@@ -75,7 +91,12 @@ router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) =>
 
         // Verileri render et
         res.render('kisailanlar', {
-            ilanlar: kisaIlanlar,
+            ilanlar: await Promise.all(kisaIlanlar.map(async ilan => {
+                return {
+                    ...ilan.toObject(),
+                    images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "kisa-ilan")))
+                }
+            })),
             currentUserid,
             pagination: {
                 totalPosts,
@@ -99,13 +120,12 @@ router.post('/shortilan/delete/:shortid', allMiddlewares.requireAuth, async (req
 	}
 
 	if (shortpost.images.length > 0) {
-		for (const address of shortpost.images) {
-			const fullImagePath = path.join(__dirname, '../public', address);
+		for (const fileName of shortpost.images) {
 			try {
-				fs.unlinkSync(fullImagePath);
-				console.log(`Image deleted: ${fullImagePath}`);
+				await deleteFromR2(fileName, "kisa-ilan");
+				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (error) {
-				console.error(`Failed to delete image: ${fullImagePath}`, error);
+				console.error(`Failed to delete image from R2: ${fileName}`, error);
 			}
 		}
 	}

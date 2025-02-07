@@ -6,6 +6,7 @@ const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
+const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
 
 
 router.get('/satisilaniekle', allMiddlewares.requireAuth, (req, res) => {
@@ -23,16 +24,29 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 
 		const maxWidth = 1920;
 		const quality = 50;
+		const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
 
 		for (let element of images) {
-			const date = new Date().toISOString().replace(/:/g, '-');
-			const imagePath = path.resolve(__dirname, '../public/img/postimages', date + element.name);
-			imagePaths.push(`/img/postimages/${date + element.name}`);
+			const fileExtension = path.extname(element.name).toLowerCase();
+			if (!allowedExtensions.includes(fileExtension)) {
+				return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+			}
 
-			await sharp(element.data)
+			const date = new Date().toISOString().replace(/:/g, '-');
+			const fileName = `${date}-${element.name}`;
+
+			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
 				.jpeg({ quality: quality })
-				.toFile(imagePath);
+				.toBuffer();
+
+			try {
+				await uploadToR2(compressedBuffer, fileName, element.mimetype, "satis-ilan");
+				imagePaths.push(fileName);
+			} catch (uploadError) {
+				console.error("Error uploading to R2:", uploadError);
+				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
+			}
 		}
 
 		await Ilan.create({
@@ -75,7 +89,10 @@ router.get('/satisilanlari', allMiddlewares.requireAuth, async (req, res) => {
 
 
 		res.render('ilanlar', {
-            ilanlar: allPosts,
+            ilanlar: await Promise.all(allPosts.map(async ilan => ({
+                ...ilan.toObject(),
+                images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")))
+            }))),
             currentUser,
             pagination: {
                 totalPosts,
@@ -95,6 +112,10 @@ router.get('/satisilani/:ilanid', allMiddlewares.requireAuth, async (req, res) =
 		const ilan = await Ilan.findById(ilanId);
 		const user = await User.findById(ilan.owner);
 		const currentUserId=req.session.userId;
+
+		// Fetch image URLs
+        ilan.images = await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")));
+
 		res.render('ilandetay', { ilan, user,currentUserId });
 
 	} catch (error) {
@@ -108,6 +129,9 @@ router.get('/satisilani/edit/:ilanid', allMiddlewares.requireAuth, async (req, r
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
 
+		// Fetch image URLs
+		ilan.images = await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")));
+
 		res.render('editpost', { ilan, ilanId: ilanId });
 	}
 	catch (error) {
@@ -120,15 +144,19 @@ router.post('/delete-image/:ilanid/:index', allMiddlewares.requireAuth, async (r
 	const ilan = await Ilan.findById(ilanId);
 
 	const index = req.params.index;
-	const imageToDelete = path.join(__dirname, '../public', ilan.images[index]);
+	const fileNameToDelete = ilan.images[index];
 
-	fs.unlinkSync(imageToDelete);
-	await Ilan.updateOne(
-		{ _id: ilanId },
-		{ $pull: { images: ilan.images[index] } } // Görseli diziden çıkarın
-	);
-
-	res.redirect(`/satisilani/edit/${ilanId}`);
+	try {
+		await deleteFromR2(fileNameToDelete, "satis-ilan");
+		await Ilan.updateOne(
+			{ _id: ilanId },
+			{ $pull: { images: fileNameToDelete } } // Remove the filename from the array
+		);
+		res.redirect(`/satisilani/edit/${ilanId}`);
+	} catch (deleteError) {
+		console.error("Error deleting from R2:", deleteError);
+		return res.status(500).send("Dosya silinirken bir hata oluştu.");
+	}
 
 })
 
@@ -146,19 +174,28 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 
 		const maxWidth = 1920;
 		const quality = 50;
+		const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
 
 		for (let element of images) {
+			const fileExtension = path.extname(element.name).toLowerCase();
+			if (!allowedExtensions.includes(fileExtension)) {
+				return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+			}
+
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const imagePath = path.resolve(__dirname, '../public/img/postimages', date + element.name);
-			ilan.images.push(`/img/postimages/${date + element.name}`);
+			const fileName = `${date}-${element.name}`;
+
+			const compressedBuffer = await sharp(element.data)
+				.resize(maxWidth)
+				.jpeg({ quality: quality })
+				.toBuffer();
 
 			try {
-				await sharp(element.data)
-					.resize(maxWidth)
-					.jpeg({ quality: quality })
-					.toFile(imagePath);
-			} catch (error) {
-				return res.status(500).send('Resim işlenirken hata oluştu.');
+				await uploadToR2(compressedBuffer, fileName, element.mimetype, "satis-ilan");
+				ilan.images.push(fileName);
+			} catch (uploadError) {
+				console.error("Error uploading to R2:", uploadError);
+				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
 			}
 		}
 
@@ -193,13 +230,12 @@ router.post('/ilan/delete/:ilanId', allMiddlewares.requireAuth, async (req, res)
 	}
 
 	if (ilan.images.length > 0) {
-		for (const address of ilan.images) {
-			const fullImagePath = path.join(__dirname, '../public', address);
+		for (const fileName of ilan.images) {
 			try {
-				fs.unlinkSync(fullImagePath);
-				console.log(`Image deleted: ${fullImagePath}`);
+				await deleteFromR2(fileName, "satis-ilan");
+				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (error) {
-				console.error(`Failed to delete image: ${fullImagePath}`, error);
+				console.error(`Failed to delete image from R2: ${fileName}`, error);
 			}
 		}
 	}

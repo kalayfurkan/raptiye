@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const Job = require('./models/jobSchema'); // Job modelini içe aktar
 const Shortilan = require('./models/shortTermilanSchema.js');
+const { deleteFromR2 } = require('./routing/s3.js');
 
 const deleteJob=new CronJob('0 0 * * *',async () => {
   try {
@@ -11,15 +12,14 @@ const deleteJob=new CronJob('0 0 * * *',async () => {
 
 	for (const job of jobsToDelete) {
 		if (job.images && job.images.length > 0) {
-		  job.images.forEach((image) => {
-			const imagePath = path.join(__dirname, 'public', image);
+		  for (const fileName of job.images) {
 			try {
-				fs.unlinkSync(imagePath);
-				console.log(`Görsel başarıyla silindi: ${imagePath}`);
-			  } catch (err) {
-				console.error(`Görsel silinemedi: ${imagePath}`, err);
-			  }
-		  });
+				await deleteFromR2(fileName, "is-ilan");
+				console.log(`Image deleted from R2: ${fileName}`);
+			} catch (err) {
+				console.error(`Failed to delete image from R2: ${fileName}`, err);
+			}
+		  }
 		}
   
 		await Job.findByIdAndDelete(job._id);
@@ -43,15 +43,14 @@ const deleteIlan=new CronJob('*/30 * * * *',async () => {
 
 	for (const ilan of result) {
 		if (ilan.images && ilan.images.length > 0) {
-			ilan.images.forEach((image) => {
-			const imagePath = path.join(__dirname, 'public', image);
-			try {
-				fs.unlinkSync(imagePath);
-				console.log(`Görsel başarıyla silindi: ${imagePath}`);
-			  } catch (err) {
-				console.error(`Görsel silinemedi: ${imagePath}`, err);
-			  }
-		  });
+			for (const fileName of ilan.images) {
+				try {
+					await deleteFromR2(fileName, "kisa-ilan");
+					console.log(`Image deleted from R2: ${fileName}`);
+				} catch (err) {
+					console.error(`Failed to delete image from R2: ${fileName}`, err);
+				}
+			}
 		}
   
 		await Shortilan.findByIdAndDelete(ilan._id);
