@@ -6,6 +6,7 @@ const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
+const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
 
 router.get('/evarkadasiilaniekle', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addkiraoda');
@@ -23,15 +24,30 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 		const maxWidth = 1920;
 		const quality = 50;
 
-		for (let element of images) {
-			const date = new Date().toISOString().replace(/:/g, '-');
-			const imagePath = path.resolve(__dirname, '../public/img/kiraodaimages', date + element.name);
-			imagePaths.push(`/img/kiraodaimages/${date + element.name}`);
+		const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
 
-			await sharp(element.data)
+		for (let element of images) {
+			const fileExtension = path.extname(element.name).toLowerCase();
+			if (!allowedExtensions.includes(fileExtension)) {
+				return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+			}
+
+			const date = new Date().toISOString().replace(/:/g, '-');
+			const fileName = `${date}-${element.name}`;
+
+			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
 				.jpeg({ quality: quality })
-				.toFile(imagePath);
+				.toBuffer();
+
+			// Upload to Cloudflare R2
+			try {
+				await uploadToR2(compressedBuffer, fileName, element.mimetype, "ev-arkadasi");
+				imagePaths.push(fileName); // Store the filename
+			} catch (uploadError) {
+				console.error("Error uploading to R2:", uploadError);
+				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
+			}
 		}
 
 		await Kiraoda.create({
@@ -73,7 +89,10 @@ router.get('/evarkadasiilanlari', allMiddlewares.requireAuth, async (req, res) =
 
         // Sayfayı render et
         res.render('kiraodalar', {
-            ilanlar: kiraodalar,
+            ilanlar: await Promise.all(kiraodalar.map(async ilan => ({
+                ...ilan.toObject(),
+                images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "ev-arkadasi")))
+            }))),
             currentUser,
             pagination: {
                 totalKiraodalar,
@@ -94,12 +113,16 @@ router.get('/evarkadasiilani/:kiraodaid', allMiddlewares.requireAuth, async (req
 	const kira = await Kiraoda.findById(kiraid);
 	const owner = await User.findById(kira.owner);
 	const currentUserID=req.session.userId;
+
+	kira.images = await Promise.all(kira.images.map(async imageName => await getLoadURL(imageName, "ev-arkadasi")));
+
 	res.render('kiraodadetay', { ilan: kira, owner,currentUserID });
 })
 
 router.get('/evarkadasiilani/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraid = req.params.kiraodaid;
 	const kira = await Kiraoda.findById(kiraid);
+	kira.images = await Promise.all(kira.images.map(async imageName => await getLoadURL(imageName, "ev-arkadasi")));
 
 	res.render('kiraodaedit', { kira, kiraid });
 })
@@ -117,19 +140,29 @@ router.post('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, 
 
 		const maxWidth = 1920;
 		const quality = 50;
+		const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
 
 		for (let element of images) {
-			const date = new Date().toISOString().replace(/:/g, '-');
-			const imagePath = path.resolve(__dirname, '../public/img/kiraodaimages', date + element.name);
-			kira.images.push(`/img/kiraodaimages/${date + element.name}`);
+			const fileExtension = path.extname(element.name).toLowerCase();
+			if (!allowedExtensions.includes(fileExtension)) {
+				return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+			}
 
+			const date = new Date().toISOString().replace(/:/g, '-');
+			const fileName = `${date}-${element.name}`;
+
+			const compressedBuffer = await sharp(element.data)
+				.resize(maxWidth)
+				.jpeg({ quality: quality })
+				.toBuffer();
+
+			// Upload to Cloudflare R2
 			try {
-				await sharp(element.data)
-					.resize(maxWidth)
-					.jpeg({ quality: quality })
-					.toFile(imagePath);
-			} catch (error) {
-				return res.status(500).send('Resim işlenirken hata oluştu.');
+				await uploadToR2(compressedBuffer, fileName, element.mimetype, "ev-arkadasi");
+				kira.images.push(fileName); // Store the filename
+			} catch (uploadError) {
+				console.error("Error uploading to R2:", uploadError);
+				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
 			}
 		}
 	}
@@ -158,15 +191,19 @@ router.post('/delete-kiraodaimage/:kiraid/:index', allMiddlewares.requireAuth, a
 	const kira = await Kiraoda.findById(kiraid);
 
 	const index = req.params.index;
-	const imageToDelete = path.join(__dirname, '../public', kira.images[index]);
+	const fileNameToDelete = kira.images[index];
 
-	fs.unlinkSync(imageToDelete);
-	await Kiraoda.updateOne(
-		{ _id: kiraid },
-		{ $pull: { images: kira.images[index] } } // Görseli diziden çıkarın
-	);
-
-	res.redirect(`/kiraoda/edit/${kiraid}`);
+	try {
+		await deleteFromR2(fileNameToDelete, "ev-arkadasi");
+		await Kiraoda.updateOne(
+			{ _id: kiraid },
+			{ $pull: { images: fileNameToDelete } } // Remove the filename from the array
+		);
+		res.redirect(`/kiraoda/edit/${kiraid}`);
+	} catch (deleteError) {
+		console.error("Error deleting from R2:", deleteError);
+		return res.status(500).send("Dosya silinirken bir hata oluştu.");
+	}
 
 })
 
@@ -180,13 +217,12 @@ router.post('/kiraoda/delete/:kiraodaid', allMiddlewares.requireAuth, async (req
 	}
 
 	if (kira.images.length > 0) {
-		for (const address of kira.images) {
-			const fullImagePath = path.join(__dirname, '../public', address);
+		for (const fileName of kira.images) {
 			try {
-				fs.unlinkSync(fullImagePath);
-				console.log(`Image deleted: ${fullImagePath}`);
+				await deleteFromR2(fileName, "ev-arkadasi");
+				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (error) {
-				console.error(`Failed to delete image: ${fullImagePath}`, error);
+				console.error(`Failed to delete image from R2: ${fileName}`, error);
 			}
 		}
 	}

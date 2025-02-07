@@ -6,6 +6,7 @@ const User = require('../models/userSchema');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
+const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
 
 router.get('/kampusebirmesajbirak', allMiddlewares.requireAuth, (req, res) => {
 	res.render('kampusebirmesajver');
@@ -27,23 +28,31 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 			const userid = await User.findById(req.session.userId);
 			user = userid._id;
 		}
-		
-		let imagePath = null;
-		
+
+		let fileName = null;
 		// Dosya var mı kontrolü
 		if (req.files && req.files.images) {
 			try {
 				const image = req.files.images;
-				const date = new Date().toISOString().replace(/:/g, '-');
-				imagePath = path.resolve(__dirname, '../public/img/kampusemesajimages', date+image.name);
+				const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
+				const fileExtension = path.extname(image.name).toLowerCase();
 
-				await sharp(image.data)
+				if (!allowedExtensions.includes(fileExtension)) {
+					return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+				}
+
+				const date = new Date().toISOString().replace(/:/g, '-');
+				fileName = `${date}-${image.name}`;
+
+				const compressedBuffer = await sharp(image.data)
 					.resize(maxWidth)
 					.jpeg({ quality: quality })
-					.toFile(imagePath);
+					.toBuffer();
+
+				await uploadToR2(compressedBuffer, fileName, image.mimetype, "kampus-mesaj");
 				
-				imagePath = `/img/kampusemesajimages/${date+image.name}`;
 			} catch (error) {
+				console.error("Error uploading to R2:", error);
 				return res.render('errorpage', { message: "Bir hata oluştu: " + error.message });
 			}
 		}
@@ -51,7 +60,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		await Kampusemesaj.create({
 			mesaj: message,
 			owner: user,
-			images:imagePath
+			 images: fileName
 		})
 		res.redirect('/kampusemesajlar');
 	} catch (error) {
@@ -96,7 +105,20 @@ router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
         const totalPages = Math.ceil(totalMessages / limit);
 
         res.render('kampusemesajlar', {
-            messages,
+            messages: await Promise.all(messages.map(async message => {
+                let imageUrl = null;
+                if (message.images) {
+                    try {
+                        imageUrl = await getLoadURL(message.images, "kampus-mesaj");
+                    } catch (error) {
+                        console.error("Error fetching image URL:", error);
+                    }
+                }
+                return {
+                    ...message.toObject(),
+                    images: imageUrl
+                }
+            })),
             userId,
             sortOption,
             pagination: {
@@ -121,13 +143,12 @@ router.post('/deletekampusmesaj/:kampusemesajid', allMiddlewares.requireAuth, as
 		
 		if(currentUser && currentMessage && currentUser._id.equals(currentMessage.owner)){
 			if (currentMessage.images) {
-					const fullImagePath = path.join(__dirname, '../public', currentMessage.images);
-					try {
-						fs.unlinkSync(fullImagePath);
-						console.log(`Image deleted: ${fullImagePath}`);
-					} catch (error) {
-						console.error(`Failed to delete image: ${fullImagePath}`, error);
-					}
+				try {
+					await deleteFromR2(currentMessage.images, "kampus-mesaj");
+					console.log(`Image deleted from R2: ${currentMessage.images}`);
+				} catch (error) {
+					console.error(`Failed to delete image from R2: ${currentMessage.images}`, error);
+				}
 			}
 			await Kampusemesaj.findByIdAndDelete(kampusemesajid);
 			res.redirect('/kampusemesajlar');
