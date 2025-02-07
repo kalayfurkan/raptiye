@@ -97,11 +97,11 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
                 const quality = 50;
 
                 // Check the file extension
-                const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
+                const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg'];
                 const fileExtension = path.extname(req.files.profilePic.name).toLowerCase();
 
                 if (!allowedExtensions.includes(fileExtension)) {
-                    return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+                    return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg dosyalarına izin verilmektedir.');
                 }
 
 

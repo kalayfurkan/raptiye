@@ -34,11 +34,11 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		if (req.files && req.files.images) {
 			try {
 				const image = req.files.images;
-				const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg', '.gif'];
+				const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg'];
 				const fileExtension = path.extname(image.name).toLowerCase();
 
 				if (!allowedExtensions.includes(fileExtension)) {
-					return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg, .gif dosyalarına izin verilmektedir.');
+					return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg dosyalarına izin verilmektedir.');
 				}
 
 				const date = new Date().toISOString().replace(/:/g, '-');
