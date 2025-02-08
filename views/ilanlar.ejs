@@ -29,14 +29,14 @@
             <form class="search" action="/ilan/arama" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control satilik-search" placeholder="İlan Başlığım" name="search" required>
-                    <button class="search-btn" type="submit"><img height="20px" width="20px" src="/img/icons/search.svg"></button>
+                    <button class="search-btn" type="submit"><img height="20px" width="20px" src="/img/icons/search.svg" ></button>
                 </div>
             </form>
             <div class="card-box">
                 <% if (ilanlar.length> 0) { %>
                     <% ilanlar.forEach(function(ilan) { %>
                         <div class="card">
-                            <img src="<%= ilan.images[0] %>" alt="İlan Fotoğrafı">
+                            <img src="<%= ilan.images[0] %>" alt="İlan Fotoğrafı" onerror="this.src='img/satilik-img.jpg';">
                             <div class="card-body">
                                 <form class="star-form" action="<% if (currentUser.favorites && currentUser.favorites.includes(ilan._id)) { %>/deletefavorites/<%= ilan._id %><% } else { %>/addfavoritesilan/<%= ilan._id %><% } %>" method="post">
                                     <input type="hidden" name="ilanid" value="<%= ilan._id %>">
