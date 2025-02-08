@@ -23,7 +23,7 @@
 
 
             <div class="sorting-buttons">
-                <a href="/kampusebirmesajbirak" class="btn sesiniduyur">Sen de sesini duyur!</a>
+                <a href="/kampusebirmesajbirak" class="btn2 sesiniduyur">Sen de sesini duyur!</a>
                 <a href="/kampusemesajlar?sort=newest" 
                    class="btn btn-outline-primary <%= sortOption === 'newest' || !sortOption ? 'active' : '' %>">
                   <i class="bi bi-clock"></i> <span class="alan-yetersiz">Yeniden Eskiye</span>
@@ -62,15 +62,15 @@
                                 <%= message.mesaj %>
                             </p>
                             <% if(message.images){ %>
-                                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images %>" aria-expanded="false" aria-controls="imageCollapse<%= message.images %>">
+                                <button class="btn3" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images %>" aria-expanded="false" aria-controls="imageCollapse<%= message.images %>">
                                     <i class="bi bi-image"></i>
                                 </button>
                             
                                 <!-- Görsel -->
                                 <div class="collapse mt-3" id="imageCollapse<%= message.images %>">
-                                    <img src="<%= message.images %>" alt="görsel"  class="img-fluid img-kampuse">
+                                    <img src="<%= message.images %>" alt="görsel"  class="img-fluid img-kampuse" onerror="this.style.display='none'">
                                 </div>
-                                <% } %>
+                            <% } %>
                                     <!-- Yorumlar için dropdown -->
                                     <div class="mt-3">
                                         <div class="mesaj-alt-butonalar">

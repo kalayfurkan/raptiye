@@ -85,7 +85,7 @@ p{
 
 .btn1 {
     text-align: center;
-    padding: 4px 8px;
+    padding: 6px 12px;
     font-size: 16px;
     font-weight: 500;
     border-radius: 8px;
@@ -109,7 +109,7 @@ p{
 
 .btn2 {
     text-align: center;
-    padding: 4px 8px;
+    padding: 6px 12px;
     font-size: 16px;
     font-weight: 500;
     border-radius: 8px;
@@ -129,6 +129,26 @@ p{
     border-color: var(--primary-color-dark);
     background-color: white;
     color: var(--primary-color-dark);
+}
+
+.btn3 {
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 0.8px solid;
+    border-color: black;
+    transition: all 0.3s ease;
+    background-color: white;
+
+}
+
+.btn3:hover {
+    background-color: var(--navbar-font-color);
+}
+
+.btn3:active {
 }
 .btn1.active{
     cursor: context-menu;

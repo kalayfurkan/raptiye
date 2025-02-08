@@ -129,11 +129,6 @@ textarea.form-control {
     h2,h3 {
         font-size: 24px;
     }
-
-    .form-control,
-    .btn {
-        font-size: 14px;
-    }
 }
 
 @media (max-width: 576px) {
@@ -146,10 +141,5 @@ textarea.form-control {
 
     h2,h3 {
         font-size: 20px;
-    }
-
-    .form-control,
-    .btn {
-        font-size: 12px;
     }
 }
