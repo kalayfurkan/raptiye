@@ -6,7 +6,6 @@ const {
 } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
-// #region Murat was here
 
 const s3 = new S3Client({
     endpoint: process.env.CLOUDFLARE_ENDPOINT,
@@ -21,42 +20,32 @@ const s3 = new S3Client({
 
 
 const uploadToR2 = async (fileBuffer, fileName, mimeType, bucket) => {
-    try {        
-        // Set up S3 params
-        const params = {
-            Bucket: bucket,
-            Key: fileName,
-            Body: fileBuffer,
-            ContentType: mimeType || "application/octet-stream"
-        };
+    // Set up S3 params
+    const params = {
+        Bucket: bucket,
+        Key: fileName,
+        Body: fileBuffer,
+        ContentType: mimeType || "application/octet-stream"
+    };
 
-        const command = new PutObjectCommand(params);
-        const result = await s3.send(command);
-        // Upload using putObject
-        console.log("Upload successful:", result);
-        return result;
-    } catch (error) {
-        console.error('Upload failed:', error);
-        throw error;
-    }
+    const command = new PutObjectCommand(params);
+    const result = await s3.send(command);
+    // Upload using putObject
+    console.log("Upload successful:", result);
+    return result;
 }
 
 
 const deleteFromR2 = async (fileName, bucket) => {
-    try {
-        const params = {
-            Bucket: bucket,
-            Key: fileName
-        };
+    const params = {
+        Bucket: bucket,
+        Key: fileName
+    };
 
-        const command = new DeleteObjectCommand(params);
-        const result = await s3.send(command);
-        console.log("Delete successful:", result);
-        return result;
-    } catch (error) {
-        console.error('Delete failed:', error);
-        throw error;
-    }
+    const command = new DeleteObjectCommand(params);
+    const result = await s3.send(command);
+    console.log("Delete successful:", result);
+    return result
 }
 
 
