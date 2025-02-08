@@ -22,6 +22,7 @@
   - EJS
   - Node.js
   - MongoDB
+  - Cloudflare R2
 - **Other Tools:**
   - Content Security Policy (CSP) for enhanced security
   - Intersection Observer API for scroll-based animations
