@@ -112,10 +112,10 @@ form.d-flex button:hover {
     font-weight: 600;
 }
 
-.btn-primary {
+/* .btn-primary {
     display: inline-block;
     margin-top: 10px;
-}
+} */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -127,8 +127,8 @@ form.d-flex button:hover {
         font-size: 28px;
     }
 
-    .btn-primary {
+    /* .btn-primary {
         width: 100%;
         font-size: 14px;
-    }
+    } */
 }

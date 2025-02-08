@@ -20,7 +20,7 @@
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="text-center mb-4">İlanı Düzenle</h2>
 
-                    <form action="/evarkadasiilani/edit/<%=kira._id  %>" method="POST" enctype="multipart/form-data">
+                    <form action="/kiraoda/edit/<%=kira._id  %>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="type" class="form-label">İlan Türü</label>
                             <select class="form-select" id="type" name="searchingFor" required>
@@ -51,7 +51,7 @@
                             <label for="images" class="form-label">Fotoğraf Yükle</label>
                             <input type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="images" name="images" accept="image/*" multiple>
                         </div>
-                        <button type="submit" class="btn btn-primary">İlan Ver</button>
+                        <button type="submit" class="btn">İlan Ver</button>
                     </form>
                     <% if (kira.images && kira.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
