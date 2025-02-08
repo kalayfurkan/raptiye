@@ -86,45 +86,40 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
 
 	try {
 		if (req.files && req.files.profilePic) {
+            
+            const oldProfilePic = user.profilePic; 
+
+            // Prepare the new image
+            const date = new Date().toISOString().replace(/:/g, '-');
+            const fileName = `${date}-${req.files.profilePic.name}`;
+
+            const maxWidth = 1000;
+            const quality = 50;
+
+            // Check the file extension
+            const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg'];
+            const fileExtension = path.extname(req.files.profilePic.name).toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg dosyalarına izin verilmektedir.');
+            }
+
+                
             try {
-                const oldProfilePic = user.profilePic; 
-
-                // Prepare the new image
-                const date = new Date().toISOString().replace(/:/g, '-');
-                const fileName = `${date}-${req.files.profilePic.name}`;
-
-                const maxWidth = 1000;
-                const quality = 50;
-
-                // Check the file extension
-                const allowedExtensions = ['.avif', '.webp', '.png', '.jpg', '.jpeg'];
-                const fileExtension = path.extname(req.files.profilePic.name).toLowerCase();
-
-                if (!allowedExtensions.includes(fileExtension)) {
-                    return res.status(400).send('Geçersiz dosya formatı. Sadece .avif, .webp, .png, .jpg, .jpeg dosyalarına izin verilmektedir.');
-                }
-
-
                 const compressedBuffer = await sharp(req.files.profilePic.data)
                     .resize(maxWidth)
                     .jpeg({ quality: quality })
                     .toBuffer();
-                
-                // Upload to Cloudflare R2
-                const result = uploadToR2(compressedBuffer, fileName, req.files.profilePic.mimetype, "profile-images");
-               
-				if (result) {
-					console.log(`result: ${result}`);
-				}
-				
-                // Update user profile picture URL in database
-                await User.updateOne({ username: username }, { $set: { profilePic: `${fileName}` } });
-
+                // Upload to Cloudflare R2 and update user profile in parallel
+                await Promise.all([
+                    uploadToR2(compressedBuffer, fileName, req.files.profilePic.mimetype, "profile-images"),
+                    User.updateOne({ username: username }, { $set: { profilePic: `${fileName}` } })
+                ]);
 
                 // Delete old profile picture if it's not the default one
-                if (oldProfilePic && oldProfilePic !== "/img/Default_pfp.svg.png")
-                    deleteFromR2(oldProfilePic, "profile-images");
-                    
+                if (oldProfilePic && oldProfilePic !== "/img/Default_pfp.svg.png") {
+                    await deleteFromR2(oldProfilePic, "profile-images");
+                }
             } catch (error) {
                 console.error("Error while processing profile picture:", error);
                 return res.status(400).send('Bir hata oluştu');

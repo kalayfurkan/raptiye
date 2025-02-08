@@ -192,14 +192,14 @@ router.post('/delete-kiraodaimage/:kiraid/:index', allMiddlewares.requireAuth, a
 
 	const index = req.params.index;
 	const fileNameToDelete = kira.images[index];
-	console.log("filename",fileNameToDelete, "kira",kira);
+
 	try {
 		await deleteFromR2(fileNameToDelete, "ev-arkadasi");
 		await Kiraoda.updateOne(
 			{ _id: kiraid },
 			{ $pull: { images: fileNameToDelete } } // Remove the filename from the array
 		);
-		res.redirect(`/evarkadasiilani/edit/${kiraid}`);
+		res.redirect(`/kiraoda/edit/${kiraid}`);
 	} catch (deleteError) {
 		console.error("Error deleting from R2:", deleteError);
 		return res.status(500).send("Dosya silinirken bir hata oluştu.");
