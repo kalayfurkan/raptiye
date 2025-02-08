@@ -27,6 +27,9 @@ router.get('/hakkimizda', (req, res) => {
 	res.render('hakkimizda');
 });
 
+router.get('/forgotpassword',async(req, res)=>{
+    res.render('forgotpassword');
+})
 router.post('/contact-us',(req,res) => {
 	const { email, message } = req.body;
 
