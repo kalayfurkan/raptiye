@@ -296,13 +296,13 @@ router.post('/deletefavorites/:favoriteid', allMiddlewares.requireAuth, async (r
 });
 
 router.get('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
-    const query = req.query.search || ''; // Arama terimini query'den al
-    const page = parseInt(req.query.page) || 1; // Sayfa numarasını al
-    const limit = 9; // Sayfa başına gösterilecek öğe sayısı
+    const query = req.query.search || '';
+    const page = parseInt(req.query.page) || 1;
+    const limit = 9;
     const skip = (page - 1) * limit;
 
     try {
-        const results = await Ilan.find({
+        const allPosts = await Ilan.find({
             $or: [
                 { title: new RegExp(query, 'i') },
                 { description: new RegExp(query, 'i') }
@@ -324,7 +324,10 @@ router.get('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
         const currentUser = await User.findById(req.session.userId);
 
         res.render('aramasonuc', {
-            ilanlar: results,
+            ilanlar: await Promise.all(allPosts.map(async ilan => ({
+                ...ilan.toObject(),
+                images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")))
+            }))), 
             searchTerm: query,
             currentUser,
             pagination: {
