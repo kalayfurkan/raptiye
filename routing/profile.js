@@ -7,7 +7,6 @@ const Job = require('../models/jobSchema');
 const Kiraoda = require('../models/kiraodaSchema.js');
 const Shortilan = require('../models/shortTermilanSchema.js');
 const path = require('path');
-const fs = require('fs');
 const sharp = require('sharp');
 const bcrypt = require('bcrypt');
 const { uploadToR2, getLoadURL, deleteFromR2 }= require('./s3.js');

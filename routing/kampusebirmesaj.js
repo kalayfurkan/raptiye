@@ -5,7 +5,6 @@ const Kampusemesaj = require('../models/kampusemesajSchema.js');
 const User = require('../models/userSchema');
 const sharp = require('sharp');
 const path = require('path');
-const fs = require('fs');
 const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
 
 router.get('/kampusebirmesajbirak', allMiddlewares.requireAuth, (req, res) => {
