@@ -299,7 +299,6 @@ ul.mobile-icons {
 @media screen and (max-width: 850px) {
 	ul.mobile-icons .navbar-link {
 		padding: 10px;
-		padding-left: 16px;
 	}
 
 	ul.mobile-icons {
@@ -341,7 +340,7 @@ ul.mobile-icons {
 
 	.navbar-link {
 		padding: 10px 0;
-		padding-left: 16px;
+		padding-left: 10px;
 	}
 
 	/* Show toggle button on mobile */
@@ -372,8 +371,7 @@ ul.mobile-icons {
 }
 @media screen and (max-width: 440px) {
 	ul.mobile-icons .navbar-link {
-		padding: 2px;
-		padding-left: 16px;
+		padding: 5px;
 	}
 	.navbar-brand {
 		margin: 0;
