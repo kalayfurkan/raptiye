@@ -64,7 +64,7 @@ function timeAgo(inputTime) {
     };
 
     if (diff < oneHour) {
-        return 'bir saatten az';
+        return '';
     } else if (diff < oneDay) {
         return formatTime(pastDate);
     } else if (

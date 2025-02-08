@@ -99,7 +99,17 @@
                                 <a href="/profile/<%= ilan.owner.username%>">
                                     <%=ilan.owner.username%>
                                 </a>
-                                <a class="btn1" href="<%= currentUserid.toString() === ilan.owner._id.toString() ? '/profile' : '/messages/' + currentUserid.toString() + '/' + ilan.owner._id.toString() %>">Mesaj at</a>
+                                <% if (currentUserid.toString() !== ilan.owner._id.toString()) { %>
+                                    <a class="btn1" href="
+                                        <% if (currentUserid.toString() === ilan.owner._id.toString()) { %>
+                                            /profile
+                                        <% } else { %>
+                                            /messages/<%=currentUserid.toString()%>/<%=ilan.owner._id.toString()%>
+                                        <% } %>
+                                    ">
+                                        Mesaj At
+                                    </a>
+                                <% } %>
                                 <!-- <a class="btn1" href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">Mesaj at</a> -->
                             </div>
                         </div>
