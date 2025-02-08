@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Ilan = require('../models/ilanSchema.js');
-const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');

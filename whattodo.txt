@@ -75,3 +75,8 @@ image olarak:
     Opsiyonel => .ico dosyalarını destekleyebilecek şekilde kod yenilenebilir (sharp package'ı .ico dosyalarını desteklemiyor).
     Önemli => Resim yükleme için sadece .webp, .png, .jpg, .avif, .jpeg dosyalarını kabul etmeli. (bitti)
     Opsiyonel => .svg dosyası yüklenirse chromium tabanlı tarayıcılarda profil fotoğrafı gözükmüyor, firefox'ta gözüküyor. Eğer .svg dosyalarının chromium tabanlı tarayıcıları da desteklemesi isteniyorsa kodda birtakım büyük değişiklikler yapılmalı sanırım.
+
+
+Birden fazla resim yükleme işi saçma zor
+İlan detayında vs. birden fazla resim olduğu zaman resim ok butonları bazen beyaz arka plan içinde kayboluyor.
+İlan'ı düzenledikten sonra o ilanın sayfasına yönlendirsin. Bazen kendi profiline yönlendiriyor ve bence yanlış bişiy.
