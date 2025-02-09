@@ -40,7 +40,6 @@
                     <% ilanlar.forEach(function(ilan) { %>
                         <div class="card mb-3">
                             <img src="<% if (ilan.images && ilan.images.length > 0) { %><%= ilan.images[0] %><% } else { %>/img/default.jpg<% } %>"  alt="İlan Fotoğrafı" class="card-img-top">
-                            <% console.log(ilan.images) %>
                             <div class="card-body">
                                 <!-- Favori Butonu -->
                                 <form class="star-form" action="<% if (currentUser.favorites && currentUser.favorites.includes(ilan._id)) { %>/deletefavorites/<%= ilan._id %><% } else { %>/addfavoritesilan/<%= ilan._id %><% } %>" method="post">

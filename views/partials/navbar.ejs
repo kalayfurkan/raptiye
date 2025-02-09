@@ -30,6 +30,10 @@
 			</li>
 			<button class="navbar-toggle" id="navbar-toggle">☰</button>
 		</ul>
+	<% } else {%>
+		<ul class="mobile-icons">	
+			<button class="navbar-toggle" id="navbar-toggle">☰</button>
+		</ul>
 	<% } %>
 	
 	<!-- Main menu items -->
@@ -115,21 +119,21 @@
 
 <script defer>
 	// JavaScript to toggle mobile menu with sliding effect
-	
+
 	document.getElementById('navbar-toggle').addEventListener('click', function () {
-    const menu = document.getElementById('navbar-menu');
-    menu.classList.toggle('active');
-    menu.style.maxHeight = menu.classList.contains('active') ? menu.scrollHeight + "px" : "0";
-    
-    if (menu.classList.contains('active')) {
-        menu.style.overflow = 'hidden'; // Initially hidden during animation
-        setTimeout(() => {
-            menu.style.overflow = 'visible';
-        }, 500);
-    } else {
-        menu.style.overflow = 'hidden';
-    }
-});
+		const menu = document.getElementById('navbar-menu');
+		menu.style.display = 'block'; // set inline display so the transition happens and remove it after 0.3 seconds
+		setTimeout(() => menu.style.display = '', 300);
+		menu.classList.toggle('active');
+		menu.style.maxHeight = menu.classList.contains('active') ? menu.scrollHeight + "px" : "0";
+		
+		if (menu.classList.contains('active')) {
+			menu.style.overflow = 'hidden'; // Initially hidden during animation
+			setTimeout(() => menu.style.overflow = 'visible', 500);
+		} else {
+			menu.style.overflow = 'hidden';
+		}
+	});
 
 	// JavaScript to toggle ilanlar
     document.querySelector('.ilanlar-toggle').addEventListener('click', function (e) {
