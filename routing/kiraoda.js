@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Kiraoda = require('../models/kiraodaSchema.js');
-const fs = require('fs');
 const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
@@ -192,7 +191,7 @@ router.post('/delete-kiraodaimage/:kiraid/:index', allMiddlewares.requireAuth, a
 
 	const index = req.params.index;
 	const fileNameToDelete = kira.images[index];
-	console.log("filename",fileNameToDelete, "kira",kira);
+
 	try {
 		await deleteFromR2(fileNameToDelete, "ev-arkadasi");
 		await Kiraoda.updateOne(

@@ -1,6 +1,4 @@
 const { CronJob } = require('cron');
-const fs = require('fs');
-const path = require('path');
 const Job = require('./models/jobSchema'); // Job modelini içe aktar
 const Shortilan = require('./models/shortTermilanSchema.js');
 const { deleteFromR2 } = require('./routing/s3.js');
@@ -32,7 +30,7 @@ const deleteJob=new CronJob('0 0 * * *',async () => {
 })
 
 
-const deleteIlan=new CronJob('*/30 * * * *',async () => {
+const deleteIlan=new CronJob('*/15 * * * *',async () => {
   try {
 	const now = new Date();
 	const result = await Shortilan.find({ removalDate: { $lt: now } });

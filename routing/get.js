@@ -4,16 +4,21 @@ const allMiddlewares = require('../middlewares.js');
 const nodemailer = require('nodemailer');
 
 router.get('/', (req, res) => {
-	console.log(req.session);
 	res.render('home');
 })
 router.get('/login', (req, res) => {
+    if(req.session.userId){
+        res.redirect('/');
+    }
 	res.render('login');
 });
 router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
 });
 router.get('/register', (req, res) => {
+    if(req.session.userId){
+        res.redirect('/');
+    }
 	res.render('register');
 });
 
@@ -27,6 +32,12 @@ router.get('/hakkimizda', (req, res) => {
 	res.render('hakkimizda');
 });
 
+router.get('/forgotpassword',async(req, res)=>{
+    if(req.session.userId){
+        res.redirect('/');
+    }
+    res.render('forgotpassword');
+})
 router.post('/contact-us',(req,res) => {
 	const { email, message } = req.body;
 
