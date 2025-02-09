@@ -329,6 +329,11 @@ ul.mobile-icons {
 		display: block;
 		overflow: visible;
 	}
+
+	ul.navbar-menu.expanded {
+		height: auto; /* Use auto to expand */
+	}
+
 	.dropdown-menu {
 		box-shadow: none;
 	}
@@ -364,10 +369,6 @@ ul.mobile-icons {
 	.plus-link:hover {
 		background-color: var(--ternary-color-light);
 	}
-
-	a.notification span {
-		left: 31px;
-	}
 }
 @media screen and (max-width: 440px) {
 	ul.mobile-icons .navbar-link {
@@ -381,6 +382,12 @@ ul.mobile-icons {
 }
 @media screen and (max-width: 360px) {
 	.navbar-brand span.font-nunito{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 250px) {
+	.navbar-brand{
 		display: none;
 	}
 }
