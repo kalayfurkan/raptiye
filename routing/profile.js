@@ -147,12 +147,12 @@ router.post('/profile/:userid/change-password',allMiddlewares.requireAuth,async 
         // 1. Kullanıcının mevcut şifresini doğrula
         const isMatch = await bcrypt.compare(currentPassword, user.password); // Kullanıcının mevcut şifresi
         if (!isMatch) {
-            return res.status(400).render('errorpage',{message:"Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor."});
+            return res.status(400).render('loggenerrorpage',{message:"Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor."});
         }
 
         // 2. Yeni şifreyi kontrol et
         if (newPassword !== confirmPassword) {
-            return res.status(400).render('errorpage',{message:"Yeni Şifreyi ikinci seferinde yanlış girdiniz"});
+            return res.status(400).render('loggenerrorpage',{message:"Yeni Şifreyi ikinci seferinde yanlış girdiniz"});
         }
 
         // 3. Yeni şifreyi hashle
