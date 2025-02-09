@@ -198,7 +198,7 @@ router.post('/delete-kiraodaimage/:kiraid/:index', allMiddlewares.requireAuth, a
 			{ _id: kiraid },
 			{ $pull: { images: fileNameToDelete } } // Remove the filename from the array
 		);
-		res.redirect(`/kiraoda/edit/${kiraid}`);
+		res.redirect(`/evarkadasiilani/edit/${kiraid}`);
 	} catch (deleteError) {
 		console.error("Error deleting from R2:", deleteError);
 		return res.status(500).send("Dosya silinirken bir hata oluştu.");
