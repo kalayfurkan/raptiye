@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="/img/icons/logo.svg">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hata</title>
+	<link rel="stylesheet" href="/css/errorpage.css">
+</head>
+
+<body>
+	<h1>Tüh! Bir şeyler yanlış gitti.</h1>
+	<h1>
+		<% if (message) { %>
+			<p>
+				<%= message %>
+			</p>
+			<% } else { %>
+				<p>Beklenmedik bir hata oldu. Daha sonra tekrar deneyiniz.</p>
+				<% } %>
+	</h1>
+	<a href="/">Ana sayfa </a>
+	<br><br><br>
+	<a href="/profile">Profil</a>
+</body>
+
+</html>

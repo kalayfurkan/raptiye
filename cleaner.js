@@ -30,7 +30,7 @@ const deleteJob=new CronJob('0 0 * * *',async () => {
 })
 
 
-const deleteIlan=new CronJob('*/30 * * * *',async () => {
+const deleteIlan=new CronJob('*/15 * * * *',async () => {
   try {
 	const now = new Date();
 	const result = await Shortilan.find({ removalDate: { $lt: now } });
