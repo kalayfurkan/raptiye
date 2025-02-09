@@ -18,13 +18,13 @@ router.post('/register', async (req, res) => {
 		// Şifreyi hashleyin
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
-		console.log("anan");
-		console.log(hashedPassword);
 
 		await User.create({ username, password: hashedPassword, email, verificationToken });
-
+		
 		const transporter = nodemailer.createTransport({
-			service: 'gmail',
+			host: 'smtp.gmail.com',
+			port: 587,
+			secure: false, // true for port 465, false for others
 			auth: {
 				user: process.env.EMAIL,
 				pass: process.env.EMAIL_PASSWORD
@@ -42,13 +42,85 @@ router.post('/register', async (req, res) => {
 
 		console.log('Email sent: ' + info.response);
 
-
-
 		res.send('Başarıyla kayıt oldunuz <a href="https://webmail.itu.edu.tr/login.php">linke</a> tıklayarak mailinize gidip hesabınızı doğrulayın.');
 
 	} catch (error) {
-		res.status(400).render('errorpage', { message: "@itu.edu.tr uzantılı bir mail ile kaydolmadınız ya da kullanıcı adınız başka bir kullanıcı tarafından alınmış." });
+		console.error(error);
+
+		// Hatanın türüne göre özel mesaj verin
+		if (error.code === 11000) {
+		return res
+			.status(400)
+			.render('errorpage', { message: 'Kullanıcı adı veya e-posta zaten kayıtlı.' });
+		}
+
+		res.status(500).render('errorpage', { message: 'Bir hata oluştu. Lütfen tekrar deneyin.' });
+
 	}
+})
+router.post('/forgotpassword',async (req,res) => {
+	try {
+		const {email} = req.body;
+		const user = await User.findOne({ email: email });
+		if(!user){
+			return res.status(400).render('errorpage', { message: "Sistemde kayıtlı mail bulunamamıştır." });
+		}
+
+		const verificationToken = crypto.randomBytes(32).toString('hex');
+		user.verificationToken=verificationToken;
+		await user.save();
+		const transporter = nodemailer.createTransport({
+			host: 'smtp.gmail.com',
+			port: 587,
+			secure: false, // true for port 465, false for others
+			auth: {
+				user: process.env.EMAIL,
+				pass: process.env.EMAIL_PASSWORD
+			}
+		});
+
+		const mailOptions = {
+			from: process.env.EMAIL,
+			to: email,
+			subject: 'İTÜ Raptiye şifre yenileme',
+			html: `<a href="http://localhost:3000/refreshpassword?token=${verificationToken}">Linke tıklayarak şifrenizi sıfırlayınız.</a>`
+		};
+
+		const info = await transporter.sendMail(mailOptions);
+
+		console.log('Email sent: ' + info.response);
+		res.send('Yenileme isteği gönderildi. <a href="https://webmail.itu.edu.tr/login.php">linke</a> tıklayarak mailinize gidip hesabınızı doğrulayın.');
+	} catch (error) {
+		res.status(500).send(error);
+	}
+})
+router.get('/refreshpassword',async (req, res) => {
+	const { token } = req.query;
+	try {
+		const user = await User.findOne({ verificationToken: token });
+		if (!user) {
+		  return res.status(400).send('Invalid token');
+		}
+		res.render('refreshpassword', { token });
+	  } catch (err) {
+		console.error(err);
+		res.status(500).send('Internal Server Error');
+	  }
+})
+
+router.post('/refreshpassword/:token',async (req, res) => {
+	const { token } = req.params;
+  	const { password } = req.body;
+	const user=await User.findOne({ verificationToken: token });
+	  try {
+		const hashedPassword = await bcrypt.hash(password, 10);
+		user.password = hashedPassword;
+		user.verificationToken = null;
+		await user.save();
+		res.redirect('/');
+	  } catch (err) {
+		res.status(400).json({ message: "Token geçersiz veya süresi dolmuş" });
+	  }
 })
 
 router.get('/verify-email', async (req, res) => {

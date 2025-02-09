@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 const allMiddlewares = require('../middlewares.js');
 const Shortilan = require('../models/shortTermilanSchema.js');
-const User = require('../models/userSchema');
 const path = require('path');
 const sharp = require('sharp');
-const fs = require('fs');
 const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
 
 
