@@ -1,0 +1,63 @@
+<div class="mesaj-alt-butonalar">
+    <div class="votes">
+        <% if (message.upVoters.includes(userId)) { %>
+            <form id="undo-upvote-<%= message._id %>" class="d-inline" action="/undo-upvote/<%= message._id %>" method="POST">
+                <button type="submit"
+                        onclick="undoUpvoted(this, '<%= message._id %>')"
+                        class="upvoted thumb">
+                    <svg width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- SVG paths for upvoted state -->
+                    </svg>
+                    <span class="fs-6"><%= message.upvotes %></span>
+                </button>
+            </form>
+        <% } else { %>
+            <form id="upvote-<%= message._id %>" action="/upvote/<%= message._id %>" method="POST" class="d-inline">
+                <button type="submit"
+                        onclick="upvoted(this, '<%= message._id %>')"
+                        class="thumb">
+                    <svg width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- SVG paths for default upvote -->
+                    </svg>
+                    <span class="fs-6"><%= message.upvotes %></span>
+                </button>
+            </form>
+        <% } %>
+        <% if (message.downVoters.includes(userId)) { %>
+            <form id="undo-downvote-<%= message._id %>" action="/undo-downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
+                <button type="submit"
+                        onclick="undoDownvoted(this, '<%= message._id %>')"
+                        class="downvoted thumb dislike">
+                    <svg width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- SVG paths for downvoted state -->
+                    </svg>
+                    <span class="fs-6"><%= message.downvotes %></span>
+                </button>
+            </form>
+        <% } else { %>
+            <form id="downvote-<%= message._id %>" action="/downvote/<%= message._id %>" method="POST" class="d-inline ms-2">
+                <button type="submit"
+                        onclick="downvoted(this, '<%= message._id %>')"
+                        class="thumb dislike">
+                    <svg width="603" height="609" viewBox="0 0 603 609" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- SVG paths for default downvote -->
+                    </svg>
+                    <span class="fs-6"><%= message.downvotes %></span>
+                </button>
+            </form>
+        <% } %>
+    </div>
+    <button class="btn1" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
+        <img src="/img/icons/message-img.svg">
+    </button>
+    <% if (message.owner && userId == message.owner._id.toString()) { %>
+        <form action="/deletekampusmesaj/<%= message._id %>" method="POST">
+            <button type="submit" class="btn2">
+                <img src="/img/icons/trash-bin.svg">
+            </button>
+        </form>
+    <% } %>
+    <small class="timestamp text-muted message-time">
+        <%= new Date(message.createdAt).toLocaleString() %>
+    </small>
+</div>

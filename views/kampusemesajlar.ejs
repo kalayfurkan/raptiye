@@ -71,240 +71,230 @@
                                     <img src="<%= message.images %>" alt="görsel"  class="img-fluid img-kampuse" onerror="this.style.display='none'">
                                 </div>
                             <% } %>
-                                    <!-- Yorumlar için dropdown -->
-                                    <div class="mt-3">
-                                        <div class="mesaj-alt-butonalar">
-                                            <div class="votes">
-                                                <% if (message.upVoters.includes(userId)) { %>
-                                                    <form id="undo-upvote-<%= message._id %>"
-                                                        action="/undo-upvote/<%= message._id %>" method="POST"
-                                                        class="d-inline">
-                                                        <button type="submit"
-                                                            onclick="undoUpvoted(this, '<%= message._id %>')"
-                                                            class="upvoted thumb">
-                                                            <svg width="603" height="609" viewBox="0 0 603 609"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M158.333 250.334L158.333 583.667ZM158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
-                                                                    fill="white" />
-                                                                <path
-                                                                    d="M158.333 250.334L158.333 583.667M158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
-                                                                    stroke="black" stroke-width="50"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                            </svg>
-                                                            <span class="fs-6">
-                                                                <%= message.upvotes %>
-                                                            </span>
-                                                        </button>
-                                                    </form>
-                                                    <% } else { %>
-                                                        <form id="upvote-<%= message._id %>"
-                                                            action="/upvote/<%= message._id %>" method="POST"
-                                                            class="d-inline">
-                                                            <button type="submit"
-                                                                onclick="upvoted(this, '<%= message._id %>')"
-                                                                class="thumb">
-                                                                <svg width="603" height="609" viewBox="0 0 603 609"
-                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M158.333 250.334L158.333 583.667ZM158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
-                                                                        fill="white" />
-                                                                    <path
-                                                                        d="M158.333 250.334L158.333 583.667M158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
-                                                                        stroke="black" stroke-width="50"
-                                                                        stroke-linecap="round"
-                                                                        stroke-linejoin="round" />
-                                                                </svg>
-                                                                <span class="fs-6">
-                                                                    <%= message.upvotes %>
-                                                                </span>
-                                                            </button>
-                                                        </form>
-                                                        <% } %>
-                                                            <% if (message.downVoters.includes(userId)) { %>
-                                                                <form id="undo-downvote-<%= message._id %>"
-                                                                    action="/undo-downvote/<%= message._id %>"
-                                                                    method="POST" class="d-inline ms-2">
-                                                                    <button type="submit"
-                                                                        onclick="undoDownvoted(this, '<%= message._id %>')"
-                                                                        class="downvoted thumb dislike">
-                                                                        <svg width="603" height="609"
-                                                                            viewBox="0 0 603 609" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M158.333 358.666L158.333 25.3329ZM158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
-                                                                                fill="white" />
-                                                                            <path
-                                                                                d="M158.333 358.666L158.333 25.3329M158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
-                                                                                stroke="black" stroke-width="50"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round" />
-                                                                        </svg>
-                                                                        <span class="fs-6">
-                                                                            <%= message.downvotes %>
-                                                                        </span>
-                                                                    </button>
-                                                                </form>
-                                                                <% } else { %>
-                                                                    <form id="downvote-<%= message._id %>"
-                                                                        action="/downvote/<%= message._id %>"
-                                                                        method="POST" class="d-inline ms-2">
-                                                                        <button type="submit"
-                                                                            onclick="downvoted(this, '<%= message._id %>')"
-                                                                            class="thumb dislike">
-                                                                            <svg width="603" height="609"
-                                                                                viewBox="0 0 603 609" fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <path
-                                                                                    d="M158.333 358.666L158.333 25.3329ZM158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
-                                                                                    fill="white" />
-                                                                                <path
-                                                                                    d="M158.333 358.666L158.333 25.3329M158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
-                                                                                    stroke="black" stroke-width="50"
-                                                                                    stroke-linecap="round"
-                                                                                    stroke-linejoin="round" />
-                                                                            </svg>
-                                                                            <span class="fs-6">
-                                                                                <%= message.downvotes %>
-                                                                            </span>
-                                                                        </button>
-                                                                    </form>
-                                                                <% } %>
-                                            </div>
-                                            <button class="btn1" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
-                                                <img src="/img/icons/message-img.svg">
-                                            </button>
-
-                                            <% if (message.owner && userId==message.owner._id.toString()) { %>
-                                                <form action="/deletekampusmesaj/<%= message._id %>" method="POST">
-                                                    <button type="submit" class="btn2">
-                                                        <img src="/img/icons/trash-bin.svg">
-                                                    </button>
-                                                </form>
-                                            <% } %>
-                                            <small class="timestamp text-muted message-time">
-                                                <%= new Date(message.createdAt).toLocaleString() %>
-                                            </small>
-                                        </div>
-                                        <div class="collapse mt-2" id="yorumlar-<%= message._id %>">
-                                            <ul class="list-group">
-                                                <% if (message.yorumlar.length> 0) { %>
-                                                    <% message.yorumlar.forEach(function(yorum) { %>
-                                                        <li class="list-group-item ">
-                                                            <p>
-                                                                <a href="/profile/<%=yorum.owner.username %>">
-                                                                    <strong>
-                                                                        <%= yorum.owner.username %>
-                                                                    </strong>
-                                                                </a>
-                                                                : <%= yorum.yorum %>
-                                                            </p>
-                                                            <small class="timestamp text-muted float-end">
-                                                                <%= new Date(yorum.createdAt).toLocaleString() %>
-                                                            </small>
-
-                                                        </li>
-                                                        <% }) %>
-                                                            <% } else { %>
-                                                                <li class="list-group-item">Henüz bir yorum yok.
-                                                                </li>
-                                                                <% } %>
-                                            </ul>
-
-                                            <!-- Yorum ekleme formu -->
-                                            <form action="/add-comment" method="POST" class="mt-3">
-                                                <div class="mb-3">
-                                                    <textarea class="form-control" name="yorum" rows="2"
-                                                        placeholder="Yorumunuzu buraya yazın" required></textarea>
-                                                </div>
-                                                <input type="hidden" name="messageId" value="<%= message._id %>">
-                                                <button type="submit" class="btn1">Yorum Yap</button>
+                            <!-- Yorumlar için dropdown -->
+                            <div class="mt-3">
+                                <div class="mesaj-alt-butonalar">
+                                    <div class="votes">
+                                        <% if (message.upVoters.includes(userId)) { %>
+                                            <form id="undo-upvote-<%= message._id %>" class="d-inline" action="/undo-upvote/<%= message._id %>" method="POST">
+                                                <button type="submit"
+                                                    onclick="undoUpvoted(this, '<%= message._id %>')"
+                                                    class="upvoted thumb">
+                                                    <svg width="603" height="609" viewBox="0 0 603 609"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M158.333 250.334L158.333 583.667ZM158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M158.333 250.334L158.333 583.667M158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
+                                                            stroke="black" stroke-width="50"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                    <span class="fs-6">
+                                                        <%= message.upvotes %>
+                                                    </span>
+                                                </button>
                                             </form>
-                                        </div>
+                                        <% } else { %>
+                                            <form id="upvote-<%= message._id %>"
+                                                action="/upvote/<%= message._id %>" method="POST"
+                                                class="d-inline">
+                                                <button type="submit"
+                                                    onclick="upvoted(this, '<%= message._id %>')"
+                                                    class="thumb">
+                                                    <svg width="603" height="609" viewBox="0 0 603 609"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M158.333 250.334L158.333 583.667ZM158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M158.333 250.334L158.333 583.667M158.333 250.334L25 250.333L24.9999 583.667L158.333 583.667M158.333 250.334L331.52 48.2827C347.953 29.1104 373.807 20.8684 398.307 26.9927L399.89 27.3891C444.617 38.5707 464.763 90.6861 439.193 129.045L358.333 250.333L510.347 250.333C552.417 250.333 583.97 288.82 575.72 330.074L535.72 530.074C529.487 561.237 502.127 583.667 470.347 583.667L158.333 583.667"
+                                                            stroke="black" stroke-width="50"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                    <span class="fs-6">
+                                                        <%= message.upvotes %>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        <% } %>
+                                        <% if (message.downVoters.includes(userId)) { %>
+                                            <form id="undo-downvote-<%= message._id %>"
+                                                action="/undo-downvote/<%= message._id %>"
+                                                method="POST" class="d-inline ms-2">
+                                                <button type="submit"
+                                                    onclick="undoDownvoted(this, '<%= message._id %>')"
+                                                    class="downvoted thumb dislike">
+                                                    <svg width="603" height="609"
+                                                        viewBox="0 0 603 609" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M158.333 358.666L158.333 25.3329ZM158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M158.333 358.666L158.333 25.3329M158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
+                                                            stroke="black" stroke-width="50"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                    <span class="fs-6">
+                                                        <%= message.downvotes %>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        <% } else { %>
+                                            <form id="downvote-<%= message._id %>"
+                                                action="/downvote/<%= message._id %>"
+                                                method="POST" class="d-inline ms-2">
+                                                <button type="submit"
+                                                    onclick="downvoted(this, '<%= message._id %>')"
+                                                    class="thumb dislike">
+                                                    <svg width="603" height="609"
+                                                        viewBox="0 0 603 609" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M158.333 358.666L158.333 25.3329ZM158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M158.333 358.666L158.333 25.3329M158.333 358.666L25 358.667L25 25.3329L158.333 25.3329M158.333 358.666L331.52 560.717C347.953 579.89 373.807 588.132 398.307 582.007L399.89 581.611C444.617 570.429 464.763 518.314 439.193 479.955L358.333 358.667L510.347 358.667C552.417 358.667 583.97 320.18 575.72 278.926L535.72 78.9263C529.487 47.7629 502.127 25.3329 470.347 25.3329L158.333 25.3329"
+                                                            stroke="black" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                    <span class="fs-6">
+                                                        <%= message.downvotes %>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        <% } %>
                                     </div>
+                                    <button class="btn1" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
+                                        <img src="/img/icons/message-img.svg">
+                                    </button>
+
+                                    <% if (message.owner && userId==message.owner._id.toString()) { %>
+                                        <form action="/deletekampusmesaj/<%= message._id %>" method="POST">
+                                            <button type="submit" class="btn2">
+                                                <img src="/img/icons/trash-bin.svg">
+                                            </button>
+                                        </form>
+                                    <% } %>
+                                    <small class="timestamp text-muted message-time">
+                                        <%= new Date(message.createdAt).toLocaleString() %>
+                                    </small>
+                                </div>
+                                <div class="collapse mt-2" id="yorumlar-<%= message._id %>">
+                                    <ul class="list-group">
+                                        <% if (message.yorumlar.length> 0) { %>
+                                            <% message.yorumlar.forEach(function(yorum) { %>
+                                                <li class="list-group-item ">
+                                                    <p>
+                                                        <a href="/profile/<%=yorum.owner.username %>">
+                                                            <strong>
+                                                                <%= yorum.owner.username %>
+                                                            </strong>
+                                                        </a>
+                                                        : <%= yorum.yorum %>
+                                                    </p>
+                                                    <small class="timestamp text-muted float-end">
+                                                        <%= new Date(yorum.createdAt).toLocaleString() %>
+                                                    </small>
+                                                </li>
+                                            <% }) %>
+                                        <% } else { %>
+                                            <li class="list-group-item">Henüz bir yorum yok.</li>
+                                        <% } %>
+                                    </ul>
+
+                                    <!-- Yorum ekleme formu -->
+                                    <form action="/add-comment" method="POST" class="mt-3">
+                                        <div class="mb-3">
+                                            <textarea class="form-control" name="yorum" rows="2"
+                                                placeholder="Yorumunuzu buraya yazın" required></textarea>
+                                        </div>
+                                        <input type="hidden" name="messageId" value="<%= message._id %>">
+                                        <button type="submit" class="btn1">Yorum Yap</button>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
-                        <% }); %>
+                    <% }); %>
                 </ul>
-                <% } else { %>
-                    <p>Hadi! İlk mesajı sen bırak.</p>
-                <% } %>
+            <% } else { %>
+                <p>Hadi! İlk mesajı sen bırak.</p>
+            <% } %>
                 
-                <nav aria-label="Page navigation" class="mt-4">
-                    <ul class="pagination justify-content-center">
-                        <!-- Geri Butonu -->
-                        <% if (pagination.currentPage > 1) { %>
-                            <li class="page-item">
-                                <a class="page-link" href="?sort=<%= sortOption %>&page=<%= pagination.currentPage - 1 %>" aria-label="Previous">
-                                    &laquo; Geri
-                                </a>
-                            </li>
-                        <% } else { %>
-                            <li class="page-item disabled">
-                                <span class="page-link">&laquo; Geri</span>
-                            </li>
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <!-- Geri Butonu -->
+                    <% if (pagination.currentPage > 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=<%= sortOption %>&page=<%= pagination.currentPage - 1 %>" aria-label="Previous">
+                                &laquo; Geri
+                            </a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Geri</span>
+                        </li>
+                    <% } %>
+            
+                    <!-- Dinamik Sayfa Numaraları -->
+                    <% 
+                        const maxVisiblePages = 3;
+                        let startPage = Math.max(1, pagination.currentPage - Math.floor(maxVisiblePages / 2));
+                        let endPage = Math.min(pagination.totalPages, startPage + maxVisiblePages - 1);
+            
+                        if (endPage - startPage < maxVisiblePages - 1) {
+                            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                        }
+                    %>
+            
+                    <!-- İlk Sayfa -->
+                    <% if (startPage > 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=<%= sortOption %>&page=1">1</a>
+                        </li>
+                        <% if (startPage > 2) { %>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
                         <% } %>
-                
-                        <!-- Dinamik Sayfa Numaraları -->
-                        <% 
-                            const maxVisiblePages = 3;
-                            let startPage = Math.max(1, pagination.currentPage - Math.floor(maxVisiblePages / 2));
-                            let endPage = Math.min(pagination.totalPages, startPage + maxVisiblePages - 1);
-                
-                            if (endPage - startPage < maxVisiblePages - 1) {
-                                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                            }
-                        %>
-                
-                        <!-- İlk Sayfa -->
-                        <% if (startPage > 1) { %>
-                            <li class="page-item">
-                                <a class="page-link" href="?sort=<%= sortOption %>&page=1">1</a>
-                            </li>
-                            <% if (startPage > 2) { %>
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                            <% } %>
+                    <% } %>
+            
+                    <!-- Orta Sayfalar -->
+                    <% for (let i = startPage; i <= endPage; i++) { %>
+                        <li class="page-item <%= pagination.currentPage === i ? 'active' : '' %>">
+                            <a class="page-link" href="?sort=<%= sortOption %>&page=<%= i %>"><%= i %></a>
+                        </li>
+                    <% } %>
+            
+                    <!-- Son Sayfa -->
+                    <% if (endPage < pagination.totalPages) { %>
+                        <% if (endPage < pagination.totalPages - 1) { %>
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
                         <% } %>
-                
-                        <!-- Orta Sayfalar -->
-                        <% for (let i = startPage; i <= endPage; i++) { %>
-                            <li class="page-item <%= pagination.currentPage === i ? 'active' : '' %>">
-                                <a class="page-link" href="?sort=<%= sortOption %>&page=<%= i %>"><%= i %></a>
-                            </li>
-                        <% } %>
-                
-                        <!-- Son Sayfa -->
-                        <% if (endPage < pagination.totalPages) { %>
-                            <% if (endPage < pagination.totalPages - 1) { %>
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                            <% } %>
-                            <li class="page-item">
-                                <a class="page-link" href="?sort=<%= sortOption %>&page=<%= pagination.totalPages %>"><%= pagination.totalPages %></a>
-                            </li>
-                        <% } %>
-                
-                        <!-- İleri Butonu -->
-                        <% if (pagination.currentPage < pagination.totalPages) { %>
-                            <li class="page-item">
-                                <a class="page-link" href="?sort=<%= sortOption %>&page=<%= pagination.currentPage + 1 %>" aria-label="Next">
-                                    İleri &raquo;
-                                </a>
-                            </li>
-                        <% } else { %>
-                            <li class="page-item disabled">
-                                <span class="page-link">İleri &raquo;</span>
-                            </li>
-                        <% } %>
-                    </ul>
-                </nav>
-                
-                  
-                
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=<%= sortOption %>&page=<%= pagination.totalPages %>"><%= pagination.totalPages %></a>
+                        </li>
+                    <% } %>
+            
+                    <!-- İleri Butonu -->
+                    <% if (pagination.currentPage < pagination.totalPages) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?sort=<%= sortOption %>&page=<%= pagination.currentPage + 1 %>" aria-label="Next">
+                                İleri &raquo;
+                            </a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item disabled">
+                            <span class="page-link">İleri &raquo;</span>
+                        </li>
+                    <% } %>
+                </ul>
+            </nav>
         </div>
-        
         <%- include('partials/footer') %>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script src="/js/vote.js"></script>
     <!-- daha-fazla-container class ına sahip etiketlein formatını değiştiriyor sadece
     <script src="/js/daha-fazla.js"></script> -->

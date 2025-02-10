@@ -106,7 +106,7 @@
                 <h2>Diğer İlanlar</h2>
                 <div class="list-group">
                     <% shortilanlar.forEach(shortilan=> { %>
-                        <a href="/shortilanlar/<%= shortilan._id %>" class="list-group-item list-group-item-action">
+                        <a href="/kisasureliilanlar" class="list-group-item list-group-item-action">
                             <h5 class="mb-1">
                                 <%= shortilan.title %>
                             </h5>
@@ -115,7 +115,7 @@
                             </p>
                             <small class="timestamp">Posted on <%= shortilan.createdAt.toLocaleString() %></small>
                         </a>
-                        <% }) %>
+                    <% }) %>
                 </div>
             </div>
             <% } %>
