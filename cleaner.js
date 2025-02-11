@@ -11,6 +11,7 @@ const deleteJob=new CronJob('0 0 * * *',async () => {
 	for (const job of jobsToDelete) {
 		if (job.images && job.images.length > 0) {
 		  for (const fileName of job.images) {
+			if (fileName == "" || !fileName) continue;
 			try {
 				await deleteFromR2(fileName, "is-ilan");
 				console.log(`Image deleted from R2: ${fileName}`);
@@ -42,6 +43,7 @@ const deleteIlan=new CronJob('*/15 * * * *',async () => {
 	for (const ilan of result) {
 		if (ilan.images && ilan.images.length > 0) {
 			for (const fileName of ilan.images) {
+				if (fileName == "" || !fileName) continue;
 				try {
 					await deleteFromR2(fileName, "kisa-ilan");
 					console.log(`Image deleted from R2: ${fileName}`);

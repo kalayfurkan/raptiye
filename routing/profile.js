@@ -18,8 +18,6 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
     const user = await User.findById(req.session.userId);
     try {
         const url = await getLoadURL(user.profilePic, "profile-images");
-        console.log("URL:", url);
-        console.log("user.ProfilePic:", user.profilePic);
         user.profilePic = url;        
     } catch (error) {
         console.error("Error while getting profile picture URL:", error);
@@ -54,8 +52,6 @@ router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) =>
 
     try {
         const url = await getLoadURL(user.profilePic, "profile-images");
-        console.log("URL:", url);
-        console.log("user.ProfilePic:", user.profilePic);
         user.profilePic = url;        
     } catch (error) {
         console.error("Error while getting profile picture URL:", error);
