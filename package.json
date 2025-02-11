@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.741.0",
-    "@aws-sdk/s3-request-presigner": "^3.741.0",
     "bcrypt": "^5.1.1",
     "connect-mongo": "^5.1.0",
     "cron": "^3.1.7",

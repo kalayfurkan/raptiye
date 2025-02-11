@@ -4,7 +4,7 @@ const {
     GetObjectCommand,
     DeleteObjectCommand
 } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+//const { getSignedUrl } = require("@aws-sdk/s3-request-presigner"); //use if you are using presigned URL
 
 
 const s3 = new S3Client({
@@ -49,7 +49,7 @@ const deleteFromR2 = async (fileName, bucket) => {
 }
 
 
-/* const getLoadURL= async (fileName, bucket) => {
+/* const getLoadURL= async (fileName, bucket) => { // Get a signed URL for the object
     const command = new GetObjectCommand({
         Bucket: bucket,
         Key: fileName,
