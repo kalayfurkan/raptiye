@@ -49,7 +49,7 @@ const deleteFromR2 = async (fileName, bucket) => {
 }
 
 
-const getLoadURL= async (fileName, bucket) => {
+/* const getLoadURL= async (fileName, bucket) => {
     const command = new GetObjectCommand({
         Bucket: bucket,
         Key: fileName,
@@ -58,6 +58,34 @@ const getLoadURL= async (fileName, bucket) => {
 
     const signedUrl = await getSignedUrl(s3, command, { expiresIn: 86400 }); // 24 hours
     return signedUrl;
-}
+} */
+
+const getLoadURL = async (fileName, bucket) => {
+    try {
+        const command = new GetObjectCommand({
+            Bucket: bucket,
+            Key: fileName
+        });
+
+        const response = await s3.send(command);
+
+        // Convert the ReadableStream to a Buffer
+        const chunks = [];
+        for await (const chunk of response.Body) {
+            chunks.push(chunk);
+        }
+        const buffer = Buffer.concat(chunks);
+
+        // Determine the content type (if available)
+        const contentType = response.ContentType || 'application/octet-stream';
+
+        // Construct a data URL
+        const dataURL = `data:${contentType};base64,${buffer.toString('base64')}`;
+        return dataURL;
+    } catch (error) {
+        console.error("Error getting object:", error);
+        throw error; // Re-throw the error so the caller can handle it
+    }
+};
 
 module.exports = { uploadToR2, getLoadURL, deleteFromR2 };
