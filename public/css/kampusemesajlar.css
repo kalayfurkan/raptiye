@@ -69,6 +69,10 @@ p.daha-fazla.collapsed {
     cursor: pointer;
 }
 
+.page-link:focus {
+    box-shadow: none;
+}
+
 /* thumbs styling */
     div.votes{
         background-color: #ffffff;
