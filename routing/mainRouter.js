@@ -22,5 +22,7 @@ const shortilan=require('./shortTermilan.js');
 router.use('/',shortilan);
 const messages=require('./messages.js');
 router.use('/',messages);
+const imageLoad=require('./imageLoad.js');
+router.use('/',imageLoad);
 
 module.exports = router;

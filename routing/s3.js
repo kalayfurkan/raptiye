@@ -67,6 +67,8 @@ const getLoadURL = async (fileName, bucket) => {
             Key: fileName
         });
 
+        console.log("Getting object:", fileName);
+
         const response = await s3.send(command);
 
         // Convert the ReadableStream to a Buffer
@@ -88,4 +90,4 @@ const getLoadURL = async (fileName, bucket) => {
     }
 };
 
-module.exports = { uploadToR2, getLoadURL, deleteFromR2 };
+module.exports = { uploadToR2, getLoadURL, deleteFromR2, s3 };
