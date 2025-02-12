@@ -5,7 +5,7 @@ const Kampusemesaj = require('../models/kampusemesajSchema.js');
 const User = require('../models/userSchema');
 const sharp = require('sharp');
 const path = require('path');
-const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
+const { uploadToR2, deleteFromR2 } = require('./s3.js');
 
 router.get('/kampusebirmesajbirak', allMiddlewares.requireAuth, (req, res) => {
 	res.render('kampusebirmesajver');
@@ -41,7 +41,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 				}
 
 				const date = new Date().toISOString().replace(/:/g, '-');
-				fileName = `${date}-${image.name}`;
+				fileName = `${date}-${image.name.fileName.replace('/', '_')}`;
 
 				const compressedBuffer = await sharp(image.data)
 					.resize(maxWidth)
@@ -59,7 +59,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		await Kampusemesaj.create({
 			mesaj: message,
 			owner: user,
-			 images: fileName
+			 images: `/images/kampus-mesaj/${fileName}`
 		})
 		res.redirect('/kampusemesajlar');
 	} catch (error) {
@@ -105,17 +105,9 @@ router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
 
         res.render('kampusemesajlar', {
             messages: await Promise.all(messages.map(async message => {
-                let imageUrl = null;
-                if (message.images) {
-                    try {
-                        imageUrl = await getLoadURL(message.images, "kampus-mesaj");
-                    } catch (error) {
-                        console.error("Error fetching image URL:", error);
-                    }
-                }
                 return {
                     ...message.toObject(),
-                    images: imageUrl
+                    images: message.images
                 }
             })),
             userId,

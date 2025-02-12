@@ -5,7 +5,7 @@ const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
-const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
+const { uploadToR2, deleteFromR2 } = require('./s3.js');
 
 router.get('/evarkadasiilaniekle', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addkiraoda');
@@ -32,7 +32,7 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name}`;
+			const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
@@ -42,7 +42,7 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 			// Upload to Cloudflare R2
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, "ev-arkadasi");
-				imagePaths.push(fileName); // Store the filename
+				imagePaths.push(`/img/ev-arkadasi/${fileName}`); // Store the filename
 			} catch (uploadError) {
 				console.error("Error uploading to R2:", uploadError);
 				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
@@ -90,7 +90,7 @@ router.get('/evarkadasiilanlari', allMiddlewares.requireAuth, async (req, res) =
         res.render('kiraodalar', {
             ilanlar: await Promise.all(kiraodalar.map(async ilan => ({
                 ...ilan.toObject(),
-                images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "ev-arkadasi")))
+                images: ilan.images
             }))),
             currentUser,
             pagination: {
@@ -113,7 +113,6 @@ router.get('/evarkadasiilani/:kiraodaid', allMiddlewares.requireAuth, async (req
 	const owner = await User.findById(kira.owner);
 	const currentUserID=req.session.userId;
 
-	kira.images = await Promise.all(kira.images.map(async imageName => await getLoadURL(imageName, "ev-arkadasi")));
 
 	res.render('kiraodadetay', { ilan: kira, owner,currentUserID });
 })
@@ -121,7 +120,6 @@ router.get('/evarkadasiilani/:kiraodaid', allMiddlewares.requireAuth, async (req
 router.get('/evarkadasiilani/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, res) => {
 	const kiraid = req.params.kiraodaid;
 	const kira = await Kiraoda.findById(kiraid);
-	kira.images = await Promise.all(kira.images.map(async imageName => await getLoadURL(imageName, "ev-arkadasi")));
 
 	res.render('kiraodaedit', { kira, kiraid });
 })
@@ -148,7 +146,7 @@ router.post('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, 
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name}`;
+			const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
@@ -158,7 +156,7 @@ router.post('/kiraoda/edit/:kiraodaid', allMiddlewares.requireAuth, async (req, 
 			// Upload to Cloudflare R2
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, "ev-arkadasi");
-				kira.images.push(fileName); // Store the filename
+				kira.images.push(`/images/ev-arkadasi/${fileName}`); // Store the filename
 			} catch (uploadError) {
 				console.error("Error uploading to R2:", uploadError);
 				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");

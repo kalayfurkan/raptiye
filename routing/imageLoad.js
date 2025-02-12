@@ -5,10 +5,10 @@ const { s3 } = require('./s3.js');
 const { GetObjectCommand } = require("@aws-sdk/client-s3");
 
 
-router.get('/images/:imageName', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/images/:bucketName/:imageName', allMiddlewares.requireAuth, async (req, res) => {
     try {
         const imageName = req.params.imageName;
-        const bucketName = "satis-ilan";
+        const bucketName = req.params.bucketName;
 
         const command = new GetObjectCommand({
             Bucket: bucketName,

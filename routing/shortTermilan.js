@@ -4,7 +4,7 @@ const allMiddlewares = require('../middlewares.js');
 const Shortilan = require('../models/shortTermilanSchema.js');
 const path = require('path');
 const sharp = require('sharp');
-const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
+const { uploadToR2, deleteFromR2 } = require('./s3.js');
 
 
 router.get('/kisasureliilanekle', allMiddlewares.requireAuth, (req, res) => {
@@ -35,7 +35,7 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 		}
 
 		const date = new Date().toISOString().replace(/:/g, '-');
-		const fileName = `${date}-${element.name}`;
+		const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 		const compressedBuffer = await sharp(element.data)
 			.resize(maxWidth)
@@ -45,7 +45,7 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 		// Upload to Cloudflare R2
 		try {
 			await uploadToR2(compressedBuffer, fileName, element.mimetype, "kisa-ilan");
-			imagePaths.push(fileName); // Store the filename in the array
+			imagePaths.push(`/images/kisa-ilan/${fileName}`); // Store the filename in the array
 		} catch (uploadError) {
 			console.error("Error uploading to R2:", uploadError);
 			return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
@@ -92,7 +92,7 @@ router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) =>
             ilanlar: await Promise.all(kisaIlanlar.map(async ilan => {
                 return {
                     ...ilan.toObject(),
-                    images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "kisa-ilan")))
+                    images: ilan.images
                 }
             })),
             currentUserid,
