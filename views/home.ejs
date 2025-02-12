@@ -51,7 +51,8 @@
 				</div>
 				<div class="feature">
 					<div class="image-slider">
-						<img src="/img/anasayfa/2.png" class="slider-image active" alt="Genel İlan Örnek 2">
+						<img src="/img/anasayfa/kira1.png" class="slider-image active" alt="Genel İlan Örnek 2">
+						<img src="/img/anasayfa/kira2.png" class="slider-image" alt="Genel İlan Örnek 2">
 					</div>
 
 					<div class="feature-box circle-bg">
@@ -78,12 +79,12 @@
 					</div>
 
 					<div class="image-slider">
-						<img src="/img/anasayfa/3.png" class="slider-image active" alt="Barınma İlanı Örnek 3">
+						<img src="/img/anasayfa/barınma.png" class="slider-image active" alt="Barınma İlanı Görseli">
 					</div>
 				</div>
 				<div class="feature">
 					<div class="image-slider">
-						<img src="/img/anasayfa/4.png" class="slider-image active" alt="İş İlanı Örnek 4">
+						<img src="/img/anasayfa/is.png" class="slider-image active" alt="İş İlanı Görseli">
 					</div>
 
 					<div class="feature-box circle-bg">
@@ -139,35 +140,35 @@
 	<!-- sliding images -->
 	<script defer>
 		document.addEventListener('DOMContentLoaded', () => {
-		  const firstSlider = document.querySelector('.image-slider'); // Select only the first slider
+		  const sliders = document.querySelectorAll('.image-slider'); // Select all sliders
 	  
-		  if (firstSlider) { // Check if a slider was found
-			const images = firstSlider.querySelectorAll('.slider-image');
+		  sliders.forEach(slider => {
+			const images = slider.querySelectorAll('.slider-image');
 			const totalImages = images.length;
 	  
-			let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-			if (currentIndex === -1) currentIndex = 0;
+			if (totalImages > 1) { // Apply logic only if there's more than one image
+			  let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+			  if (currentIndex === -1) currentIndex = 0;
 	  
-			const intervalTime = 3000;
+			  const intervalTime = 3000;
 	  
-			const showNextImage = () => {
-			  const currentImage = images[currentIndex];
-			  const nextIndex = (currentIndex + 1) % totalImages;
-			  const nextImage = images[nextIndex];
+			  const showNextImage = () => {
+				const currentImage = images[currentIndex];
+				const nextIndex = (currentIndex + 1) % totalImages;
+				const nextImage = images[nextIndex];
 	  
-			  currentImage.classList.add('previous');
-			  nextImage.classList.add('active');
+				currentImage.classList.add('previous');
+				nextImage.classList.add('active');
 	  
-			  setTimeout(() => {
-				currentImage.classList.remove('active', 'previous');
-				currentIndex = nextIndex;
-			  }, 1000);
-			};
+				setTimeout(() => {
+				  currentImage.classList.remove('active', 'previous');
+				  currentIndex = nextIndex;
+				}, 1000);
+			  };
 	  
-			if (totalImages > 1) {
 			  setInterval(showNextImage, intervalTime);
 			}
-		  }
+		  });
 		});
 	</script>
 	
