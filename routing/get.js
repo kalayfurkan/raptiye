@@ -43,7 +43,10 @@ router.post('/contact-us',(req,res) => {
 
 	// Nodemailer transporter'ı yapılandır
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Gmail kullanıyorsanız 'gmail' kullanabilirsiniz.
+        // service: 'gmail', // Gmail kullanıyorsanız 'gmail' kullanabilirsiniz.
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false, // true for port 465, false for others
         auth: {
             user: process.env.EMAIL, // Kendi mail adresiniz
             pass: process.env.EMAIL_PASSWORD // Kendi şifreniz
