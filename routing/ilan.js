@@ -5,7 +5,7 @@ const sharp = require('sharp');
 const path = require('path');
 const allMiddlewares = require('../middlewares.js');
 const User = require('../models/userSchema');
-const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
+const { uploadToR2, deleteFromR2 } = require('./s3.js');
 
 
 router.get('/satisilaniekle', allMiddlewares.requireAuth, (req, res) => {
@@ -32,7 +32,7 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name}`;
+			const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
@@ -41,7 +41,7 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, "satis-ilan");
-				imagePaths.push(fileName);
+				imagePaths.push(`/images/satis-ilan/${fileName}`);
 			} catch (uploadError) {
 				console.error("Error uploading to R2:", uploadError);
 				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
@@ -90,7 +90,7 @@ router.get('/satisilanlari', allMiddlewares.requireAuth, async (req, res) => {
 		res.render('ilanlar', {
             ilanlar: await Promise.all(allPosts.map(async ilan => ({
                 ...ilan.toObject(),
-                images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")))
+                images: ilan.images
             }))),
             currentUser,
             pagination: {
@@ -112,9 +112,6 @@ router.get('/satisilani/:ilanid', allMiddlewares.requireAuth, async (req, res) =
 		const user = await User.findById(ilan.owner);
 		const currentUserId=req.session.userId;
 
-		// Fetch image URLs
-        ilan.images = await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")));
-
 		res.render('ilandetay', { ilan, user,currentUserId });
 
 	} catch (error) {
@@ -127,9 +124,6 @@ router.get('/satisilani/edit/:ilanid', allMiddlewares.requireAuth, async (req, r
 	try {
 		const ilanId = req.params.ilanid;
 		const ilan = await Ilan.findById(ilanId);
-
-		// Fetch image URLs
-		ilan.images = await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")));
 
 		res.render('editpost', { ilan, ilanId: ilanId });
 	}
@@ -182,7 +176,7 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name}`;
+			const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
@@ -191,7 +185,7 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, "satis-ilan");
-				ilan.images.push(fileName);
+				ilan.images.push(`/images/satis-ilan/${fileName}`);
 			} catch (uploadError) {
 				console.error("Error uploading to R2:", uploadError);
 				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
@@ -325,7 +319,7 @@ router.get('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
         res.render('aramasonuc', {
             ilanlar: await Promise.all(allPosts.map(async ilan => ({
                 ...ilan.toObject(),
-                images: await Promise.all(ilan.images.map(async imageName => await getLoadURL(imageName, "satis-ilan")))
+                images: ilan.images
             }))), 
             searchTerm: query,
             currentUser,

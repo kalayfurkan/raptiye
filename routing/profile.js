@@ -9,7 +9,7 @@ const Shortilan = require('../models/shortTermilanSchema.js');
 const path = require('path');
 const sharp = require('sharp');
 const bcrypt = require('bcrypt');
-const { uploadToR2, getLoadURL, deleteFromR2 }= require('./s3.js');
+const { uploadToR2, deleteFromR2 }= require('./s3.js');
 
 
 router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
@@ -17,8 +17,9 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 	
     const user = await User.findById(req.session.userId);
     try {
-        const url = await getLoadURL(user.profilePic, "profile-images");
-        user.profilePic = url;        
+        const url = user.profilePic;
+        console.log("URL:", url);
+        console.log("user.ProfilePic:", user.profilePic);
     } catch (error) {
         console.error("Error while getting profile picture URL:", error);
     }
@@ -50,13 +51,6 @@ router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) =>
 		return res.redirect('/profile');
 	}
 
-    try {
-        const url = await getLoadURL(user.profilePic, "profile-images");
-        user.profilePic = url;        
-    } catch (error) {
-        console.error("Error while getting profile picture URL:", error);
-    }
-
 	const posts = await Ilan.find({ owner: user._id });
 	const jobs = await Job.find({ owner: user._id });
 	const kiralar = await Kiraoda.find({ owner: user._id });
@@ -86,7 +80,7 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
 
             // Prepare the new image
             const date = new Date().toISOString().replace(/:/g, '-');
-            const fileName = `${date}-${req.files.profilePic.name}`;
+            const fileName = `${date}-${req.files.profilePic.name.replace('/', '_')}`;
 
             const maxWidth = 1000;
             const quality = 50;
@@ -108,7 +102,7 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
                 // Upload to Cloudflare R2 and update user profile in parallel
                 await Promise.all([
                     uploadToR2(compressedBuffer, fileName, req.files.profilePic.mimetype, "profile-images"),
-                    User.updateOne({ username: username }, { $set: { profilePic: `${fileName}` } })
+                    User.updateOne({ username: username }, { $set: { profilePic: `/images/profile-images/${fileName}` } })
                 ]);
 
                 // Delete old profile picture if it's not the default one
@@ -143,12 +137,12 @@ router.post('/profile/:userid/change-password',allMiddlewares.requireAuth,async 
         // 1. Kullanıcının mevcut şifresini doğrula
         const isMatch = await bcrypt.compare(currentPassword, user.password); // Kullanıcının mevcut şifresi
         if (!isMatch) {
-            return res.status(400).render('loggenerrorpage',{message:"Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor."});
+            return res.status(400).render('errorpage',{message:"Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor."});
         }
 
         // 2. Yeni şifreyi kontrol et
         if (newPassword !== confirmPassword) {
-            return res.status(400).render('loggenerrorpage',{message:"Yeni Şifreyi ikinci seferinde yanlış girdiniz"});
+            return res.status(400).render('errorpage',{message:"Yeni Şifreyi ikinci seferinde yanlış girdiniz"});
         }
 
         // 3. Yeni şifreyi hashle

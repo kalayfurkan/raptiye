@@ -5,7 +5,7 @@ const Job = require('../models/jobSchema.js');
 const User = require('../models/userSchema');
 const path = require('path');
 const sharp = require('sharp');
-const { uploadToR2, getLoadURL, deleteFromR2 } = require('./s3.js');
+const { uploadToR2, deleteFromR2 } = require('./s3.js');
 
 router.get('/isilaniekle', allMiddlewares.requireAuth, (req, res) => {
 	res.render('addjob');
@@ -32,7 +32,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name}`;
+			const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
@@ -41,7 +41,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, "is-ilan");
-				imagePaths.push(fileName);
+				imagePaths.push(`/images/is-ilan/${fileName}`);
 			} catch (uploadError) {
 				console.error("Error uploading to R2:", uploadError);
 				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
@@ -92,7 +92,7 @@ router.get('/isilanlari', allMiddlewares.requireAuth, async (req, res) => {
             jobs: await Promise.all(jobs.map(async job => {
                 return {
                     ...job.toObject(),
-                    images: await Promise.all(job.images.map(async imageName => await getLoadURL(imageName, "is-ilan")))
+                    images: job.images
                 }
             })),
             currentUser,
@@ -116,16 +116,12 @@ router.get('/isilani/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const owner = await User.findById(job.owner);
 	const currentUserID = req.session.userId;
 
-    job.images = await Promise.all(job.images.map(async imageName => await getLoadURL(imageName, "is-ilan")));
-
 	res.render('jobDetails', { job, owner, currentUserID });
 })
 
 router.get('/isilani/edit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 	const jobId = req.params.jobid;
 	const job = await Job.findById(jobId);
-
-    job.images = await Promise.all(job.images.map(async imageName => await getLoadURL(imageName, "is-ilan")));
 
 	res.render('jobEdit', { job, jobid: jobId });
 })
@@ -153,7 +149,7 @@ router.post('/jobedit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name}`;
+			const fileName = `${date}-${element.name.replace('/', '_')}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
