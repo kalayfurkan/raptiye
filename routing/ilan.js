@@ -88,10 +88,7 @@ router.get('/satisilanlari', allMiddlewares.requireAuth, async (req, res) => {
 
 
 		res.render('ilanlar', {
-            ilanlar: await Promise.all(allPosts.map(async ilan => ({
-                ...ilan.toObject(),
-                images: ilan.images
-            }))),
+            ilanlar: allPosts,
             currentUser,
             pagination: {
                 totalPosts,
@@ -317,10 +314,7 @@ router.get('/ilan/arama', allMiddlewares.requireAuth, async (req, res) => {
         const currentUser = await User.findById(req.session.userId);
 
         res.render('aramasonuc', {
-            ilanlar: await Promise.all(allPosts.map(async ilan => ({
-                ...ilan.toObject(),
-                images: ilan.images
-            }))), 
+            ilanlar: allPosts,
             searchTerm: query,
             currentUser,
             pagination: {

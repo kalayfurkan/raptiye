@@ -89,12 +89,7 @@ router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) =>
 
         // Verileri render et
         res.render('kisailanlar', {
-            ilanlar: await Promise.all(kisaIlanlar.map(async ilan => {
-                return {
-                    ...ilan.toObject(),
-                    images: ilan.images
-                }
-            })),
+            ilanlar: kisaIlanlar,
             currentUserid,
             pagination: {
                 totalPosts,

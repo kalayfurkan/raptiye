@@ -89,12 +89,7 @@ router.get('/isilanlari', allMiddlewares.requireAuth, async (req, res) => {
 
         // Sayfayı render et
         res.render('isler', {
-            jobs: await Promise.all(jobs.map(async job => {
-                return {
-                    ...job.toObject(),
-                    images: job.images
-                }
-            })),
+            jobs,
             currentUser,
             pagination: {
                 totalJobs,

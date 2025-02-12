@@ -88,10 +88,7 @@ router.get('/evarkadasiilanlari', allMiddlewares.requireAuth, async (req, res) =
 
         // Sayfayı render et
         res.render('kiraodalar', {
-            ilanlar: await Promise.all(kiraodalar.map(async ilan => ({
-                ...ilan.toObject(),
-                images: ilan.images
-            }))),
+            ilanlar: kiraodalar,
             currentUser,
             pagination: {
                 totalKiraodalar,

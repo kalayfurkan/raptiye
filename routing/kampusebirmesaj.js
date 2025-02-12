@@ -104,12 +104,7 @@ router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
         const totalPages = Math.ceil(totalMessages / limit);
 
         res.render('kampusemesajlar', {
-            messages: await Promise.all(messages.map(async message => {
-                return {
-                    ...message.toObject(),
-                    images: message.images
-                }
-            })),
+            messages,
             userId,
             sortOption,
             pagination: {
