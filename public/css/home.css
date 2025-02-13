@@ -49,8 +49,14 @@ html, body {
 .feature.align-left .feature-content{
     transform: translateX(-100%);
 }
+.feature.align-left .image-slider{
+    transform: translateX(100%);
+}
 .feature.align-right .feature-content{
     transform: translateX(100%);
+}
+.feature.align-right .image-slider{
+    transform: translateX(-100%);
 }
 
 .feature .feature-content{
@@ -61,7 +67,14 @@ html, body {
     overflow: hidden;
 }
 
-.feature.show .feature-content{
+.feature .image-slider{
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+}
+
+.feature.show .feature-content, .feature.show .image-slider{
+    z-index: 2;
     opacity: 1;
     filter: blur(0);
     transform: translateX(0);
