@@ -79,18 +79,18 @@
 					</div>
 
 					<div class="image-slider">
-						<img src="/img/anasayfa/barınma.png" class="slider-image active" alt="Barınma İlanı Görseli">
+						<img src="/img/anasayfa/barınma.svg" class="slider-image active" alt="Barınma İlanı Görseli">
 					</div>
 				</div>
 				<div class="feature">
 					<div class="image-slider">
-						<img src="/img/anasayfa/is.png" class="slider-image active" alt="İş İlanı Görseli">
+						<img src="/img/anasayfa/harf.svg" height="100px" class="slider-image active" alt="Harf Notu Görseli">
 					</div>
 
 					<div class="feature-box circle-bg">
 						<div class="feature-content">
-							<h2><a class="home-links" href="/isilanlari">İş İlanları</a></h2>
-							<p>Tek seferlik, kısa süreli veya uzun vadeli iş ilanlarını incele.</p>
+							<h2><a class="home-links" href="/harfnotuhesapla">Harf Notu Hesapla</a></h2>
+							<p>Matematik, Fizik, Kimya harf notunu herkesten önce öğren.</p>
 						</div>
 					</div>
 				</div>
@@ -98,8 +98,8 @@
 				<div class="feature">
 					<div class="feature-box spread-out">
 						<div class="feature-content">
-							<h2>Harf Notu Hesapla</h2>
-							<p>Matematik, Fizik, Kimya harf notunu herkesten önce öğren.</p>
+							<h2><a class="home-links" href="/isilanlari">İş İlanları</a></h2>
+							<p>Tek seferlik, kısa süreli veya uzun vadeli iş ilanlarını incele.</p>
 						</div>
 					</div>
 				</div>
@@ -117,9 +117,9 @@
 
 	<script defer>
 		document.querySelectorAll('.feature').forEach((feature, index) => {
-			feature.classList.add(index % 2 === 0 ? 'align-left' : 'align-right');
+			const pattern = ['align-left', 'align-right', 'align-left', 'align-left', 'align-right', 'align-left'];
+			feature.classList.add(pattern[index % pattern.length]);
 		});
-
 
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
