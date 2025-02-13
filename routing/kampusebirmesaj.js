@@ -59,7 +59,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 		await Kampusemesaj.create({
 			mesaj: message,
 			owner: user,
-			 images: `/images/kampus-mesaj/${fileName}`
+			images: `/images/kampus-mesaj/${fileName}`
 		})
 		res.redirect('/kampusemesajlar');
 	} catch (error) {

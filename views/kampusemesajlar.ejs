@@ -55,7 +55,7 @@
               
             <% if (messages.length> 0) { %>
                 <ul class="list-group">
-                    <% messages.forEach(function(message) { %>
+                    <% messages.forEach(function(message, index) { %>
                         <li class="list-group-item">
                             <strong class="message-sender">
                                 <% if (message.owner) { %>
@@ -70,11 +70,11 @@
                                 <%= message.mesaj %>
                             </p>
                             <% if(message.images){ %>
-                                <button class="btn3" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= message.images %>" aria-expanded="false" aria-controls="imageCollapse<%= message.images %>">
+                                <button class="btn3" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= index %>" aria-expanded="false" aria-controls="imageCollapse<%= message.images %>">
                                     <i class="bi bi-image"></i>
                                 </button>
                                 <!-- Görsel -->
-                                <div class="collapse mt-3" id="imageCollapse<%= message.images %>">
+                                <div class="collapse mt-3" id="imageCollapse<%= index %>">
                                     <img src="<%= message.images %>" alt="görsel"  class="img-fluid img-kampuse" onerror="this.style.display='none'">
                                 </div>
                             <% } %>
