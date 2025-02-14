@@ -42,7 +42,7 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 			// Upload to Cloudflare R2
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, "ev-arkadasi");
-				imagePaths.push(`/img/ev-arkadasi/${fileName}`); // Store the filename
+				imagePaths.push(`/images/ev-arkadasi/${fileName}`); // Store the filename
 			} catch (uploadError) {
 				console.error("Error uploading to R2:", uploadError);
 				return res.status(500).send("Dosya yüklenirken bir hata oluştu.");
