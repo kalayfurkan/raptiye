@@ -16,13 +16,6 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 	const ilanlar = await Ilan.find({ owner: req.session.userId });
 	
     const user = await User.findById(req.session.userId);
-    try {
-        const url = user.profilePic;
-        console.log("URL:", url);
-        console.log("user.ProfilePic:", user.profilePic);
-    } catch (error) {
-        console.error("Error while getting profile picture URL:", error);
-    }
 
 	const jobs = await Job.find({ owner: req.session.userId });
 	const kiralar = await Kiraoda.find({ owner: req.session.userId });

@@ -47,7 +47,7 @@
                                         <div class="carousel-inner">
                                             <% job.images.forEach(function(image, index) { %>
                                                 <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                                    <img src="<%= image %>" onerror="this.src='img/job-img.jpg';" class="d-block w-100" alt="Job Image">
+                                                    <img src="<%= image %>" loading="lazy" onerror="this.src='img/job-img.jpg';" class="d-block w-100" alt="Job Image">
                                                 </div>
                                             <% }) %>
                                         </div>
