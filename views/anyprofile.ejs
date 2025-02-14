@@ -38,7 +38,7 @@
         <%- include('partials/navbar') %>
         <div class="container">
             <div class="profile-header text-center">
-                <img src="<%= user.profilePic %>" alt="<%= user.name %>">
+                <img src="<%= user.profilePic %>" alt="<%= user.name %>" onerror="this.src='img/icons/profile-circle.svg';">
                 <h1>
                     <%= user.username %>
                 </h1>

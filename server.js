@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo');
 const fileUpload = require('express-fileupload');
 const allMiddlewares = require('./middlewares.js');
 
+app.set('trust proxy', true);
 
 //to use dotenv
 dotenv.config();
