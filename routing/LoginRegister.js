@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye mail doğrulama',
-			html: `<a href="http://localhost:3000/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>`
+			html: `<a href="https://raptiye.oa.r.appspot.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
@@ -83,7 +83,7 @@ router.post('/forgotpassword',async (req,res) => {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye şifre yenileme',
-			html: `<a href="http://localhost:3000/refreshpassword?token=${verificationToken}">Linke tıklayarak şifrenizi sıfırlayınız.</a>`
+			html: `<a href="https://raptiye.oa.r.appspot.com/refreshpassword?token=${verificationToken}">Linke tıklayarak şifrenizi sıfırlayınız.</a>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
@@ -136,7 +136,7 @@ router.get('/verify-email', async (req, res) => {
 	user.verificationToken = null;
 	await user.save();
 
-	res.send('Mailiniz doğrulandı. <a href="localhost:3000">Buradan</a> ana sayfaya dönüp giriş yapabilirsiniz.');
+	res.send('Mailiniz doğrulandı. <a href="https://raptiye.oa.r.appspot.com/">Buradan</a> ana sayfaya dönüp giriş yapabilirsiniz.');
 });
 
 router.post('/login', async (req, res) => {

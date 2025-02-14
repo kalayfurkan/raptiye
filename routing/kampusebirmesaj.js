@@ -131,7 +131,6 @@ router.post('/deletekampusmesaj/:kampusemesajid', allMiddlewares.requireAuth, as
 			if (currentMessage.images) {
 				try {
 					await deleteFromR2(currentMessage.images, "kampus-mesaj");
-					console.log(`Image deleted from R2: ${currentMessage.images}`);
 				} catch (error) {
 					console.error(`Failed to delete image from R2: ${currentMessage.images}`, error);
 				}

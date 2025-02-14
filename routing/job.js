@@ -211,7 +211,6 @@ router.post('/job/delete/:jobid', allMiddlewares.requireAuth, async (req, res) =
 		for (const fileName of job.images) {
 			try {
 				await deleteFromR2(fileName, "is-ilan");
-				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (error) {
 				console.error(`Failed to delete image from R2: ${fileName}`, error);
 			}

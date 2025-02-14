@@ -214,7 +214,6 @@ router.post('/kiraoda/delete/:kiraodaid', allMiddlewares.requireAuth, async (req
 		for (const fileName of kira.images) {
 			try {
 				await deleteFromR2(fileName, "ev-arkadasi");
-				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (error) {
 				console.error(`Failed to delete image from R2: ${fileName}`, error);
 			}

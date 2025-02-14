@@ -35,11 +35,8 @@ router.get('/profile', allMiddlewares.requireAuth, async (req, res) => {
 
 router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) => {
 	const username = req.params.username;
-    console.log("username:", username);
 	const user = await User.findOne({username:username});
-    console.log("user:", user);
 	const currentUser= await User.findById(req.session.userId);
-    console.log("currentUser&user:", currentUser, user);
 	if(currentUser._id.equals(user?._id)){
 		return res.redirect('/profile');
 	}

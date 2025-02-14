@@ -14,7 +14,6 @@ const deleteJob=new CronJob('0 0 * * *',async () => {
 			if (fileName == "" || !fileName) continue;
 			try {
 				await deleteFromR2(fileName, "is-ilan");
-				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (err) {
 				console.error(`Failed to delete image from R2: ${fileName}`, err);
 			}
@@ -22,7 +21,6 @@ const deleteJob=new CronJob('0 0 * * *',async () => {
 		}
   
 		await Job.findByIdAndDelete(job._id);
-		console.log(`İlan silindi: ${job.jobTitle}`);
 	}
 	
   } catch (error) {
@@ -46,7 +44,6 @@ const deleteIlan=new CronJob('*/15 * * * *',async () => {
 				if (fileName == "" || !fileName) continue;
 				try {
 					await deleteFromR2(fileName, "kisa-ilan");
-					console.log(`Image deleted from R2: ${fileName}`);
 				} catch (err) {
 					console.error(`Failed to delete image from R2: ${fileName}`, err);
 				}
@@ -54,7 +51,6 @@ const deleteIlan=new CronJob('*/15 * * * *',async () => {
 		}
   
 		await Shortilan.findByIdAndDelete(ilan._id);
-		console.log(`İlan silindi: ${ilan.title}`);
 	}
     
   } catch (error) {

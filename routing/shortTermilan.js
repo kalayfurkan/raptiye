@@ -116,7 +116,6 @@ router.post('/shortilan/delete/:shortid', allMiddlewares.requireAuth, async (req
 		for (const fileName of shortpost.images) {
 			try {
 				await deleteFromR2(fileName, "kisa-ilan");
-				console.log(`Image deleted from R2: ${fileName}`);
 			} catch (error) {
 				console.error(`Failed to delete image from R2: ${fileName}`, error);
 			}
