@@ -1,11 +1,51 @@
+// Converts input from US format (e.g., "2/22/2025, 00:06:40 AM")
+// to the expected format "DD.MM.YYYY HH:MM:SS"
+function transformInputTime(inputTime) {
+    // Regular expression to match formats like "M/D/YYYY, HH:MM:SS AM/PM" (AM/PM part is optional)
+    const usFormatRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4}),\s*(\d{1,2}):(\d{2}):(\d{2})(?:\s*(AM|PM))?$/i;
+    const match = inputTime.match(usFormatRegex);
+    if (match) {
+        let month = match[1];
+        let day = match[2];
+        const year = match[3];
+        let hours = parseInt(match[4], 10);
+        const minutes = match[5];
+        const seconds = match[6];
+        let ampm = match[7];
+
+        // Convert hours to 24-hour format if AM/PM is provided
+        if (ampm) {
+            ampm = ampm.toUpperCase();
+            if (ampm === "PM" && hours < 12) {
+                hours += 12;
+            } else if (ampm === "AM" && hours === 12) {
+                hours = 0;
+            }
+        }
+        
+        // Ensure day, month, and hours are two digits
+        day = day.padStart(2, '0');
+        month = month.padStart(2, '0');
+        const hoursStr = String(hours).padStart(2, '0');
+        
+        // Return the transformed string in the expected format
+        return `${day}.${month}.${year} ${hoursStr}:${minutes}:${seconds}`;
+    }
+    // If no transformation is needed, return the original input
+    return inputTime;
+}
+
 function timeAgo(inputTime) {
+    // First, transform the input if necessary
+    inputTime = transformInputTime(inputTime);
+    
     const now = new Date();
 
     // Trim the input and split into date and time
     const parts = inputTime.trim().split(" ");
     if (parts.length !== 2) {
         // If the input doesn't have exactly two parts, return it as is
-        return inputTime;
+        return "";
     }
 
     const [date, time] = parts;
@@ -13,13 +53,13 @@ function timeAgo(inputTime) {
     const dateParts = date.split(".");
     if (dateParts.length !== 3) {
         // If the date doesn't have exactly three parts, return it as is
-        return inputTime;
+        return "";
     }
 
     const timeParts = time.split(":");
     if (timeParts.length !== 3) {
         // If the time doesn't have exactly three parts, return it as is
-        return inputTime;
+        return "";
     }
 
     const [day, month, year] = dateParts;
@@ -38,14 +78,14 @@ function timeAgo(inputTime) {
         isNaN(dayNum) || isNaN(monthNum) || isNaN(yearNum) ||
         isNaN(hoursNum) || isNaN(minutesNum) || isNaN(secondsNum)
     ) {
-        return inputTime;
+        return "";
     }
 
     const pastDate = new Date(yearNum, monthNum, dayNum, hoursNum, minutesNum, secondsNum);
 
     // Check if the date is valid
     if (isNaN(pastDate.getTime())) {
-        return inputTime;
+        return "";
     }
 
     const diff = (now - pastDate) / 1000; // difference in seconds
@@ -64,7 +104,7 @@ function timeAgo(inputTime) {
     };
 
     if (diff < oneHour) {
-        return '';
+        return "";
     } else if (diff < oneDay) {
         return formatTime(pastDate);
     } else if (
