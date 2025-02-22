@@ -14,7 +14,10 @@ router.post('/register', async (req, res) => {
 		if (!email.endsWith(allowedMail)) {
 			return res.status(400).render('errorpage', { message: `You must use ${allowedMail} mail type` });
 		}
-
+		const isThereBefore=await User.findOne({ email: email });
+		if(isThereBefore && isThereBefore.isVerified==false){
+			await User.deleteOne({ _id: isThereBefore._id });
+		}
 		// Şifreyi hashleyin
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
@@ -166,10 +169,10 @@ router.post('/login', async (req, res) => {
 					res.redirect('/');
 				});
 			} else {
-				res.status(401).render('errorpage', { message: "Şifrenizi yanlış girdiniz." });
+				return res.status(401).render('login',{message: "Şifreniz hatalı."});
 			}
 		} else {
-			return res.status(401).render('errorpage', { message: "E-posta adresi veya şifre hatalı." });
+			return res.status(401).render('login',{message: "E-Posta adresiniz hatalı"});
 		}
 	} catch (error) {
 		res.status(500).send(error);
