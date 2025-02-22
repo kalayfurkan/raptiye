@@ -39,7 +39,17 @@
 						<button type="submit" class="btn mt-2">Oturum aç</button>
 					</form>
 				</div>
-				<%=  %>
+				<br>
+				<% if (message) { %>
+					<% if (message == "verify") { %>
+						<div class="alert alert-success">
+							Hesabınız doğrulanmıştır. Giriş yapabilirsiniz.
+						</div>
+					<% } else { %>
+						<div class="alert alert-danger"><%= message %></div>
+					<% } %>
+				<% } %>
+				
 				<div class="register-div">
 					<a href="/forgotpassword">Şifremi unuttum.</a>
 				</div>

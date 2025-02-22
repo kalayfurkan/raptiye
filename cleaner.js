@@ -1,7 +1,8 @@
 const { CronJob } = require('cron');
-const Job = require('./models/jobSchema'); // Job modelini içe aktar
+const Job = require('./models/jobSchema.js'); // Job modelini içe aktar
 const Shortilan = require('./models/shortTermilanSchema.js');
 const { deleteFromR2 } = require('./routing/s3.js');
+const User = require('./models/userSchema.js');
 
 const deleteJob=new CronJob('0 0 * * *',async () => {
   try {
@@ -58,5 +59,21 @@ const deleteIlan=new CronJob('*/15 * * * *',async () => {
   }
 })
 
+const deleteUnverifiedUsers = new CronJob('0 0 * * 0', async () => {
+	try {
+	  const result = await User.deleteMany({ isVerified: false });
+  
+	  if (result.deletedCount > 0) {
+		console.log(`${result.deletedCount} adet doğrulanmamış kullanıcı silindi.`);
+	  } else {
+		console.log("Silinecek doğrulanmamış kullanıcı bulunamadı.");
+	  }
+	  
+	} catch (error) {
+	  console.error('Doğrulanmamış kullanıcıları silerken hata oluştu:', error);
+	}
+});
+  
+deleteUnverifiedUsers.start();
 deleteJob.start();
 deleteIlan.start();

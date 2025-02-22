@@ -10,7 +10,7 @@ router.get('/login', (req, res) => {
     if(req.session.userId){
         res.redirect('/');
     }
-	res.render('login');
+	res.render('login',{message:""});
 });
 router.get('/errorpage', (req, res) => {
 	res.render('errorpage');
@@ -19,7 +19,7 @@ router.get('/register', (req, res) => {
     if(req.session.userId){
         res.redirect('/');
     }
-	res.render('register');
+	res.render('register',{message:""});
 });
 
 //Ömer done that

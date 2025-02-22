@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
 
 		const allowedMail = "@itu.edu.tr";
 		if (!email.endsWith(allowedMail)) {
-			return res.status(400).render('errorpage', { message: `You must use ${allowedMail} mail type` });
+			return res.status(400).render('register', { message: "İTÜ mailiniz ile kaydolmalısınız." });
 		}
 		const isThereBefore=await User.findOne({ email: email });
 		if(isThereBefore && isThereBefore.isVerified==false){
@@ -38,14 +38,19 @@ router.post('/register', async (req, res) => {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye mail doğrulama',
-			html: `<a href="https://raptiye.oa.r.appspot.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>`
+			html: `<h1>Bizi tercih ettiğiniz için teşekkürler.</h1>
+			<p><a href="https://raptiye.oa.r.appspot.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>
+			 <br><br>
+			Eğer link çalışmazsa aşağıdaki url'ye gidiniz:
+			<br><br>
+			https://raptiye.oa.r.appspot.com/verify-email?token=${verificationToken}</p>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
 
 		console.log('Email sent: ' + info.response);
 
-		res.send('Başarıyla kayıt oldunuz <a href="https://webmail.itu.edu.tr/login.php">linke</a> tıklayarak mailinize gidip hesabınızı doğrulayın.');
+		res.render('register',{ message:"basari"})
 
 	} catch (error) {
 		console.error(error);
@@ -54,7 +59,7 @@ router.post('/register', async (req, res) => {
 		if (error.code === 11000) {
 		return res
 			.status(400)
-			.render('errorpage', { message: 'Kullanıcı adı veya e-posta zaten kayıtlı.' });
+			.render('register', { message: 'Kullanıcı adı veya e-posta zaten kayıtlı.' });
 		}
 
 		res.status(500).render('errorpage', { message: 'Bir hata oluştu. Lütfen tekrar deneyin.' });
@@ -139,7 +144,7 @@ router.get('/verify-email', async (req, res) => {
 	user.verificationToken = null;
 	await user.save();
 
-	res.send('Mailiniz doğrulandı. <a href="https://raptiye.oa.r.appspot.com/">Buradan</a> ana sayfaya dönüp giriş yapabilirsiniz.');
+	res.render('login',{message:"verify"});
 });
 
 router.post('/login', async (req, res) => {
@@ -150,7 +155,7 @@ router.post('/login', async (req, res) => {
 
 		if (user) {
 			if (!user.isVerified) {
-				return res.status(400).render('errorpage', { message: "Lütfen mailinizi doğrulayın." });
+				return res.status(400).render('login', { message: "Lütfen mailinizi doğrulayın." });
 			}
 
 			const same = await bcrypt.compare(password, user.password);

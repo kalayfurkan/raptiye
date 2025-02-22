@@ -41,7 +41,16 @@
 						<button type="submit" class="btn mt-2">Üye ol</button>
 					</form>
 				</div>
-
+				<br>
+				<% if (message) { %>
+					<% if (message == "basari") { %>
+						<div class="alert alert-success">
+							Başarıyla kayıt oldunuz <a href="https://webmail.itu.edu.tr/"> İTÜ mailinize</a> giderek hesabınızı doğrulayın.
+						</div>
+					<% } else { %>
+						<div class="alert alert-danger"><%= message %></div>
+					<% } %>
+				<% } %>
 				<div class="register-div">
 					<a href="/login">Hesabınız var mı? Giriş yapın.</a>
 				</div>
