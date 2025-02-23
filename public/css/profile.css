@@ -72,23 +72,23 @@
     color: #555;
 }
 
-.ads-list {
+.ilan-list {
     font-size: large;
     list-style-type: none;
     padding: 0;
 }
 
-.ads-list li {
+.ilan-list li {
     margin-bottom: 10px;
 }
 
-.ads-list li a {
+.ilan-list li a {
     text-decoration: none;
     color: white;
     transition: all 0.2s;
 }
 .profile-sidebar h2,
-.ads-list li a::first-letter {
+.ilan-list li a::first-letter {
     text-transform: capitalize;
 }
 
