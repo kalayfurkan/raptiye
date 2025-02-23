@@ -10,6 +10,7 @@
 }
 
 .baslik h1 {
+    font-size: 1.7rem;
     margin: 10px 10px -10px 2px;
     color: #333;
 }
@@ -60,7 +61,7 @@
 }
 
 .profile-details h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #333;
     margin-top: 0;
 }
@@ -107,7 +108,6 @@ footer {
     padding: 10px;
     background-color: #333;
     color: #fff;
-    border-radius: 8px 8px 0 0;
 }
 @media only screen and (max-width: 750px) {
     .profile-sidebar img.profile-pic{

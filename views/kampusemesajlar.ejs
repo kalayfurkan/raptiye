@@ -31,7 +31,7 @@
 
 
             <div class="sorting-buttons">
-                <a href="/kampusebirmesajbirak" class="btn2 sesiniduyur">Sen de sesini duyur!</a>
+                <a href="/kampusebirmesajbirak" class="btn2 sesiniduyur">Sesini duyur!</a>
                 <a href="/kampusemesajlar?sort=newest" 
                    class="btn btn-outline-primary <%= sortOption === 'newest' || !sortOption ? 'active' : '' %>">
                   <i class="bi bi-clock"></i> <span class="alan-yetersiz">Yeniden Eskiye</span>
@@ -69,7 +69,7 @@
                             <p class="mb-2">
                                 <%= message.mesaj %>
                             </p>
-                            <% if(message.images){ %>
+                            <% if(message.images !== '/images/kampus-mesaj/null'){ %>
                                 <button class="btn3" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse<%= index %>" aria-expanded="false" aria-controls="imageCollapse<%= message.images %>">
                                     <i class="bi bi-image"></i>
                                 </button>

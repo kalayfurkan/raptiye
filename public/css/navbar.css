@@ -371,9 +371,6 @@ ul.mobile-icons {
 	}
 }
 @media screen and (max-width: 440px) {
-	ul.mobile-icons .navbar-link {
-		padding: 5px;
-	}
 	.navbar-brand {
 		margin: 0;
 		font-size: 1.2rem;
@@ -386,8 +383,17 @@ ul.mobile-icons {
 	}
 }
 
-@media screen and (max-width: 250px) {
+@media screen and (max-width: 260px) {
+	ul.mobile-icons .navbar-link {
+		padding: 5px;
+	}
+}
+
+@media screen and (max-width: 230px) {
 	.navbar-brand{
 		display: none;
+	}
+	ul.mobile-icons .navbar-link {
+		padding: 10px;
 	}
 }

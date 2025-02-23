@@ -10,6 +10,7 @@ a.sesiniduyur{
 }
 .sorting-buttons{
     display: flex;
+    flex-wrap: wrap;
     justify-content: end;
     gap: 10px;
     margin-bottom: 20px;
@@ -175,3 +176,20 @@ p.daha-fazla.collapsed {
         margin-bottom: 20px;
     }
 }
+@media (max-width: 345px) { 
+    .sorting-buttons {
+        gap: 5px;
+    }
+}
+@media (max-width: 325px) { /* adjust the breakpoint as needed */
+    .sorting-buttons {
+        justify-content: start;
+        gap: 10px;
+    }
+    .sesiniduyur {
+      flex-basis: 100%;
+    }
+    h1.header {
+        font-size: 1.4rem;
+    }
+  }
