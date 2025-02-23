@@ -56,12 +56,13 @@
                         <h3 class="img-header">Mevcut Görselleri Düzenle</h3>
                         <div class="image-gallery">
                             <% ilan.images.forEach((image,index)=> { %>
-                                <div class="image-item edit-img-item">
-                                    <img src="<%= image %>" alt="Görsel" width="200">
+                                <div class="image-item">
+                                    <img src="<%= image %>" alt="Görsel">
                                     <form class="delete-btn-form" action="/delete-image/<%=ilan._id %>/<%=index%>"
                                         method="POST" style="display:inline;">
                                         <input type="hidden" name="imagePath" value="<%= image %>">
-                                        <button class="btn" type="submit">Görseli kaldır</button>
+                                        <button type="submit" class="btn2"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
+
                                     </form>
                                 </div>
                             <% }); %>

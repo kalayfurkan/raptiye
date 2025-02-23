@@ -80,12 +80,12 @@
                     <h2 class="ilanbasligi"><%= job.jobTitle %></h2>
                     <p class="description"><%= job.description %></p>
                     <p>
-                        <strong>Oluşturulma tarihi:</strong>
-                        <%= new Date(job.createdAt).toLocaleDateString() %>
+                        <strong>Oluşturulma Tarihi:</strong>
+                        <%= new Date(job.createdAt).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
                     </p>
                     <p>
                         <strong>Şu tarihe kadar:</strong>
-                        <%= new Date(job.removalDate).toLocaleDateString() %>
+                        <%= new Date(job.removalDate).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
                     </p>
                     <div class="reach-info">
                         <a href="/profile/<%= owner.username %>"><%= owner.username %></a>

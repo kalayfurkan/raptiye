@@ -58,7 +58,7 @@
                     <div class="image-gallery">
                         <% kira.images.forEach((image,index)=> { %>
                             <div class="image-item">
-                                <img src="<%= image %>" alt="Görsel" width="200">
+                                <img src="<%= image %>" alt="Görsel">
                                 <form action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">

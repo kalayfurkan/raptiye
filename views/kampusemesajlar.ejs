@@ -167,7 +167,7 @@
                                         </form>
                                     <% } %>
                                     <small class="timestamp text-muted message-time">
-                                        <%= new Date(message.createdAt).toLocaleString() %>
+                                        <%= new Date(message.createdAt).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
                                     </small>
                                 </div>
                                 <div class="collapse mt-2" id="yorumlar-<%= message._id %>">
@@ -184,7 +184,7 @@
                                                         : <%= yorum.yorum %>
                                                     </p>
                                                     <small class="timestamp text-muted float-end">
-                                                        <%= new Date(yorum.createdAt).toLocaleString() %>
+                                                        <%= new Date(yorum.createdAt).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
                                                     </small>
                                                 </li>
                                             <% }) %>

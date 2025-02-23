@@ -84,7 +84,12 @@
                         <strong>İlan Türü:</strong>
                         <%= ilan.searchingFor %>
                     </p>
-                    <p><strong>İletişim Bilgileri:</strong>
+                    <p>
+                        <strong>Oluşturulma Tarihi:</strong>
+                        <%= new Date(ilan.createdAt).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
+                    </p>
+                    <p>
+                        <strong>İletişim Bilgileri:</strong>
                         <%= ilan.reachYou %>
                     </p>
                     <div class="reach-info">

@@ -47,7 +47,7 @@
                     <div class="image-gallery">
                         <% job.images.forEach((image,index)=> { %>
                             <div class="image-item">
-                                <img src="<%= image %>" alt="Görsel" width="200">
+                                <img src="<%= image %>" alt="Görsel">
                                 <form action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">

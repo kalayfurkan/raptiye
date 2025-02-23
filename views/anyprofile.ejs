@@ -59,7 +59,7 @@
                             <p class="mb-1">
                                 <%= post.description %>
                             </p>
-                            <small class="timestamp"><%= post.createdAt.toLocaleString() %></small>
+                            <small class="timestamp"><%= post.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                         <% }) %>
                 </div>
@@ -77,7 +77,7 @@
                             <p class="mb-1">
                                 <%= job.description %>
                             </p>
-                            <small class="timestamp">Posted on <%= job.createdAt.toLocaleString() %></small>
+                            <small class="timestamp">Posted on <%= job.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                         <% }) %>
                 </div>
@@ -95,7 +95,7 @@
                             <p class="mb-1">
                                 <%= kira.description %>
                             </p>
-                            <small class="timestamp">Posted on <%= kira.createdAt.toLocaleString() %></small>
+                            <small class="timestamp">Posted on <%= kira.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                         <% }) %>
                 </div>
@@ -113,7 +113,7 @@
                             <p class="mb-1">
                                 <%= shortilan.description %>
                             </p>
-                            <small class="timestamp">Posted on <%= shortilan.createdAt.toLocaleString() %></small>
+                            <small class="timestamp">Posted on <%= shortilan.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                     <% }) %>
                 </div>

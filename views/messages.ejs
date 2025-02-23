@@ -39,14 +39,14 @@
                                                 </p>
                                                 <a href="javascript:void(0);" class="daha-fazla" style="display:none;">daha fazla</a>
                                                 <!-- small etiketi içinde fazla boşluk olmamalı -->
-                                                <small class="timestamp"><%= new Date(message.timestamp).toLocaleString() %></small>
+                                                <small class="timestamp"><%= new Date(message.timestamp).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
+                                                </small>
+
                                             </div>
                                         </div>
                                     </div>
                                 <% }); %>
                             <% } %>
-                        </div>
-                        <div class="card-footer">
                             <form id="message-form" method="POST" action="/messages/<%=communicators[0]%>/<%=communicators[1] %>" autocomplete="off">
                                 <div class="input-group">
                                     <input type="text" name="message" id="message-input" class="form-control" placeholder="Mesaj at" required>
