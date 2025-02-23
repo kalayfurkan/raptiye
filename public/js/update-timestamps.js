@@ -103,9 +103,7 @@ function timeAgo(inputTime) {
         return `${hours}.${minutes}`;
     };
 
-    if (diff < oneHour) {
-        return "";
-    } else if (diff < oneDay) {
+    if(diff < oneDay) {
         return formatTime(pastDate);
     } else if (
         now.getFullYear() === pastDate.getFullYear() &&
