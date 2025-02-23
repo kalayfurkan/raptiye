@@ -153,7 +153,7 @@ router.post('/jobedit/:jobid', allMiddlewares.requireAuth, async (req, res) => {
 
 			try {
 				await uploadToR2(compressedBuffer, fileName, element.mimetype, bucketName);
-				job.images.push(fileName);
+				job.images.push(`/images/is-ilan/${fileName}`);
 			} catch (error) {
 				return res.status(500).send('Resim işlenirken hata oluştu.');
 			}

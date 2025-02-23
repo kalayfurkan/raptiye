@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">İş İlanı Ver</h2>
-                    <form method="post" action="/addjob" enctype="multipart/form-data">
+                    <form method="post" action="/addjob" enctype="multipart/form-data" id="ilanForm">
                         <div class="form-group mb-3">
                             <label for="ilanBasligi" class="form-label">İlan Başlığı</label>
                             <input name="jobTitle" type="text" class="form-control" id="ilanBasligi"
@@ -39,7 +39,7 @@
                             <small>(Bu kısım zorunlu değildir)</small>
                             <input name="images" type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="dosya" multiple>
                         </div>
-                        <button type="submit" class="btn">İlanı Ver</button>
+                        <button type="submit" class="btn" id="submitButton">İlanı Ver</button>
                     </form>
                 </div>
 
@@ -55,5 +55,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
+<script>
+    const form = document.getElementById('ilanForm');
+    const submitButton = document.getElementById('submitButton');
+  
+    form.addEventListener('submit', function() {
+      // Form gönderildiğinde butonu devre dışı bırak
+      submitButton.disabled = true;
+    });
+</script>
 
 </html>
