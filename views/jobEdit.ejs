@@ -20,7 +20,7 @@
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">İlanı Düzenle</h2>
 
-                    <form method="post" action="/jobedit/<%=jobid%>" enctype="multipart/form-data">
+                    <form method="post" action="/jobedit/<%=jobid%>" enctype="multipart/form-data" id="ilanForm">
                         <div class="form-group">
                             <label for="ilanBasligi" class="form-label">İlan Başlığı</label>
                             <input name="jobTitle" type="text" value="<%=job.jobTitle %>" class="form-control"
@@ -40,7 +40,7 @@
                             <label for="dosya" class="form-label">Daha Fazla Fotoğraf Yükle</label>
                             <input name="images" type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="dosya" multiple>
                         </div>
-                        <button type="submit" class="btn">İlanı Düzenle</button>
+                        <button type="submit" class="btn" id="submitButton">İlanı Düzenle</button>
                     </form>
                     <% if (job.images && job.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
@@ -48,10 +48,10 @@
                         <% job.images.forEach((image,index)=> { %>
                             <div class="image-item">
                                 <img src="<%= image %>" alt="Görsel">
-                                <form action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
+                                <form class="deleteImageForm" action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button type="submit" class="btn2"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
+                                    <button type="submit" class="btn2 deleteImageButton"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
                         <% }); %>
@@ -70,6 +70,26 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script defer>
+        const form = document.getElementById('ilanForm');
+        const submitButton = document.getElementById('submitButton');
+      
+        form.addEventListener('submit', function() {
+          // Form gönderildiğinde butonu devre dışı bırak
+          submitButton.disabled = true;
+        });
+    
+        const deleteImageForms = document.querySelectorAll('.deleteImageForm');
+        const deleteImageButtons = document.querySelectorAll('.deleteImageButton');
+        // Bu sanırım çalışmıyor emin değilim
+        deleteImageForms.forEach((form) => {
+          form.addEventListener('submit', function() {
+            // Form gönderildiğinde tüm butonları devre dışı bırak
+            deleteImageButtons.forEach(button => button.disabled = true);
+          });
+        });
+    </script>
 </body>
 
 </html>

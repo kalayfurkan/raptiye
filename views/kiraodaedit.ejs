@@ -20,7 +20,7 @@
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="text-center mb-4">İlanı Düzenle</h2>
 
-                    <form action="/kiraoda/edit/<%=kira._id  %>" method="POST" enctype="multipart/form-data">
+                    <form action="/kiraoda/edit/<%=kira._id  %>" method="POST" enctype="multipart/form-data" id="ilanForm">
                         <div class="form-group">
                             <label for="type" class="form-label">İlan Türü</label>
                             <select class="form-select" id="type" name="searchingFor" required>
@@ -51,7 +51,7 @@
                             <label for="images" class="form-label">Fotoğraf Yükle</label>
                             <input type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="images" name="images" accept="image/*" multiple>
                         </div>
-                        <button type="submit" class="btn">İlanı Düzenle</button>
+                        <button type="submit" class="btn" id="submitButton">İlanı Düzenle</button>
                     </form>
                     <% if (kira.images && kira.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
@@ -59,10 +59,10 @@
                         <% kira.images.forEach((image,index)=> { %>
                             <div class="image-item">
                                 <img src="<%= image %>" alt="Görsel">
-                                <form action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
+                                <form class="deleteImageForm" action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button class="btn2" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
+                                    <button class="btn2 deleteImageButton" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
                         <% }); %>
@@ -82,6 +82,27 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script defer>
+        const form = document.getElementById('ilanForm');
+        const submitButton = document.getElementById('submitButton');
+      
+        form.addEventListener('submit', function() {
+          // Form gönderildiğinde butonu devre dışı bırak
+          submitButton.disabled = true;
+        });
+    
+        const deleteImageForms = document.querySelectorAll('.deleteImageForm');
+        const deleteImageButtons = document.querySelectorAll('.deleteImageButton');
+        // Bu sanırım çalışmıyor emin değilim
+        deleteImageForms.forEach((form) => {
+          form.addEventListener('submit', function() {
+            // Form gönderildiğinde tüm butonları devre dışı bırak
+            deleteImageButtons.forEach(button => button.disabled = true);
+          });
+        });
+    </script>
+
 </body>
 
 </html>
