@@ -39,11 +39,11 @@ router.post('/register', async (req, res) => {
 			to: email,
 			subject: 'İTÜ Raptiye mail doğrulama',
 			html: `<h1>Bizi tercih ettiğiniz için teşekkürler.</h1>
-			<p><a href="https://raptiye.oa.r.appspot.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>
+			<p><a href="https://www.ituraptiye.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>
 			 <br><br>
 			Eğer link çalışmazsa aşağıdaki url'ye gidiniz:
 			<br><br>
-			https://raptiye.oa.r.appspot.com/verify-email?token=${verificationToken}</p>`
+			https://www.ituraptiye.com/verify-email?token=${verificationToken}</p>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
@@ -91,7 +91,7 @@ router.post('/forgotpassword',async (req,res) => {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye şifre yenileme',
-			html: `<a href="https://raptiye.oa.r.appspot.com/refreshpassword?token=${verificationToken}">Linke tıklayarak şifrenizi sıfırlayınız.</a>`
+			html: `<a href="https://www.ituraptiye.com/refreshpassword?token=${verificationToken}">Linke tıklayarak şifrenizi sıfırlayınız.</a>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
