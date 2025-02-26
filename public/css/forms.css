@@ -99,6 +99,31 @@ textarea.form-control {
     filter: invert(1);
 }
 
+.image-gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.image-item{
+    /* Set a fixed preview size for balance */
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-item > img{
+    border-radius: 8px;
+    margin: 10px;
+    width: 70%;
+    height: 100%;
+    object-fit: cover; /* ensures images fill the preview without distortion */
+}
+
 .image-item .btn {
     margin : 10px 0;}
 

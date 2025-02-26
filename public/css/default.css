@@ -148,8 +148,6 @@ p{
     background-color: var(--navbar-font-color);
 }
 
-.btn3:active {
-}
 .btn1.active{
     cursor: context-menu;
     background-color: var(--ternary-color);
@@ -190,6 +188,23 @@ img.back-to-prev {
     width: 45px;
 }
 
+.list-group-item {
+    overflow-wrap: break-word;
+}
+
+
+button:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 620px) {
+    .container {
+        flex: 1;
+        padding: 10px;
+        max-width: 100%;
+    }
+}
+
 /* accessibility için */
 input:focus-visible,
 button:focus-visible,
@@ -211,20 +226,8 @@ area:focus-visible {
     outline: 3px solid black;
 }
 
-
-.list-group-item {
-    overflow-wrap: break-word;
-}
-
-
-button:focus {
-    outline: none;
-}
-
-@media screen and (max-width: 620px) {
-    .container {
-        flex: 1;
-        padding: 10px;
-        max-width: 100%;
-    }
+/* sonradan formatı değişen etiketler  */
+.timestamp{
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }

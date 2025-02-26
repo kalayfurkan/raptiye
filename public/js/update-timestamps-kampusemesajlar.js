@@ -1,3 +1,5 @@
+//update-timestamps.js dosyasından farkı eğer zaman 24 saatten önce ise saati de yanına koymasıdır.
+
 // Converts input from US format (e.g., "2/22/2025, 00:06:40 AM")
 // to the expected format "DD.MM.YYYY HH:MM:SS"
 function transformInputTime(inputTime) {
@@ -110,22 +112,22 @@ function timeAgo(inputTime) {
         now.getMonth() === pastDate.getMonth() &&
         now.getDate() === pastDate.getDate() + 1
     ) {
-        return `dün`;
+        return `dün ${formatTime(pastDate)}`;
     } else if (
         now.getFullYear() === pastDate.getFullYear() &&
         now.getMonth() === pastDate.getMonth() &&
         now.getDate() === pastDate.getDate() + 2
     ) {
-        return `geçen gün`;
+        return `geçen gün ${formatTime(pastDate)}`;
     } else if (diff < oneMonth) {
         const daysAgo = Math.floor(diff / oneDay);
-        return daysAgo > 0 ? `${daysAgo} gün` : 'bir saatten az';
+        return `${daysAgo} gün önce ${formatTime(pastDate)}`;
     } else if (diff < oneYear) {
         const monthsAgo = Math.floor(diff / oneMonth);
-        return `${monthsAgo} ay`;
+        return `${monthsAgo} ay önce`;
     } else {
         const yearsAgo = Math.floor(diff / oneYear);
-        return `${yearsAgo} yıl`;
+        return `${yearsAgo} yıl önce`;
     }
 }
 
@@ -136,7 +138,7 @@ function updateTimestamps() {
     // Loop through each element and apply the timeAgo function
     timestamps.forEach(element => {
         const timeText = element.textContent.trim();
-        const updatedTime = timeAgo(timeText); 
+        const updatedTime = timeAgo(timeText);
         element.textContent = updatedTime;
         element.style.opacity = 1; // Make the element visible
     });

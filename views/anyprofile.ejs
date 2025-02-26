@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/icons/logo.svg">
     <title>
-        <%= user.username %> - Profile
+        <%= user.username %> - Profili
     </title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	<meta property="og:title" content="İTÜ Raptiye">
+	<meta property="og:image" content="/img/icons/logo.svg">
+	<meta property="og:description" content="<%= user.username %> - Profili">
+	<meta property="og:url" content="https://ituraptiye.com/">
+	<meta property="og:type" content="website">
+
     <link rel="stylesheet" href="/css/default.css">
     <style>
         .profile-header {
@@ -59,7 +66,7 @@
                             <p class="mb-1">
                                 <%= post.description %>
                             </p>
-                            <small class="timestamp"><%= post.createdAt.toLocaleString() %></small>
+                            <small class="timestamp"><%= post.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                         <% }) %>
                 </div>
@@ -77,7 +84,7 @@
                             <p class="mb-1">
                                 <%= job.description %>
                             </p>
-                            <small class="timestamp">Posted on <%= job.createdAt.toLocaleString() %></small>
+                            <small class="timestamp">Posted on <%= job.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                         <% }) %>
                 </div>
@@ -95,7 +102,7 @@
                             <p class="mb-1">
                                 <%= kira.description %>
                             </p>
-                            <small class="timestamp">Posted on <%= kira.createdAt.toLocaleString() %></small>
+                            <small class="timestamp">Posted on <%= kira.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                         <% }) %>
                 </div>
@@ -113,7 +120,7 @@
                             <p class="mb-1">
                                 <%= shortilan.description %>
                             </p>
-                            <small class="timestamp">Posted on <%= shortilan.createdAt.toLocaleString() %></small>
+                            <small class="timestamp">Posted on <%= shortilan.createdAt.toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %></small>
                         </a>
                     <% }) %>
                 </div>

@@ -42,7 +42,7 @@
                                 <small class="text-muted timestamp">
                                     <% if (conversation.texts.length> 0) { %>
                                         <% const lastMessage=conversation.texts[conversation.texts.length - 1]; %>
-                                        <%= new Date(lastMessage.timestamp).toLocaleString() %>
+                                        <%= new Date(lastMessage.timestamp).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
                                     <% } %>
                                 </small>
                             </a>

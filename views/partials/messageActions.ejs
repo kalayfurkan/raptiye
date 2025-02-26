@@ -58,6 +58,6 @@
         </form>
     <% } %>
     <small class="timestamp text-muted message-time">
-        <%= new Date(message.createdAt).toLocaleString() %>
+        <%= new Date(message.createdAt).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
     </small>
 </div>

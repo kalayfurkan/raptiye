@@ -10,7 +10,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/editpost.css">
 </head>
 
 <body>
@@ -49,7 +48,7 @@
                             <label for="dosya" class="form-label">Daha Fazla Fotoğraf Yükle</label>
                             <input name="images" type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="dosya" multiple>
                         </div>
-                        <button type="submit" class="btn" id="submitButton">Değişiklikleri kaydet</button>
+                        <button type="submit" class="btn" id="submitButton">Kaydet</button>
                     </form>
 
                     <% if (ilan.images && ilan.images.length > 0) { %>
@@ -57,11 +56,11 @@
                         <div class="image-gallery">
                             <% ilan.images.forEach((image,index)=> { %>
                                 <div class="image-item edit-img-item">
-                                    <img src="<%= image %>" alt="Görsel" width="200">
-                                    <form class="delete-btn-form deleteImageForm" action="/delete-image/<%=ilan._id %>/<%=index%>"
+                                    <img src="<%= image %>" alt="Görsel">
+                                    <form class="delete-btn-form delete-image-form" action="/delete-image/<%=ilan._id %>/<%=index%>"
                                         method="POST" style="display:inline;">
                                         <input type="hidden" name="imagePath" value="<%= image %>">
-                                        <button class="btn deleteImageButton" type="submit">Görseli kaldır</button>
+                                        <button type="submit" class="btn2 delete-image-button"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                     </form>
                                 </div>
                             <% }); %>
@@ -90,13 +89,14 @@
           submitButton.disabled = true;
         });
     
-        const deleteImageForms = document.querySelectorAll('.deleteImageForm');
-        const deleteImageButtons = document.querySelectorAll('.deleteImageButton');
-
+        const deleteImageForms = document.querySelectorAll('.delete-image-form');
+        const deleteImageButtons = document.querySelectorAll('.delete-image-button');
+        
         deleteImageForms.forEach((form) => {
           form.addEventListener('submit', function() {
             // Form gönderildiğinde tüm butonları devre dışı bırak
             deleteImageButtons.forEach(button => button.disabled = true);
+            
           });
         });
     </script>

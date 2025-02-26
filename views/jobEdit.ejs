@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/forms.css">
     <link rel="stylesheet" href="/css/jobEdit.css">
+
+    <meta property="og:title" content="İTÜ Raptiye">
+	<meta property="og:image" content="/img/icons/logo.svg">
+	<meta property="og:description" content="İTÜ öğrencileri için satış ve ilan sitesi">
+	<meta property="og:url" content="https://ituraptiye.com/">
+	<meta property="og:type" content="website">
 </head>
 
 <body>
@@ -40,18 +46,18 @@
                             <label for="dosya" class="form-label">Daha Fazla Fotoğraf Yükle</label>
                             <input name="images" type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="dosya" multiple>
                         </div>
-                        <button type="submit" class="btn" id="submitButton">İlanı Düzenle</button>
+                        <button type="submit" class="btn" id="submitButton">Kaydet</button>
                     </form>
                     <% if (job.images && job.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
                     <div class="image-gallery">
                         <% job.images.forEach((image,index)=> { %>
                             <div class="image-item">
-                                <img src="<%= image %>" alt="Görsel" width="200">
-                                <form class="deleteImageForm" action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
+                                <img src="<%= image %>" alt="Görsel">
+                                <form class="delete-image-form" action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button type="submit" class="btn2 deleteImageButton"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
+                                    <button type="submit" class="btn2 delete-image-button"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
                         <% }); %>
@@ -80,8 +86,8 @@
           submitButton.disabled = true;
         });
     
-        const deleteImageForms = document.querySelectorAll('.deleteImageForm');
-        const deleteImageButtons = document.querySelectorAll('.deleteImageButton');
+        const deleteImageForms = document.querySelectorAll('.delete-image-form');
+        const deleteImageButtons = document.querySelectorAll('.delete-image-button');
         // Bu sanırım çalışmıyor emin değilim
         deleteImageForms.forEach((form) => {
           form.addEventListener('submit', function() {

@@ -51,18 +51,18 @@
                             <label for="images" class="form-label">Fotoğraf Yükle</label>
                             <input type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="images" name="images" accept="image/*" multiple>
                         </div>
-                        <button type="submit" class="btn" id="submitButton">İlanı Düzenle</button>
+                        <button type="submit" class="btn" id="submitButton">Kaydet</button>
                     </form>
                     <% if (kira.images && kira.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
                     <div class="image-gallery">
                         <% kira.images.forEach((image,index)=> { %>
                             <div class="image-item">
-                                <img src="<%= image %>" alt="Görsel" width="200">
-                                <form class="deleteImageForm" action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
+                                <img src="<%= image %>" alt="Görsel">
+                                <form class="delete-image-form" action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button class="btn2 deleteImageButton" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
+                                    <button class="btn2 delete-image-button" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
                         <% }); %>
@@ -92,8 +92,8 @@
           submitButton.disabled = true;
         });
     
-        const deleteImageForms = document.querySelectorAll('.deleteImageForm');
-        const deleteImageButtons = document.querySelectorAll('.deleteImageButton');
+        const deleteImageForms = document.querySelectorAll('.delete-image-form');
+        const deleteImageButtons = document.querySelectorAll('.delete-image-button');
         // Bu sanırım çalışmıyor emin değilim
         deleteImageForms.forEach((form) => {
           form.addEventListener('submit', function() {
