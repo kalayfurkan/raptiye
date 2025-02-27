@@ -52,7 +52,7 @@ router.get('/profile/:username', allMiddlewares.requireAuth, async (req, res) =>
 router.get('/editprofile/:username', allMiddlewares.requireAuth, async (req, res) => {
 	const username = req.params.username;
 	const user = await User.findOne({username:username});
-	res.render('editprofile', { user });
+	res.render('editprofile', { user,message:null});
 });
 
 router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, res) => {
@@ -127,12 +127,12 @@ router.post('/profile/:userid/change-password',allMiddlewares.requireAuth,async 
         // 1. Kullanıcının mevcut şifresini doğrula
         const isMatch = await bcrypt.compare(currentPassword, user.password); // Kullanıcının mevcut şifresi
         if (!isMatch) {
-            return res.status(400).render('loggenerrorpage',{message:"Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor."});
+            return res.status(400).render('editprofile',{user,message:"Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor."});
         }
 
         // 2. Yeni şifreyi kontrol et
         if (newPassword !== confirmPassword) {
-            return res.status(400).render('loggenerrorpage',{message:"Yeni Şifreyi ikinci seferinde yanlış girdiniz"});
+            return res.status(400).render('editprofile',{user,message:"Yeni şifreler uyuşmuyor."});
         }
 
         // 3. Yeni şifreyi hashle

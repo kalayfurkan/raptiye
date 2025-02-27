@@ -17,6 +17,15 @@
     <div id="wrapper">
         <%- include('partials/navbar') %>
             <div class="container">
+                <% if (message) { %>
+					<% if (message==='Mevcut Şifrenizle girdiğiniz mevcut şifre uyuşmuyor.') { %>
+						<div class="alert alert-danger">
+							<%= message %>
+						</div>
+					<% } else if(message==='Yeni şifreler uyuşmuyor.') { %>
+						<div class="alert alert-danger"><%= message %></div>
+					<% } %>
+				<% } %>
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">Profili Düzenle</h2>
 
@@ -33,7 +42,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="profilePic" class="form-label">Profile Picture</label>
+                            <label for="profilePic" class="form-label">Profil Resmi</label>
                             <input type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="profilePic" name="profilePic">
                         </div>
 
@@ -45,18 +54,18 @@
                     <h2>Şifre Değiştir</h2>
                     <form action="/profile/<%= user._id %>/change-password" method="POST">
                         <div class="form-group">
-                            <label for="currentPassword" class="form-label">Current Password</label>
+                            <label for="currentPassword" class="form-label">Mevcut Şifre</label>
                             <input type="password" class="form-control" id="currentPassword" name="currentPassword"
                                 required>
                         </div>
 
                         <div class="form-group">
-                            <label for="newPassword" class="form-label">New Password</label>
+                            <label for="newPassword" class="form-label">Yeni Şifre</label>
                             <input type="password" class="form-control" id="newPassword" name="newPassword" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                            <label for="confirmPassword" class="form-label">Yeni Şifreyi Doğrula</label>
                             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
                                 required>
                         </div>
@@ -64,7 +73,7 @@
                         <button type="submit" class="btn">Şifreyi kaydet</button>
                     </form>
                 </div>
-
+                
                 <div class="register-div">
                     <a href="/profile">Profilinize gidin.</a>
                 </div>
