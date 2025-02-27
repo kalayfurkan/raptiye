@@ -52,8 +52,8 @@
                                                 <a href="/satisilani/edit/<%= ilan._id %>" class="btn1">
                                                     <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
                                                 </a>
-                                                <form action="/ilan/delete/<%= ilan._id %>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/ilan/delete/<%= ilan._id %>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
@@ -79,8 +79,8 @@
                                                 <a href="/isilani/edit/<%= job._id %>" class="btn1">
                                                     <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
                                                 </a>
-                                                <form action="/job/delete/<%= job._id %>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/job/delete/<%= job._id %>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
@@ -107,8 +107,8 @@
                                                 <a href="/evarkadasiilani/edit/<%= kira._id %>" class="btn1">
                                                     <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
                                                 </a>
-                                                <form action="/kiraoda/delete/<%= kira._id %>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/kiraoda/delete/<%= kira._id %>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
@@ -207,6 +207,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/js/profilefavorites.js"></script>
+
+    <script defer src="/js/prevent-multiple-submit.js"></script>
+    <!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->
 </body>
 
 </html>

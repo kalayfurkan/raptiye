@@ -20,7 +20,7 @@
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="text-center mb-4">İlanı Düzenle</h2>
 
-                    <form action="/kiraoda/edit/<%=kira._id  %>" method="POST" enctype="multipart/form-data" id="ilanForm">
+                    <form class="prevent-multiple-submit-form" action="/kiraoda/edit/<%=kira._id  %>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="type" class="form-label">İlan Türü</label>
                             <select class="form-select" id="type" name="searchingFor" required>
@@ -51,7 +51,7 @@
                             <label for="images" class="form-label">Fotoğraf Yükle</label>
                             <input type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="images" name="images" accept="image/*" multiple>
                         </div>
-                        <button type="submit" class="btn" id="submitButton">Kaydet</button>
+                        <button type="submit" class="btn prevent-multiple-submit-button">Kaydet</button>
                     </form>
                     <% if (kira.images && kira.images.length > 0) { %>
                     <h3>Mevcut Görselleri Düzenle</h3>
@@ -59,10 +59,10 @@
                         <% kira.images.forEach((image,index)=> { %>
                             <div class="image-item">
                                 <img src="<%= image %>" alt="Görsel">
-                                <form class="delete-image-form" action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
+                                <form class="prevent-multiple-submit-form" action="/delete-kiraodaimage/<%=kira._id %>/<%=index%>" method="POST"
                                     style="display:inline;">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
-                                    <button class="btn2 delete-image-button" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
+                                    <button class="btn2 prevent-multiple-submit-button" type="submit"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>
                             </div>
                         <% }); %>
@@ -83,25 +83,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script defer>
-        const form = document.getElementById('ilanForm');
-        const submitButton = document.getElementById('submitButton');
-      
-        form.addEventListener('submit', function() {
-          // Form gönderildiğinde butonu devre dışı bırak
-          submitButton.disabled = true;
-        });
-    
-        const deleteImageForms = document.querySelectorAll('.delete-image-form');
-        const deleteImageButtons = document.querySelectorAll('.delete-image-button');
-        // Bu sanırım çalışmıyor emin değilim
-        deleteImageForms.forEach((form) => {
-          form.addEventListener('submit', function() {
-            // Form gönderildiğinde tüm butonları devre dışı bırak
-            deleteImageButtons.forEach(button => button.disabled = true);
-          });
-        });
-    </script>
+    <script defer src="/js/prevent-multiple-submit.js"></script>
+    <!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->
 
 </body>
 

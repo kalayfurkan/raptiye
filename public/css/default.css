@@ -130,7 +130,10 @@ p{
     background-color: white;
     color: var(--primary-color-dark);
 }
-
+.btn:disabled,.btn2:disabled,.btn3:disabled{
+    background-color: white!important; 
+    /* for development */
+}
 .btn3 {
     text-align: center;
     padding: 6px 12px;
