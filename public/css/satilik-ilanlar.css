@@ -21,7 +21,7 @@ input.satilik-search {
 
 .card-box {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2em;
 }
 
@@ -29,7 +29,7 @@ input.satilik-search {
     padding: 20px;
     display: flex;
     flex-direction: row;
-    min-width: 400px;
+    min-width: 350px;
     height: 200px;
     background-color: #fff;
     border: none;
@@ -102,4 +102,16 @@ svg.star path {
     .card img{
         width: 100px !important; /* bootstrapdan dolayı zorunlu */
     }
-}  
+}
+
+@media only screen and (max-width: 350px) {
+    .card-box {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .card {
+        padding: 5px;
+        min-width: 300px;
+    }
+}
