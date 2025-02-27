@@ -165,8 +165,8 @@
                                     </button>
 
                                     <% if (message.owner && userId==message.owner._id.toString()) { %>
-                                        <form action="/deletekampusmesaj/<%= message._id %>" method="POST">
-                                            <button type="submit" class="btn2">
+                                        <form action="/deletekampusmesaj/<%= message._id %>" method="POST" class="prevent-multiple-submit-form">
+                                            <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                 <img src="/img/icons/trash-bin.svg">
                                             </button>
                                         </form>
@@ -199,13 +199,13 @@
                                     </ul>
 
                                     <!-- Yorum ekleme formu -->
-                                    <form action="/add-comment" method="POST" class="mt-3">
+                                    <form action="/add-comment" method="POST" class="mt-3 prevent-multiple-submit-form">
                                         <div class="mb-3">
                                             <textarea class="form-control" name="yorum" rows="2"
                                                 placeholder="Yorumunuzu buraya yazın" required></textarea>
                                         </div>
                                         <input type="hidden" name="messageId" value="<%= message._id %>">
-                                        <button type="submit" class="btn1">Yorum Yap</button>
+                                        <button type="submit" class="btn1 prevent-multiple-submit-button">Yorum Yap</button>
                                     </form>
                                 </div>
                             </div>
@@ -295,6 +295,8 @@
     <!-- daha-fazla-container class ına sahip etiketlein formatını değiştiriyor sadece-->
     <script src="/js/update-timestamps-kampusemesajlar.js"></script>
     <!-- timestamp class'ına sahip etiketlerin formatını değiştiriyor sadece -->
+    <script defer src="/js/prevent-multiple-submit.js"></script>
+    <!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->
 
 
 </body>

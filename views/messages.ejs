@@ -53,11 +53,11 @@
                                     </div>
                                 <% }); %>
                             <% } %>
-                            <form id="message-form" method="POST" action="/messages/<%=communicators[0]%>/<%=communicators[1] %>" autocomplete="off">
+                            <form id="message-form" class="prevent-multiple-submit-form" method="POST" action="/messages/<%=communicators[0]%>/<%=communicators[1] %>" autocomplete="off">
                                 <div class="input-group">
                                     <input type="text" name="message" id="message-input" class="form-control" placeholder="Mesaj at" required>
                                     <div class="input-group-append">
-                                        <button id="btn-send" type="submit" class="btn1">
+                                        <button id="btn-send" type="submit" class="btn1 prevent-multiple-submit-button">
                                             <img src="/img/icons/send.svg" alt="Send">
                                         </button>
                                     </div>
@@ -78,9 +78,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- timestamp class ına sahip etiketlein formatını değiştiriyor sadece -->
     <script src="/js/update-timestamps.js"></script>
+    
     <!-- daha-fazla-container class ına sahip etiketlein formatını değiştiriyor sadece-->
     <script src="/js/daha-fazla.js"></script>
+
     <script src="/js/messages.js"></script>
+
+    <script defer src="/js/prevent-multiple-submit.js"></script>
+    <!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->
 </body>
 
 </html>

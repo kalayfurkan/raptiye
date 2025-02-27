@@ -15,14 +15,14 @@
     <div id="contact-form">
         <button id="close-form" class="close-btn">&times;</button> <!-- Kapatma tuşu -->
         <h4>İletişim Formu</h4>
-        <form action="/contact-us" method="POST">
+        <form action="/contact-us" method="POST" class="prevent-multiple-submit-form">
             <label for="email">E-posta:</label>
             <input type="email" id="email" name="email" autocomplete="email" required>
         
             <label for="message">Mesajınız:</label>
             <textarea id="message" name="message" rows="4" autocomplete="off" required></textarea>
         
-            <button type="submit" class="btn btn-danger btn-md">Gönder</button>
+            <button type="submit" class="btn btn-danger btn-md prevent-multiple-submit-button">Gönder</button>
         </form>
     </div>
 </footer>
@@ -163,3 +163,6 @@
     });
 
 </script>
+
+<script defer src="/js/prevent-multiple-submit.js"></script>
+<!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->

@@ -10,7 +10,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/default.css">
     <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/editprofile.css">
 </head>
 
 <body>
@@ -29,7 +28,7 @@
                 <div class="form-container p-4 shadow rounded bg-white">
                     <h2 class="form-title text-center mb-4">Profili Düzenle</h2>
 
-                    <form action="/editprofile/<%= user.username %>" method="POST" enctype="multipart/form-data">
+                    <form action="/editprofile/<%= user.username %>" method="POST" enctype="multipart/form-data" class="prevent-multiple-submit-form">
                         <div class="form-group">
                             <label for="name" class="form-label">Kullanıcı Adı</label>
                             <input type="text" class="form-control" id="name" name="username"
@@ -46,13 +45,13 @@
                             <input type="file" accept=".avif, .webp, .png, .jpg, .jpeg" class="form-control" id="profilePic" name="profilePic">
                         </div>
 
-                        <button type="submit" class="btn"> Değişiklikleri kaydet</button>
+                        <button type="submit" class="btn prevent-multiple-submit-button"> Değişiklikleri kaydet</button>
                     </form>
 
                     <hr>
 
                     <h2>Şifre Değiştir</h2>
-                    <form action="/profile/<%= user._id %>/change-password" method="POST">
+                    <form action="/profile/<%= user._id %>/change-password" method="POST" class="prevent-multiple-submit-form">
                         <div class="form-group">
                             <label for="currentPassword" class="form-label">Mevcut Şifre</label>
                             <input type="password" class="form-control" id="currentPassword" name="currentPassword"
@@ -70,7 +69,7 @@
                                 required>
                         </div>
 
-                        <button type="submit" class="btn">Şifreyi kaydet</button>
+                        <button type="submit" class="btn prevent-multiple-submit-button">Şifreyi kaydet</button>
                     </form>
                 </div>
                 
@@ -86,6 +85,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script defer src="/js/prevent-multiple-submit.js"></script>
+    <!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->
 </body>
 
 </html>

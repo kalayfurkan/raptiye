@@ -131,8 +131,8 @@
                                             </a>
 
                                             <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                                <form action="/shortilan/delete/<%= short._id %>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/shortilan/delete/<%= short._id %>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
@@ -152,8 +152,8 @@
                                                 <%= favorite.title %>
                                             </a>
                                             <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                                <form action="/deletefavorites/<%=favorite._id%>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/deletefavorites/<%=favorite._id%>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
@@ -168,8 +168,8 @@
                                                 <%= favoriteJob.jobTitle %>
                                             </a>
                                             <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                                <form action="/jobdeletefavorites/<%=favoriteJob._id%>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/jobdeletefavorites/<%=favoriteJob._id%>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
@@ -185,8 +185,8 @@
                                                 <%= favoriteKira.title %>
                                             </a>
                                             <div class="btn-group" role="group" aria-label="İlan işlemleri">
-                                                <form action="/kiradeletefavorites/<%=favoriteKira._id%>" method="POST" class="d-inline">
-                                                    <button type="submit" class="btn2">
+                                                <form action="/kiradeletefavorites/<%=favoriteKira._id%>" method="POST" class="d-inline prevent-multiple-submit-form">
+                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
                                                         <img height="18px" width="18px" src="/img/icons/trash-bin.svg">
                                                     </button>
                                                 </form>
