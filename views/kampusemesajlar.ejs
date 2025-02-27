@@ -160,10 +160,17 @@
                                             </form>
                                         <% } %>
                                     </div>
-                                    <button class="btn1" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
-                                        <img src="/img/icons/message-img.svg">
+                                    <button class="btn1 notification-message" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
+                                        
+                                        <% if (message.yorumlar.length==0) { %>
+                                            <img src="/img/icons/message-img.svg">
+                                        <%} else if(message.yorumlar.length>0){ %>
+                                            <img src="/img/icons/message-notification-img.svg" alt="<%=hasNotification%> mesaj">
+                                            <span><%=message.yorumlar.length%></span>
+                                        <% } %>
+                                        
                                     </button>
-                                    <%=message.yorumlar.length%>
+                                    
                                     <% if (message.owner && userId==message.owner._id.toString()) { %>
                                         <form action="/deletekampusmesaj/<%= message._id %>" method="POST" class="prevent-multiple-submit-form">
                                             <button type="submit" class="btn2 prevent-multiple-submit-button">
@@ -295,10 +302,6 @@
     <!-- daha-fazla-container class ına sahip etiketlein formatını değiştiriyor sadece-->
     <script src="/js/update-timestamps-kampusemesajlar.js"></script>
     <!-- timestamp class'ına sahip etiketlerin formatını değiştiriyor sadece -->
-    <script defer src="/js/prevent-multiple-submit.js"></script>
-    <!-- prevent-multiple-submit-form prevent-multiple-submit-button class'ına sahip etiketlere etki eder başka bir etkisi yok-->
-
-
 </body>
 
 </html>

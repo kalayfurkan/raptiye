@@ -228,13 +228,15 @@ img.plus-symbol:hover {
 	display: block;
 }
 
-a.notification {
-	position: relative;
-	display: inline-block;
+.navbar-item .notification {
 	animation: wiggle 0.5s ease 5;
 }
+.notification {
+	position: relative;
+	display: inline-block;
+}
 
-a.notification span {
+.notification span {
 	font-weight: bold;
 	position: absolute;
 	top: 50%;
@@ -291,7 +293,7 @@ ul.mobile-icons {
 	.navbar-brand span {
 		display: none;
 	}
-	a.notification {
+	.notification {
 		animation: none;
 	}
 }

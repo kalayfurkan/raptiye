@@ -74,6 +74,43 @@ p.daha-fazla.collapsed {
     box-shadow: none;
 }
 
+.notification-message{
+	position: relative;
+	display: inline-block;
+}
+
+.mesaj-alt-butonalar .notification-message img{
+    width: 24px;
+    height: 24px;
+}
+.mesaj-alt-butonalar .notification-message:active img{
+    filter: invert(0);
+}
+.mesaj-alt-butonalar .notification-message:active{
+    background-color: var(--secondary-color-dark);
+}
+.notification-message span {
+	position: absolute;
+	top: 53%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	/* Center the badge horizontally and vertically */
+	font-size: 10px;
+	display: inline-block;
+	min-width: 30px;
+	text-align: center;
+}
+
+.btn1 img,
+.btn2 img{
+    width: 18px;
+    height: 18px;
+}
+.btn1:active img,
+.btn2:active img{
+    filter: invert(1);
+}
+
 /* thumbs styling */
     div.votes{
         background-color: #ffffff;
@@ -122,15 +159,7 @@ p.daha-fazla.collapsed {
 
     }
 
-    .btn1 img,
-    .btn2 img{
-        width: 18px;
-        height: 18px;
-    }
-    .btn1:active img,
-    .btn2:active img{
-        filter: invert(1);
-    }
+
 
     @keyframes left-spin-scale {
         0% {
