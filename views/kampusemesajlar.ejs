@@ -187,24 +187,29 @@
                                         <% if (message.yorumlar.length> 0) { %>
                                             <% message.yorumlar.forEach(function(yorum) { %>
                                                 <li class="list-group-item ">
-                                                    <p>
-                                                        <a href="/profile/<%=yorum.owner.username %>">
-                                                            <strong>
-                                                                <%= yorum.owner.username %>
-                                                            </strong>
-                                                        </a>
-                                                        : <%= yorum.yorum %>
-                                                        <% if (yorum.owner && userId===yorum.owner._id.toString()) { %>
-                                                            <form action="/delete-comment/<%= yorum._id %>/<%=message._id%>" method="POST" class="prevent-multiple-submit-form">
-                                                                <button type="submit" class="btn2 prevent-multiple-submit-button">
-                                                                    <img src="/img/icons/trash-bin.svg">
-                                                                </button>
-                                                            </form>
+                                                        <% if (yorum.owner) { %>
+                                                            <a href="/profile/<%= yorum.owner.username %>">
+                                                                <strong>
+                                                                    <%= yorum.owner.username %>
+                                                                </strong>
+                                                            </a>
+                                                        <% } else { %>
+                                                            <span>Eski Kullanıcı</span>
                                                         <% } %>
-                                                    </p>
-                                                    <small class="timestamp text-muted float-end">
-                                                        <%= new Date(yorum.createdAt).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
-                                                    </small>
+                                                        : <%= yorum.yorum %>
+                                                        <div class="comment-right">
+                                                            <small class="timestamp text-muted float-end mt-auto me-3">
+                                                                <%= new Date(yorum.createdAt).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
+                                                            </small>
+                                                            <% if (yorum.owner && userId===yorum.owner._id.toString()) { %>
+                                                                <form action="/delete-comment/<%= yorum._id %>/<%=message._id%>" method="POST" class="prevent-multiple-submit-form yorum-trashcan-form">
+                                                                    <button type="submit" class="btn2 prevent-multiple-submit-button">
+                                                                        <img src="/img/icons/trash-bin.svg">
+                                                                    </button>
+                                                                </form>
+                                                            <% } %>
+                                                        </div>
+                                                        
                                                 </li>
                                             <% }) %>
                                         <% } else { %>

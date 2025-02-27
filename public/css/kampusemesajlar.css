@@ -110,7 +110,14 @@ p.daha-fazla.collapsed {
 .btn2:active img{
     filter: invert(1);
 }
-
+form.yorum-trashcan-form{
+    display: flex;
+    justify-content: flex-end;
+}
+.comment-right{
+    display: flex;
+    justify-content: flex-end;
+}
 /* thumbs styling */
     div.votes{
         background-color: #ffffff;
