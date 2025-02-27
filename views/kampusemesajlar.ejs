@@ -187,6 +187,13 @@
                                                             </strong>
                                                         </a>
                                                         : <%= yorum.yorum %>
+                                                        <% if (yorum.owner && userId===yorum.owner._id.toString()) { %>
+                                                            <form action="/delete-comment/<%= yorum._id %>/<%=message._id%>" method="POST" class="prevent-multiple-submit-form">
+                                                                <button type="submit" class="btn2 prevent-multiple-submit-button">
+                                                                    <img src="/img/icons/trash-bin.svg">
+                                                                </button>
+                                                            </form>
+                                                        <% } %>
                                                     </p>
                                                     <small class="timestamp text-muted float-end">
                                                         <%= new Date(yorum.createdAt).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
