@@ -26,7 +26,7 @@ const kampusemesajSchema = new mongoose.Schema({
 	createdAt: {
 		type: Date,
 		default: Date.now,
-		expires: 604800,
+		expires: 2592000,
 	},
 	images: {
 		type: String,

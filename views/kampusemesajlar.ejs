@@ -163,7 +163,7 @@
                                     <button class="btn1" type="button" data-bs-toggle="collapse" data-bs-target="#yorumlar-<%= message._id %>" aria-expanded="false" aria-controls="yorumlar-<%= message._id %>">
                                         <img src="/img/icons/message-img.svg">
                                     </button>
-
+                                    <%=message.yorumlar.length%>
                                     <% if (message.owner && userId==message.owner._id.toString()) { %>
                                         <form action="/deletekampusmesaj/<%= message._id %>" method="POST" class="prevent-multiple-submit-form">
                                             <button type="submit" class="btn2 prevent-multiple-submit-button">
