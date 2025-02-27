@@ -278,4 +278,35 @@ router.post('/add-comment', allMiddlewares.requireAuth, async (req, res) => {
 	}
 })
 
+router.post('/delete-comment/:id/:messageid',allMiddlewares.requireAuth,async (req,res) => {
+	try {
+		const commentId = req.params.id;
+		const userId = req.session.userId;
+		const messageId = req.params.messageid;
+
+		// Yalnızca belirtilen mesaj içinde, oturumdaki kullanıcıya ait yorumu silmek için sorgu:
+		const updatedMessage = await Kampusemesaj.findOneAndUpdate(
+			{
+				_id: messageId,
+				"yorumlar": { $elemMatch: { _id: commentId, owner: userId } }
+			},
+			{
+				$pull: {
+					yorumlar: { _id: commentId }
+				}
+			},
+			{ new: true } // Güncellenmiş belgeyi döndürür
+		);
+
+		if (!updatedMessage) {
+			return res.status(404).send('Yorum bulunamadı veya silme yetkiniz yok.');
+		}
+
+		res.redirect('/kampusemesajlar');
+	} catch (error) {
+		console.error('Yorum silinirken bir hata oluştu:', error);
+		res.status(500).send('Yorum silinirken bir hata oluştu.');
+	}
+})
+
 module.exports = router;
