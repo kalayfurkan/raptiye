@@ -94,8 +94,14 @@
                         </div>
                         <div class="seller-info">
                             <div>
-                                <h3>Satıcıya ulaşmak için:</h3>
-                                <p class="reach-you"><%= ilan.reachYou %></p>
+                                <% if (ilan.reachYou != "") { %>
+                                    <h3 class="mt-2">Satıcıya ulaşmak için:</h3>
+                                    <p class="reach-you"><%= ilan.reachYou %></p>
+                                <% } %>
+                                <p class="mt-2">
+                                    <strong>Oluşturulma Tarihi:</strong>
+                                    <%= new Date(ilan.createdAt).toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul" }) %>
+                                </p>
                             </div>
                             <div class="reach-info">
                                 <a href="/profile/<%=user.username  %>"><%=user.username  %> </a>
