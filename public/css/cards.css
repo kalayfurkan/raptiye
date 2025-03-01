@@ -87,6 +87,11 @@ svg.star path {
     transition: fill 0.7s ease, stroke 0.7s ease;
 }
 
-.star-btn:hover svg.star path, .star-btn.spin svg.star path {
+.star-btn.spin svg.star path {
     fill: #ffff00;
+}
+@media (hover: hover) { /* only apply hover styles on devices that support hover */
+    .star-btn:hover svg.star path{
+        fill: #ffff00;
+    }
 }
