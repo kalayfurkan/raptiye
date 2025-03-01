@@ -90,8 +90,15 @@ svg.star path {
     transition: fill 0.7s ease, stroke 0.7s ease;
 }
 
-.star-btn:hover svg.star path, .star-btn.spin svg.star path {
+
+.star-btn.spin svg.star path {
     fill: #ffff00;
+}
+
+@media screen and (min-width: 768px) {
+    .star-btn:hover svg.star path {
+        fill: #ffff00;
+    }
 }
 
 @media only screen and (max-width: 500px) {

@@ -90,8 +90,9 @@ svg.star path {
 .star-btn.spin svg.star path {
     fill: #ffff00;
 }
-@media (hover: hover) { /* only apply hover styles on devices that support hover */
-    .star-btn:hover svg.star path{
+
+@media screen and (min-width: 768px) {
+    .star-btn:hover svg.star path {
         fill: #ffff00;
     }
 }
