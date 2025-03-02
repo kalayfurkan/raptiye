@@ -23,7 +23,7 @@ app.use(expressSession({
   cookie: {
     maxAge: 6 * 60 * 60 * 1000, //default 6 saat
     httpOnly: true,  //https only için değişimler yapılmalı
-    secure: true, //process.env.NODE_ENV === 'production', ya da sadece http ile ulaşılması için yayınlamadan true yapmalıyız
+    secure: false, //process.env.NODE_ENV === 'production', ya da sadece http ile ulaşılması için yayınlamadan true yapmalıyız
     sameSite: 'strict', //sameSite: 'lax'
   },
   store: MongoStore.create({
