@@ -142,6 +142,10 @@ textarea.form-control {
     text-decoration: underline;
 }
 
+.inline-form {
+    display: inline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 

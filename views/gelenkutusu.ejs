@@ -9,6 +9,12 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/default.css">
+    <style>
+        .yeni-mesaj {
+            color: red;
+            font-size: 10px;
+        }
+    </style>
 
 </head>
 
@@ -27,7 +33,7 @@
                                     <h3>
                                         <%=otherUser.username %>
                                         <% if (conversation.notification && conversation.notification.toString()===currentUserId.toString()) { %>
-                                            <small style="color: red; font-size: 10px;">yeni mesaj</small>
+                                            <small class="yeni-mesaj">yeni mesaj</small>
                                         <% } %>
                                     </h3>
                                     <% if (conversation.texts.length> 0) { %>

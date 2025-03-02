@@ -54,8 +54,7 @@
                         <% job.images.forEach((image,index)=> { %>
                             <div class="image-item">
                                 <img src="<%= image %>" alt="Görsel">
-                                <form class="prevent-multiple-submit-form" action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST"
-                                    style="display:inline;">
+                                <form class="prevent-multiple-submit-form inline-form" action="/delete-jobimage/<%=job._id %>/<%=index%>" method="POST">
                                     <input type="hidden" name="imagePath" value="<%= image %>">
                                     <button type="submit" class="btn2 prevent-multiple-submit-button"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                 </form>

@@ -85,6 +85,11 @@ header h1 {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+
+.edit-svg{
+  position: relative;
+  top: -1px;
+}
 /* Lightbox Container */
 .lightbox {
     display: none;

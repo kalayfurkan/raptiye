@@ -120,3 +120,7 @@ div.input-group {
     height: auto;
     /* Ensure button height is consistent */
 }
+
+.mesaj-daha-fazla{
+    display: none;
+}

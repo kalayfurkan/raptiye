@@ -57,7 +57,7 @@
                             <% ilan.images.forEach((image,index)=> { %>
                                 <div class="image-item edit-img-item">
                                     <img src="<%= image %>" alt="Görsel">
-                                    <form class="delete-btn-form prevent-multiple-submit-form" action="/delete-image/<%=ilan._id %>/<%=index%>" method="POST" style="display:inline;">
+                                    <form class="d-inline delete-btn-form prevent-multiple-submit-form" action="/delete-image/<%=ilan._id %>/<%=index%>" method="POST">
                                         <input type="hidden" name="imagePath" value="<%= image %>">
                                         <button type="submit" class="btn2 prevent-multiple-submit-button"><img height="18px" width="18px" src="/img/icons/trash-bin.svg"></button>
                                     </form>

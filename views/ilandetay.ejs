@@ -107,7 +107,7 @@
                                 <a href="/profile/<%=user.username  %>"><%=user.username  %> </a>
                                 <a class="btn1 align-self-end" href="<%= currentUserId.toString() === ilan.owner.toString() ? '/satisilani/edit/' + ilan._id : '/messages/' + currentUserId.toString() + '/' + ilan.owner%>">
                                     <% if (currentUserId.toString() === ilan.owner.toString()) { %>
-                                        <img height="16px" width="16px" src="/img/icons/edit.svg" style="position: relative; top: -1px;">
+                                        <img class="edit-svg" height="16px" width="16px" src="/img/icons/edit.svg">
                                     <% } else { %>
                                         Mesaj at
                                     <% } %>
