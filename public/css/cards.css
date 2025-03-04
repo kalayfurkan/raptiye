@@ -91,7 +91,7 @@ svg.star path {
     fill: #ffff00;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
     .star-btn:hover svg.star path {
         fill: #ffff00;
     }
