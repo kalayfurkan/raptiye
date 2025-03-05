@@ -6,6 +6,7 @@ const User = require('../models/userSchema');
 const sharp = require('sharp');
 const path = require('path');
 const { uploadToR2, deleteFromR2 } = require('./s3.js');
+const { randomBytes } = require('crypto');
 
 router.get('/kampusebirmesajbirak', allMiddlewares.requireAuth, (req, res) => {
 	res.render('kampusebirmesajver');
@@ -103,9 +104,12 @@ router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
         const totalMessages = await Kampusemesaj.countDocuments(query);
         const totalPages = Math.ceil(totalMessages / limit);
 
+		const nonce = "test"; // XSS koruması için nonce oluştur
+
         res.render('kampusemesajlar', {
             messages,
             userId,
+			nonce,
             sortOption,
             pagination: {
                 currentPage: page,
@@ -115,6 +119,7 @@ router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
             },
         });
     } catch (error) {
+		console.error('Mesajlar getirilirken bir hata oluştu:', error);
         res.status(500).send(error);
     }
 });

@@ -4,6 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com;
+        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://stackpath.bootstrapcdn.com;
+        img-src 'self' data:;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self';
+        object-src 'none';
+        form-action 'self';
+        upgrade-insecure-requests;
+    ">
+
     <link rel="icon" href="/img/icons/logo.svg">
     <title>Gelen Kutusu</title>
 
@@ -15,6 +27,8 @@
             font-size: 10px;
         }
     </style>
+
+    
 
 </head>
 
