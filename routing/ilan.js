@@ -32,7 +32,7 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name.replace('/', '_')}`;
+			const fileName = `${date}-${Math.round(Math.random() * 1E9)}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)
@@ -173,7 +173,7 @@ router.post('/editpost/:ilanId', allMiddlewares.requireAuth, async (req, res) =>
 			}
 
 			const date = new Date().toISOString().replace(/:/g, '-');
-			const fileName = `${date}-${element.name.replace('/', '_')}`;
+			const fileName = `${date}-${Math.round(Math.random() * 1E9)}`;
 
 			const compressedBuffer = await sharp(element.data)
 				.resize(maxWidth)

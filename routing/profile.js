@@ -70,7 +70,7 @@ router.post('/editprofile/:username', allMiddlewares.requireAuth, async (req, re
 
             // Prepare the new image
             const date = new Date().toISOString().replace(/:/g, '-');
-            const fileName = `${date}-${req.files.profilePic.name.replace('/', '_')}`;
+            const fileName = `${date}-${Math.round(Math.random() * 1E9)}`;
 
             const maxWidth = 1000;
             const quality = 50;

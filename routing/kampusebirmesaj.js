@@ -42,7 +42,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 				}
 
 				const date = new Date().toISOString().replace(/:/g, '-');
-				fileName = `${date}-${image.name.replace('/', '_')}`;
+				const fileName = `${date}-${Math.round(Math.random() * 1E9)}`;
 
 				const compressedBuffer = await sharp(image.data)
 					.resize(maxWidth)
