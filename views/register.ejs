@@ -37,7 +37,7 @@
 			<div class="container">
 				<div class="form-container p-4 shadow rounded bg-white">
 					<h2 class="form-title"> Üye Olun</h2>
-					<form action="/register" method="post">
+					<form action="/register" method="post" class="prevent-multiple-submit-form">
 						<div class="form-group">
 							<label for="exampleInputEmail1" class="form-label">E-posta</label>
 							<input name="email" type="email" class="form-control" id="exampleInputEmail1"
@@ -55,8 +55,8 @@
 								placeholder="Parola">
 							<small id="passwordHelp" class="form-text text-muted">Bu şifre İTÜ hesabınızdan bağımsızdır.</small>
 						</div>
-						<button type="submit" class="btn mt-2">Üye ol</button>
-						<small id="passwordHelp" class="form-text text-muted">itü mail sisteminden dolayı doğrulama linkinin gelmesi biraz zaman alabilir. Ayrıca bazı kullanıcılar hesap doğrulandığı halde Invalid Token yazısı aldıklarını belirtti. Bu iki sorunu çözmeye çalışıyoruz, anlayış gösterdiğiniz için teşekkür ederiz.</small>
+						<button type="submit" class="btn mt-2 prevent-multiple-submit-button">Üye ol</button>
+						<small id="passwordHelp" class="form-text text-muted">itü mail sisteminden dolayı yolladığımız doğrulama adresinin gelmesi birkaç dakikayı bulabilir, anlayış gösterdiğiniz için teşekkür ederiz.</small>
 
 					</form>
 				</div>
@@ -81,6 +81,9 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<script defer src="/js/prevent-multiple-submit.js"></script>
+    <!-- prevent-multiple-submit-form prevent-multiple-submit-button  class'ına sahip etiketlere etki eder başka bir etkisi yok-->
 </body>
 
 </html>
