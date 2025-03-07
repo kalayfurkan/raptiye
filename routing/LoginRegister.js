@@ -38,13 +38,16 @@ router.post('/register', async (req, res) => {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye mail doğrulama',
-			html: `<h1>Bizi tercih ettiğiniz için teşekkürler.</h1>
-			<p><a href="https://www.ituraptiye.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>
-			 <br><br>
-			Eğer link çalışmazsa aşağıdaki url'ye gidiniz:
-			<br><br>
-			&lt;a href=&quot;https://www.ituraptiye.com/verify-email?token=${verificationToken}&quot;&gt;linke tıkla&lt;/a&gt;
-			  </p>`
+			html: `
+			<div style="font-family: Arial; max-width: 600px; margin: 0 auto">
+                    <h2 style="color: #003c80">İTÜ Raptiye'ye Hoş Geldiniz!</h2>
+                    
+                    
+					<p>İTÜ mail sistemi yabancı linklere izin vermediği için doğrudan link sağlayamıyoruz aşağıdaki adrese giderek mailinizi doğrulayabilirsiniz.</p>
+					<p style="color: #003c80; padding: 4px;">
+                        ituraptiye.com/verify-email?token=${verificationToken}
+                    </p>
+            </div>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
@@ -92,7 +95,16 @@ router.post('/forgotpassword',async (req,res) => {
 			from: process.env.EMAIL,
 			to: email,
 			subject: 'İTÜ Raptiye şifre yenileme',
-			html: `<a href="https://www.ituraptiye.com/refreshpassword?token=${verificationToken}">Linke tıklayarak şifrenizi sıfırlayınız.</a>`
+			html: `
+			<div style="font-family: Arial; max-width: 600px; margin: 0 auto">
+				<h2 style="color: #003c80">İTÜ Raptiye'ye Hoş Geldiniz!</h2>
+				
+				
+				<p>İTÜ mail sistemi yabancı linklere izin vermediği için doğrudan link sağlayamıyoruz aşağıdaki adrese giderek mailinizi doğrulayabilirsiniz.</p>
+				<p style="color: #003c80; padding: 4px;">
+				ituraptiye.com/refreshpassword?token=${verificationToken}
+				</p>
+            </div>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
