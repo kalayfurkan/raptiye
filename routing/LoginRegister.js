@@ -40,10 +40,7 @@ router.post('/register', async (req, res) => {
 			subject: 'İTÜ Raptiye mail doğrulama',
 			html: `<h1>Bizi tercih ettiğiniz için teşekkürler.</h1>
 			<p><a href="https://www.ituraptiye.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>
-			 <br><br>
-			Eğer link çalışmazsa aşağıdaki url'ye gidiniz:
-			<br><br>
-			https://www.ituraptiye.com/verify-email?token=${verificationToken}</p>`
+			<br>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
@@ -107,7 +104,7 @@ router.get('/refreshpassword',async (req, res) => {
 	try {
 		const user = await User.findOne({ verificationToken: token });
 		if (!user) {
-		  return res.status(400).send('Invalid token');
+		  return res.status(400).send('daha önce onaylanmış veya doğrulama başarısız.');
 		}
 		res.render('refreshpassword', { token });
 	  } catch (err) {
@@ -137,7 +134,7 @@ router.get('/verify-email', async (req, res) => {
 	const user = await User.findOne({ verificationToken: token });
 
 	if (!user) {
-		return res.status(400).send('Invalid token');
+		return res.status(400).send('daha önce onaylanmış veya doğrulama başarısız.');
 	}
 
 	user.isVerified = true;
