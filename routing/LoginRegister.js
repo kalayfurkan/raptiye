@@ -39,7 +39,8 @@ router.post('/register', async (req, res) => {
 			to: email,
 			subject: 'İTÜ Raptiye mail doğrulama',
 			html: `<h1>Bizi tercih ettiğiniz için teşekkürler.</h1>
-			<p><a href="https://www.ituraptiye.com/verify-email?token=${verificationToken}">Linke tıklayarak mailinizi doğrulayın.</a>
+			<p>Mailinizi doğrulamak için aşağıdaki adresi kopyalayıp adres çubuğuna yapıştırın. Eğer doğrudan aşağıdaki linke tıklarsanız sistem mail adresinizi doğrulayacaktır ve siteye giriş yapabileceksiniz ama itü'ye ait olmayan bilinmeyen bir link olduğu için bir mail uyarı sayfasaına yönlendirilecek ve "daha önce onaylanmış veya doğrulama başarısız." mesajını göreceksiniz.</p>
+			<p> https://www.ituraptiye.com/verify-email?token=${verificationToken} </p>
 			<br>`
 		};
 
@@ -104,7 +105,7 @@ router.get('/refreshpassword',async (req, res) => {
 	try {
 		const user = await User.findOne({ verificationToken: token });
 		if (!user) {
-		  return res.status(400).send('daha önce onaylanmış veya doğrulama başarısız.');
+		  return res.status(400).send('daha önce onaylanmış veya doğrulama başarısız. https://ituraptiye.com/login ile giriş yapmayı deneyin.');
 		}
 		res.render('refreshpassword', { token });
 	  } catch (err) {
@@ -134,7 +135,7 @@ router.get('/verify-email', async (req, res) => {
 	const user = await User.findOne({ verificationToken: token });
 
 	if (!user) {
-		return res.status(400).send('daha önce onaylanmış veya doğrulama başarısız.');
+		return res.status(400).send('daha önce onaylanmış veya doğrulama başarısız. https://ituraptiye.com/login ile giriş yapmayı deneyin.');
 	}
 
 	user.isVerified = true;
