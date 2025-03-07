@@ -43,7 +43,8 @@ router.post('/register', async (req, res) => {
 			 <br><br>
 			Eğer link çalışmazsa aşağıdaki url'ye gidiniz:
 			<br><br>
-			https://www.ituraptiye.com/verify-email?token=${verificationToken}</p>`
+			&lt;a href=&quot;https://www.ituraptiye.com/verify-email?token=${verificationToken}&quot;&gt;linke tıkla&lt;/a&gt;
+			  </p>`
 		};
 
 		const info = await transporter.sendMail(mailOptions);
