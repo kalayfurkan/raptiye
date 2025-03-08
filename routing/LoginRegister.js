@@ -97,10 +97,10 @@ router.post('/forgotpassword',async (req,res) => {
 			subject: 'İTÜ Raptiye şifre yenileme',
 			html: `
 			<div style="font-family: Arial; max-width: 600px; margin: 0 auto">
-				<h2 style="color: #003c80">İTÜ Raptiye'ye Hoş Geldiniz!</h2>
+				<h2 style="color: #003c80">İTÜ Raptiye Şifre Yenileme</h2>
 				
 				
-				<p>İTÜ mail sistemi yabancı linklere izin vermediği için doğrudan link sağlayamıyoruz aşağıdaki adrese giderek mailinizi doğrulayabilirsiniz.</p>
+				<p>İTÜ mail sistemi yabancı linklere izin vermediği için doğrudan link sağlayamıyoruz aşağıdaki adrese giderek şifrenizi yenileyebilirsiniz.</p>
 				<p style="color: #003c80; padding: 4px;">
 				ituraptiye.com/refreshpassword?token=${verificationToken}
 				</p>
