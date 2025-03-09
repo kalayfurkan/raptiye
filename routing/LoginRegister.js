@@ -44,6 +44,7 @@ router.post('/register', async (req, res) => {
                     
                     
 					<p>İTÜ mail sistemi yabancı linklere izin vermediği için doğrudan link sağlayamıyoruz aşağıdaki adrese giderek mailinizi doğrulayabilirsiniz.</p>
+					<p>Doğrulama linkiniz bir hafta içinde geçersiz olacaktır. Bu süre dolduğunda, tekrar üye olmanız gerekecektir.</p>
 					<p style="color: #003c80; padding: 4px;">
                         ituraptiye.com/verify-email?token=${verificationToken}
                     </p>
