@@ -7,6 +7,16 @@ h1.header {
 }
 a.sesiniduyur{
     margin-right: auto;
+    border-color: var(--ternary-color-dark);
+    background-color: var(--ternary-color);
+}
+a.sesiniduyur:hover{
+    background-color: var(--ternary-color-dark);
+}
+a.sesiniduyur:active{
+    background-color: white;
+    border-color: var(--ternary-color-dark);
+    color: var(--ternary-color-dark);
 }
 .sorting-buttons{
     display: flex;

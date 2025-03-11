@@ -124,3 +124,32 @@ div.input-group {
 .mesaj-daha-fazla{
     display: none;
 }
+
+
+
+#chat-messages {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    flex: 1 1 auto;
+    min-height: 300px;
+    max-height: 700px;
+    position: relative;
+}
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+#message-form {
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    padding-top: 0.5rem;
+    width: 100%;
+    z-index: 10;
+}

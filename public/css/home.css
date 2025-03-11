@@ -81,12 +81,14 @@ html, body {
 }
 
 .feature h2 {
+    font-family: "Nunito", sans-serif;
     font-size: 2.5em;
+    font-weight: 600;
 }
 
 .feature h2 a{
     color: black;
-    transition: color 0.1s;
+    transition: color 0.2s;
 }
 
 .feature h2 a:hover{
