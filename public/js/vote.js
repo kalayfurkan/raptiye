@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Server Response:', data); // Debug: Log server response
+            //console.log('Server Response:', data); // Debug: Log server response
             if (data.success) {
                 updateVotes(formId, data);
             } else {

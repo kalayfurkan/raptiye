@@ -7,7 +7,7 @@ const { GetObjectCommand } = require("@aws-sdk/client-s3");
 
 router.get('/images/:bucketName/:imageName', async (req, res) => {
     try {
-        console.log("Requesting image:", req.params.imageName, "from bucket:", req.params.bucketName);
+        //console.log("Requesting image:", req.params.imageName, "from bucket:", req.params.bucketName);
         const imageName = req.params.imageName;
         const bucketName = req.params.bucketName;
 

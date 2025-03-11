@@ -19,7 +19,7 @@ const s3 = new S3Client({
 
 const uploadToR2 = async (fileBuffer, fileName, mimeType, bucket) => {
 
-    console.log("Uploading to R2:", fileName, mimeType, bucket);
+    //console.log("Uploading to R2:", fileName, mimeType, bucket);
     // Set up S3 params
     const params = {
         Bucket: bucket,
@@ -31,14 +31,14 @@ const uploadToR2 = async (fileBuffer, fileName, mimeType, bucket) => {
     const command = new PutObjectCommand(params);
     const result = await s3.send(command);
     // Upload using putObject
-    console.log("Upload successful:", result);
+    //console.log("Upload successful:", result);
     return result;
 }
 
 
 const deleteFromR2 = async (fileName, bucket) => {
     const key = fileName.replace(`/images/${bucket}/`, "", 1);
-    console.log("Deleting from R2:", key);
+    //console.log("Deleting from R2:", key);
     const params = {
         Bucket: bucket,
         Key: key

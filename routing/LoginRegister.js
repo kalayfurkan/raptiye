@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
 
 		const info = await transporter.sendMail(mailOptions);
 
-		console.log('Email sent: ' + info.response);
+		//console.log('Email sent: ' + info.response);
 
 		res.render('register',{ message:"basari"})
 
@@ -110,7 +110,7 @@ router.post('/forgotpassword',async (req,res) => {
 
 		const info = await transporter.sendMail(mailOptions);
 
-		console.log('Email sent: ' + info.response);
+		//console.log('Email sent: ' + info.response);
 		res.send('Yenileme isteği gönderildi. <a href="https://webmail.itu.edu.tr/login.php">linke</a> tıklayarak mailinize gidip hesabınızı doğrulayın.');
 	} catch (error) {
 		res.status(500).send(error);

@@ -86,6 +86,7 @@ html, body {
 
 .feature h2 a{
     color: black;
+    transition: color 0.1s;
 }
 
 .feature h2 a:hover{

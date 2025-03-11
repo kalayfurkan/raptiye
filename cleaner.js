@@ -64,9 +64,9 @@ const deleteUnverifiedUsers = new CronJob('0 0 * * 0', async () => {
 	try {
 	  const result = await User.deleteMany({ isVerified: false });
   
-	  if (result.deletedCount > 0) {
-		console.log(`${result.deletedCount} adet doğrulanmamış kullanıcı silindi.`);
-	  }
+	  //if (result.deletedCount > 0) {
+		//console.log(`${result.deletedCount} adet doğrulanmamış kullanıcı silindi.`);
+	  //}
 	  
 	} catch (error) {
 	  console.error('Doğrulanmamış kullanıcıları silerken hata oluştu:', error);
@@ -76,7 +76,7 @@ const deleteUnverifiedUsers = new CronJob('0 0 * * 0', async () => {
 const deleteEmptyMessages=new CronJob('0 0 * * *',async () =>{
 	try {
 		const result = await Messages.deleteMany({ texts: { $size: 0 } });
-		console.log(`Silinen boş mesaj sayısı: ${result.deletedCount}`);
+		//console.log(`Silinen boş mesaj sayısı: ${result.deletedCount}`);
 	} catch (error) {
 		console.error('Boş mesajları silerken hata oluştu:', error);
 	}

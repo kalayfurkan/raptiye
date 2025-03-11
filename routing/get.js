@@ -63,10 +63,10 @@ router.post('/contact-us',(req,res) => {
 
 	transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log(error);
+            //console.log(error);
             res.send('E-posta gönderme başarısız oldu.');
         } else {
-            console.log('E-posta başarıyla gönderildi: ' + info.response);
+            //console.log('E-posta başarıyla gönderildi: ' + info.response);
             res.redirect('/');
         }
     });
