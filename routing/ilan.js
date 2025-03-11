@@ -69,7 +69,7 @@ router.post('/addpost',allMiddlewares.requireAuth, async (req, res) => {
 });
 
 
-router.get('/satisilanlari', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/satisilanlari', async (req, res) => {
 	try {
 		const page = parseInt(req.query.page) || 1; // Varsayılan sayfa: 1
     	const limit = 9; // Sayfa başına 10 öğe

@@ -183,7 +183,7 @@ router.post('/login', async (req, res) => {
 
 					// After regenerating, storing user info in the session
 					req.session.userId = user._id;
-					req.session.cookie.maxAge = rememberMe ? 14 * 24 * 60 * 60 * 1000 : 6 * 60 * 60 * 1000;  // 14 days or 6 hours
+					req.session.cookie.maxAge = rememberMe ? 28 * 24 * 60 * 60 * 1000 : 6 * 60 * 60 * 1000;  // 28 days or 6 hours
 
 					res.redirect('/');
 				});

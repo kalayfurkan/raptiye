@@ -67,7 +67,7 @@ router.post('/addshortilan', allMiddlewares.requireAuth, async (req, res) => {
 	res.redirect('/kisasureliilanlar');
 })
 
-router.get('/kisasureliilanlar', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/kisasureliilanlar', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1; // Varsayılan sayfa: 1
         const limit = 8; // Sayfa başına 9 öğe

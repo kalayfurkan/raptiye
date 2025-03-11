@@ -118,7 +118,7 @@
                                 <a href="/profile/<%= ilan.owner.username%>">
                                     <%=ilan.owner.username%>
                                 </a>
-                                <% if (currentUserid.toString() !== ilan.owner._id.toString()) { %>
+                                <% if (currentUserid && currentUserid.toString() !== ilan.owner._id.toString()) { %>
                                     <a class="btn1" href="
                                         <% if (currentUserid.toString() === ilan.owner._id.toString()) { %>
                                             /profile
@@ -129,7 +129,9 @@
                                         Mesaj At
                                     </a>
                                 <% } %>
+                                <% if(currentUserid){%>
                                 <!-- <a class="btn1" href="/messages/<%=currentUserid.toString()%>/<%=ilan.owner._id%>">Mesaj at</a> -->
+                                <% } %>
                             </div>
                         </div>
                         <%  var removalDate=new Date(ilan.removalDate); var now=new Date();

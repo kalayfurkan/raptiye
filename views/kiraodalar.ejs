@@ -118,12 +118,12 @@
 
                                 <!-- yıldız butonu -->
                                 <form class="star-form"
-                                    action="<%= currentUser.favoritesKira && currentUser.favoritesKira.includes(ilan._id) ? '/kiradeletefavorites/' + ilan._id : '/kiraaddfavorites/' + ilan._id %>"
+                                    action="<%=currentUser&& currentUser.favoritesKira && currentUser.favoritesKira.includes(ilan._id) ? '/kiradeletefavorites/' + ilan._id : '/kiraaddfavorites/' + ilan._id %>"
                                     method="post">
                                     <input type="hidden" name="ilanid" value="<%= ilan._id %>">
 
                                     <button type="submit"
-                                        class="star-btn <%= currentUser.favoritesKira && currentUser.favoritesKira.includes(ilan._id) ? 'spin' : '' %>"
+                                        class="star-btn <%=currentUser&& currentUser.favoritesKira && currentUser.favoritesKira.includes(ilan._id) ? 'spin' : '' %>"
                                         data-ilan-id="<%= ilan._id %>">
                                         <svg class="star" width="10" height="10"
                                             viewBox="0 0 642 642" fill="none"

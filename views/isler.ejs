@@ -104,10 +104,10 @@
 
                                         <!-- Yıldız kısmı -->
                                         <form class="star-form"
-                                            action="<%= currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? '/jobdeletefavorites/' + job._id : '/jobaddfavorites/' + job._id %>" method="post">
+                                            action="<%=currentUser && currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? '/jobdeletefavorites/' + job._id : '/jobaddfavorites/' + job._id %>" method="post">
                                             <input type="hidden" name="ilanid" value="<%= job._id %>">
                                             <button type="submit"
-                                                class="star-btn <%= currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? 'spin' : '' %>"
+                                                class="star-btn <%=currentUser && currentUser.favoritesJob && currentUser.favoritesJob.includes(job._id) ? 'spin' : '' %>"
                                                 data-ilan-id="<%= job._id %>">
                                                 <svg class="star" width="10" height="10"
                                                     viewBox="0 0 642 642" fill="none"

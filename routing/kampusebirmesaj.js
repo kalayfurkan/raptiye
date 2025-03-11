@@ -69,7 +69,7 @@ router.post('/kampusebirmesajbirak', allMiddlewares.requireAuth, async (req, res
 
 })
 
-router.get('/kampusemesajlar', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/kampusemesajlar',  async (req, res) => {
     const sortOption = req.query.sort || 'newest'; // Varsayılan sıralama: newest
     const userId = req.session.userId;
     const page = parseInt(req.query.page) || 1; // Varsayılan sayfa: 1

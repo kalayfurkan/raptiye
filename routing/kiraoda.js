@@ -65,7 +65,7 @@ router.post('/addkiraoda', allMiddlewares.requireAuth, async (req, res) => {
 	}
 })
 
-router.get('/evarkadasiilanlari', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/evarkadasiilanlari',  async (req, res) => {
     const page = parseInt(req.query.page) || 1; // Varsayılan sayfa 1
     const limit = 8; // Sayfa başına 10 ilan
     const skip = (page - 1) * limit;

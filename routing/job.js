@@ -66,7 +66,7 @@ router.post('/addjob', allMiddlewares.requireAuth, async (req, res) => {
 })
 
 
-router.get('/isilanlari', allMiddlewares.requireAuth, async (req, res) => {
+router.get('/isilanlari',  async (req, res) => {
     const page = parseInt(req.query.page) || 1; // Varsayılan sayfa 1
     const limit = 10; // Sayfa başına 10 iş ilanı
     const skip = (page - 1) * limit;
